@@ -2,6 +2,49 @@
 #define PLAYER_H_INCLUDED
 #include "DLL.h"
 struct player{
+    string name;
+    int health; //100
+    int Stamina; //50
+    int defaultAttack; // 25
+    int defaultDef; //25
+  // att dan def bs ditambah am equipment
+
+
+};
+
+struct skill{
+	string name;
+	integer id;
+	integer damage;
+	integer heal;
+	integer buffs;
+}
+
+struct Item {
+    string nameItem;
+    int jumlahItem;
+    // Informasi item lainnya
+
+};
+
+struct Location {
+    string name;
+// point ke tempat mana aja 
+    Location* nextLocation;
+    Character* inLocation;
+    Encounter *placeEncounter;
+
+
+
+};
+struct Inventory {
+    int gold;
+    
+    //point ke item mw ditambah;
+
+
+    // Pointer ke karakter yang memiliki item ini
+    Character* owner;
 };
 typedef player infotype;
 typedef struct elementPlayer *playerAddress;
