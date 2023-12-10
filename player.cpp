@@ -1,5 +1,5 @@
 #include "player.h"
-//Test
+//Ballz
 void createPlayerList(playerList &L){
     first(L) = NULL;
     last(L) = NULL;
