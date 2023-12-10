@@ -12,17 +12,23 @@ int main()
 
     initiateObjects(OL);
 
-    Player.name = "Raka";
+
+    cout << "Masukkan nama karakter anda:" << endl;
+    cin >> Player.name;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
-    cout << "Nama2 Pemain:" << endl;
-    showPlayer(PL);
-    cout << "Object yang tersedia:" << endl;
+    cout << "Berikut adalah item starter yang tersedia:" << endl;
     showObject(OL);
-    cout << "Item pemain:" << endl;
-    addObjectToPlayer(PL,OL,"Raka","Stone");
-    addObjectToPlayer(PL,OL,"Raka","Stone");
-    addObjectToPlayer(PL,OL,"Raka","Stone");
+    cout << "Pilih salah satu" << endl;
+    cin >> Object.name;
+    while(findObject(OL,Object.name) == NULL){
+        cout << "Item tidak tersedia, Pilih salah satu" << endl;
+        cin >> Object.name;
+    }
+    addObjectToPlayer(PL,OL,Player.name,Object.name);
+    cout << "Berikut adalah data karakter anda:" << endl;
+    showPlayer(PL);
+    cout << "Item Anda:" << endl;
     showInventory(inventory(adrPlayer));
 
     return 0;

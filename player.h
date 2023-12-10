@@ -26,6 +26,7 @@ void createPlayerList(playerList &L);
 bool isPlayerEmpty(playerList L);
 playerAddress createNewPlayerElement(player x);
 void addPlayer(playerList &L,playerAddress p);
+void deletePlayer(playerList &L,string name);
 playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
 

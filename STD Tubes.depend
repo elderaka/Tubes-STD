@@ -1,37 +1,38 @@
 # depslib dependency file v1.0
 1702108769 source:c:\users\lauda\onedrive\documents\c++\std tubes\dll.cpp
 
-1702120375 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
+1702245253 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
 	"main.h"
 
-1702119802 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
+1702244958 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
 	"player.h"
 	"object.h"
 
-1702117831 c:\users\lauda\onedrive\documents\c++\std tubes\player.h
+1702244785 c:\users\lauda\onedrive\documents\c++\std tubes\player.h
 	"DLL.h"
 	"inventory.h"
+	"skill.h"
 
-1702119928 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
+1702223114 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
 	<iostream>
 
-1702122758 c:\users\lauda\onedrive\documents\c++\std tubes\inventory.h
+1702244907 c:\users\lauda\onedrive\documents\c++\std tubes\inventory.h
 	"DLL.h"
 	"object.h"
 
-1702117840 c:\users\lauda\onedrive\documents\c++\std tubes\object.h
+1702244785 c:\users\lauda\onedrive\documents\c++\std tubes\object.h
 	"DLL.h"
 
-1702120511 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
+1702244761 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
 	"player.h"
 
-1702117873 source:c:\users\lauda\onedrive\documents\c++\std tubes\object.cpp
+1702244785 source:c:\users\lauda\onedrive\documents\c++\std tubes\object.cpp
 	"object.h"
 
-1702122757 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
+1702244968 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
 	"main.h"
 
-1702122758 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
+1702245010 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
 	"inventory.h"
 
 1702219798 source:c:\users\hanif\documents\tubes-std\control.cpp
@@ -72,4 +73,10 @@
 
 1702219911 source:c:\users\hanif\documents\tubes-std\player.cpp
 	"player.h"
+
+1702223114 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
+	"DLL.h"
+
+1702223114 source:c:\users\lauda\onedrive\documents\c++\std tubes\skill.cpp
+	"skill.h"
 

@@ -26,6 +26,19 @@ void addPlayer(playerList &L,playerAddress p){
         last(L) = p;
     }
 }
+void deletePlayer(playerList &L,string name){
+    playerAddress P = findPlayer(L,name);
+    if(P != NULL){
+        playerAddress prec = prev(P);
+        next(prec) = next(P);
+        if(next(prec) != NULL){
+            prev(next(P)) = prec;
+        }
+        next(P) = NULL;
+        prev(P) = NULL;
+    }
+
+}
 playerAddress findPlayer(playerList L, string name){
     playerAddress prec = first(L);
     while(prec != NULL){

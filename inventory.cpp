@@ -24,6 +24,25 @@ void insertLastInventory(inventoryList &L, inventoryAddress p){
         last(L) = p;
     }
 }
+void removeObject(inventoryList &IL,objectList &OL,string name){
+    objectAddress P = findObject(OL,name);
+    inventoryAddress Q = first(IL);
+    while(Q != NULL && object(Q) != P){
+        Q = next(Q);
+    }
+    if(Q != NULL){
+        inventoryAddress prec = prev(Q);
+        next(prec) = next(Q);
+        if(next(prec) != NULL){
+            prev(next(Q)) = prec;
+        }
+        next(Q) = NULL;
+        prev(Q) = NULL;
+    }else{
+        cout << "Item not found" << endl;
+    }
+
+}
 inventoryAddress findObjectinInventory(inventoryList L,string name){
     inventoryAddress prec = first(L);
     while(prec != NULL){

@@ -9,9 +9,32 @@ void addObjectToPlayer(playerList &PL, objectList OL, string player,string objec
         insertLastInventory(inventory(adrPlayer),R);
     }
 }
-void removeObjectFromPlayer(playerList &PL, string player, string name);
-void deletePlayer(playerList &PL, string player);
-void deleteObject(playerList &PL, objectList &OL, string name);
+void removeObjectFromPlayer(playerList &PL,objectList &OL, string player, string name){
+    playerAddress adrPlayer = findPlayer(PL,player);
+    if(adrPlayer != NULL){
+        inventoryList inv = inventory(adrPlayer);
+        removeObject(inv,OL,name);
+    }else{
+        cout << "Player not found" << endl;
+    }
+}
+void deleteObject(playerList &PL, objectList &OL, string name){
+    playerAddress P = first(PL);
+    while(P != NULL){
+        removeObject(inventory(P),OL, name);
+    }
+    objectAddress Q = findObject(OL,name);
+    if(Q != NULL){
+        objectAddress prec = prev(Q);
+        next(prec) = next(Q);
+        if(next(prec) != NULL){
+            prev(next(Q)) = prec;
+        }
+        next(Q) = NULL;
+        prev(Q) = NULL;
+    }
+
+}
 void initiateObjects(objectList &OL){
     createObjectList(OL);
     object Object;
