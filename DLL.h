@@ -8,6 +8,7 @@
 #define info(P) P->info
 #define inventory(P) P->inventory
 #define object(P) P->object
+#define skill(P) P->skill
 #define allocate(p) p = new elmtList
 using namespace std;
 #endif // DLL_H_INCLUDED

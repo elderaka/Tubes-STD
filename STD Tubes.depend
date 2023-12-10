@@ -34,3 +34,42 @@
 1702122758 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
 	"inventory.h"
 
+1702219798 source:c:\users\hanif\documents\tubes-std\control.cpp
+	"main.h"
+
+1702219798 c:\users\hanif\documents\tubes-std\main.h
+	"player.h"
+	"object.h"
+
+1702222836 c:\users\hanif\documents\tubes-std\player.h
+	"DLL.h"
+	"inventory.h"
+	"skill.h"
+
+1702222870 c:\users\hanif\documents\tubes-std\dll.h
+	<iostream>
+
+1702219798 c:\users\hanif\documents\tubes-std\inventory.h
+	"DLL.h"
+	"object.h"
+
+1702219798 c:\users\hanif\documents\tubes-std\object.h
+	"DLL.h"
+
+1702222016 c:\users\hanif\documents\tubes-std\skill.h
+	"DLL.h"
+
+1702219670 source:c:\users\hanif\documents\tubes-std\dll.cpp
+
+1702219798 source:c:\users\hanif\documents\tubes-std\inventory.cpp
+	"inventory.h"
+
+1702219798 source:c:\users\hanif\documents\tubes-std\main.cpp
+	"main.h"
+
+1702219798 source:c:\users\hanif\documents\tubes-std\object.cpp
+	"object.h"
+
+1702219911 source:c:\users\hanif\documents\tubes-std\player.cpp
+	"player.h"
+

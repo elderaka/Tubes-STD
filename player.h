@@ -2,6 +2,8 @@
 #define PLAYER_H_INCLUDED
 #include "DLL.h"
 #include "inventory.h"
+#include "skill.h"
+
 struct player{
     string name;
 };
@@ -12,7 +14,7 @@ struct elementPlayer{
     playerAddress prev;
     playerAddress next;
     inventoryList inventory;
-
+    skillList skill;
 };
 
 struct playerList{
