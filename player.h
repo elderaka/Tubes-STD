@@ -1,36 +1,32 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 #include "DLL.h"
+#include "inventory.h"
 struct player{
+    string name;
 };
-typedef player infotype;
 typedef struct elementPlayer *playerAddress;
 
 struct elementPlayer{
-    infotype info;
+    player info;
     playerAddress prev;
     playerAddress next;
+    inventoryList inventory;
 
 };
 
 struct playerList{
-    address first;
-    address last;
+    playerAddress first;
+    playerAddress last;
 };
 
-void createPlayerList(List &L);
-bool isPlayerEmpty(List L);
-address createNewPlayerElement(infotype x);
-void insertFirstPlayer(List &L,address p);
-void insertAfterPlayer(List &L,address prec, address p);
-void insertLastPlayer(List &L,address p);
-void deleteFirstPlayer(List &L,address p);
-void deleteAfterPlayer(List &L,address prec,address p);
-void deleteLastPlayer(List &L,address p);
-address findLagu_1301223115(string judul,List L);
-void removeLagu_1301223115(string judul,List &L);
-void show_1301223115(List L);
-void swapDescending(List &L);
+void createPlayerList(playerList &L);
+bool isPlayerEmpty(playerList L);
+playerAddress createNewPlayerElement(player x);
+void addPlayer(playerList &L,playerAddress p);
+playerAddress findPlayer(playerList L, string name);
+void showPlayer(playerList L);
+
 
 
 #endif // PLAYER_H_INCLUDED
