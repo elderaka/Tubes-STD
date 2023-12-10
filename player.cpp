@@ -1,5 +1,5 @@
 #include "player.h"
-
+//Test
 void createPlayerList(playerList &L){
     first(L) = NULL;
     last(L) = NULL;
