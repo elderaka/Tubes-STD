@@ -1,26 +1,33 @@
 #ifndef SKILL_H_INCLUDED
 #define SKILL_H_INCLUDED
+
 #include "DLL.h"
 
 struct skill{
     string name;
 };
+
+//                           Heavy Strike
+//                           /           \
+//                   Thrust                 Parry
+//                  /      \               /     \
+//          Sweep          Gatling   Dominance    Aura
+
 typedef struct elementSkill *skillAddress;
 
-struct elementSkill{
+struct skillNode{
     skill info;
-    skillAddress prev;
-    skillAddress next;
+    skillAddress left;
+    skillAddress right;
 };
 
-struct skillList{
-    skillAddress first;
-    skillAddress last;
+struct skillTree{
+    skillAddress root;
 };
 
-void createSkillList(skillList &L);
+void createSkillTree(skillList &L);
 bool isSkillEmpty(skillList L);
-skillAddress createNewSkillElement(skill x);
+skillAddress createNewSkillNode(skill x);
 void addSkill(skillList &L,skillAddress p);
 skillAddress findskill(skillList L, string name);
 void showSkill(skillList L);
