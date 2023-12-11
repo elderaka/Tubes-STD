@@ -14,7 +14,7 @@ struct elementPlayer{
     playerAddress prev;
     playerAddress next;
     inventoryList inventory;
-    skillList skill;
+    skillTree skill;
 };
 
 struct playerList{

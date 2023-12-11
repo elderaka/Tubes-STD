@@ -4,14 +4,15 @@ int main()
 {
     playerList PL;
     objectList OL;
+    skillTree ST;
     player Player;
     object Object;
     playerAddress adrPlayer;
-    objectAddress adrObject;
+    //objectAddress adrObject;
     createPlayerList(PL);
 
     initiateObjects(OL);
-
+    initiateSkills(ST);
 
     cout << "Masukkan nama karakter anda:" << endl;
     cin >> Player.name;
@@ -26,6 +27,8 @@ int main()
         cin >> Object.name;
     }
     addObjectToPlayer(PL,OL,Player.name,Object.name);
+    cout << "Berikut adalah skill starter yang tersedia:" << endl;
+    showSkill(ST);
     cout << "Berikut adalah data karakter anda:" << endl;
     showPlayer(PL);
     cout << "Item Anda:" << endl;

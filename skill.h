@@ -6,14 +6,14 @@
 struct skill{
     string name;
 };
-
-//                           Heavy Strike
-//                           /           \
-//                   Thrust                 Parry
-//                  /      \               /     \
-//          Sweep          Gatling   Dominance    Aura
-
-typedef struct elementSkill *skillAddress;
+/*
+                           Heavy Strike
+                           /           \
+                   Thrust                 Parry
+                  /      \               /     \
+          Sweep          Gatling   Dominance    Aura
+*/
+typedef struct skillNode *skillAddress;
 
 struct skillNode{
     skill info;
@@ -21,15 +21,15 @@ struct skillNode{
     skillAddress right;
 };
 
-struct skillTree{
-    skillAddress root;
-};
-
-void createSkillTree(skillList &L);
-bool isSkillEmpty(skillList L);
+typedef skillAddress skillTree;
+#include "queue.h"
+void createSkillTree(skillTree &root);
+bool isSkillEmpty(skillTree root);
 skillAddress createNewSkillNode(skill x);
-void addSkill(skillList &L,skillAddress p);
-skillAddress findskill(skillList L, string name);
-void showSkill(skillList L);
+void addSkill(skillTree &root,skillAddress p);
+skillAddress findskill(skillTree root, string name);
+int STHeight(skillTree root);
+int getcol(int h);
+void showSkill(skillTree root);
 
 #endif // skill_H_INCLUDED

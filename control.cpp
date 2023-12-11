@@ -47,3 +47,22 @@ void initiateObjects(objectList &OL){
     Object.name = "Lol";
     addObject(OL,createNewObjectElement(Object));
 }
+void initiateSkills(skillTree &ST){
+    createSkillTree(ST);
+    skill Skill;
+    Skill.name = "Skills";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Physical";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Magical";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Slash";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Shoot";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Conjure";
+    addSkill(ST,createNewSkillNode(Skill));
+    Skill.name = "Cast";
+    addSkill(ST,createNewSkillNode(Skill));
+
+}
