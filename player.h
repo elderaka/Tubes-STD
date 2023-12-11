@@ -6,6 +6,12 @@
 
 struct player{
     string name;
+    string buffs; //current applied buffs -1 tiap turn
+    int health; //100
+    int stamina; //50
+    int xp; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
+    int defaultAttack; // 25, buat multiplier ama skill
+    int defaultDefence; // 25, buat multiplier kuranging dmg dr musuh terima
 };
 typedef struct elementPlayer *playerAddress;
 

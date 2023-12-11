@@ -4,6 +4,14 @@
 
 struct object{
     string name;
+    string desc;
+    string type; //throwable ato equipable
+    int jumlah; //self explanatory
+    int dmg; //ke musuh semisal throwable ke enemy
+    int heal; //semisal heal pot
+    int buff; // semisal buff dmg ato def
+    int duration; //semisal buff ato overtime healing
+
 };
 typedef struct elementObject *objectAddress;
 

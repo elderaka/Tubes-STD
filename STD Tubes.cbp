@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="DLL.cpp" />
 		<Unit filename="DLL.h" />
+		<Unit filename="WhatToDo.cpp" />
 		<Unit filename="control.cpp" />
 		<Unit filename="inventory.cpp" />
 		<Unit filename="inventory.h" />
@@ -43,6 +44,10 @@
 		<Unit filename="object.h" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />
+		<Unit filename="queue.cpp" />
+		<Unit filename="queue.h" />
+		<Unit filename="skill.cpp" />
+		<Unit filename="skill.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

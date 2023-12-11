@@ -4,7 +4,17 @@
 #include "DLL.h"
 
 struct skill{
+    int id;
     string name;
+    string desc;
+    string type; //offensive, deffensive, support
+    int cost;
+    int dmg;
+    int heal;
+    int buff;
+    int duration; //semisal buff overtime
+    bool isMultiple;
+
 };
 /*
                            Heavy Strike

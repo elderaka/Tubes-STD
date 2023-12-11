@@ -7,7 +7,7 @@
 // Q: What are we going to do?
 // A: Creating a Text-Based RPG
 // Q: Then, what are "things" that's considered Data Structure?
-// A: We will implement M-to-N Multi Linked List Relation between Player and Items,
+// A: We will implement M-to-N Multi Linked List Relation between Player, skills, and Items.
 // Cont: M-to-N DLL to BTree Relation between Player and Skill, Queue System for Attack Phase, Stack for Menu,
 // Cont: and probably Graph of Player's choices
 // Q: But, wouldn't that be overcommit?
