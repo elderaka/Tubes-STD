@@ -72,3 +72,26 @@ void showSkill(skillTree T){
         }
     }
 }
+
+void showSkillByLevel(skillTree T, int level){
+    Queue Q;
+    createQueue(Q);
+    Enqueue(Q,T);
+    int i = 1;
+    int j = 1;
+    while(!isEmpty(Q)){
+        skillAddress N;
+        N = Dequeue(Q);
+        if(floor(log2(i))+1 == level){
+            cout << j << "."<<info(N).name << endl;
+            j++;
+        }
+        if(left(N)){
+            Enqueue(Q,left(N));
+        }
+        if(right(N)){
+            Enqueue(Q,right(N));
+        }
+        i++;
+    }
+}

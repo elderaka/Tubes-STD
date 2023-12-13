@@ -41,5 +41,6 @@ skillAddress findskill(skillTree root, string name);
 int STHeight(skillTree root);
 int getcol(int h);
 void showSkill(skillTree root);
+void showSkillByLevel(skillTree T, int level);
 
 #endif // skill_H_INCLUDED

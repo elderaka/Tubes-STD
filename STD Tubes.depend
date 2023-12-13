@@ -1,21 +1,26 @@
 # depslib dependency file v1.0
 1702108769 source:c:\users\lauda\onedrive\documents\c++\std tubes\dll.cpp
 
-1702271818 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
+1702443258 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
 	"main.h"
 
-1702270290 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
+1702443179 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
 	"player.h"
 	"object.h"
 	"skill.h"
+	"menu.h"
 
 1702264452 c:\users\lauda\onedrive\documents\c++\std tubes\player.h
 	"DLL.h"
 	"inventory.h"
 	"skill.h"
 
-1702269731 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
+1702443082 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
 	<iostream>
+	<conio.h>
+	<windows.h>
+	<stdlib.h>
+	<cmath>
 
 1702244907 c:\users\lauda\onedrive\documents\c++\std tubes\inventory.h
 	"DLL.h"
@@ -24,13 +29,13 @@
 1702244785 c:\users\lauda\onedrive\documents\c++\std tubes\object.h
 	"DLL.h"
 
-1702244761 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
+1702276951 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
 	"player.h"
 
-1702245295 source:c:\users\lauda\onedrive\documents\c++\std tubes\object.cpp
+1702441530 source:c:\users\lauda\onedrive\documents\c++\std tubes\object.cpp
 	"object.h"
 
-1702271849 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
+1702443149 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
 	"main.h"
 
 1702245010 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
@@ -75,11 +80,11 @@
 1702219911 source:c:\users\hanif\documents\tubes-std\player.cpp
 	"player.h"
 
-1702272846 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
+1702442485 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
 	"DLL.h"
 	"queue.h"
 
-1702271825 source:c:\users\lauda\onedrive\documents\c++\std tubes\skill.cpp
+1702443082 source:c:\users\lauda\onedrive\documents\c++\std tubes\skill.cpp
 	"skill.h"
 
 1702264327 source:c:\users\lauda\onedrive\documents\c++\std tubes\whattodo.cpp
@@ -90,4 +95,10 @@
 
 1702270223 source:c:\users\lauda\onedrive\documents\c++\std tubes\queue.cpp
 	"queue.h"
+
+1702439395 c:\users\lauda\onedrive\documents\c++\std tubes\menu.h
+	"main.h"
+
+1702443090 source:c:\users\lauda\onedrive\documents\c++\std tubes\menu.cpp
+	"menu.h"
 

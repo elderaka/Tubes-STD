@@ -39,9 +39,11 @@ objectAddress findObject(objectList L, string name){
 }
 void showObject(objectList L){
     objectAddress p = first(L);
+    int i = 1;
     while(p != NULL){
-        cout << info(p).name << " ";
+        cout << i << "." <<info(p).name << endl;
         p = next(p);
+        i++;
     }
     cout << endl;
 }

@@ -1,6 +1,10 @@
 #ifndef DLL_H_INCLUDED
 #define DLL_H_INCLUDED
 #include <iostream>
+#include <conio.h>
+#include <windows.h>
+#include <stdlib.h>
+#include <cmath>
 #define first(L) L.first
 #define last(L) L.last
 #define root(T) T.root
@@ -15,5 +19,7 @@
 #define allocate(p) p = new elmtList
 #define head(Q) Q.head
 #define tail(Q) Q.tail
+#define top(S) S.top
+#define peek(S) info(S)[Top(S)]
 using namespace std;
 #endif // DLL_H_INCLUDED

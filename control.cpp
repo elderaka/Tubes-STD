@@ -1,4 +1,13 @@
 #include "main.h"
+playerList PL;
+objectList OL;
+skillTree ST;
+player Player;
+object Object;
+skill Skill;
+playerAddress adrPlayer;
+objectAddress adrObject;
+
 void addObjectToPlayer(playerList &PL, objectList OL, string player,string object){
     playerAddress adrPlayer = findPlayer(PL,player);
     objectAddress adrObject = findObject(OL,object);
@@ -50,19 +59,15 @@ void initiateObjects(objectList &OL){
 void initiateSkills(skillTree &ST){
     createSkillTree(ST);
     skill Skill;
-    Skill.name = "Skills";
-    addSkill(ST,createNewSkillNode(Skill));
-    Skill.name = "Physical";
-    addSkill(ST,createNewSkillNode(Skill));
-    Skill.name = "Magical";
-    addSkill(ST,createNewSkillNode(Skill));
     Skill.name = "Slash";
     addSkill(ST,createNewSkillNode(Skill));
-    Skill.name = "Shoot";
+    Skill.name = "Bash";
     addSkill(ST,createNewSkillNode(Skill));
-    Skill.name = "Conjure";
-    addSkill(ST,createNewSkillNode(Skill));
-    Skill.name = "Cast";
+    Skill.name = "Suck";
     addSkill(ST,createNewSkillNode(Skill));
 
+}
+void initiateMenu(){
+    mainmenu();
+    introduction();
 }
