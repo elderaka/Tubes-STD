@@ -7,6 +7,7 @@
 struct player{
     string name;
     string buffs; //current applied buffs -1 tiap turn
+    string Class; //display current class
     int health; //100
     int stamina; //50
     int xp; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)

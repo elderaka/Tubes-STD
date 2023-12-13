@@ -46,15 +46,15 @@ void deleteObject(playerList &PL, objectList &OL, string name){
 }
 void initiateObjects(objectList &OL){
     createObjectList(OL);
+
     object Object;
     Object.name = "Stone";
     addObject(OL,createNewObjectElement(Object));
     Object.name = "Paper";
     addObject(OL,createNewObjectElement(Object));
-    Object.name = "Scissor";
-    addObject(OL,createNewObjectElement(Object));
-    Object.name = "Lol";
-    addObject(OL,createNewObjectElement(Object));
+    //Object.name = "Scissor";
+    //addObject(OL,createNewObjectElement(Object));
+
 }
 void initiateSkills(skillTree &ST){
     createSkillTree(ST);

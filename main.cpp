@@ -3,9 +3,9 @@
 int main()
 {
 
-    createPlayerList(PL);
-    initiateObjects(OL);
-    initiateSkills(ST);
+    //createPlayerList(PL);
+    //initiateObjects(OL);
+    //initiateSkills(ST);
     initiateMenu();
     return 0;
 }
