@@ -1,4 +1,5 @@
 #include "player.h"
+#include "main.h"
 void createPlayerList(playerList &L){
     first(L) = NULL;
     last(L) = NULL;
@@ -15,6 +16,8 @@ playerAddress createNewPlayerElement(player x){
 }
 void addPlayer(playerList &L,playerAddress p){
     createInventoryList(inventory(p));
+    createSkillList(skill(p));
+    insertLastSkill(skill(p),createNewSkillElement(ST));
     if (isPlayerEmpty(L)){
         first(L) = p;
         last(L) = p;
@@ -54,4 +57,25 @@ void showPlayer(playerList L){
         p = next(p);
     }
     cout << endl;
+}
+
+int nextLevel(player Player){
+    return floor(4*(pow(level,3))/5);
+}
+int levelUp(player Player){
+    int bonusStat = 2*getClassTier(CT,Player.Class);
+    cout << "Level Up!" << endl;
+    cout << "Sekarang kamu level " << Player.level + 1 << endl;
+    cout << "Exp berikutnya: " << nextLevel(Player) << endl;
+    while(bonusStat > 0){
+        cout << "Pilih Status yang ingin kamu tambahkan" << endl;
+        cout << "(Kamu mendapatkan tambahan setengah poin sesuai dengan Class kamu)" << endl;
+        cout << "Health: "<< Player.health
+    }
+
+}
+void showPlayerInfo(){
+    cout << "=================================="<< endl;
+    cout << "          "<< endl;
+    cout << "=================================="<< endl;
 }

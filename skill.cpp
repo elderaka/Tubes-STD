@@ -73,25 +73,65 @@ void showSkill(skillTree T){
     }
 }
 
-void showSkillByLevel(skillTree T, int level){
-    Queue Q;
-    createQueue(Q);
-    Enqueue(Q,T);
-    int i = 1;
-    int j = 1;
-    while(!isEmpty(Q)){
-        skillAddress N;
-        N = Dequeue(Q);
-        if(floor(log2(i))+1 == level){
-            cout << j << "."<<info(N).name << endl;
-            j++;
-        }
-        if(left(N)){
-            Enqueue(Q,left(N));
-        }
-        if(right(N)){
-            Enqueue(Q,right(N));
-        }
-        i++;
+void showSkillByParent(skillAddress T){
+    cout << "1."<<info(left(T)).name << endl;
+    cout << "2."<<info(right(T)).name << endl;
+}
+
+void createSkillList(skillList &L){
+    first(L) = NULL;
+    last(L) = NULL;
+}
+sListAddress createNewSkillElement(skillAddress x){
+    sListAddress p = new elementSkill;
+    skill(p) = x;
+    next(p) = NULL;
+    prev(p) = NULL;
+    return p;
+}
+void insertLastSkill(skillList &L, sListAddress p){
+    if (first(L) == NULL) {
+        first(L) = p;
+        last(L) = p;
+    } else {
+        next(last(L)) = p;
+        prev(p) = last(L);
+        last(L) = p;
     }
+}
+void removeSkill(skillList &SL,skillTree ST,string name){
+    skillAddress P = findskill(ST,name);
+    sListAddress Q = first(SL);
+    while(Q != NULL && skill(Q) != P){
+        Q = next(Q);
+    }
+    if(Q != NULL){
+        sListAddress prec = prev(Q);
+        next(prec) = next(Q);
+        if(next(prec) != NULL){
+            prev(next(Q)) = prec;
+        }
+        next(Q) = NULL;
+        prev(Q) = NULL;
+    }else{
+        cout << "Skill not found" << endl;
+    }
+}
+sListAddress findSkillinPlayer(string name,skillList L){
+    sListAddress prec = first(L);
+    while (prec != NULL) {
+        if (info(skill(prec)).name == name) {
+            return prec;
+        }
+        prec = next(prec);
+    }
+    return NULL;
+}
+void showSkill(skillList L){
+    sListAddress p = L.first;
+    while (p != NULL) {
+        cout << info(skill(p)).name << endl;
+        p = next(p);
+    }
+    cout << endl;
 }

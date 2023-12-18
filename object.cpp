@@ -28,8 +28,10 @@ void addObject(objectList &L,objectAddress p){
 
 objectAddress findObject(objectList L, string name){
     objectAddress prec = first(L);
+
     while(prec != NULL){
         if(info(prec).name == name){
+
             return prec;
         }
         prec = next(prec);

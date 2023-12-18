@@ -49,6 +49,7 @@ inventoryAddress findObjectinInventory(inventoryList L,string name){
         if(info(object(prec)).name == name){
             return prec;
         }
+        prec = next(prec);
     }
     return NULL;
 }

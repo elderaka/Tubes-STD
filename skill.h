@@ -2,7 +2,6 @@
 #define SKILL_H_INCLUDED
 
 #include "DLL.h"
-
 struct skill{
     int id;
     string name;
@@ -15,20 +14,25 @@ struct skill{
     int duration; //semisal buff overtime
     bool isMultiple;
 
-};
-/*
-                           Heavy Strike
-                           /           \
-                   Thrust                 Parry
-                  /      \               /     \
-          Sweep          Gatling   Dominance    Aura
-*/
-typedef struct skillNode *skillAddress;
 
+};
+typedef struct skillNode *skillAddress;
 struct skillNode{
     skill info;
     skillAddress left;
     skillAddress right;
+};
+typedef struct elementSkill *sListAddress;
+struct elementSkill{
+    skillAddress skill;
+    sListAddress next;
+    sListAddress prev;
+
+};
+struct skillList{
+    sListAddress first;
+    sListAddress last;
+
 };
 
 typedef skillAddress skillTree;
@@ -41,6 +45,13 @@ skillAddress findskill(skillTree root, string name);
 int STHeight(skillTree root);
 int getcol(int h);
 void showSkill(skillTree root);
-void showSkillByLevel(skillTree T, int level);
+void showSkillByParent(skillAddress T);
+
+void createSkillList(skillList &L);
+sListAddress createNewSkillElement(skillAddress x);
+void insertLastSkill(skillList &L, sListAddress p);
+void removeSkill(skillList &SL,skillTree ST,string name);
+sListAddress findSkillinPlayer(string name,skillList L);
+void showSkill(skillList L);
 
 #endif // skill_H_INCLUDED
