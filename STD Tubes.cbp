@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Class.cpp" />
+		<Unit filename="Class.h" />
 		<Unit filename="DLL.cpp" />
 		<Unit filename="DLL.h" />
 		<Unit filename="WhatToDo.cpp" />
@@ -40,6 +42,8 @@
 		<Unit filename="inventory.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Unit filename="player.cpp" />

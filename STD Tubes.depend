@@ -49,23 +49,27 @@
 1702451167 source:c:\users\hanif\documents\tubes-std\control.cpp
 	"main.h"
 
-1702450007 c:\users\hanif\documents\tubes-std\main.h
+1702873324 c:\users\hanif\documents\tubes-std\main.h
 	"player.h"
 	"object.h"
 	"skill.h"
+	"Class.h"
 	"menu.h"
 
-1702450069 c:\users\hanif\documents\tubes-std\player.h
+1702873324 c:\users\hanif\documents\tubes-std\player.h
 	"DLL.h"
 	"inventory.h"
 	"skill.h"
+	"Class.h"
 
-1702450007 c:\users\hanif\documents\tubes-std\dll.h
+1702873324 c:\users\hanif\documents\tubes-std\dll.h
 	<iostream>
 	<conio.h>
 	<windows.h>
 	<stdlib.h>
 	<cmath>
+	<string>
+	<iomanip>
 
 1702272887 c:\users\hanif\documents\tubes-std\inventory.h
 	"DLL.h"
@@ -74,23 +78,24 @@
 1702274784 c:\users\hanif\documents\tubes-std\object.h
 	"DLL.h"
 
-1702450007 c:\users\hanif\documents\tubes-std\skill.h
+1702873324 c:\users\hanif\documents\tubes-std\skill.h
 	"DLL.h"
 	"queue.h"
 
 1702219670 source:c:\users\hanif\documents\tubes-std\dll.cpp
 
-1702272887 source:c:\users\hanif\documents\tubes-std\inventory.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\inventory.cpp
 	"inventory.h"
 
-1702451258 source:c:\users\hanif\documents\tubes-std\main.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\main.cpp
 	"main.h"
 
-1702450007 source:c:\users\hanif\documents\tubes-std\object.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\object.cpp
 	"object.h"
 
-1702450007 source:c:\users\hanif\documents\tubes-std\player.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\player.cpp
 	"player.h"
+	"main.h"
 
 1702634086 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
 	"DLL.h"
@@ -124,10 +129,10 @@
 1702272887 source:c:\users\hanif\documents\tubes-std\queue.cpp
 	"queue.h"
 
-1702450007 source:c:\users\hanif\documents\tubes-std\skill.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\skill.cpp
 	"skill.h"
 
-1702450853 source:c:\users\hanif\documents\tubes-std\menu.cpp
+1702873324 source:c:\users\hanif\documents\tubes-std\menu.cpp
 	"menu.h"
 
 1702273661 source:c:\users\hanif\documents\tubes-std\whattodo.cpp
@@ -138,4 +143,11 @@
 
 1702657295 source:c:\users\lauda\onedrive\documents\c++\std tubes\class.cpp
 	"Class.h"
+
+1702873324 source:c:\users\hanif\documents\tubes-std\class.cpp
+	"Class.h"
+
+1702873324 c:\users\hanif\documents\tubes-std\class.h
+	"DLL.h"
+	"skill.h"
 
