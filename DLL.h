@@ -24,7 +24,7 @@
 #define head(Q) Q.head
 #define tail(Q) Q.tail
 #define top(S) S.top
-#define peek(S) info(S)[Top(S)]
+#define peek(S) S.info[top(S)]
 #define MC info(mc(PL))
 using namespace std;
 #endif // DLL_H_INCLUDED

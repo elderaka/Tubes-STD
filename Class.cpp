@@ -51,11 +51,11 @@ classAddress createNewClassNode(Class x){
     right(p) = NULL;
     return p;
 }
-int getClassTier(ClassTree root, string name){
+int getClassTier(classTree root, string name){
     CQueue Q;
     createCQueue(Q);
     EnCqueue(Q,root);
-    i = 1;
+    int i = 1;
     while(!isCEmpty(Q)){
         classAddress N;
         N = DeCqueue(Q);

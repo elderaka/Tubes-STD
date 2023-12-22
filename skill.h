@@ -13,8 +13,6 @@ struct skill{
     int buff;
     int duration; //semisal buff overtime
     bool isMultiple;
-
-
 };
 typedef struct skillNode *skillAddress;
 struct skillNode{

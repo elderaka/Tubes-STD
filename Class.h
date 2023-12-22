@@ -45,6 +45,7 @@ void addClass(classTree &root,classAddress p);
 classAddress findClass(classTree root, string name);
 int CTHeight(classTree root);
 int getcol(int h);
+int getClassTier(classTree root, string name);
 void showClass(classTree root);
 void showClassInfo(classAddress T);
 void showClassByParent(classAddress T);

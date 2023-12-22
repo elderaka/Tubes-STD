@@ -60,9 +60,9 @@ void showPlayer(playerList L){
 }
 
 int nextLevel(player Player){
-    return floor(4*(pow(level,3))/5);
+    return floor(4*(pow(Player.level,3))/5);
 }
-int levelUp(player Player){
+void levelUp(player &Player){
     int bonusStat = 2*getClassTier(CT,Player.Class);
     cout << "Level Up!" << endl;
     cout << "Sekarang kamu level " << Player.level + 1 << endl;
@@ -70,12 +70,24 @@ int levelUp(player Player){
     while(bonusStat > 0){
         cout << "Pilih Status yang ingin kamu tambahkan" << endl;
         cout << "(Kamu mendapatkan tambahan setengah poin sesuai dengan Class kamu)" << endl;
-        cout << "Health: "<< Player.health
+        cout << "Health: "<< Player.health;
     }
-
 }
-void showPlayerInfo(){
-    cout << "=================================="<< endl;
-    cout << "          "<< endl;
-    cout << "=================================="<< endl;
+void showPlayerInfo(player Player){
+    cout << "==============================" << endl;
+    cout << "===== Player Information =====" << endl;
+    cout << "==============================" << endl;
+    cout << "Name: " << Player.name << endl;
+    cout << "Class: " << Player.Class << endl;
+    cout << info(findClass(CT, Player.Class)).desc << endl;
+    cout << "Health: " << Player.currentHealth << "/"<< Player.health<<endl;
+    cout << "Stamina: " << Player.currentStamina <<"/" << Player.stamina << endl;
+
+    cout << "Attack: " << Player.defaultAttack << "(+" << info(findClass(CT, Player.Class)).bonusAttack << ")" <<endl;
+    cout << "Defense: " << Player.defaultDefence << "(+" << info(findClass(CT, Player.Class)).bonusDefense << ")" << endl;
+    cout << "Speed: " << Player.speed << "(+" << info(findClass(CT, Player.Class)).bonusSpeed << ")" << endl;
+    cout << "Level: " << Player.level << endl;
+    cout << "Coin: " << Player.coin << endl;
+    cout << "Experience Points: " << Player.xp << endl;
+    cout << "Next Level at: " << Player.nextLevel << " XP" << endl;
 }

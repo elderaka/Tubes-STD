@@ -32,7 +32,33 @@ void print(string text[100], int i, bool interactable){
     }
 
 }
-void mainmenu(){
+
+
+
+
+void createMenuStack(menuStack &S){
+    top(S) = 0;
+}
+bool isMenuEmpty(menuStack S){
+    return top(S) == 0;
+}
+void pushMenu(menuStack &S, int x){
+    top(S)++;
+    S.info[top(S)] = x;
+}
+void popMenu(menuStack &S){
+    top(S)--;
+}
+void printStack(menuStack &S){
+    for(int i = 1; i <= top(S);i++){
+        cout << S.info[i];
+    }
+}
+
+
+
+
+void splashScreen(){
     cout << " __| |____________________________________________| |__\n"
 "(__   ____________________________________________   __)\n"
 "   | |           Welcome To  Brave Hearts:        | |\n"
@@ -68,7 +94,7 @@ void introduction(){
     print(x,6,true);
     showObject(OL);
     cout << "Pilih salah satu:" << endl; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
-    system("cls");
+    cin >> Object.name;
     while(findObject(OL,Object.name) == NULL){
         cout << "Barang tidak tersedia, Pilih salah satu" << endl;
         cin >> Object.name;
@@ -90,5 +116,102 @@ void introduction(){
         getline(cin,cls.name);
     }
     changePlayerClass(MC.name,cls.name);
+    x[9] = "Dengan pemilihan class yang bijak, kamu merasa kekuatan magis mengalir dalam dirimu. Kini, sebagai seorang " + cls.name + ", petualanganmu di Eldoria dimulai.\n";
+    print(x, 9, false);
 
+    x[10] = "Berbekal senjata, sihir, dan tekad, kamu meninggalkan pasar menuju pintu gerbang kota. Angin sepoi-sepoi menyambut langkahmu, dan matahari terbenam memberikan warna keemasan pada langit.\n";
+    print(x, 10, false);
+
+    x[11] = "Perjalananmu di dunia Eldoria dimulai di kota kecil Everhaven. Dengan Pusaka yang Hilang sebagai tujuan utama, siapakah yang akan kamu temui, dan apakah takdirmu yang terpatri dalam gulungan sejarah ini?\n";
+    print(x, 11, false);
+    pushMenu(Menu,0);
+}
+
+void mainMenu(){
+    cout << "===== Menu Utama =====" << endl;
+    cout << "1. Petualangan\n";
+    cout << "2. Toko\n";
+    cout << "3. Pub\n";
+    cout << "4. Latihan\n";
+    cout << "5. Cek Karakter\n";
+    cout << "6. Keluar\n";
+    cout << "======================" << endl;
+    cout << "Tip: " << "\n";
+    cout << "Masukkan pilihan Anda (1-6): ";
+    cin >> choice;
+    while(choice < 0 || choice > 6){
+        cout << "Pilihan tidak valid. Masukkan pilihan Anda (1-6): ";
+        cin >> choice;
+    }
+    if(choice == 6){
+        popMenu(Menu);
+    }else{
+        switch(choice){
+        case 1:
+            pushMenu(Menu,1);
+            break;
+        case 2:
+            pushMenu(Menu,2);
+            break;
+        case 3:
+            pushMenu(Menu,3);
+            break;
+        case 4:
+            pushMenu(Menu,4);
+            break;
+        case 5:
+            pushMenu(Menu,5);
+            break;
+        }
+    }
+}
+
+void adventure(){
+    cout << "Coming soon";
+    getch();
+    popMenu(Menu);
+}
+void shop(){
+    cout << "Coming soon";
+    getch();
+    popMenu(Menu);
+}
+void pub(){
+    cout << "Coming soon";
+    getch();
+    popMenu(Menu);
+}
+void training(){
+    cout << "Coming soon";
+    getch();
+    popMenu(Menu);
+}
+void check(){
+    cout << "Coming soon";
+    getch();
+    popMenu(Menu);
+}
+
+void initiateTop(){
+    system("cls");
+    switch(Menu.info[Menu.top]){
+    case 0:
+        mainMenu();
+        break;
+    case 1:
+        adventure();
+        break;
+    case 2:
+        shop();
+        break;
+    case 3:
+        pub();
+        break;
+    case 4:
+        training();
+        break;
+    case 5:
+        check();
+        break;
+    }
 }

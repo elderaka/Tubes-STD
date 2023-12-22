@@ -1,11 +1,34 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
-#include "main.h"
+#include "DLL.h"
 
 struct menu{
     string name;
 };
 
-void mainmenu();
+struct menuStack{
+    int info[100];
+    int top;
+};
+
+
+#include "main.h"
+void createMenuStack(menuStack &S);
+bool isMenuEmpty(menuStack S);
+void pushMenu(menuStack &S, int x);
+void popMenu(menuStack &S);
+
+
+
+void splashScreen();
 void introduction();
+void mainMenu();
+void adventure();
+void shop();
+void pub();
+void training();
+void check();
+void initiateTop();
+
+
 #endif // MENU_H_INCLUDED

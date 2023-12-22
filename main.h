@@ -5,7 +5,6 @@
 #include "skill.h"
 #include "Class.h"
 #include "menu.h"
-
 extern playerList PL;
 extern objectList OL;
 extern skillTree ST;
@@ -16,6 +15,9 @@ extern skill Skill;
 extern Class cls;
 extern playerAddress adrPlayer;
 extern objectAddress adrObject;
+extern menuStack Menu;
+extern int choice;
+
 
 void addObjectToPlayer(playerList &PL, objectList OL, string player,string object);
 void removeObjectFromPlayer(playerList &PL, objectList &OL, string player, string name);

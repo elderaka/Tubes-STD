@@ -9,7 +9,10 @@ struct player{
     string buffs; //current applied buffs -1 tiap turn
     string Class; //display current class
     float health = 100; //100
+    float currentHealth;
+    int coin = 100;
     int stamina = 50; //50
+    int currentStamina;
     int xp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
     int level = 1;
     int nextLevel = 10;
@@ -40,7 +43,8 @@ void addPlayer(playerList &L,playerAddress p);
 void deletePlayer(playerList &L,string name);
 playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
-
-
+void showPlayerInfo(player Player);
+int nextLevel(player Player);
+void levelUp(player Player);
 
 #endif // PLAYER_H_INCLUDED
