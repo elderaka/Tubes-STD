@@ -165,32 +165,58 @@ void mainMenu(){
         }
     }
 }
+//1-4 itu konstan dan sering ada
+void explore(){
+    cout << "Explore to the unknown, who knows what you may encounter, be either friend, foe, or something else..";
+    getch();
+    popMenu(Menu);
+}
+void stats(){
+    cout << "View your stats";
+    getch();
+    popMenu(Menu);
+}
 
-void adventure(){
-    cout << "Coming soon";
+void inventory(){
+    cout << "Use Item";
     getch();
     popMenu(Menu);
 }
+void interactorTalk(){
+    cout << "Interact with an object or something else";
+    getch();
+    popMenu(Menu);
+}
+//5 strsny situational
 void shop(){
-    cout << "Coming soon";
+    cout << "Buy something from the shop";
     getch();
     popMenu(Menu);
 }
-void pub(){
-    cout << "Coming soon";
+//ni nnt ketika battle phase
+void fight(){
+    cout << "Initiate a battle phase";
     getch();
     popMenu(Menu);
 }
-void training(){
-    cout << "Coming soon";
+void run(){
+    cout << "Abandon this encounter, might not see it again";
     getch();
     popMenu(Menu);
 }
-void check(){
-    cout << "Coming soon";
+//2 ni self explanatory
+void moveAttack(){
+    cout << "Initiate an offensive moves";
     getch();
     popMenu(Menu);
 }
+
+void moveDefence(){
+    cout << "initiate a defencesive moves";
+    getch();
+    popMenu(Menu);
+}
+//nnt sini di battlephase recall yg inventory buat bs pake barang
 
 void initiateTop(){
     system("cls");
@@ -199,19 +225,19 @@ void initiateTop(){
         mainMenu();
         break;
     case 1:
-        adventure();
+        explore();
         break;
     case 2:
-        shop();
+        stats();
         break;
     case 3:
-        pub();
+        inventory();
         break;
     case 4:
-        training();
+        interactorTalk();
         break;
-    case 5:
-        check();
+    case 4:
+        interactortalk();
         break;
     }
 }
