@@ -21,6 +21,5 @@ bool isInventoryEmpty(inventoryList L);
 inventoryAddress createNewInventoryElement(objectAddress x);
 void insertLastInventory(inventoryList &L, inventoryAddress p);
 void removeObject(inventoryList &IL,objectList &OL,string name);
-inventoryAddress findObjectinInventory(string name,inventoryList L);
 void showInventory(inventoryList L);
 #endif // INVENTORY_H_INCLUDED

@@ -43,16 +43,6 @@ void removeObject(inventoryList &IL,objectList &OL,string name){
     }
 
 }
-inventoryAddress findObjectinInventory(inventoryList L,string name){
-    inventoryAddress prec = first(L);
-    while(prec != NULL){
-        if(info(object(prec)).name == name){
-            return prec;
-        }
-        prec = next(prec);
-    }
-    return NULL;
-}
 void showInventory(inventoryList L){
     inventoryAddress p = first(L);
     while(p != NULL){

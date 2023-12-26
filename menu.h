@@ -2,6 +2,7 @@
 #define MENU_H_INCLUDED
 #include "DLL.h"
 
+
 struct menu{
     string name;
 };
@@ -20,14 +21,22 @@ void popMenu(menuStack &S);
 
 
 
+
 void splashScreen();
 void introduction();
-void mainMenu();
-void adventure();
+
+void explore();
+void encounter(int id);
+void stats();
+
+void checkInventory();
+void interactorTalk();
 void shop();
-void pub();
-void training();
-void check();
+void fight();
+void run();
+void moveAttack();
+
+void moveDefence();
 void initiateTop();
 
 

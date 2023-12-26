@@ -11,7 +11,9 @@ Class cls;
 playerAddress adrPlayer;
 objectAddress adrObject;
 menuStack Menu;
+int position[2] = {0,0};
 int choice;
+string path;
 
 void addObjectToPlayer(playerList &PL, objectList OL, string player,string object){
 
@@ -32,6 +34,16 @@ void removeObjectFromPlayer(playerList &PL,objectList &OL, string player, string
     }else{
         cout << "Player not found" << endl;
     }
+}
+inventoryAddress findObjectinInventory(string name){
+    inventoryAddress prec = first(inventory(mc(PL)));
+    while(prec != NULL){
+        if(info(object(prec)).name == name){
+            return prec;
+        }
+        prec = next(prec);
+    }
+    return NULL;
 }
 void addSkillToPlayer(playerList &PL, skillTree ST, string player, string skill){
     playerAddress adrPlayer = findPlayer(PL,player);
