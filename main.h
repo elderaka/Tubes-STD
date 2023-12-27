@@ -6,17 +6,24 @@
 #include "Class.h"
 #include "menu.h"
 #include "dice.h"
+#include "enemy.h"
+#include "fight.h"
 extern playerList PL;
 extern objectList OL;
+extern enemyList EL;
 extern skillTree ST;
 extern classTree CT;
+extern entityList eL;
+extern enemyList EL;
 extern player Player;
 extern object Object;
 extern skill Skill;
 extern Class cls;
+extern enemy Enemy;
 extern playerAddress adrPlayer;
 extern objectAddress adrObject;
 extern menuStack Menu;
+
 extern int choice;
 extern int position[2];
 extern string path;
@@ -32,5 +39,6 @@ void changePlayerClass(string player, string Class);
 void initiateObjects(objectList &OL);
 void initiateSkillAndClass(skillTree &ST, classTree &CT);
 void initiatePlayer(playerList &PL);
+void initiateEnemy(enemyList &EL);
 void initiateMenu();
 #endif // MAIN_H_INCLUDED

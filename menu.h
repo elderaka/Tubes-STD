@@ -1,8 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 #include "DLL.h"
-
-
+#include "enemy.h"
 struct menu{
     string name;
 };
@@ -32,7 +31,7 @@ void stats();
 void checkInventory();
 void interactorTalk();
 void shop();
-void fight();
+void fight(enemy enemies[]);
 void run();
 void moveAttack();
 

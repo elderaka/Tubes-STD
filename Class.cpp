@@ -134,17 +134,16 @@ void showClass(classTree T){
 
 void showClassInfo(classAddress T){
     Class lefts = info(T);
-    Class rights = info(T);
-    cout << setw(30) << left << "==========================="               << "|" << "==========================="               << endl;
-    cout << setw(30) << left << "       Class: " + lefts.name                 << "|" << "       Class: " + rights.name                 << endl;
-    cout << setw(30) << left << "==========================="               << "|" << "==========================="               << endl;
-    cout << setw(30) << left << lefts.desc                                    << "|" << rights.desc                                    << endl;
-    cout << setw(30) << left << "Attack: +" + to_string(lefts.bonusAttack)    << "|" << "Attack: +" + to_string(rights.bonusAttack)    << endl;
-    cout << setw(30) << left << "Defense: +" + to_string(lefts.bonusDefense)  << "|" << "Defense: +" + to_string(rights.bonusDefense)  << endl;
-    cout << setw(30) << left << "Speed: +" + to_string(lefts.bonusSpeed)      << "|" << "Speed: +" + to_string(rights.bonusSpeed)      << endl;
-    cout << setw(30) << left << "Health: +" + to_string(lefts.bonusHealth)    << "|" << "Health: +" + to_string(rights.bonusHealth)    << endl;
-    cout << setw(30) << left << "Class Skill:"                              << "|" << "Class Skill:"                              << endl;
-    cout << setw(30) << left << info(skill(T)).name                         << "|" << info(skill(T)).name                         << endl;
+    cout << setw(30) << left << "==========================="<< endl;
+    cout << setw(30) << left << "Class: " + lefts.name<< endl;
+    cout << setw(30) << left << lefts.desc                   << endl;
+    cout << setw(30) << left << "Attack: +" + to_string(lefts.bonusAttack)    << endl;
+    cout << setw(30) << left << "Defense: +" + to_string(lefts.bonusDefense)  << endl;
+    cout << setw(30) << left << "Speed: +" + to_string(lefts.bonusSpeed)      << endl;
+    cout << setw(30) << left << "Health: +" + to_string(lefts.bonusHealth)    << endl;
+    cout << setw(30) << left << "Class Skill:"      << endl;
+    cout << setw(30) << left << info(skill(T)).name << endl;
+    cout << setw(30) << left << "===========================" << endl;
 }
 void showClassByParent(classAddress T){
     Class lefts = info(left(T));

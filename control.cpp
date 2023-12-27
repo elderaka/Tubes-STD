@@ -4,10 +4,13 @@ playerList PL;
 objectList OL;
 skillTree ST;
 classTree CT;
+entityList eL;
+enemyList EL;
 player Player;
 object Object;
 skill Skill;
 Class cls;
+enemy Enemy;
 playerAddress adrPlayer;
 objectAddress adrObject;
 menuStack Menu;
@@ -607,6 +610,62 @@ void initiatePlayer(playerList &PL){
     addPlayer(PL,adrPlayer);
     changePlayerClass(Player.name,"Newbie");
 
+
+
+}
+
+void initiateEnemy(enemyList &EL){
+    createEnemyList(EL);
+    Enemy.name = "Idiot";
+    Enemy.health = 10;
+    Enemy.currentHealth = 10;
+    Enemy.defaultAttack = 2;
+    Enemy.defaultDefence = 5;
+    Enemy.speed = 5;
+    Enemy.xp = 10;
+    Enemy.coin = 5;
+    Enemy.basicName = "Shitty attack";
+    Enemy.skillName = "Idiot Bash";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.5;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.25;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Retard";
+    Enemy.health = 10;
+    Enemy.currentHealth = 10;
+    Enemy.defaultAttack = 2;
+    Enemy.defaultDefence = 5;
+    Enemy.speed = 5;
+    Enemy.xp = 10;
+    Enemy.coin = 5;
+    Enemy.basicName = "UwU attack";
+    Enemy.skillName = "Retard Heal";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 1;
+    Enemy.skillHeal = 5;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Dumbass";
+    Enemy.health = 10;
+    Enemy.currentHealth = 10;
+    Enemy.defaultAttack = 2;
+    Enemy.defaultDefence = 5;
+    Enemy.speed = 5;
+    Enemy.xp = 10;
+    Enemy.coin = 5;
+    Enemy.basicName = ":D attack";
+    Enemy.skillName = "Dumbass idiot";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 1;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "stun";
+    Enemy.skillChance = 0.1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
 
 
 }

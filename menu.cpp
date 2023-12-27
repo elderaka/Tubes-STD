@@ -175,15 +175,15 @@ void encounter(int id){
         }while(choice != "1" && choice != "2");
         break;
     case 1:
-        x[0] = "==Astral Tavern== \n Special Encounter " + to_string(id);
+        x[0] = "==Astral Tavern== \n Special Encounter ";
         print(x,0,false);
         x[1] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" + to_string(id);
         print(x,1,false);
         x[2] = "The barkeep, a spectral figure with a twinkle in their eye, serves drinks that bring courage, strength, and arcane insights" + to_string(id);
         print(x,2,false);
-        x[3] = "'Now fellow wanderer, what can I do for ye?'" + to_string(id);
+        x[3] = "'Now fellow wanderer, what can I do for ye?'\n";
         print(x,3,false);
-        x[4] = "1. Rent A Room  [Replenish your health, cost 5 gold piece] " + to_string(id);
+        x[4] = "1. Rent A Room  [Replenish your health, cost 5 gold piece]\n";
         print(x,4,false);
         x[5] = "2. A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, cost 60 gold piece]    \n	3. Spectral Cloak [+20 Defence, cost 20 gold 	piece]\n 3. Helm of Clairvoyant Insight [+20 health, cost 20 gold piece] \n	4. Legplates of Ethereal Stride [+ 20 speed, cost 20 gold piece] \n   5. Sword of Phantasmal Flames 	[+30 attack and 5  speed, cost 20 gold piece] \n 6. Healing Potions [+ heal (33 * level), cost 5 gold piece] \n  7. Defence Potions [+ 30 defence for 2 turns, cost 5 gold piece] \n  	8. Attack Potions [+ 30 attack for 2 turns, cost 5 gold piece] \n  9. Speed Potions [+ 30 Speed boost for 2 turns, cost 5 gold piece] \n  10. Provisions [ + heal (20 * level), cost 	3 gold piece] \n  11. Entropic Die [cahrms, tiap start battle ad chance +20 attack, + 20 defence, + 20 speed, +25 health for 2 turns, tiap buff jadi hanya 1 dpt dgn 1/25 chance, 	cost 30 gold piece] \n  12. Amulet of Lifespring [charms, at the start of the battle (+ heal (10 * level) for 2 turns), cost 20 gold piece]  \n  13. Ring of Attunement [charms,  +	10 attack, +10 defence, + 10 Speed, +10 health for perma, 30 gold piece] + to_string(id)";
         print(x,5,false);
@@ -275,6 +275,103 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 14);
         break;
     case 2:
+        x[0] = " == Insect Nest (Occurance) == " ;
+        print(x,0,false);
+        x[1] = "You accidentally step into a ground trap made of branches and leaves — the type you believe to be used only by the most old-fashioned hunter on planet Bled. You get to 	your feet, and the entrance of a nest is before you. " ;
+        print(x,1,false);
+    	x[2] = "What do you do now? \n  1. Stop at the entrance of the nest and attempt to climb out. \n  2. Go deeper into the insect nest. Wait for 'them.' \n  3. Enter the Insect Nest 	and snuff them out! " ;
+        print(x,2,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                //[Walk Away and 10 gold piece];
+            }else if (choice == "2"){
+                //[Lose 1/2 total health, obtain 30 gold piece]
+            }else if (choice == "3"){
+                //[Enter battle with 5 insects];
+                cout << "you've found Legging made out of... sticky silk?\n";
+                //get [Sticky Silk Legging];
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 10);
+        break;
+    case 3:
+        x[0] = " ==  Exchanging Gifts (Transaction) == ";
+        print(x,0,false);
+        x[1] = "The Express of the Nameless makes a stop at Budley with an abundance of gifts in its rear carriage. A traveler wearing a felt hat is leaning against the front of the 	carriage. His clothes are tattered and his boots mud-stained.\n";
+        print(x,1,false);
+    	x[2] = "He approaches and waves at you. 'Akivili had an adventure with us under the guise of a civilian. We exchanged a lot of fun experiences during the journey.'\n";
+        print(x,2,false);
+    	x[3] = "1. Blessing Exchange. \n  2. Leave. — You're not interested.\n";
+        print(x,3,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                //[Discard a random charms from your inventory/equip, exchange it with 'Boons of Boons' charms (+ 15% gold piece and xp bonus)];
+                cout << "OH! How Joyful it is to have a stranger in this time\n";
+            }else if (choice == "2"){
+                //gain [nothing and small xp]
+                cout << "How disappointing encounter tis is\n";
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
+        break;
+    case 4:
+        x[0] = " ==  Jim Hulk and Hall Jim (Occurance) == " ;
+        print(x,0,false);
+        x[1] = "You are in a sprawling desert, and your vision is obscured by abandoned containers. Thick smoke permeates the air, and scrapped crate are dismantled into broken parts. The 	words 'Arasaka' are printed on one of the wood plank, almost no longer visible." ;
+        print(x,1,false);
+    	x[2] = "A rustling comes from the pile of trash behind you. You sense someone's eyes on you. As you turn around, you notice a vagrant hiding behind a crate. " ;
+        print(x,2,false);
+    	x[3] = "You approach the vagrant and find that it is bleeding with its legs twisted." ;
+        print(x,3,false);
+    	x[4] = "Hall Jim: 'We were hailed as the Amber Lord's Support Team. Karavan Keane trained us, used us, and ultimately abandoned us.' The vagrants shows you the items it is trying 	its best to keep safe." ;
+        print(x,4,false);
+        x[5] = "Hall Jim: 'Jim Hulk wont get up 4 days ago. Im about to pass out in a day and can no longer keep my brother's items. Please help me. Buy one of them out of here." + 	to_string(id);
+        print(x,5,false);
+    	x[6] = "1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Sorry I cant help you.\n";
+        print(x,6,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
+            }else if (choice == "2"){
+                cout << "I guess this is it for us.. sorry brother I've failed you";
+                //[gain 10 gold piece and small xp]
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
+        break;
+    case 5:
+        x[0] = " ==  Nomadic Miners (Occurance) ==" ;
+        print(x,0,false);
+        x[1] = "It's dusk, and you're standing amid the heat waves. The atmosphere at the mines makes you dizzy, the mineral veins burning like melted butter." ;
+        print(x,1,false);
+        x[2] = "'Great Qlipoth, Aeon of Preservation... They can hear our voices.' The miners raise and dip their shovels like frenzied animals — or the faithful." ;
+        print(x,2,false);
+        x[3] = "Someone notices you — It's the 'lead miner' wearing a detector lamp. His arms are dark and muscular, and his lips are in a similar shade of ink. His hearty smile is very 	memorable. He has a gold tooth that ceaselessly expands and twists in your brain, till all you can see is his 'smile' — His lips and eyes fuse together, like the melting sludge of 	paint on a palette.\n" ;
+        print(x,3,false);
+        x[4] = "'Qlipoth, the blessing of the Amber Lord, preserves these leylines. You can have one of them.'";
+        print(x,4,false);
+        x[5] = "Choice: \n 1. Fight with the lead miner and grab the stuff!\n  2. Qlipoth's Blessing.\n";
+        print(x,5,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                cout << "Very well... FOR QLIPOTH!!!\n";
+                //[Enter Battle with 1 lead miner and 2 other miners];
+            }else if (choice == "2"){
+                cout << "May the Blessings of the Amber Lord be with you\n";
+                //gets ['Ring of Amber' charm, + 15 defence perma]
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
+        break;
+    case 6:
         x[0] = " ==  Bounty Hunter (Occurance) ==" ;
         print(x,0,false);
         x[1] = "You wander on the forest plains wrapped tightly in a your coat and sword strapped to your side. A man is coming your way. The tall and slender man has crimson curly hair 	and a freckled face. He is wearing leather boots and holding a rifle." ;
@@ -302,109 +399,29 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 3);
         MC.xp += 10;
         break;
-    case 3:
-        x[0] = " ==  Nomadic Miners (Occurance) ==" ;
-        print(x,0,false);
-        x[1] = "It's dusk, and you're standing amid the heat waves. The atmosphere at the mines makes you dizzy, the mineral veins burning like melted butter." ;
-        print(x,1,false);
-        x[2] = "'Great Qlipoth, Aeon of Preservation... They can hear our voices.' The miners raise and dip their shovels like frenzied animals — or the faithful." ;
-        print(x,2,false);
-        x[3] = "Someone notices you — It's the 'lead miner' wearing a detector lamp. His arms are dark and muscular, and his lips are in a similar shade of ink. His hearty smile is very 	memorable. He has a gold tooth that ceaselessly expands and twists in your brain, till all you can see is his 'smile' — His lips and eyes fuse together, like the melting sludge of 	paint on a palette.\n" ;
-        print(x,3,false);
-        x[4] = "'Qlipoth, the blessing of the Amber Lord, preserves these leylines. You can have one of them.'";
-        print(x,4,false);
-        x[5] = "Choice: \n 1. Fight with the lead miner and grab the stuff!\n  2. Qlipoth's Blessing.\n";
-        print(x,5,true);
-        do{
-            cin >> choice;
-            if (choice == "1"){
-                cout << "Very well... FOR QLIPOTH!!!\n";
-                //[Enter Battle with 1 lead miner and 2 other miners];
-            }else if (choice == "2"){
-                cout << "May the Blessings of the Amber Lord be with you\n";
-                //gets ['Ring of Amber' charm, + 15 defence perma]
-            }else{
-                cout << "you cant do that\n";
-            }
-        }while(stoi(choice) < 0 || stoi(choice) > 2);
-        break;
-    case 4:
-        x[0] = " == Insect Nest (Occurance) == " ;
-        print(x,0,false);
-        x[1] = "You accidentally step into a ground trap made of branches and leaves — the type you believe to be used only by the most old-fashioned hunter on planet Bled. You get to 	your feet, and the entrance of a nest is before you. " ;
-        print(x,1,false);
-    	x[2] = "What do you do now? \n  1. Stop at the entrance of the nest and attempt to climb out. \n  2. Go deeper into the insect nest. Wait for 'them.' \n  3. Enter the Insect Nest 	and snuff them out! " ;
-        print(x,2,true);
-        do{
-            cin >> choice;
-            if (choice == "1"){
-                //[Walk Away and 10 gold piece];
-            }else if (choice == "2"){
-                //[Lose 1/2 total health, obtain 30 gold piece]
-            }else if (choice == "3"){
-                //[Enter battle with 5 insects];
-                cout << "you've found Legging made out of... sticky silk?\n";
-                //get [Sticky Silk Legging];
-            }else{
-                cout << "you cant do that\n";
-            }
-        }while(stoi(choice) < 0 || stoi(choice) > 10);
-        break;
-    case 5:
-        x[0] = " == Insect Nest (Occurance) == " ;
-        print(x,0,false);
-        x[1] = "You sit at the card table across from a one-eyed dealer whose metal prosthetic legs are intertwined with the legs of the Nildis table. His torso runs through a hole in the 	center of the table with a pinball circling his waist." ;
-        print(x,1,false);
-    	x[2] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
-        print(x,2,false);
-    	x[3] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
-        print(x,3,false);
-    	x[4] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
-        print(x,4,false);
-    	x[5] = "5. Flip the Card. (50% chance fighting 2 elite rogue) \n  2. walk away \n 3. Flip over the game table" ;
-        print(x,5,true);
-        do{
-            cin >> choice;
-            if (choice == "1"){
-                //[50% chance gains 'Gambler's Brooch'(50% gains +20 defence, 50% gains +20 attack for 2 turns at every start battle) Chestpiece ];
-            }else if (choice == "2"){
-                //[gain nothing and small xp]
-            }else if (choice == "3"){
-                cout << "Wise move, dead man";
-                //[fight 4 elite rogues];
-            }else{
-                cout << "you cant do that";
-            }
-        }while(stoi(choice) < 0 || stoi(choice) > 3);
-        break;
-    case 6:
-        x[0] = " ==  Jim Hulk and Hall Jim (Occurance) == " ;
-        print(x,0,false);
-        x[1] = "You are in a sprawling desert, and your vision is obscured by abandoned containers. Thick smoke permeates the air, and scrapped crate are dismantled into broken parts. The 	words 'Arasaka' are printed on one of the wood plank, almost no longer visible." ;
-        print(x,1,false);
-    	x[2] = "A rustling comes from the pile of trash behind you. You sense someone's eyes on you. As you turn around, you notice a vagrant hiding behind a crate. " ;
-        print(x,2,false);
-    	x[3] = "You approach the vagrant and find that it is bleeding with its legs twisted." ;
-        print(x,3,false);
-    	x[4] = "Hall Jim: 'We were hailed as the Amber Lord's Support Team. Karavan Keane trained us, used us, and ultimately abandoned us.' The vagrants shows you the items it is trying 	its best to keep safe." ;
-        print(x,4,false);
-        x[5] = "Hall Jim: 'Jim Hulk wont get up 4 days ago. Im about to pass out in a day and can no longer keep my brother's items. Please help me. Buy one of them out of here." + 	to_string(id);
-        print(x,5,false);
-    	x[6] = "1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Sorry I cant help you.\n";
-        print(x,6,true);
-        do{
-            cin >> choice;
-            if (choice == "1"){
-                //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
-            }else if (choice == "2"){
-                cout << "I guess this is it for us.. sorry brother I've failed you";
-                //[gain 10 gold piece and small xp]
-            }else{
-                cout << "you cant do that\n";
-            }
-        }while(stoi(choice) < 0 || stoi(choice) > 2);
-        break;
     case 7:
+        x[0] = " == Saleo(Battle) == \n";
+        print(x,0,false);
+        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has 	two heads knocking each other — one of them has red antennae, while the other has a white halo.\n";
+      	print(x,1,false);
+        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger 	one, is the angel. Which one do you want as your neighbor?'\n";
+      	print(x,2,false);
+        x[3] = "1. Pick Sal \n  2. Pick Leo \n";
+        print(x,3,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                MC.health *= 1-MC.level/10;
+                //[figth Sal]
+            }else if (choice == "2"){
+                //[discard random item from inventory]
+                //[fight Leo]
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
+        break;
+    case 8:
         x[0] = " == Flash Bazar (Transaction) == " ;
         print(x,0,false);
         x[1] = "You arrive at the busiest bazaar in Varunix. One of the stalls catches your attention. The stall owner's face is obscured by the hood he is wearing. He sits cross-legged 	on a purple floor mat with various mineral bottles displayed around him." ;
@@ -430,18 +447,56 @@ void encounter(int id){
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
         break;
-    case 8:
-        do{
-
-        }while(stoi(choice) < 0 || stoi(choice) > 10);
-        break;
     case 9:
+        x[0] = " == House of Nildis (Occurance) == " ;
+        print(x,0,false);
+        x[1] = "You sit at the card table across from a one-eyed dealer whose metal prosthetic legs are intertwined with the legs of the Nildis table. His torso runs through a hole in the 	center of the table with a pinball circling his waist." ;
+        print(x,1,false);
+    	x[2] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
+        print(x,2,false);
+    	x[3] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
+        print(x,3,false);
+    	x[4] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
+        print(x,4,false);
+    	x[5] = "5. Flip the Card. (50% chance fighting 2 elite rogue) \n  2. walk away \n 3. Flip over the game table" ;
+        print(x,5,true);
         do{
-
-        }while(stoi(choice) < 0 || stoi(choice) > 10);
+            cin >> choice;
+            if (choice == "1"){
+                //[50% chance gains 'Gambler's Brooch'(50% gains +20 defence, 50% gains +20 attack for 2 turns at every start battle) Chestpiece ];
+            }else if (choice == "2"){
+                //[gain nothing and small xp]
+            }else if (choice == "3"){
+                cout << "Wise move, dead man";
+                //[fight 4 elite rogues];
+            }else{
+                cout << "you cant do that";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 3);
         break;
     case 10:
-        print(x,0,true);
+        x[0] = " == Insights from the Minstrels. (Transaction) == \n";
+        print(x,0,false);
+        x[1] = "A Minstrels approaches you. She makes a mischievous shushing gesture at you before lifting the curtain to the hall for you.\n";
+        print(x,1,false);
+    	x[2] = "Before these seven pots of incense kneel countless dancers from all over the stars, who are getting madder by the day. They prostrate themselves before the meeting hall, 	and sing and pray to the 13th self-strangler - there are already 13 of them. The dancers will lie prone before God, pleading to know their end after the cosmic dance ends.\n";
+        print(x,2,false);
+    	x[3] = "Here's a talisman about your fate. If you don't believe this type of thing, just treat it as a famous rumor of the cosmos. Deep down inside, you are tempted...\n";
+        print(x,3,false);
+    	x[4] = "1. Tell Fortune. [spend 5  gold piece]  \n  2. It's just a rumor, Leave. — You're not interested.\n";
+        print(x,4,true);
+        do{
+            cin >> choice;
+            if (choice == "1"){
+                cout << "'What an interesting fate you've got there, be sure to come back after you succeeded teehee~'";
+                //[25% obtaining, 'Bloodied Necklace' charms [if atleast 1 enemy killed, get + (20 * char lv) attack]]
+            }else if (choice == "2"){
+                //gain [nothing and small xp]
+                cout << "A stranger's fate lies once more in the deep\n";
+            }else{
+                cout << "you cant do that\n";
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
     case 11:
         do{
@@ -450,17 +505,17 @@ void encounter(int id){
         break;
     case 12:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     case 13:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     case 14:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     case 15:
@@ -470,12 +525,12 @@ void encounter(int id){
         break;
     case 16:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     case 17:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     case 18:
@@ -485,7 +540,7 @@ void encounter(int id){
         break;
     case 19:
         do{
-
+            cin >> choice;
         }while(stoi(choice) < 0 || stoi(choice) > 10);
         break;
     }
@@ -552,8 +607,163 @@ void shop(){
     popMenu(Menu);
 }
 //ni nnt ketika battle phase
-void fight(){
-    cout << "Initiate a battle phase";
+void fight(enemy enemies[]){
+    string x[100];
+    x[0] = " -=+=-\nBATTLE!\n -=+=-\n";
+    print(x,0,false);
+    int id = roll();
+    switch(id) {
+    case 1:
+        x[1] = enemies[roll() % sizeof(enemies)-1].name + " seems feisty tonight.\n";
+        break;
+    case 2:
+        x[1] = enemies[roll() % sizeof(enemies)-1].name + " is angry!\n";
+        break;
+    case 3:
+        x[1] = MC.name + " is kind of quirky.\n";
+        break;
+    case 4:
+        x[1] = MC.name + " is doing a little bit of trolling.\n";
+        break;
+    case 5:
+        x[1] = enemies[roll() % sizeof(enemies)-1].name + " seems feisty tonight.\n";
+        break;
+    case 6:
+        x[1] = enemies[roll() % sizeof(enemies)-1].name + " eyes " + MC.name + " with a mix of curiosity and hostility.\n";
+        break;
+    case 7:
+        x[1] = MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " exchange a few sarcastic remarks before the battle.\n";
+        break;
+    case 8:
+        x[1] = "As " + MC.name + " approaches, " + enemies[roll() % sizeof(enemies)-1].name + " snickers and says, 'You're in for a surprise.'\n";
+        break;
+    case 9:
+        x[1] = "The tension is palpable as " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " share a moment of awkward silence.\n";
+        break;
+    case 10:
+        x[1] = "In a strange turn of events, " + enemies[roll() % sizeof(enemies)-1].name + " starts memeing, leaving " + MC.name + " utterly confused.\n";
+        break;
+    case 11:
+        x[1] = MC.name + " retorts with a well-timed meme, causing " + enemies[roll() % sizeof(enemies)-1].name + " to reconsider their life choices.\n";
+        break;
+    case 12:
+        x[1] = "The battlefield echoes with the sound of laughter as " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " bond over shared meme references.\n";
+        break;
+    case 13:
+        x[1] = "Suddenly, " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " break into synchronized dance moves, turning the battlefield into a surreal spectacle.\n";
+        break;
+    case 14:
+        x[1] = "In a moment of confusion, " + MC.name + " accidentally sends a 'dank' meme to the enemy, creating an unexpected ceasefire.\n";
+        break;
+    case 15:
+        x[1] = MC.name + " clenches their fists, radiating an unusual level of agitation that sends shivers down the enemies' spines.\n";
+        break;
+    case 16:
+        x[1] = "The air crackles with tension as " + MC.name + " stares down the enemy, their eyes ablaze with a burning intensity.\n";
+        break;
+    case 17:
+        x[1] = "For reasons unknown, " + MC.name + " is unusually irritable today, and the enemies can sense the storm brewing within them.\n";
+        break;
+    case 18:
+        x[1] = MC.name + " has an intense desire for battle, their every move exuding a ferocity that surprises even the most battle-hardened foes.\n";
+        break;
+    case 19:
+        x[1] = "The enemies exchange nervous glances as " + MC.name + " channels an unexpected surge of power, ready to unleash it upon them.\n";
+        break;
+    default:
+        x[1] = "In a rare moment, " + MC.name + " utters a cryptic phrase that leaves the enemies bewildered and questioning their decision to engage in this battle.\n";
+        break;
+    }
+    initiateFight(fqueue,eL,enemies);
+    print(x,1,true);
+    int i = 1;
+
+    do{
+        entity E;
+        cout << isEntityEmpty(eL) << to_string(MC.currentHealth) << endl;
+        cout << " -=+=-\nTURN " + to_string(i) +"\n -=+=-\n";
+        E = reFQueue(fqueue,eL);
+        int dice = roll();
+        float attackMultiplier;
+        if(E.isPlayer){
+            cout << "What's your choice?" << endl;
+            cout << "1.Attack\t2.Skill\t3.Item\t4.Run\n";
+            cout << "Select your choice (1-4): ";
+            do{
+               cin >> choice;
+                if(choice == "1"){
+                    cout << "Enemies: "<< endl;
+                    entityAddress adrEntity = next(first(eL));
+                    int j = 1;
+                    while(adrE != NULL){
+                        cout << i << "." << info(adrEntity).Enemy.name << " (" << info(adrEntity).no
+                    }
+                    for(int i = 1; i < sizeof(enemies)-1;i++){
+
+                    }
+                    cout << "Select your target:";
+                }else if(choice == "2"){
+
+                }else if(choice == "2"){
+
+                }else if(choice == "2"){
+
+                }else{
+                    cout << "Wrong selection! Select your choice (1-4): "
+                }
+            }while(stoi(choice) < 0 || stoi(choice) > 4);
+        }else{
+            int rollskill = roll();
+            //cout << E.Enemy.name + " is rolling..." << endl;
+            bool hit = false;
+            if(dice == 1){
+                cout<< "It's a critical!";
+                getch()
+                cout<< " Miss..." < endl;
+                attackMultiplier = 0;
+            }else if(dice <= 5){
+                for(int i = 0; i < dice; i++){
+                    int coin = flipcoin;
+                    if(coin == 1){
+                        hit = true;
+                    }
+                }
+            }
+            if(dice > 5 || hit){
+                if(dice > 15){
+                    cout<< "It's a critical!";
+                    getch()
+                    cout<< " Hit!" < endl;
+                    attackMultiplier = 0.5+(dice/10);
+                }else{
+                    attackMultiplier = 0.5+(dice)/25;
+                }
+            }
+            if(rollskill < 20*E.Enemy.skillChance){
+                if(E.Enemy.skillDamaging){
+                    cout << E.Enemy.name + " (" + to_string(E.no) +") casted " + E.Enemy.skillName +"!" << endl;
+                    if(attackMultiplier == 0){
+                        cout << "...But it was a miss! ";
+                    }
+                    cout << E.Enemy.name + " deals " + to_string(E.Enemy.skillMultiplier * E.Enemy.defaultAttack * attackMultiplier) + " damage!" << endl;
+                    MC.currentHealth -= E.Enemy.skillMultiplier * E.Enemy.defaultAttack * attackMultiplier ;
+                }
+            }else{
+                cout << E.Enemy.name + " (" + to_string(E.no) +") is attacking!" << endl;
+                if(attackMultiplier == 0){
+                    cout << "...But it was a miss! ";
+                }
+                cout << E.Enemy.name + " deals " + to_string(attackMultiplier * E.Enemy.defaultAttack) + " damage!" << endl;
+                MC.currentHealth -= attackMultiplier * E.Enemy.defaultAttack ;
+            }
+        }
+        i++;
+
+    }while(!isEntityEmpty(eL) && MC.currentHealth > 0);
+    if(MC.currentHealth <= 0){
+        position[0] = 1000;
+    }
+
     getch();
     popMenu(Menu);
 }
