@@ -17,6 +17,8 @@ struct enemy{
     int skillHeal;
     string skillStatus;
     float skillChance;
+    string itemDrop;
+    float dropChance;
 };
 typedef struct elementEnemy *enemyAddress;
 

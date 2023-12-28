@@ -46,12 +46,13 @@ void EnFQueue(FQueue &S, entity x);
 entity DeFQueue(FQueue &S);
 void showFQueue(FQueue &S);
 entity reFQueue(FQueue &S, entityList eL);
-
+void removeEntityFromQueue(FQueue &S, entity P);
 void createEntityList(entityList &L);
 bool isEntityEmpty(entityList L);
 entityAddress createNewEntityElement(entity x);
 void addEntity(entityList &L,entityAddress p);
-entityAddress findEntity(entityList L, string name);
+void removeEntity(entityList &L, entityAddress p);
+entityAddress findEntity(entityList L, int no);
 void showEntity(entityList L);
 
 void initiateFight(FQueue &S,entityList &eL,enemy enemies[]);

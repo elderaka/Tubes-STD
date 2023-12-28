@@ -608,7 +608,6 @@ void initiatePlayer(playerList &PL){
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
-    changePlayerClass(Player.name,"Newbie");
 
 
 
@@ -616,55 +615,312 @@ void initiatePlayer(playerList &PL){
 
 void initiateEnemy(enemyList &EL){
     createEnemyList(EL);
-    Enemy.name = "Idiot";
-    Enemy.health = 10;
-    Enemy.currentHealth = 10;
-    Enemy.defaultAttack = 2;
-    Enemy.defaultDefence = 5;
-    Enemy.speed = 5;
-    Enemy.xp = 10;
-    Enemy.coin = 5;
-    Enemy.basicName = "Shitty attack";
-    Enemy.skillName = "Idiot Bash";
+    //Dari Bount Hunter (occurance)
+    Enemy.name = "Reunion Bounty Hunter"; //medium dif
+    Enemy.health = 150; //+50
+    Enemy.Attack = 40; //+25
+    Enemy.Defence = 35; // +10
+    Enemy.speed = 15; // +5
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Infected Slash";
+    Enemy.skillName = "Originium Healing";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal =  0.5;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Reunion's Garb";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Saleo (Battle)
+    Enemy.name = "Older Brother Leo"; //medium dif
+    Enemy.health = 130; //+30
+    Enemy.Attack = 45; //+30
+    Enemy.Defence = 25; // +10
+    Enemy.speed = 30; // +20
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Hot Pitchfork";
+    Enemy.skillName = "Tricked";
     Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.50;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.5;
+    Enemy.itemDrop = "Yin Charm";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Younger Brother Sal";//easy dif
+    Enemy.health = 120; //+20
+    Enemy.Attack = 25; //+10
+    Enemy.Defence = 25; // +10
+    Enemy.speed = 25; // +10
+    Enemy.xp = 300;
+    Enemy.coin = 5;
+    Enemy.basicName = "Cold Pitchfork";
+    Enemy.skillName = "Treat";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.5;
+    Enemy.itemDrop = "Yang Charm";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari House of Nildis (Occurance)
+    Enemy.name = "One-Eyed 'Kent'"; //hard dif
+    Enemy.health = 180; //+80
+    Enemy.Attack = 65; //+50
+    Enemy.Defence = 25; // +10
+    Enemy.speed = 40; // +30
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Blade Arm Chop";
+    Enemy.skillName = "Pinball Cannon";
+    Enemy.skillDamaging = false;
     Enemy.skillMultiplier = 1.5;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
     Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "Gambler's Brooch";
+    Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-    Enemy.name = "Retard";
-    Enemy.health = 10;
-    Enemy.currentHealth = 10;
-    Enemy.defaultAttack = 2;
-    Enemy.defaultDefence = 5;
-    Enemy.speed = 5;
-    Enemy.xp = 10;
-    Enemy.coin = 5;
-    Enemy.basicName = "UwU attack";
-    Enemy.skillName = "Retard Heal";
+    Enemy.name = "Kent's Elite Rogue"; //med dif x 3
+    Enemy.health = 110; //+10
+    Enemy.Attack = 40; //+25
+    Enemy.Defence = 25; // +10
+    Enemy.speed = 35; // +25
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Flash Slash";
+    Enemy.skillName = "Mini Bomb";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.25;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Stun";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0.0000000000000001;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//Dari Nomadic Miners (occurance)
+    Enemy.name = "Lead Miner"; // medium
+    Enemy.health = 120; //+20
+    Enemy.Attack = 30; //+15
+    Enemy.Defence = 65; // +50
+    Enemy.speed = 15; // +5
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Brick Break";
+    Enemy.skillName = "Originium Healing"; //nnt dia ngasih defence tambahan ke tmn smua selama 2 turn
     Enemy.skillDamaging = false;
-    Enemy.skillMultiplier = 1;
-    Enemy.skillHeal = 5;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 0.5; //defence gain
     Enemy.skillStatus = "none";
     Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Lead Splunking Helmet";
+    Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-    Enemy.name = "Dumbass";
-    Enemy.health = 10;
-    Enemy.currentHealth = 10;
-    Enemy.defaultAttack = 2;
-    Enemy.defaultDefence = 5;
-    Enemy.speed = 5;
-    Enemy.xp = 10;
+    Enemy.name = "Miner"; // medium
+    Enemy.health = 100; //+0
+    Enemy.Attack = 30; //+15
+    Enemy.Defence = 35; // +20
+    Enemy.speed = 25; // +15
+    Enemy.xp = 300;
     Enemy.coin = 5;
-    Enemy.basicName = ":D attack";
-    Enemy.skillName = "Dumbass idiot";
-    Enemy.skillDamaging = false;
-    Enemy.skillMultiplier = 1;
+    Enemy.basicName = "Shovel Smash";
+    Enemy.skillName = "Excavate";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.5;
     Enemy.skillHeal = 0;
-    Enemy.skillStatus = "stun";
-    Enemy.skillChance = 0.1;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.50;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0.000001;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari  We Are Cowboys (Battle)
+    Enemy.name = "Cowboy"; //med x 4
+    Enemy.health = 120; //+20
+    Enemy.Attack = 35; //+20
+    Enemy.Defence = 45; // +20
+    Enemy.speed = 40; // +30
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Trample";
+    Enemy.skillName = "Guns Blazing";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 2;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "10 Coins";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Beast Horde  (Battle)
+    Enemy.name = "Young Beast"; //medium x 4
+    Enemy.health = 125; //+25
+    Enemy.Attack = 55; //+40
+    Enemy.Defence = 15; // +0
+    Enemy.speed = 35; // +25
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Scratch";
+    Enemy.skillName = "Sharp Fang";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 0.5; // bleed for 2 turns
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Bleed";
+    Enemy.skillChance = 0.75;
+    Enemy.itemDrop = "5 Coins";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Adult Beast"; //Hard x 2
+    Enemy.health = 200; //+100
+    Enemy.Attack = 65; //+50
+    Enemy.Defence = 15; // +0
+    Enemy.speed = 35; // +20
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Mutated Bite";
+    Enemy.skillName = "Call to arms";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;// Panggil young beaast 1
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.5;
+    Enemy.itemDrop = "Beastskin Leggings";
+    Enemy.dropChance = 0.5;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Rock, Paper, Bullet(Battle)
+    Enemy.name = "Ring Master"; //Hard 170
+    Enemy.health = 150; //+50
+    Enemy.Attack = 30; //+15
+    Enemy.Defence = 65; // +50
+    Enemy.speed = 50; // +40
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Disciplined Whip";
+    Enemy.skillName = "Team Building";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 0.5; //dia buff semua team attack 0.5 selama 2 turns
+    Enemy.skillStatus = "Buff";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Ringmaster's Pants";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Strong Performer"; //Medium x 4
+    Enemy.health = 140; //+40
+    Enemy.Attack = 55; //+40
+    Enemy.Defence = 15; // +0
+    Enemy.speed = 20; // +10
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Slam";
+    Enemy.skillName = "Head Lock";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.5;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 1;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Dueling Tavern(Battle)
+    Enemy.name = "Security Guard"; //Hard x 2
+    Enemy.health = 160; //+60
+    Enemy.Attack = 65; //+50
+    Enemy.Defence = 75; // +60
+    Enemy.speed = 10; // +0
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Shoulder Slam";
+    Enemy.skillName = "Ready for Duty";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 0.25; // 0.25 attack n defence 2 turn
+    Enemy.skillStatus = "buff";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Defence Potion";
+    Enemy.dropChance = 0.75;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Mercenaries"; //Medium x 3
+    Enemy.health = 130; //+30
+    Enemy.Attack = 45; //+30
+    Enemy.Defence = 15; // +0
+    Enemy.speed = 40; // +30
+    Enemy.xp = 425;
+    Enemy.coin = 10;
+    Enemy.basicName = "Slash";
+    Enemy.skillName = "Sticky Blade!";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 0.5; //leech effect 2 turn
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Leech";
+    Enemy.skillChance = 0.5;
+    Enemy.itemDrop = "Defence Potion";
+    Enemy.dropChance = 0.75;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Runic Chest (Occurance)
+    Enemy.name = "Mimic"; //Hard
+    Enemy.health = 100; //+0
+    Enemy.Attack = 75; //+60
+    Enemy.Defence = 65; // +50
+    Enemy.speed = 70; // +60
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Bite";
+    Enemy.skillName = "Devour";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 2; //w rencana instant death tp nvm lol
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Runic Chestplate, Runic Legging";
+    Enemy.dropChance = 0.5; //50/50 bjir
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Enchanting Song (occurance)
+    Enemy.name = "Siren";
+    Enemy.health = 150; //+50
+    Enemy.Attack = 20; //+30
+    Enemy.Defence = 25; // +50
+    Enemy.speed = 15; // +40
+    Enemy.xp = 600;
+    Enemy.coin = 20;
+    Enemy.basicName = "Screeching Song";
+    Enemy.skillName = "Healing Song";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 0.30; //Heal ALL
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "Tempting Tune";
+    Enemy.dropChance = 0.8;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
 

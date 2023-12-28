@@ -117,10 +117,10 @@ void removeSkill(skillList &SL,skillTree ST,string name){
         cout << "Skill not found" << endl;
     }
 }
-sListAddress findSkillinPlayer(string name,skillList L){
+sListAddress findSkillinPlayer(int id,skillList L){
     sListAddress prec = first(L);
     while (prec != NULL) {
-        if (info(skill(prec)).name == name) {
+        if (info(skill(prec)).id == id) {
             return prec;
         }
         prec = next(prec);
@@ -130,7 +130,15 @@ sListAddress findSkillinPlayer(string name,skillList L){
 void showSkill(skillList L){
     sListAddress p = L.first;
     while (p != NULL) {
-        cout << info(skill(p)).name << endl;
+        cout << info(skill(p)).id << "." <<info(skill(p)).name << endl;
+        cout << info(skill(p)).desc << endl;
+        cout << info(skill(p)).type << endl;
+        string aoe;
+        aoe = info(skill(p)).isMultiple ? "Area of Effect" : "Single Target";
+        cout << aoe << endl;
+        string type;
+        type = info(skill(p)).type == "Offensive" ? "Deals " + to_string(info(skill(p)).dmg) + " damage" : "Heals " + to_string(info(skill(p)).heal) + " damage";
+        cout << type << endl;
         p = next(p);
     }
     cout << endl;

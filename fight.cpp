@@ -45,10 +45,10 @@ entity DeFQueue(FQueue &S){
 
 void showFQueue(FQueue &S){
     Faddress p = head(S);
-    cout << "[Turn Queue: ";
+    cout << "[Turn Queue (Next): ";
     while(p != NULL){
         if(info(p).isPlayer){
-            cout <<info(p).Player.name;
+            cout <<info(p).Player.name<< " (You) ";
         }else{
             cout <<info(p).Enemy.name;
         }
@@ -60,7 +60,33 @@ void showFQueue(FQueue &S){
     cout << "]" << endl;
 }
 
-
+void removeEntityFromQueue(FQueue &S, entity P){
+    Faddress p = head(S);
+    while(next(p) != NULL){
+        Faddress temp = next(p);
+        if(info(p).no == P.no){
+            if(p == head(S)){
+                DeFQueue(S);
+            }else if(p == tail(S)){
+                Faddress q = head(S);
+                while(next(q) != NULL){
+                    q = next(q);
+                }
+                next(q) = NULL;
+                tail(S) = q;
+                S.Size--;
+            }else{
+                Faddress q = head(S);
+                while(next(q) != NULL && next(q) != p){
+                    q = next(q);
+                }
+                next(q) = next(p);
+                S.Size--;
+            }
+        }
+        p = temp;
+    }
+}
 void createEntityList(entityList &L){
     first(L) = NULL;
     last(L) = NULL;
@@ -87,20 +113,34 @@ void addEntity(entityList &L,entityAddress p){
         last(L) = p;
     }
 }
-
-entityAddress findEntity(entityList L, string name){
+void removeEntity(entityList &L, entityAddress p){
+    if(p == first(L)){
+        first(L) = next(p);
+        prev(first(L)) = NULL;
+        delete p;
+    }else if(p == last(L)){
+        last(L) = prev(p);
+        next(last(L)) = NULL;
+        delete p;
+    }else{
+        next(prev(p)) = next(p);
+        prev(next(p)) = prev(p);
+        delete p;
+    }
+}
+entityAddress findEntity(entityList L, int no){
     entityAddress prec = first(L);
-
     while(prec != NULL){
-        //if(info(prec).name == name){
-//
-  //          return prec;
-    //    }
+        if(info(prec).no == no){
+            return prec;
+        }
         prec = next(prec);
     }
     return NULL;
 
 }
+
+
 void showEntity(entityList L){
     entityAddress p = first(L);
     int i = 1;
@@ -151,13 +191,8 @@ void initiateFight(FQueue &S,entityList &eL,enemy enemies[]){
 }
 
 entity reFQueue(FQueue &S, entityList eL){
-    showFQueue(S);
+
     entity E = DeFQueue(S);
-    if(E.isPlayer){
-        cout << E.Player.name<< "'s turn.\n";
-    }else{
-        cout << E.Enemy.name << "'s turn.\n";
-    }
     while(S.Size < 5){
         entityAddress P = first(eL);
         while(P != NULL){
@@ -174,5 +209,6 @@ entity reFQueue(FQueue &S, entityList eL){
             P = next(P);
         }
     }
+    showFQueue(S);
     return E;
 }

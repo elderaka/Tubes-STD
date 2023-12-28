@@ -289,6 +289,8 @@ void encounter(int id){
                 //[Lose 1/2 total health, obtain 30 gold piece]
             }else if (choice == "3"){
                 //[Enter battle with 5 insects];
+                //enemy enemies[] = {info(findEnemy(EL,"A"),}
+                //fight(ene)
                 cout << "you've found Legging made out of... sticky silk?\n";
                 //get [Sticky Silk Legging];
             }else{
@@ -361,8 +363,10 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                cout << "Very well... FOR QLIPOTH!!!\n";
-                //[Enter Battle with 1 lead miner and 2 other miners];
+                x[6] = "Very well... FOR QLIPOTH!!!\n";
+                print(x,6,false);
+                enemy enemies[] = {info(findEnemy(EL,"Lead Miner")).name,info(findEnemy(EL,"Miner")).name,info(findEnemy(EL,"Miner")).name}
+                fight(enemies[]);
             }else if (choice == "2"){
                 cout << "May the Blessings of the Amber Lord be with you\n";
                 //gets ['Ring of Amber' charm, + 15 defence perma]
@@ -612,6 +616,7 @@ void fight(enemy enemies[]){
     x[0] = " -=+=-\nBATTLE!\n -=+=-\n";
     print(x,0,false);
     int id = roll();
+    bool fleed = false;
     switch(id) {
     case 1:
         x[1] = enemies[roll() % sizeof(enemies)-1].name + " seems feisty tonight.\n";
@@ -675,55 +680,199 @@ void fight(enemy enemies[]){
         break;
     }
     initiateFight(fqueue,eL,enemies);
-    print(x,1,true);
+    print(x,1,false);
     int i = 1;
 
     do{
         entity E;
-        cout << isEntityEmpty(eL) << to_string(MC.currentHealth) << endl;
         cout << " -=+=-\nTURN " + to_string(i) +"\n -=+=-\n";
         E = reFQueue(fqueue,eL);
+        if(E.isPlayer){
+            cout << E.Player.name<< "'s turn.\n";
+        }else{
+            cout << E.Enemy.name << "'s turn.\n";
+        }
         int dice = roll();
         float attackMultiplier;
         if(E.isPlayer){
+            int choice;
             cout << "What's your choice?" << endl;
-            cout << "1.Attack\t2.Skill\t3.Item\t4.Run\n";
+            cout << "1.Attack\t2.Skill\t\n3.Item\t\t4.Run\n";
             cout << "Select your choice (1-4): ";
             do{
-               cin >> choice;
-                if(choice == "1"){
+
+                cin >> choice;
+                if(choice == 1){
                     cout << "Enemies: "<< endl;
                     entityAddress adrEntity = next(first(eL));
                     int j = 1;
-                    while(adrE != NULL){
-                        cout << i << "." << info(adrEntity).Enemy.name << " (" << info(adrEntity).no
-                    }
-                    for(int i = 1; i < sizeof(enemies)-1;i++){
-
+                    while(adrEntity != NULL){
+                        cout << info(adrEntity).Enemy.name << " (" << info(adrEntity).no << ")"<<endl;
+                        adrEntity = next(adrEntity);
                     }
                     cout << "Select your target:";
-                }else if(choice == "2"){
+                    int target;
+                    bool notDied = true;
+                    do{
+                        cin >> target;
+                        if(findEntity(eL,target) == NULL){
+                            cout << "Target invalid. Select your target:";
+                        }else{
+                            bool hit = false;
+                            if(dice == 1){
+                                cout<< "It's a critical!";
+                                getch();
+                                cout<< " Miss..." << endl;
+                                attackMultiplier = 0;
+                                hit = false;
+                            }else if(dice <= 5){
+                                for(int k = 0; k < dice; k++){
+                                    int coin = flipcoin();
+                                    if(coin == 1){
+                                        hit = true;
+                                    }
+                                }
+                            }
+                            if(dice > 5 || hit){
+                                if(dice > 15){
+                                    cout<< "It's a critical!";
+                                    getch();
+                                    cout<< " Hit!" << endl;
+                                    attackMultiplier = 0.5+(dice/10);
+                                }else{
+                                    attackMultiplier = 0.5+(dice)/25;
+                                }
+                            }
+                            //NOTE: YES, THIS IS DUMB. BUT I HAVe GGONE TOO FAR FOR THIS
+                            cout << MC.name + " dealt " << MC.defaultAttack * attackMultiplier << " damage!\n";
+                            info(findEntity(eL,target)).Enemy.currentHealth -= MC.defaultAttack * attackMultiplier;
+                            cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << info(findEntity(eL,target)).Enemy.currentHealth << " HP left!\n";
+                            if(info(findEntity(eL,target)).Enemy.currentHealth <= 0){
+                                cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") died!" <<endl;
+                                cout << "You gained " << info(findEntity(eL,target)).Enemy.xp << " xp\n";
+                                cout << "You gained " << info(findEntity(eL,target)).Enemy.coin << " coin\n";
+                                int drop = roll();
+                                if(drop < 20* info(findEntity(eL,target)).Enemy.dropChance){
+                                    cout << "You got " << info(findEntity(eL,target)).Enemy.itemDrop << "!\n";
+                                }
+                                removeEntityFromQueue(fqueue,info(findEntity(eL,target)));
+                                removeEntity(eL,findEntity(eL,target));
+                                notDied = false;
+                            }
+                        }
+                    }while(!findEntity(eL,target) && notDied);
+                }else if(choice == 2){
+                    showSkill(skill(mc(PL)));
+                    cout << "Select your skills: ";
+                    int skillid;
+                    do{
+                        cin >> skillid;
+                        if(!findSkillinPlayer(skillid,skill(mc(PL)))){
+                            cout << "Skill invalid. Select your skills:";
+                        }else{
+                            int target;
+                            bool notDied = true;
+                            bool hit = false;
+                            if(info(skill(findSkillinPlayer(skillid,skill(mc(PL))))).type == "Offensive"){
+                                cout << "Enemies: "<< endl;
+                                entityAddress adrEntity = next(first(eL));
+                                int j = 1;
+                                while(adrEntity != NULL){
+                                    cout << info(adrEntity).Enemy.name << " (" << info(adrEntity).no << ")"<<endl;
+                                    adrEntity = next(adrEntity);
+                                }
+                                cout << "Select your target:";
+                                int target;
+                                bool notDied = true;
+                                do{
+                                    cin >> target;
+                                    if(findEntity(eL,target) == NULL){
+                                        cout << "Target invalid. Select your target:";
+                                    }else{
+                                        bool hit = false;
+                                        if(dice == 1){
+                                            cout<< "It's a critical!";
+                                            getch();
+                                            cout<< " Miss..." << endl;
+                                            attackMultiplier = 0;
+                                            hit = false;
+                                        }else if(dice <= 5){
+                                            for(int k = 0; k < dice; k++){
+                                                int coin = flipcoin();
+                                                if(coin == 1){
+                                                    hit = true;
+                                                }
+                                            }
+                                        }
+                                        if(dice > 5 || hit){
+                                            if(dice > 15){
+                                                cout<< "It's a critical!";
+                                                getch();
+                                                cout<< " Hit!" << endl;
+                                                attackMultiplier = 0.5+(dice/10);
+                                            }else{
+                                                attackMultiplier = 0.5+(dice)/25;
+                                            }
+                                        }
+                                        //TODO: The fuck is this code
+                                        skill sukiru = info(skill(findSkillinPlayer(skillid,skill(mc(PL)))));
+                                        cout << MC.name + " dealt " << (sukiru.dmg + MC.defaultAttack) * attackMultiplier << " damage!\n";
+                                        info(findEntity(eL,target)).Enemy.currentHealth -= (sukiru.dmg + MC.defaultAttack) * attackMultiplier;
+                                        cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << info(findEntity(eL,target)).Enemy.currentHealth << " HP left!\n";
+                                        if(info(findEntity(eL,target)).Enemy.currentHealth <= 0){
+                                            cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") died!" <<endl;
+                                            cout << "You gained " << info(findEntity(eL,target)).Enemy.xp << " xp\n";
+                                            cout << "You gained " << info(findEntity(eL,target)).Enemy.coin << " coin\n";
+                                            int drop = roll();
+                                            if(drop < 20* info(findEntity(eL,target)).Enemy.dropChance){
+                                                cout << "You got " << info(findEntity(eL,target)).Enemy.itemDrop << "!\n";
+                                            }
+                                            removeEntityFromQueue(fqueue,info(findEntity(eL,target)));
+                                            removeEntity(eL,findEntity(eL,target));
+                                            notDied = false;
+                                        }
+                                    }
+                                }while(!findEntity(eL,target) && notDied);
+                            }else{
+                                cout << "Fuck my life" << endl;
+                            }
+                        }
+                    }while(!findSkillinPlayer(skillid,skill(mc(PL))));
+                    getch();
+                }else if(choice == 3){
 
-                }else if(choice == "2"){
-
-                }else if(choice == "2"){
-
+                }else if(choice == 4){
+                    int fleeRoll = roll();
+                    cout << "Trying to run away..."<<endl;
+                    getch();
+                    cout << "...\n";
+                    getch();
+                    cout << "...\n";
+                    getch();
+                    cout << "...\n";
+                    if(fleeRoll < (10 + MC.speed/10)){
+                        cout << "You ran away!\n";
+                        fleed = true;
+                    }else{
+                        cout << "You failed to run away!\n";
+                    }
                 }else{
-                    cout << "Wrong selection! Select your choice (1-4): "
+                    cout << "Wrong selection! Select your choice (1-4): ";
                 }
-            }while(stoi(choice) < 0 || stoi(choice) > 4);
+            }while(choice < 0 || choice > 4);
+            getch();
         }else{
             int rollskill = roll();
             //cout << E.Enemy.name + " is rolling..." << endl;
             bool hit = false;
             if(dice == 1){
                 cout<< "It's a critical!";
-                getch()
-                cout<< " Miss..." < endl;
+                getch();
+                cout<< " Miss..." << endl;
                 attackMultiplier = 0;
             }else if(dice <= 5){
-                for(int i = 0; i < dice; i++){
-                    int coin = flipcoin;
+                for(int l = 0; l < dice; l++){
+                    int coin = flipcoin();
                     if(coin == 1){
                         hit = true;
                     }
@@ -732,8 +881,8 @@ void fight(enemy enemies[]){
             if(dice > 5 || hit){
                 if(dice > 15){
                     cout<< "It's a critical!";
-                    getch()
-                    cout<< " Hit!" < endl;
+                    getch();
+                    cout<< " Hit!" << endl;
                     attackMultiplier = 0.5+(dice/10);
                 }else{
                     attackMultiplier = 0.5+(dice)/25;
@@ -756,12 +905,22 @@ void fight(enemy enemies[]){
                 cout << E.Enemy.name + " deals " + to_string(attackMultiplier * E.Enemy.defaultAttack) + " damage!" << endl;
                 MC.currentHealth -= attackMultiplier * E.Enemy.defaultAttack ;
             }
+            if(MC.currentHealth <= 0){
+                cout << "You died!\n";
+                position[0] = 1000;
+                getch();
+                exit(0);
+            }
+            getch();
         }
         i++;
+        if(next(first(eL)) != NULL){
+            system("cls");
+        }
 
-    }while(!isEntityEmpty(eL) && MC.currentHealth > 0);
-    if(MC.currentHealth <= 0){
-        position[0] = 1000;
+    }while(next(first(eL)) != NULL && MC.currentHealth > 0 && !fleed);
+    if(!fleed){
+        cout << "You won!";
     }
 
     getch();

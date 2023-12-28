@@ -49,7 +49,7 @@ void createSkillList(skillList &L);
 sListAddress createNewSkillElement(skillAddress x);
 void insertLastSkill(skillList &L, sListAddress p);
 void removeSkill(skillList &SL,skillTree ST,string name);
-sListAddress findSkillinPlayer(string name,skillList L);
+sListAddress findSkillinPlayer(int id,skillList L);
 void showSkill(skillList L);
 
 #endif // skill_H_INCLUDED

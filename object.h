@@ -5,13 +5,15 @@
 struct object{
     string name;
     string desc;
-    string type; //throwable ato equipable
-    int jumlah; //self explanatory
+    bool isConsumable;
+    bool isEquipable;
+    string armor;
+    bool isHealing;
+    bool isBuff;
     int dmg; //ke musuh semisal throwable ke enemy
     int heal; //semisal heal pot
+    string buffStat;
     int buff; // semisal buff dmg ato def
-    int duration; //semisal buff ato overtime healing
-
 };
 typedef struct elementObject *objectAddress;
 
