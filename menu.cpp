@@ -431,9 +431,11 @@ void encounter(int id){
                 //[discard your current chestplate and obtain 30 gold piece];
                 cout << "Appreciate it stranger to another land\n";
             }else if (choice == "2"){
-                cout << "YOU SON OF A- I'LL KILL YOU FOR THIS\n";
-                getch();
-                //[Enter Battle With a Bounty Hunter]
+                cout << "Go ahead and try \n";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Reunion Bounty Hunter")))));
+                fight(enemies);
             }else if (choice == "3"){
                 cout << "No thanks\n";
             }else{
@@ -455,10 +457,15 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
                 MC.health *= 1-MC.level/10;
-                //[figth Sal]
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
+                fight(enemies);
             }else if (choice == "2"){
-                //[discard random item from inventory]
-                //[fight Leo]
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Leo")))));
+                fight(enemies);
             }else{
                 cout << "you cant do that\n";
             }
@@ -504,12 +511,22 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                //[50% chance gains 'Gambler's Brooch'(50% gains +20 defence, 50% gains +20 attack for 2 turns at every start battle) Chestpiece ];
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"One-Eyed 'Kent'")))));
+                fight(enemies);
+                //(50% gains +20 defence, 50% gains +20 attack battle) Chestpiece ];
             }else if (choice == "2"){
                 //[gain nothing and small xp]
             }else if (choice == "3"){
                 cout << "Wise move, dead man";
-                //[fight 4 elite rogues];
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"One-Eyed 'Kent'")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Kent's Elite Rogue")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Kent's Elite Rogue")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Kent's Elite Rogue")))));
+                fight(enemies);
             }else{
                 cout << "you cant do that";
             }
@@ -655,11 +672,18 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+            MC.currentHealth -= 0.2*MC.currentHealth;
            //[-20% health]
-           //[figth Sal]
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
+                fight(enemies);
             //get [Charm, Yin Charm]
             }else if (choice == "2"){
-           //[figth Leo]
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Leo")))));
+                fight(enemies);
             //get [Charm, Yang Charm]
             }else{
             cout << "you cant do that\n";
@@ -681,9 +705,16 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
             cout << "'THE SHOW MUST CONTINUE!!' *shouts the ring leader* \n";
-            //		[enter battle with 1 ring master and 4 other performer]
+             enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Ring Master")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                fight(enemies);
             }else if (choice == "2"){
             cout << "A good lad knows where he belongs.. NOT IN CIRCUS HA! \n";
+            MC.coin -= 20;
             //[lose 20 gold piece]
 
             }else{
@@ -706,11 +737,18 @@ void encounter(int id){
         cin >> choice;
         if (choice == "1"){
 		cout << "So'd be it partner \n";
-		//[enter battle with 5 cowboys]
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                fight(enemies);
 
         }else if (choice == "2"){
 		cout << "You ain't so bad, after all we're just a fellow goodmen \n";
-        //[lose 50% of your gold piece]
+        MC.coin -= 0.5*MC.coin;
         }else{
             cout << "you cant do that";
         }
@@ -737,9 +775,21 @@ void encounter(int id){
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Security Guard")))));
             fight(enemies);
             }else if (choice == "2"){
-            //[enter battle with 3 Mercenaries]
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            fight(enemies);
             }else if (choice == "3"){
-            //[enter battle with 3 Mercenaries and 2 security guards]
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Security Guard")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Security Guard")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mercenary")))));
+            fight(enemies);
             }else{
             cout << "you cant do that";
             }
@@ -759,10 +809,21 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-            //[enter battle with 4 young beast]
+            cout << "Slaughter the Younglings";
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+            fight(enemies);
             }else if (choice == "2"){
             cout << "The Creature growls with frenzied eyes";
-            //[enter battle wtih 2 adult beast]
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
+            fight(enemies);
             }else{
 		cout << "you cant do that";
             }
@@ -782,7 +843,10 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-            //[enter battle with 1 mimic]
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mimic")))));
+            fight(enemies);
             }else if (choice == "2"){
             //Run Away
             }else{
@@ -835,10 +899,16 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
             cout << "As you enjoying your time as time fleeting throughout the night, one Siren trying to eat your head, and now you realised you stepped on a trap";
-            // [Enter a challenging battle with 3x Deceptive Sirens. [Hard].
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
+            fight(enemies);
             }else if (choice == "2"){
-            cout << "'Aww, Hun don't go'. The alluring voices kept reaching farther and farther as you run to the opposite direction";
-            //Run Away [lose 10% health]
+            cout << "'Aww, Hun don't go just yet'. The alluring voices kept reaching farther and farther as you run to the opposite direction";
+            MC.currentHealth -= 0.2*MC.currentHealth;
             }else{
             cout << "you cant do that";
             }
@@ -1076,7 +1146,7 @@ void fight(enemyList enemies){
             cout << "1.Attack\t2.Skill\t\n3.Item\t\t4.Run\n";
             cout << "Select your choice (1-4): ";
             do{
-
+            //What the actual fuck is this, nnt lu ja yg jelasin
                 cin >> choice;
                 if(choice == 1){
                     cout << "Enemies: "<< endl;
@@ -1191,6 +1261,7 @@ void fight(enemyList enemies){
                                             }
                                         }
                                         //TODO: The fuck is this code
+                                        //My fella, i'm askin the same
                                         skill sukiru = info(skill(findSkillinPlayer(skillid,skill(mc(PL)))));
                                         cout << MC.name + " dealt " << (sukiru.dmg + MC.defaultAttack) * attackMultiplier << " damage!\n";
                                         info(findEntity(eL,target)).Enemy.currentHealth -= (sukiru.dmg + MC.defaultAttack) * attackMultiplier;

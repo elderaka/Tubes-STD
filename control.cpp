@@ -613,12 +613,13 @@ void initiatePlayer(playerList &PL){
 
 
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void initiateEnemy(enemyList &EL){
     createEnemyList(EL);
     //Dari Bount Hunter (occurance)
     Enemy.name = "Reunion Bounty Hunter"; //medium dif
     Enemy.health = 150; //+50
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 40; //+25
     Enemy.defaultDefence = 35; // +10
     Enemy.speed = 15; // +5
@@ -639,6 +640,7 @@ void initiateEnemy(enemyList &EL){
 //Saleo (Battle)
     Enemy.name = "Older Brother Leo"; //medium dif
     Enemy.health = 130; //+30
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 45; //+30
     Enemy.defaultDefence = 25; // +10
     Enemy.speed = 30; // +20
@@ -657,6 +659,7 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Younger Brother Sal";//easy dif
     Enemy.health = 120; //+20
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 25; //+10
     Enemy.defaultDefence = 25; // +10
     Enemy.speed = 25; // +10
@@ -678,6 +681,7 @@ void initiateEnemy(enemyList &EL){
 //Dari House of Nildis (Occurance)
     Enemy.name = "One-Eyed 'Kent'"; //hard dif
     Enemy.health = 180; //+80
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 65; //+50
     Enemy.defaultDefence = 25; // +10
     Enemy.speed = 40; // +30
@@ -696,6 +700,7 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Kent's Elite Rogue"; //med dif x 3
     Enemy.health = 110; //+10
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 40; //+25
     Enemy.defaultDefence = 25; // +10
     Enemy.speed = 35; // +25
@@ -715,6 +720,7 @@ void initiateEnemy(enemyList &EL){
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//Dari Nomadic Miners (occurance)
     Enemy.name = "Lead Miner"; // medium
     Enemy.health = 120; //+20
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 30; //+15
     Enemy.defaultDefence = 65; // +50
     Enemy.speed = 15; // +5
@@ -731,8 +737,9 @@ void initiateEnemy(enemyList &EL){
     Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-    Enemy.name = "Miner"; // medium
+    Enemy.name = "Miner"; // easy
     Enemy.health = 100; //+0
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 30; //+15
     Enemy.defaultDefence = 35; // +20
     Enemy.speed = 25; // +15
@@ -754,6 +761,7 @@ void initiateEnemy(enemyList &EL){
 //Dari  We Are Cowboys (Battle)
     Enemy.name = "Cowboy"; //med x 4
     Enemy.health = 120; //+20
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 35; //+20
     Enemy.defaultDefence = 45; // +20
     Enemy.speed = 40; // +30
@@ -774,6 +782,7 @@ void initiateEnemy(enemyList &EL){
 //Dari Beast Horde  (Battle)
     Enemy.name = "Young Beast"; //medium x 4
     Enemy.health = 125; //+25
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 55; //+40
     Enemy.defaultDefence = 15; // +0
     Enemy.speed = 35; // +25
@@ -792,6 +801,7 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Adult Beast"; //Hard x 2
     Enemy.health = 200; //+100
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 65; //+50
     Enemy.defaultDefence = 15; // +0
     Enemy.speed = 35; // +20
@@ -812,6 +822,7 @@ void initiateEnemy(enemyList &EL){
 //Dari Rock, Paper, Bullet(Battle)
     Enemy.name = "Ring Master"; //Hard 170
     Enemy.health = 150; //+50
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 30; //+15
     Enemy.defaultDefence = 65; // +50
     Enemy.speed = 50; // +40
@@ -830,6 +841,7 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Strong Performer"; //Medium x 4
     Enemy.health = 140; //+40
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 55; //+40
     Enemy.defaultDefence = 15; // +0
     Enemy.speed = 20; // +10
@@ -867,8 +879,9 @@ void initiateEnemy(enemyList &EL){
     Enemy.dropChance = 0.75;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-    Enemy.name = "Mercenaries"; //Medium x 3
+    Enemy.name = "Mercenary"; //Medium x 3
     Enemy.health = 130; //+30
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 45; //+30
     Enemy.defaultDefence = 15; // +0
     Enemy.speed = 40; // +30
@@ -889,6 +902,7 @@ void initiateEnemy(enemyList &EL){
 //Dari Runic Chest (Occurance)
     Enemy.name = "Mimic"; //Hard
     Enemy.health = 100; //+0
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 75; //+60
     Enemy.defaultDefence = 65; // +50
     Enemy.speed = 70; // +60
@@ -909,6 +923,7 @@ void initiateEnemy(enemyList &EL){
 //Dari Enchanting Song (occurance)
     Enemy.name = "Siren";
     Enemy.health = 150; //+50
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 20; //+30
     Enemy.defaultDefence = 25; // +50
     Enemy.speed = 15; // +40

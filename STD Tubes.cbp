@@ -42,6 +42,12 @@
 		<Unit filename="WhatToDo.cpp" />
 		<Unit filename="bin/Release/STD Tubes.exe" />
 		<Unit filename="control.cpp" />
+		<Unit filename="dice.cpp" />
+		<Unit filename="dice.h" />
+		<Unit filename="enemy.cpp" />
+		<Unit filename="enemy.h" />
+		<Unit filename="fight.cpp" />
+		<Unit filename="fight.h" />
 		<Unit filename="inventory.cpp" />
 		<Unit filename="inventory.h" />
 		<Unit filename="main.cpp" />
@@ -52,6 +58,7 @@
 		<Unit filename="obj/Debug/DLL.o" />
 		<Unit filename="obj/Debug/WhatToDo.o" />
 		<Unit filename="obj/Debug/control.o" />
+		<Unit filename="obj/Debug/dice.o" />
 		<Unit filename="obj/Debug/inventory.o" />
 		<Unit filename="obj/Debug/main.o" />
 		<Unit filename="obj/Debug/menu.o" />
@@ -63,6 +70,9 @@
 		<Unit filename="obj/Release/DLL.o" />
 		<Unit filename="obj/Release/WhatToDo.o" />
 		<Unit filename="obj/Release/control.o" />
+		<Unit filename="obj/Release/dice.o" />
+		<Unit filename="obj/Release/enemy.o" />
+		<Unit filename="obj/Release/fight.o" />
 		<Unit filename="obj/Release/inventory.o" />
 		<Unit filename="obj/Release/main.o" />
 		<Unit filename="obj/Release/menu.o" />
