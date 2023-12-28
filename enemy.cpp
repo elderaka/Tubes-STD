@@ -14,6 +14,7 @@ enemyAddress createNewEnemyElement(enemy x){
     return p;
 }
 void addEnemy(enemyList &L,enemyAddress p){
+    info(p).currentHealth = info(p).health;
     if (isEnemyEmpty(L)){
         first(L) = p;
         last(L) = p;

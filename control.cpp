@@ -850,6 +850,7 @@ void initiateEnemy(enemyList &EL){
 //Dari Dueling Tavern(Battle)
     Enemy.name = "Security Guard"; //Hard x 2
     Enemy.health = 160; //+60
+    Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 65; //+50
     Enemy.defaultDefence = 75; // +60
     Enemy.speed = 10; // +0
