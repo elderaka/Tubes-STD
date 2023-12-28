@@ -1,23 +1,26 @@
 # depslib dependency file v1.0
 1702108769 source:c:\users\lauda\onedrive\documents\c++\std tubes\dll.cpp
 
-1703242876 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
+1703765187 source:c:\users\lauda\onedrive\documents\c++\std tubes\main.cpp
 	"main.h"
 
-1703154639 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
+1703762754 c:\users\lauda\onedrive\documents\c++\std tubes\main.h
 	"player.h"
 	"object.h"
 	"skill.h"
 	"Class.h"
 	"menu.h"
+	"dice.h"
+	"enemy.h"
+	"fight.h"
 
-1703154089 c:\users\lauda\onedrive\documents\c++\std tubes\player.h
+1703762376 c:\users\lauda\onedrive\documents\c++\std tubes\player.h
 	"DLL.h"
 	"inventory.h"
 	"skill.h"
 	"Class.h"
 
-1703154715 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
+1703767377 c:\users\lauda\onedrive\documents\c++\std tubes\dll.h
 	<iostream>
 	<conio.h>
 	<windows.h>
@@ -25,26 +28,27 @@
 	<cmath>
 	<string>
 	<iomanip>
+	<time.h>
 
-1702244907 c:\users\lauda\onedrive\documents\c++\std tubes\inventory.h
+1703576334 c:\users\lauda\onedrive\documents\c++\std tubes\inventory.h
 	"DLL.h"
 	"object.h"
 
-1702449932 c:\users\lauda\onedrive\documents\c++\std tubes\object.h
+1703680406 c:\users\lauda\onedrive\documents\c++\std tubes\object.h
 	"DLL.h"
 
-1703154372 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
+1703761287 source:c:\users\lauda\onedrive\documents\c++\std tubes\player.cpp
 	"player.h"
 	"main.h"
 
 1702665058 source:c:\users\lauda\onedrive\documents\c++\std tubes\object.cpp
 	"object.h"
 
-1703154640 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
+1703764694 source:c:\users\lauda\onedrive\documents\c++\std tubes\control.cpp
 	"main.h"
 	"player.h"
 
-1702482480 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
+1703576348 source:c:\users\lauda\onedrive\documents\c++\std tubes\inventory.cpp
 	"inventory.h"
 
 1702451167 source:c:\users\hanif\documents\tubes-std\control.cpp
@@ -98,27 +102,28 @@
 	"player.h"
 	"main.h"
 
-1703153701 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
+1703705091 c:\users\lauda\onedrive\documents\c++\std tubes\skill.h
 	"DLL.h"
 	"queue.h"
 
-1702645440 source:c:\users\lauda\onedrive\documents\c++\std tubes\skill.cpp
+1703707249 source:c:\users\lauda\onedrive\documents\c++\std tubes\skill.cpp
 	"skill.h"
 
 1702449932 source:c:\users\lauda\onedrive\documents\c++\std tubes\whattodo.cpp
 
-1702634074 c:\users\lauda\onedrive\documents\c++\std tubes\queue.h
+1703619765 c:\users\lauda\onedrive\documents\c++\std tubes\queue.h
 	"DLL.h"
 	"skill.h"
 
 1702270223 source:c:\users\lauda\onedrive\documents\c++\std tubes\queue.cpp
 	"queue.h"
 
-1703154991 c:\users\lauda\onedrive\documents\c++\std tubes\menu.h
+1703768328 c:\users\lauda\onedrive\documents\c++\std tubes\menu.h
 	"DLL.h"
+	"enemy.h"
 	"main.h"
 
-1703242814 source:c:\users\lauda\onedrive\documents\c++\std tubes\menu.cpp
+1703767380 source:c:\users\lauda\onedrive\documents\c++\std tubes\menu.cpp
 	"menu.h"
 
 1702272887 c:\users\hanif\documents\tubes-std\queue.h
@@ -143,7 +148,7 @@
 	"DLL.h"
 	"skill.h"
 
-1703142809 source:c:\users\lauda\onedrive\documents\c++\std tubes\class.cpp
+1703761466 source:c:\users\lauda\onedrive\documents\c++\std tubes\class.cpp
 	"Class.h"
 
 1702873324 source:c:\users\hanif\documents\tubes-std\class.cpp
@@ -152,4 +157,25 @@
 1702873324 c:\users\hanif\documents\tubes-std\class.h
 	"DLL.h"
 	"skill.h"
+
+1703704462 source:c:\users\lauda\onedrive\documents\c++\std tubes\dice.cpp
+	"dice.h"
+
+1703704445 c:\users\lauda\onedrive\documents\c++\std tubes\dice.h
+	"DLL.h"
+
+1703766931 source:c:\users\lauda\onedrive\documents\c++\std tubes\enemy.cpp
+	"enemy.h"
+
+1703680330 c:\users\lauda\onedrive\documents\c++\std tubes\enemy.h
+	"DLL.h"
+
+1703769707 source:c:\users\lauda\onedrive\documents\c++\std tubes\fight.cpp
+	"fight.h"
+
+1703768810 c:\users\lauda\onedrive\documents\c++\std tubes\fight.h
+	"DLL.h"
+	"enemy.h"
+	"player.h"
+	"main.h"
 

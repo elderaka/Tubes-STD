@@ -35,7 +35,7 @@ void deleteObject(playerList &PL, objectList &OL, string name);
 inventoryAddress findObjectinInventory(string name);
 void addSkillToPlayer(playerList &PL, skillTree ST, string player, string skill);
 void removeSkillFromPlayer(playerList &PL, skillList &SL, string player, string skill);
-void changePlayerClass(string player, string Class);
+void changePlayerClass(string pl, string Class);
 void initiateObjects(objectList &OL);
 void initiateSkillAndClass(skillTree &ST, classTree &CT);
 void initiatePlayer(playerList &PL);

@@ -27,5 +27,6 @@
 #define top(S) S.top
 #define peek(S) S.info[top(S)]
 #define MC info(mc(PL))
+#define ping printf("PING\n");
 using namespace std;
 #endif // DLL_H_INCLUDED

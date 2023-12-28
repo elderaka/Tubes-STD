@@ -14,7 +14,7 @@ void print(string text[100], int i, bool interactable){
     for( int i = 0; x[i] != '\0'; i++ ) {
         cout << x[i];
         if( x[i] == '!' || x[i] == '.')
-            Sleep(500 + rand() % 500);
+            Sleep(10 + rand() % 10);
         else
             Sleep(10 + rand() % 10);
         if (_kbhit()) {
@@ -68,13 +68,40 @@ void splashScreen(){
 "   | |               Journey to the               | |\n"
 "   | |              Lands of Eldoria              | |\n"
 "   | |                                            | |\n"
-"   | |         Ketik Mana Saja Untuk Lanjut       | |\n"
+"   | |                                            | |\n"
 "   | |                                            | |\n"
 " __| |____________________________________________| |__\n"
 "(__   ____________________________________________   __)\n"
-"   | |                                            | |";
-    getch();
-    system("cls");
+"   | |                                            | |"
+"                                   \n"
+"                    1. Permainan Baru\n"
+"                  2. Lanjutkan Permainan\n"
+"                   3. Lihat Data Game\n"
+"                        4. Keluar\n"
+"                   Tentukan Pilihan kamu:                  \n"
+"                              ";
+    int menuChoice;
+    do{
+        cin >> menuChoice;
+        printStack(Menu);
+        switch(menuChoice){
+        case 1:
+            system("cls");
+            introduction();
+            break;
+        case 2:
+            cout << "Coming soon\n";
+            break;
+        case 3:
+            cout << "Coming soon\n";
+            break;
+        case 4:
+            break;
+        default:
+            cout << "          Pilihan tidak valid. Tentukan Pilihan kamu:                  \n                              ";
+            break;
+        }
+    }while(menuChoice < 0 || menuChoice > 4);
 }
 void introduction(){
     string x[100];
@@ -85,7 +112,7 @@ void introduction(){
     x[2] = "Sekarang, pahlawan yang berani, saatnya bagi Anda untuk masuk ke dalam karakter Anda. Apa nama Anda, yang akan dinyanyikan dalam balada sepanjang negeri? Ucapkan dengan lantang, dan biarkan namamu terukir dalam gulungan sejarah Eldoria.\n";
     print(x,2,true);
     cout << "\nMasukkan nama kamu: ";;
-    getline(cin,MC.name);
+    getline(cin,MC.name);getline(cin,MC.name);
     system("cls");
     x[3] = "Ah, " + MC.name + ", sebuah nama yang membawa beban takdir. \n\nSaat Anda menjelajahi kota, Anda menemukan seorang pedagang tua misterius di sudut terpencil pasar. Dia merasakan percikan petualangan Anda. \n";
     print(x,3,false);
@@ -93,31 +120,43 @@ void introduction(){
     print(x,4,false);
     x[5] = "Pedagang tua: Hehe, anak muda. Dari setiap barang ini memiliki kekuatan yang akan bisa membuatmu SANGAT kuabt dibanding siapapun dan bisa dibilang kekuatan yang KEKAL,\n";
     print(x,5,false);
-    x[6] = "Pedagang tua: TAPI, jika kau sudah memilih, kau tidak akan bisa lagi berpisah dengan barangnya dan akan ada efek samping di setiap barang tersebut ini. Silahkan pilih salah satu dengan hati-hati: \n1. Shitty item\n2. Even more shitty item\n3. Item"; // show barang2 apa aja
+    x[6] = "Pedagang tua: TAPI, jika kau sudah memilih, kau tidak akan bisa lagi berpisah dengan barangnya dan akan ada efek samping di setiap barang tersebut ini. Silahkan pilih salah satu dengan hati-hati: \n1. Shitty item\n2. Even more shitty item\n3. Item\n"; // show barang2 apa aja
     print(x,6,true);
-    cout << "Pilih salah satu:" << endl; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
-    cin >> Object.name;
-    while(findObject(OL,Object.name) == NULL){
-        cout << "Barang tidak tersedia, Pilih salah satu" << endl;
-        cin >> Object.name;
-    }
-    addObjectToPlayer(PL,OL,MC.name,Object.name);
+    cout << "Pilih salah satu (1-3): "; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
+    int pickArtifact;
+    string object;
+    do{
+        cin >> pickArtifact;
+        if(pickArtifact == 1){
+            object = "Shitty Item";
+        }else if(pickArtifact == 2){
+            object = "More Shitty Item";
+        }else if(pickArtifact == 3){
+            object = "Even more Shitty Item";
+        }else{
+        }cout << "Pilihan tidak valid. Pilih salah satu (1-3): ";
+    }while(pickArtifact < 0 || pickArtifact > 3);
+    addObjectToPlayer(PL,OL,MC.name,"Stone");
 
-    x[7] = "\nKamu memilih: " + Object.name +"\n\nPedagang tua: Muahahaha, sekarang nasib kau sudah tercatat dalam gulungan takdir\n"; //Jika kg pilih samsek, makany replyny "Kau adalah petualang yang konyol dan bodoh menolak kekuatan kekal, PERGILAH SEKARANG"
+    x[7] = "\nKamu memilih: " + object +"\n\nPedagang tua: Muahahaha, sekarang nasib kau sudah tercatat dalam gulungan takdir\n"; //Jika kg pilih samsek, makany replyny "Kau adalah petualang yang konyol dan bodoh menolak kekuatan kekal, PERGILAH SEKARANG"
 
     print(x,7,false);
 
     x[8] = "Sekarang, pilih class kamu:\n"; //kg ush krn skill awalan emg
     print(x,8,true);
     showClassByParent(Class(mc(PL)));
-    cout << "Pilih salah satu: " << endl; //  same kek atas
-    getline(cin,cls.name);
-    getline(cin,cls.name);
-    while(cls.name != info(left(Class(mc(PL)))).name && cls.name != info(right(Class(mc(PL)))).name){
-        cout << "Class tidak tersedia, Pilih salah satu" << endl;
-        getline(cin,cls.name);
-    }
-    changePlayerClass(MC.name,cls.name);
+    cout << "Pilih salah satu (1-2): "; //  same kek atas
+    int pickClass;
+    do{
+        cin >> pickClass;
+        if(pickClass == 1){
+            changePlayerClass(MC.name,info(left(Class(mc(PL)))).name);
+        }else if(pickClass == 2){
+            changePlayerClass(MC.name,info(right(Class(mc(PL)))).name);
+        }else{
+            cout << "Pilihan tidak valid. Pilih salah satu (1-2): ";
+        }
+    }while(pickClass < 0 || pickClass > 2);
     x[9] = "Dengan pemilihan class yang bijak, kamu merasa kekuatan magis mengalir dalam dirimu. Kini, sebagai seorang " + cls.name + ", petualanganmu di Eldoria dimulai.\n";
     print(x, 9, false);
 
@@ -141,7 +180,7 @@ void explore(){
         if(position[1] == 0){
             encounter(0);
         }else{
-            encounter(roll()%19 + 1);
+            encounter(18);
         }
     }
     popMenu(Menu);
@@ -177,17 +216,17 @@ void encounter(int id){
     case 1:
         x[0] = "==Astral Tavern== \n Special Encounter ";
         print(x,0,false);
-        x[1] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" + to_string(id);
+        x[1] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
         print(x,1,false);
-        x[2] = "The barkeep, a spectral figure with a twinkle in their eye, serves drinks that bring courage, strength, and arcane insights" + to_string(id);
+        x[2] = "The barkeep, a spectral figure with a twinkle in their eye, serves drinks that bring courage, strength, and arcane insights" ;
         print(x,2,false);
         x[3] = "'Now fellow wanderer, what can I do for ye?'\n";
         print(x,3,false);
         x[4] = "1. Rent A Room  [Replenish your health, cost 5 gold piece]\n";
         print(x,4,false);
-        x[5] = "2. A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, cost 60 gold piece]    \n	3. Spectral Cloak [+20 Defence, cost 20 gold 	piece]\n 3. Helm of Clairvoyant Insight [+20 health, cost 20 gold piece] \n	4. Legplates of Ethereal Stride [+ 20 speed, cost 20 gold piece] \n   5. Sword of Phantasmal Flames 	[+30 attack and 5  speed, cost 20 gold piece] \n 6. Healing Potions [+ heal (33 * level), cost 5 gold piece] \n  7. Defence Potions [+ 30 defence for 2 turns, cost 5 gold piece] \n  	8. Attack Potions [+ 30 attack for 2 turns, cost 5 gold piece] \n  9. Speed Potions [+ 30 Speed boost for 2 turns, cost 5 gold piece] \n  10. Provisions [ + heal (20 * level), cost 	3 gold piece] \n  11. Entropic Die [cahrms, tiap start battle ad chance +20 attack, + 20 defence, + 20 speed, +25 health for 2 turns, tiap buff jadi hanya 1 dpt dgn 1/25 chance, 	cost 30 gold piece] \n  12. Amulet of Lifespring [charms, at the start of the battle (+ heal (10 * level) for 2 turns), cost 20 gold piece]  \n  13. Ring of Attunement [charms,  +	10 attack, +10 defence, + 10 Speed, +10 health for perma, 30 gold piece] + to_string(id)";
+        x[5] = "2. A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, cost 60 gold piece]    \n	3. Spectral Cloak [+20 Defence, cost 20 gold 	piece]\n 3. Helm of Clairvoyant Insight [+20 health, cost 20 gold piece] \n	4. Legplates of Ethereal Stride [+ 20 speed, cost 20 gold piece] \n   5. Sword of Phantasmal Flames 	[+30 attack and 5  speed, cost 20 gold piece] \n 6. Healing Potions [+ heal (33 * level), cost 5 gold piece] \n  7. Defence Potions [+ 30 defence for 2 turns, cost 5 gold piece] \n  	8. Attack Potions [+ 30 attack for 2 turns, cost 5 gold piece] \n  9. Speed Potions [+ 30 Speed boost for 2 turns, cost 5 gold piece] \n  10. Provisions [ + heal (20 * level), cost 	3 gold piece] \n  11. Entropic Die [cahrms, tiap start battle ad chance +20 attack, + 20 defence, + 20 speed, +25 health for 2 turns, tiap buff jadi hanya 1 dpt dgn 1/25 chance, 	cost 30 gold piece] \n  12. Amulet of Lifespring [charms, at the start of the battle (+ heal (10 * level) for 2 turns), cost 20 gold piece]  \n  13. Ring of Attunement [charms,  +	10 attack, +10 defence, + 10 Speed, +10 health for perma, 30 gold piece] ";
         print(x,5,false);
-        x[10] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" + to_string(id);
+        x[10] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
         print(x,6,true);
         do{
             cin >> choice;
@@ -365,8 +404,8 @@ void encounter(int id){
             if (choice == "1"){
                 x[6] = "Very well... FOR QLIPOTH!!!\n";
                 print(x,6,false);
-                enemy enemies[] = {info(findEnemy(EL,"Lead Miner")).name,info(findEnemy(EL,"Miner")).name,info(findEnemy(EL,"Miner")).name}
-                fight(enemies[]);
+                //enemy enemies[] = {info(findEnemy(EL,"Lead Miner")).name,info(findEnemy(EL,"Miner")).name,info(findEnemy(EL,"Miner")).name}
+                //fight(enemies[]);
             }else if (choice == "2"){
                 cout << "May the Blessings of the Amber Lord be with you\n";
                 //gets ['Ring of Amber' charm, + 15 defence perma]
@@ -530,18 +569,18 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 4);
         break;
         case 12:
-            x[0] = " == Showman's Sleight. (Transaction) == " + to_string(id);
+            x[0] = " == Showman's Sleight. (Transaction) == " ;
             print(x,0,false);
-            x[1] = "A Mourning Actor riding a cosmic elephant slowly comes into sight... She is still weeping for some reasons. Then, she dismounts the elephant and offers to perform a 	special magic show to you "for free." + to_string(id);
+            x[1] = "A Mourning Actor riding a cosmic elephant slowly comes into sight... She is still weeping for some reasons. Then, she dismounts the elephant and offers to perform a special magic show to you for free." ;
             print(x,1,false);
-            x[2] = "She stuffs your [random charm] into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand 	on her chest and politely asks you to choose a cup..." + to_string(id);
+            x[2] = "She stuffs your [random charm] into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand 	on her chest and politely asks you to choose a cup..." ;
             print(x,2,false);
-            x[3] = "1. Select the cup on the left. \n  2. Select the cup on the right." + to_string(id);
+            x[3] = "1. Select the cup on the left. \n  2. Select the cup on the right." ;
             print(x,3,true);
             cin >> choice;
         do{
             if (choice == "1"){
-                cout << "'A nice eye, but a fair game is a fair game'"; \n";
+                cout << "'A nice eye, but a fair game is a fair game'\n";
                 //	get [equipment back and gained 'Trickster Gloves' charms, +15 speed]
             }else if (choice == "2"){
                 cout << "'Too bad, don't be mad at me, that's just how the game is' \n";
@@ -579,15 +618,15 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 3);
         break;
     case 14:
-        x[0] = " == Mad Jester. (Boss Battle) == " + to_string(id);
+        x[0] = " == Mad Jester. (Boss Battle) == " ;
         print(x,0,false);
-        x[1] = "A short, pudgy imp with a round gray face, elven ears, clown-like eyes with small yellow pupils, and a large smiling mouth with yellow, sharp teeth. He has a long, purple 	tongue which can be seen either when he laughs. He has a purple tail shaped like a capital letter J. suddenly approaches you" + to_string(id);
+        x[1] = "A short, pudgy imp with a round gray face, elven ears, clown-like eyes with small yellow pupils, and a large smiling mouth with yellow, sharp teeth. He has a long, purple 	tongue which can be seen either when he laughs. He has a purple tail shaped like a capital letter J. suddenly approaches you" ;
       	print(x,1,false);
-        x[2] = "'Nice to meet you, the name's Jevil and I know who you are' He then snaps hit fingers" + to_string(id);
+        x[2] = "'Nice to meet you, the name's Jevil and I know who you are' He then snaps hit fingers" ;
       	print(x,2,false);
-        x[3] = "A single white flash temporarily blinds you and suddenly He materialize a white space with you in it, He then invites the party to enter. Jevil waits at the far right of 	the area, and wants to 	"PLAY" a 'SIMPLE NUMBERS GAME. WHEN YOUR HP DROPS TO 0, YOU LOSE!'" + to_string(id);
+        x[3] = "A single white flash temporarily blinds you and suddenly He materialize a white space with you in it, He then invites the party to enter. Jevil waits at the far right of 	the area, and wants to 	'PLAY' a 'SIMPLE NUMBERS GAME. WHEN YOUR HP DROPS TO 0, YOU LOSE!'" ;
         print(x,3,false);
-        x[4] = "1. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to beat Jevil). \n  2. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to pacify Jevil)" + to_string(id);
+        x[4] = "1. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to beat Jevil). \n  2. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to pacify Jevil)" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -605,13 +644,13 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
     case 15:
-        x[0] = " == Saleo. (Battle) == " + to_string(id);
+        x[0] = " == Saleo. (Battle) == " ;
         print(x,0,false);
-        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has 	two heads knocking each other — one of them has red antennae, while the other has a white halo. \n" + to_string(id);
+        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has 	two heads knocking each other — one of them has red antennae, while the other has a white halo. \n" ;
       	print(x,1,false);
-        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger 	one, is the angel. Which one do you want as your neighbor?' \n" + to_string(id);
+        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger 	one, is the angel. Which one do you want as your neighbor?' \n" ;
       	print(x,2,false);
-        x[3] = "1. Pick Sal \n  2. Pick Leo " + to_string(id);
+        x[3] = "1. Pick Sal \n  2. Pick Leo " ;
         print(x,3,true);
         do{
             cin >> choice;
@@ -628,15 +667,15 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
     case 16:
-        x[0] = " == Rock, Paper, Bullets?(Battle) == " + to_string(id);
+        x[0] = " == Rock, Paper, Bullets?(Battle) == " ;
         print(x,0,false);
-        x[1] = "The ringmaster before you, with a curved mustache and a distinctavely pants, is running a performance. While it seems to be a normal performance, only you know that you 	are playing a game of rock-paper-scissors with it.  \n" + to_string(id);
+        x[1] = "The ringmaster before you, with a curved mustache and a distinctavely pants, is running a performance. While it seems to be a normal performance, only you know that you 	are playing a game of rock-paper-scissors with it.  \n" ;
       	print(x,1,false);
-        x[2] = "'There is an 82.49% chance of you playing rock in the first game, and a 94.61% of you playing scissors in the second. If you choose to flip the table with me and battle 	with the other perfromer, there is a 99.37% of me NOT putting a bullet through your head.'  \n" + to_string(id);
+        x[2] = "'There is an 82.49% chance of you playing rock in the first game, and a 94.61% of you playing scissors in the second. If you choose to flip the table with me and battle 	with the other perfromer, there is a 99.37% of me NOT putting a bullet through your head.'  \n" ;
       	print(x,2,false);
-        x[3] = "'But if you leave some gold pieces behind, your chance of survival is 100%.' they are waiting for your response. \n" + to_string(id);
+        x[3] = "'But if you leave some gold pieces behind, your chance of survival is 100%.' they are waiting for your response. \n" ;
         print(x,3,false);
-        x[4] = "1. Fight for the 0.63% chance. \n  2. Pick 100% safe" + to_string(id);
+        x[4] = "1. Fight for the 0.63% chance. \n  2. Pick 100% safe" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -653,15 +692,15 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
     case 17:
-        x[0] = " == We Are Cowboys. (Battle) == " + to_string(id);
+        x[0] = " == We Are Cowboys. (Battle) == " ;
         print(x,0,false);
-        x[1] = " You are grazing grass on the sun-baked earth when a bunch of beefy guys comes your way. They are the street bandits who wreak havoc wherever they go. They are followed by a team of mercenaries. \n"  + to_string(id);
+        x[1] = " You are grazing grass on the sun-baked earth when a bunch of beefy guys comes your way. They are the street bandits who wreak havoc wherever they go. They are followed by a team of mercenaries. \n"  ;
       	print(x,1,false);
-        x[2] = "'We're the last cowboys!' Shouts the leader who flails his arms happily. The red ibis armbands indicate their submission to the royal family. You believe they are the 	royal bandits. \n" + to_string(id);
+        x[2] = "'We're the last cowboys!' Shouts the leader who flails his arms happily. The red ibis armbands indicate their submission to the royal family. You believe they are the 	royal bandits. \n" ;
       	print(x,2,false);
-        x[3] = "'Leave your gold coins behind. We need funds to oil the development of the city. Generosity is in line with the cowboy's spirit!' Scowling at the shameless bandits, you bite off the grass with your mouth... \n" + to_string(id);
+        x[3] = "'Leave your gold coins behind. We need funds to oil the development of the city. Generosity is in line with the cowboy's spirit!' Scowling at the shameless bandits, you bite off the grass with your mouth... \n" ;
         print(x,3,false);
-        x[4] = "1.  Let them experience the real 'cowboy'.  \n  2. Pay." + to_string(id);
+        x[4] = "1.  Let them experience the real 'cowboy'.  \n  2. Pay." ;
         print(x,4,true);
         do{
         cin >> choice;
@@ -678,39 +717,44 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
     case 18:
-        x[0] = " == Dueling Tavern. (Battle) == " + to_string(id);
+        x[0] = " == Dueling Tavern. (Battle) == " ;
         print(x,0,false);
-        x[1] = "You reach an Elway-style tavern with a lively atmosphere." + to_string(id);
+        x[1] = "You reach an Elway-style tavern with a lively atmosphere." ;
       	print(x,1,false);
-        x[2] = "'Welcome to Tavern World's End.' Bragi, the bartender, bows deeply to the patrons and continues, 'We only serve customers with a sense of humor.' \n  " + to_string(id);
+        x[2] = "'Welcome to Tavern World's End.' Bragi, the bartender, bows deeply to the patrons and continues, 'We only serve customers with a sense of humor.' \n  " ;
       	print(x,2,false);
-        x[3] = "'In keeping with Aha's will, we will have some fun next. Mr. France and his team of bodyguards will be the next to join the arena. His opponent will be Avila. He and his 	mercenaries are burly and not to be underestimated! Who else is coming? Who's up for the 78,201st round?' \n " + to_string(id);
+        x[3] = "'In keeping with Aha's will, we will have some fun next. Mr. France and his team of bodyguards will be the next to join the arena. His opponent will be Avila. He and his 	mercenaries are burly and not to be underestimated! Who else is coming? Who's up for the 78,201st round?' \n " ;
         print(x,3,false);
-        x[4] = "1.Challenge Mr. France's security team.  \n  2. Challenge the burly Avila's mercenary company  \n  3. Fight both together! \n" + to_string(id);
+        x[4] = "1.Challenge Mr. France's security team.  \n  2. Challenge the burly Avila's mercenary company  \n  3. Fight both together! \n" ;
         print(x,4,true);
         do{
-        cin >> choice;
-        if (choice == "1"){
-		//[enter battle with 2 Security Guards]
-        }else if (choice == "2"){
-		//[enter battle with 3 Mercenaries]
-        }else if (choice == "3"){
-		//[enter battle with 3 Mercenaries and 2 security guards]
-        }else{
-		cout << "you cant do that";
-        }
+            cin >> choice;
+            if (choice == "1"){
+            //[enter battle with 2 Security Guards
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Security Guard")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Security Guard")))));
+            fight(enemies);
+            }else if (choice == "2"){
+            //[enter battle with 3 Mercenaries]
+            }else if (choice == "3"){
+            //[enter battle with 3 Mercenaries and 2 security guards]
+            }else{
+            cout << "you cant do that";
+            }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
         break;
     case 19:
-         x[0] = " == Beast Horde. (Battle) == " + to_string(id);
+         x[0] = " == Beast Horde. (Battle) == " ;
         print(x,0,false);
-        x[1] = "You encounter a group of ancient bloodthirsty behemoths in an ancient city of an abandoned lands. Their hot, steamy breaths brush against your face... \n" + to_string(id);
+        x[1] = "You encounter a group of ancient bloodthirsty behemoths in an ancient city of an abandoned lands. Their hot, steamy breaths brush against your face... \n" ;
       	print(x,1,false);
-        x[2] = "You notice signs of mutation on one of them... Its skin is covered by a layer of gilded hard shell, and it seems to be suffering from the mutation. \n" + to_string(id);
+        x[2] = "You notice signs of mutation on one of them... Its skin is covered by a layer of gilded hard shell, and it seems to be suffering from the mutation. \n" ;
       	print(x,2,false);
-        x[3] = "You stare straight into its droopy eyes. Its whiskers are moving up and down. You notice it is protecting some cubs behind it.. \n" + to_string(id);
+        x[3] = "You stare straight into its droopy eyes. Its whiskers are moving up and down. You notice it is protecting some cubs behind it.. \n" ;
         print(x,3,false);
-        x[4] = "1. Help the young beasts 'get free.'  /n  2. Take care of the adult beast's 'pain.' \n" + to_string(id);
+        x[4] = "1. Help the young beasts 'get free.'  /n  2. Take care of the adult beast's 'pain.' \n" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -725,15 +769,15 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
      case 20:
-        x[0] = " == Runic Chest. (Occurance) == " + to_string(id);
+        x[0] = " == Runic Chest. (Occurance) == " ;
         print(x,0,false);
-        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands a chest, seemingly left behind by a forgetful adventurer. \n" + to_string(id);
+        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands a chest, seemingly left behind by a forgetful adventurer. \n" ;
       	print(x,1,false);
-        x[2] = "The chest is made of dark mahogany, adorned with intricate carvings. As you approach, you notice the air around it shimmering with a peculiar energy. Before you can fully grasp the situation, the chest shudders and transforms into a grotesque creature—a Mimic, hungry for unsuspecting prey. \n" + to_string(id);
+        x[2] = "The chest is made of dark mahogany, adorned with intricate carvings. As you approach, you notice the air around it shimmering with a peculiar energy. Before you can fully grasp the situation, the chest shudders and transforms into a grotesque creature—a Mimic, hungry for unsuspecting prey. \n" ;
       	print(x,2,false);
-        x[3] = "YThe Mimic has a wide, toothy maw that opens to reveal rows of sharp teeth. Its lid splits into jagged limbs, and it eyes you with a malicious gleam. The mimic emits a guttural growl, and you can sense it's ready to attack. \n" + to_string(id);
+        x[3] = "YThe Mimic has a wide, toothy maw that opens to reveal rows of sharp teeth. Its lid splits into jagged limbs, and it eyes you with a malicious gleam. The mimic emits a guttural growl, and you can sense it's ready to attack. \n" ;
         print(x,3,false);
-        x[4] = "1. Attempt to fight it \n  2. Tiptoe away slowly, avoiding any confrontation." + to_string(id);
+        x[4] = "1. Attempt to fight it \n  2. Tiptoe away slowly, avoiding any confrontation." ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -747,19 +791,19 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
      case 21:
-        x[0] = " == Grassy Tent. (Transaction) == " + to_string(id);
+        x[0] = " == Grassy Tent. (Transaction) == " ;
         print(x,0,false);
-        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands a chest, seemingly left behind by a forgetful adventurer. \n" + to_string(id);
+        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands a chest, seemingly left behind by a forgetful adventurer. \n" ;
       	print(x,1,false);
-        x[2] = "You go shopping in town of Nearbrought, where a sign leads into the teepee made out of grass as you had heard it was 'the place to get swords'. You're impressed that it stayed stable long enough \n" + to_string(id);
+        x[2] = "You go shopping in town of Nearbrought, where a sign leads into the teepee made out of grass as you had heard it was 'the place to get swords'. You're impressed that it stayed stable long enough \n" ;
       	print(x,2,false);
-        x[3] = "As you enter the tent, you hear an eary voice saying 'close the curtain behind you please', A Grassy Wizard greets you 'Heard you searching for a new sword have ye? look no further, just a measly 15 gold will help you much in your travels'. \n" + to_string(id);
+        x[3] = "As you enter the tent, you hear an eary voice saying 'close the curtain behind you please', A Grassy Wizard greets you 'Heard you searching for a new sword have ye? look no further, just a measly 15 gold will help you much in your travels'. \n" ;
         print(x,3,false);
-        x[4] = "You're very confused on why such claims would just go for 15 gold pieces, he insist on you trying it out first \n" + to_string(id);
+        x[4] = "You're very confused on why such claims would just go for 15 gold pieces, he insist on you trying it out first \n" ;
       	print(x,4,false);
-        x[5] = "The sword is very sharp, like every swing produce an aftersound of wind slicing in air, even though it's just made of grass. \n" + to_string(id);
+        x[5] = "The sword is very sharp, like every swing produce an aftersound of wind slicing in air, even though it's just made of grass. \n" ;
         print(x,5,false);
-        x[6] = "1. Buy it [Requires 15 gold piece] \n 2. Leave " + to_string(id);
+        x[6] = "1. Buy it [Requires 15 gold piece] \n 2. Leave " ;
         print(x,6,true);
         do{
             cin >> choice;
@@ -775,17 +819,17 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
      case 22:
-        x[0] = " == Enchanting Song. (occurance) == " + to_string(id);
+        x[0] = " == Enchanting Song. (occurance) == " ;
         print(x,0,false);
-        x[1] = "Deep within the ethereal Whispering Grove, where moonlight bathes the towering trees in an iridescent glow, you stumble upon a glade adorned with bioluminescent flowers. The air is thick with the sweet scent of blooming petals, and the tranquil melody of the grove seems to resonate with the heartbeat of the forest.\n" + to_string(id);
+        x[1] = "Deep within the ethereal Whispering Grove, where moonlight bathes the towering trees in an iridescent glow, you stumble upon a glade adorned with bioluminescent flowers. The air is thick with the sweet scent of blooming petals, and the tranquil melody of the grove seems to resonate with the heartbeat of the forest.\n" ;
       	print(x,1,false);
-        x[2] = "As you traverse the glade, the atmosphere changes, and a hauntingly beautiful chorus of voices fills the air. Emerging from the shadows, three enchanting figures appear, their features an ethereal blend of grace and allure. Each figure possesses a voice that could rival the most enchanting symphonies. \n" + to_string(id);
+        x[2] = "As you traverse the glade, the atmosphere changes, and a hauntingly beautiful chorus of voices fills the air. Emerging from the shadows, three enchanting figures appear, their features an ethereal blend of grace and allure. Each figure possesses a voice that could rival the most enchanting symphonies. \n" ;
       	print(x,2,false);
-        x[3] = "'Welcome, traveler, to the Whispering Grove,' they sing in harmony, their voices weaving a hypnotic melody. 'Our song transcends time and space, and we invite you to join us in a dance of eternal bliss. Let the music carry you away.'" + to_string(id);
+        x[3] = "'Welcome, traveler, to the Whispering Grove,' they sing in harmony, their voices weaving a hypnotic melody. 'Our song transcends time and space, and we invite you to join us in a dance of eternal bliss. Let the music carry you away.'" ;
         print(x,3,false);
-        x[4] = "Their eye's gleam with an otherworldly allure, and the tendrils of their enchanting song wrap around your senses. A captivating aura surrounds them, promising an experience beyond mortal comprehension. \n" + to_string(id);
+        x[4] = "Their eye's gleam with an otherworldly allure, and the tendrils of their enchanting song wrap around your senses. A captivating aura surrounds them, promising an experience beyond mortal comprehension. \n" ;
       	print(x,4,false);
-        x[5] = "1. 1.Yield to the allure and join the Sirens in their mesmerizing dance. \n 2.Politely decline the invitation and exit the glade. " + to_string(id);
+        x[5] = "1. 1.Yield to the allure and join the Sirens in their mesmerizing dance. \n 2.Politely decline the invitation and exit the glade. " ;
         print(x,5,true);
         do{
             cin >> choice;
@@ -801,17 +845,17 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
      case 23:
-        x[0] = " == Moonlight's End. (Boss Battle) == " + to_string(id);
+        x[0] = " == Moonlight's End. (Boss Battle) == " ;
         print(x,0,false);
-        x[1] = "In the heart of the desolate Graveyard of Sayuki, where the moonlight struggles to penetrate the thick canopy of twisted trees, you come across an ancient crypt. The air is heavy with the scent of decay, and the ground beneath your feet seems to echo with the whispers of long-forgotten souls.\n" + to_string(id);
+        x[1] = "In the heart of the desolate Graveyard of Sayuki, where the moonlight struggles to penetrate the thick canopy of twisted trees, you come across an ancient crypt. The air is heavy with the scent of decay, and the ground beneath your feet seems to echo with the whispers of long-forgotten souls.\n" ;
       	print(x,1,false);
-        x[2] = "As you approach the crypt's entrance, an otherworldly chill permeates the air, sending shivers down your spine. The rusty iron gates creak open on their own accord, revealing a dimly lit chamber adorned with tattered banners and faded regal insignias. \n" + to_string(id);
+        x[2] = "As you approach the crypt's entrance, an otherworldly chill permeates the air, sending shivers down your spine. The rusty iron gates creak open on their own accord, revealing a dimly lit chamber adorned with tattered banners and faded regal insignias. \n" ;
       	print(x,2,false);
-        x[3] = "At the far end of the crypt, seated upon a spectral throne of bone and adorned in tattered royal garments, is the fabled Skeletal King, Egress. Hollow eyes burn with an ethereal flame, and a crown of tarnished silver rests upon its skull. The Skeletal King slowly rises, and the sound of rattling bones fills the chamber like a macabre symphony. \n" + to_string(id);
+        x[3] = "At the far end of the crypt, seated upon a spectral throne of bone and adorned in tattered royal garments, is the fabled Skeletal King, Egress. Hollow eyes burn with an ethereal flame, and a crown of tarnished silver rests upon its skull. The Skeletal King slowly rises, and the sound of rattling bones fills the chamber like a macabre symphony. \n" ;
         print(x,3,false);
-        x[4] = "'Ancient ruler of the twilight realm, keeper of the cryptic echoes,' it intones with a voice that seems to emanate from the depths of the underworld. 'The hour has come for a dance with the shadows, mortal intruder.' \n" + to_string(id);
+        x[4] = "'Ancient ruler of the twilight realm, keeper of the cryptic echoes,' it intones with a voice that seems to emanate from the depths of the underworld. 'The hour has come for a dance with the shadows, mortal intruder.' \n" ;
       	print(x,4,false);
-        x[5] = "1. Engage in battle with the Skeletal King! (Attempt to exorcise it) \n 2. Engage in battle with the Skeletal King! (Attempt to defeat it) " + to_string(id);
+        x[5] = "1. Engage in battle with the Skeletal King! (Attempt to exorcise it) \n 2. Engage in battle with the Skeletal King! (Attempt to defeat it) " ;
         print(x,5,true);
         do{
             cin >> choice;
@@ -827,21 +871,21 @@ void encounter(int id){
         }while(stoi(choice) < 0 || stoi(choice) > 2);
         break;
             case 24:
-            x[0] = " == Dreamscape (Fated Encounter) == " + to_string(id);
+            x[0] = " == Dreamscape (Fated Encounter) == " ;
             print(x,0,false);
-            x[1] = "You walk into the most adorable Kiliro Fish Restaurant on Pier Point — a place made of a giant bubble in the shape of a fish eye. Through the curved glass, you can see the subspace barrier. You have a good time in the pleasant afternoon sunshine. \n" + to_string(id);
+            x[1] = "You walk into the most adorable Kiliro Fish Restaurant on Pier Point — a place made of a giant bubble in the shape of a fish eye. Through the curved glass, you can see the subspace barrier. You have a good time in the pleasant afternoon sunshine. \n" ;
             print(x,1,false);
-            x[2] = "While the other customers are enjoying the piscatorial ultrasonic wave cerebral fascia massage, you stuff a fish eye into your mouth and plunge into a social dreamland. Pier Point is seeing a period of development during which the country's currency will be raining down regularly from the sky. You are thrilled, as you own the Arasaka's bonds. \n" + to_string(id);
+            x[2] = "While the other customers are enjoying the piscatorial ultrasonic wave cerebral fascia massage, you stuff a fish eye into your mouth and plunge into a social dreamland. Pier Point is seeing a period of development during which the country's currency will be raining down regularly from the sky. You are thrilled, as you own the Arasaka's bonds. \n" ;
             print(x,2,false);
-            x[3] = "Your mind returns to reality when the fish eye is fully digested in your stomach. It's time for you to go to work, but you are reluctant to move... \n" + to_string(id);
+            x[3] = "Your mind returns to reality when the fish eye is fully digested in your stomach. It's time for you to go to work, but you are reluctant to move... \n" ;
             print(x,3,false);
-            x[4] = "if have artifact: 1. Catch more fish eyes...  \n 2.Return to work. " + to_string(id);
+            x[4] = "if have artifact: 1. Catch more fish eyes...  \n 2.Return to work. " ;
             print(x,4,true);
-            x[5] = "if not have artifact: 1.  Swallow the other fish eye and continue to enjoy the massage. \n  2. Return to work." + to_string(id);
+            x[5] = "if not have artifact: 1.  Swallow the other fish eye and continue to enjoy the massage. \n  2. Return to work." ;
             print(x,5,true);
         do{
             cin >> choice;
-            if(Artifact == 1){ //ketika ada
+            if(MC.artifact == 1){ //ketika ada
                 if (choice == "1"){
                    // [Obtain a 'Fissured [Artifact name]', (5 * char lv) -health but (10*char lv) attack]
                     //[1000 xp]
@@ -850,6 +894,7 @@ void encounter(int id){
                     //[30 gold piece]
                 }else{
                     cout << "you cant do that";
+                }
             }else{
                 if (choice == "1"){
                     //[1000 xp]
@@ -859,7 +904,7 @@ void encounter(int id){
                    // [30 gold piece]
                 }else{
                     cout << "you cant do that";
-                }
+
                 }
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
@@ -928,18 +973,32 @@ void shop(){
     popMenu(Menu);
 }
 //ni nnt ketika battle phase
-void fight(enemy enemies[]){
+void fight(enemyList enemies){
     string x[100];
+    system("cls");
     x[0] = " -=+=-\nBATTLE!\n -=+=-\n";
     print(x,0,false);
     int id = roll();
     bool fleed = false;
+    int sumEnemy = 0;
+    enemyAddress adrEnemy = first(enemies);
+
+    while(adrEnemy != NULL){
+        sumEnemy++;
+        adrEnemy = next(adrEnemy);
+    }
+    int randomEnemy = (roll() % sumEnemy);
+    adrEnemy = first(enemies);
+    for(int i = 0; i < randomEnemy;i++){
+        adrEnemy = next(adrEnemy);
+    }
+    string introEnemy = info(adrEnemy).name;
     switch(id) {
     case 1:
-        x[1] = enemies[roll() % sizeof(enemies)-1].name + " seems feisty tonight.\n";
+        x[1] = introEnemy + " seems feisty tonight.\n";
         break;
     case 2:
-        x[1] = enemies[roll() % sizeof(enemies)-1].name + " is angry!\n";
+        x[1] = introEnemy + " is angry!\n";
         break;
     case 3:
         x[1] = MC.name + " is kind of quirky.\n";
@@ -948,31 +1007,31 @@ void fight(enemy enemies[]){
         x[1] = MC.name + " is doing a little bit of trolling.\n";
         break;
     case 5:
-        x[1] = enemies[roll() % sizeof(enemies)-1].name + " seems feisty tonight.\n";
+        x[1] = introEnemy + " seems feisty tonight.\n";
         break;
     case 6:
-        x[1] = enemies[roll() % sizeof(enemies)-1].name + " eyes " + MC.name + " with a mix of curiosity and hostility.\n";
+        x[1] = introEnemy + " eyes " + MC.name + " with a mix of curiosity and hostility.\n";
         break;
     case 7:
-        x[1] = MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " exchange a few sarcastic remarks before the battle.\n";
+        x[1] = MC.name + " and " + introEnemy + " exchange a few sarcastic remarks before the battle.\n";
         break;
     case 8:
-        x[1] = "As " + MC.name + " approaches, " + enemies[roll() % sizeof(enemies)-1].name + " snickers and says, 'You're in for a surprise.'\n";
+        x[1] = "As " + MC.name + " approaches, " + introEnemy + " snickers and says, 'You're in for a surprise.'\n";
         break;
     case 9:
-        x[1] = "The tension is palpable as " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " share a moment of awkward silence.\n";
+        x[1] = "The tension is palpable as " + MC.name + " and " + introEnemy + " share a moment of awkward silence.\n";
         break;
     case 10:
-        x[1] = "In a strange turn of events, " + enemies[roll() % sizeof(enemies)-1].name + " starts memeing, leaving " + MC.name + " utterly confused.\n";
+        x[1] = "In a strange turn of events, " + introEnemy + " starts memeing, leaving " + MC.name + " utterly confused.\n";
         break;
     case 11:
-        x[1] = MC.name + " retorts with a well-timed meme, causing " + enemies[roll() % sizeof(enemies)-1].name + " to reconsider their life choices.\n";
+        x[1] = MC.name + " retorts with a well-timed meme, causing " + introEnemy + " to reconsider their life choices.\n";
         break;
     case 12:
-        x[1] = "The battlefield echoes with the sound of laughter as " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " bond over shared meme references.\n";
+        x[1] = "The battlefield echoes with the sound of laughter as " + MC.name + " and " + introEnemy + " bond over shared meme references.\n";
         break;
     case 13:
-        x[1] = "Suddenly, " + MC.name + " and " + enemies[roll() % sizeof(enemies)-1].name + " break into synchronized dance moves, turning the battlefield into a surreal spectacle.\n";
+        x[1] = "Suddenly, " + MC.name + " and " + introEnemy + " break into synchronized dance moves, turning the battlefield into a surreal spectacle.\n";
         break;
     case 14:
         x[1] = "In a moment of confusion, " + MC.name + " accidentally sends a 'dank' meme to the enemy, creating an unexpected ceasefire.\n";
@@ -1264,22 +1323,25 @@ void moveDefence(){
 
 void initiateTop(){
 
-    switch(Menu.info[Menu.top]){
-    case 0:
-        system("cls");
-        explore();
-        break;
-    case 1:
-        explore();
-        break;
-    case 2:
-        stats();
-        break;
-    case 3:
-        checkInventory();
-        break;
-    case 4:
-        interactorTalk();
-        break;
+    if(!isMenuEmpty(Menu)){
+        switch(Menu.info[Menu.top]){
+        case 0:
+            system("cls");
+            explore();
+            break;
+        case 1:
+            explore();
+            break;
+        case 2:
+            stats();
+            break;
+        case 3:
+            checkInventory();
+            break;
+        case 4:
+            interactorTalk();
+            break;
+        }
     }
+
 }

@@ -156,22 +156,28 @@ void showEntity(entityList L){
     cout << endl;
 }
 
-void initiateFight(FQueue &S,entityList &eL,enemy enemies[]){
+void initiateFight(FQueue &S,entityList &eL,enemyList enemies){
+
     createEntityList(eL);
     createFQueue(S);
     entity Entity;
     Entity.Player = info(mc(PL));
     Entity.isPlayer = true;
     Entity.actionValue = 0;
+
     addEntity(eL,createNewEntityElement(Entity));
-    for(int i = 0; i < sizeof(enemies)-1;i++){
+
+    enemyAddress adrEnemy = first(enemies);
+    int i = 0;
+    while(adrEnemy != NULL){
         Entity.no = i;
         Entity.isPlayer = false;
         Entity.actionValue = 0;
-        Entity.Enemy = enemies[i];
+        Entity.Enemy = info(adrEnemy);
         addEntity(eL,createNewEntityElement(Entity));
+        adrEnemy = next(adrEnemy);
+        i++;
     }
-
     while(S.Size < 5){
         entityAddress P = first(eL);
         while(P != NULL){

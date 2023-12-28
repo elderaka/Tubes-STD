@@ -67,13 +67,13 @@ void removeSkillFromPlayer(playerList &PL, skillList &SL, string player, string 
         cout << "Player not found" << endl;
     }
 }
-void changePlayerClass(string player, string Class){
-    playerAddress adrPlayer = findPlayer(PL,player);
+void changePlayerClass(string pl, string Class){
+    playerAddress adrPlayer = findPlayer(PL, pl);
+    //cout <<"PING\n";
     classAddress adrClass = findClass(CT,Class);
-
     if(adrPlayer != NULL && adrClass != NULL){
         Class(adrPlayer) = adrClass;
-        addSkillToPlayer(PL,ST,player,info(skill(adrClass)).name);
+        addSkillToPlayer(PL,ST,pl,info(skill(adrClass)).name);
         info(adrPlayer).Class = info(adrClass).name;
     }
 }
@@ -400,13 +400,13 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
          //Defensive Based Tier 1
     Skill.id = 13;
     Skill.name = "Shield Ready!";
-    Skill.desc = "Readied up your shield to prepare an incoming attack.";
+    Skill.desc = "Readied up your shield to prepare an incoming defaultAttack.";
     Skill.cost = Player.stamina - (5 * Player.level);
     Skill.dmg  = 0;
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (1* Player.level);
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -424,7 +424,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (3 * Player.level)+ Player.defaultAttack + (1.5 * Player.level);
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -442,7 +442,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (3 * Player.level)+ Player.defaultAttack + (1.5 * Player.level);
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -462,7 +462,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (5 * Player.level);
     Skill.buff = Player.defaultAttack + (3 * Player.level);
     Skill.duration = 2;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -471,7 +471,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     addClass(CT,adrClass);
 
 
-            //Defensive-defence buff Based Tier 3
+            //Defensive-defaultDefence buff Based Tier 3
     Skill.id = 17;
     Skill.name = "Vindicta";
     Skill.desc = "Let the enemies come, for with Vindicta, your defense stands as an unassailable wall.";
@@ -480,7 +480,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (10 * Player.level);
     Skill.buff = Player.defaultDefence + (4 * Player.level);
     Skill.duration = 2;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -499,7 +499,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (10 * Player.level);
     Skill.buff = Player.stamina + (20 * Player.level);
     Skill.duration = 2;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -516,7 +516,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = 0;
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -532,7 +532,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 5);
     Skill.buff = Player.defaultAttack + (Player.level * 55) ;
     Skill.duration = 2;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -540,7 +540,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     skill(adrClass) = adrSkill;
     addClass(CT,adrClass);
 
-    //Defensive-defence buff Based ult
+    //Defensive-defaultDefence buff Based ult
       Skill.id = 21;
     Skill.name = "Guardian's Embrace";
     Skill.desc = "Feeling determined to protect those who you've cherished, forms a spiritual manifestation similar to a certain shield hero";
@@ -549,7 +549,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 10);
     Skill.buff = Player.defaultDefence + (Player.level * 65) ;
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -566,7 +566,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 20);
     Skill.buff = Player.defaultDefence + (Player.level * 20) ;
     Skill.duration = 2;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -583,7 +583,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal =0;
     Skill.buff = 0;
     Skill.duration = 3;
-    Skill.type = "Defence";
+    Skill.type = "defaultDefence";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -608,6 +608,7 @@ void initiatePlayer(playerList &PL){
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
+    changePlayerClass(Player.name, "Newbie");
 
 
 
@@ -618,8 +619,8 @@ void initiateEnemy(enemyList &EL){
     //Dari Bount Hunter (occurance)
     Enemy.name = "Reunion Bounty Hunter"; //medium dif
     Enemy.health = 150; //+50
-    Enemy.Attack = 40; //+25
-    Enemy.Defence = 35; // +10
+    Enemy.defaultAttack = 40; //+25
+    Enemy.defaultDefence = 35; // +10
     Enemy.speed = 15; // +5
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -638,8 +639,8 @@ void initiateEnemy(enemyList &EL){
 //Saleo (Battle)
     Enemy.name = "Older Brother Leo"; //medium dif
     Enemy.health = 130; //+30
-    Enemy.Attack = 45; //+30
-    Enemy.Defence = 25; // +10
+    Enemy.defaultAttack = 45; //+30
+    Enemy.defaultDefence = 25; // +10
     Enemy.speed = 30; // +20
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -656,8 +657,8 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Younger Brother Sal";//easy dif
     Enemy.health = 120; //+20
-    Enemy.Attack = 25; //+10
-    Enemy.Defence = 25; // +10
+    Enemy.defaultAttack = 25; //+10
+    Enemy.defaultDefence = 25; // +10
     Enemy.speed = 25; // +10
     Enemy.xp = 300;
     Enemy.coin = 5;
@@ -677,8 +678,8 @@ void initiateEnemy(enemyList &EL){
 //Dari House of Nildis (Occurance)
     Enemy.name = "One-Eyed 'Kent'"; //hard dif
     Enemy.health = 180; //+80
-    Enemy.Attack = 65; //+50
-    Enemy.Defence = 25; // +10
+    Enemy.defaultAttack = 65; //+50
+    Enemy.defaultDefence = 25; // +10
     Enemy.speed = 40; // +30
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -695,8 +696,8 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Kent's Elite Rogue"; //med dif x 3
     Enemy.health = 110; //+10
-    Enemy.Attack = 40; //+25
-    Enemy.Defence = 25; // +10
+    Enemy.defaultAttack = 40; //+25
+    Enemy.defaultDefence = 25; // +10
     Enemy.speed = 35; // +25
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -714,16 +715,16 @@ void initiateEnemy(enemyList &EL){
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//Dari Nomadic Miners (occurance)
     Enemy.name = "Lead Miner"; // medium
     Enemy.health = 120; //+20
-    Enemy.Attack = 30; //+15
-    Enemy.Defence = 65; // +50
+    Enemy.defaultAttack = 30; //+15
+    Enemy.defaultDefence = 65; // +50
     Enemy.speed = 15; // +5
     Enemy.xp = 425;
     Enemy.coin = 10;
     Enemy.basicName = "Brick Break";
-    Enemy.skillName = "Originium Healing"; //nnt dia ngasih defence tambahan ke tmn smua selama 2 turn
+    Enemy.skillName = "Originium Healing"; //nnt dia ngasih defaultDefence tambahan ke tmn smua selama 2 turn
     Enemy.skillDamaging = false;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0.5; //defence gain
+    Enemy.skillHeal = 0.5; //defaultDefence gain
     Enemy.skillStatus = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Lead Splunking Helmet";
@@ -732,8 +733,8 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Miner"; // medium
     Enemy.health = 100; //+0
-    Enemy.Attack = 30; //+15
-    Enemy.Defence = 35; // +20
+    Enemy.defaultAttack = 30; //+15
+    Enemy.defaultDefence = 35; // +20
     Enemy.speed = 25; // +15
     Enemy.xp = 300;
     Enemy.coin = 5;
@@ -753,8 +754,8 @@ void initiateEnemy(enemyList &EL){
 //Dari  We Are Cowboys (Battle)
     Enemy.name = "Cowboy"; //med x 4
     Enemy.health = 120; //+20
-    Enemy.Attack = 35; //+20
-    Enemy.Defence = 45; // +20
+    Enemy.defaultAttack = 35; //+20
+    Enemy.defaultDefence = 45; // +20
     Enemy.speed = 40; // +30
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -773,8 +774,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Beast Horde  (Battle)
     Enemy.name = "Young Beast"; //medium x 4
     Enemy.health = 125; //+25
-    Enemy.Attack = 55; //+40
-    Enemy.Defence = 15; // +0
+    Enemy.defaultAttack = 55; //+40
+    Enemy.defaultDefence = 15; // +0
     Enemy.speed = 35; // +25
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -791,8 +792,8 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Adult Beast"; //Hard x 2
     Enemy.health = 200; //+100
-    Enemy.Attack = 65; //+50
-    Enemy.Defence = 15; // +0
+    Enemy.defaultAttack = 65; //+50
+    Enemy.defaultDefence = 15; // +0
     Enemy.speed = 35; // +20
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -811,8 +812,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Rock, Paper, Bullet(Battle)
     Enemy.name = "Ring Master"; //Hard 170
     Enemy.health = 150; //+50
-    Enemy.Attack = 30; //+15
-    Enemy.Defence = 65; // +50
+    Enemy.defaultAttack = 30; //+15
+    Enemy.defaultDefence = 65; // +50
     Enemy.speed = 50; // +40
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -820,7 +821,7 @@ void initiateEnemy(enemyList &EL){
     Enemy.skillName = "Team Building";
     Enemy.skillDamaging = false;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0.5; //dia buff semua team attack 0.5 selama 2 turns
+    Enemy.skillHeal = 0.5; //dia buff semua team defaultAttack 0.5 selama 2 turns
     Enemy.skillStatus = "Buff";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Ringmaster's Pants";
@@ -829,8 +830,8 @@ void initiateEnemy(enemyList &EL){
 
     Enemy.name = "Strong Performer"; //Medium x 4
     Enemy.health = 140; //+40
-    Enemy.Attack = 55; //+40
-    Enemy.Defence = 15; // +0
+    Enemy.defaultAttack = 55; //+40
+    Enemy.defaultDefence = 15; // +0
     Enemy.speed = 20; // +10
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -849,8 +850,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Dueling Tavern(Battle)
     Enemy.name = "Security Guard"; //Hard x 2
     Enemy.health = 160; //+60
-    Enemy.Attack = 65; //+50
-    Enemy.Defence = 75; // +60
+    Enemy.defaultAttack = 65; //+50
+    Enemy.defaultDefence = 75; // +60
     Enemy.speed = 10; // +0
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -858,17 +859,17 @@ void initiateEnemy(enemyList &EL){
     Enemy.skillName = "Ready for Duty";
     Enemy.skillDamaging = false;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0.25; // 0.25 attack n defence 2 turn
+    Enemy.skillHeal = 0.25; // 0.25 defaultAttack n defaultDefence 2 turn
     Enemy.skillStatus = "buff";
     Enemy.skillChance = 0.35;
-    Enemy.itemDrop = "Defence Potion";
+    Enemy.itemDrop = "defaultDefence Potion";
     Enemy.dropChance = 0.75;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
     Enemy.name = "Mercenaries"; //Medium x 3
     Enemy.health = 130; //+30
-    Enemy.Attack = 45; //+30
-    Enemy.Defence = 15; // +0
+    Enemy.defaultAttack = 45; //+30
+    Enemy.defaultDefence = 15; // +0
     Enemy.speed = 40; // +30
     Enemy.xp = 425;
     Enemy.coin = 10;
@@ -879,7 +880,7 @@ void initiateEnemy(enemyList &EL){
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "Leech";
     Enemy.skillChance = 0.5;
-    Enemy.itemDrop = "Defence Potion";
+    Enemy.itemDrop = "defaultDefence Potion";
     Enemy.dropChance = 0.75;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
@@ -887,8 +888,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Runic Chest (Occurance)
     Enemy.name = "Mimic"; //Hard
     Enemy.health = 100; //+0
-    Enemy.Attack = 75; //+60
-    Enemy.Defence = 65; // +50
+    Enemy.defaultAttack = 75; //+60
+    Enemy.defaultDefence = 65; // +50
     Enemy.speed = 70; // +60
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -907,8 +908,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Enchanting Song (occurance)
     Enemy.name = "Siren";
     Enemy.health = 150; //+50
-    Enemy.Attack = 20; //+30
-    Enemy.Defence = 25; // +50
+    Enemy.defaultAttack = 20; //+30
+    Enemy.defaultDefence = 25; // +50
     Enemy.speed = 15; // +40
     Enemy.xp = 600;
     Enemy.coin = 20;
@@ -928,5 +929,4 @@ void initiateEnemy(enemyList &EL){
 void initiateMenu(){
     createMenuStack(Menu);
     splashScreen();
-    introduction();
 }

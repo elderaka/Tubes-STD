@@ -9,6 +9,7 @@ int main()
     //enemy enemies[] = {info(first(EL)),info(next(first(EL))),info(last(EL))};
     //fight(enemies);
     initiateMenu();
+
     do{
         initiateTop();
     }while(!isMenuEmpty(Menu));

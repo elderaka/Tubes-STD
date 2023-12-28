@@ -55,6 +55,6 @@ void removeEntity(entityList &L, entityAddress p);
 entityAddress findEntity(entityList L, int no);
 void showEntity(entityList L);
 
-void initiateFight(FQueue &S,entityList &eL,enemy enemies[]);
+void initiateFight(FQueue &S,entityList &eL,enemyList enemies);
 
 #endif // FIGHT_H_INCLUDED

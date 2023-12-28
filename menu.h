@@ -31,7 +31,7 @@ void stats();
 void checkInventory();
 void interactorTalk();
 void shop();
-void fight(enemy enemies[]);
+void fight(enemyList enemies);
 void run();
 void moveAttack();
 
