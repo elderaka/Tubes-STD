@@ -315,19 +315,30 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                MC.coin += 10;
                 //[Walk Away and 10 gold piece];
             }else if (choice == "2"){
+                MC.coin += 30;
+                MC.currentHealth -= 0.25 * MC.currentHealth;
                 //[Lose 1/2 total health, obtain 30 gold piece]
             }else if (choice == "3"){
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Insect")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Insect")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Insect")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Insect")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Insect")))));
+                fight(enemies);
                 //[Enter battle with 5 insects];
                 //enemy enemies[] = {info(findEnemy(EL,"A"),}
-                //fight(ene)
                 cout << "you've found Legging made out of... sticky silk?\n";
                 //get [Sticky Silk Legging];
             }else{
                 cout << "you cant do that\n";
             }
-        }while(stoi(choice) < 0 || stoi(choice) > 10);
+        }while(stoi(choice) < 0 || stoi(choice) > 3);
+        MC.exp += 250;
         break;
     case 3:
         x[0] = " ==  Exchanging Gifts (Transaction) == ";
@@ -350,6 +361,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 4:
         x[0] = " ==  Jim Hulk and Hall Jim (Occurance) == " ;
@@ -372,11 +384,12 @@ void encounter(int id){
                 //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
             }else if (choice == "2"){
                 cout << "I guess this is it for us.. sorry brother I've failed you";
-                //[gain 10 gold piece and small xp]
+                MC.coin += 10;
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 5:
         x[0] = " ==  Nomadic Miners (Occurance) ==" ;
@@ -396,8 +409,13 @@ void encounter(int id){
             if (choice == "1"){
                 x[6] = "Very well... FOR QLIPOTH!!!\n";
                 print(x,6,false);
-                //enemy enemies[] = {info(findEnemy(EL,"Lead Miner")).name,info(findEnemy(EL,"Miner")).name,info(findEnemy(EL,"Miner")).name}
-                //fight(enemies[]);
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
+                fight(enemies);
             }else if (choice == "2"){
                 cout << "May the Blessings of the Amber Lord be with you\n";
                 //gets ['Ring of Amber' charm, + 15 defence perma]
@@ -405,6 +423,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 6:
         x[0] = " ==  Bounty Hunter (Occurance) ==" ;
@@ -434,7 +453,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.xp += 10;
+        MC.exp += 250;
         break;
     case 7:
         x[0] = " == Saleo(Battle) == \n";
@@ -448,7 +467,7 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.health *= 1-MC.level/10;
+                MC.health -= 0.2 * MC.Health ;
                 enemyList enemies;
                 createEnemyList(enemies);
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
@@ -462,6 +481,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 8:
         x[0] = " == Flash Bazar (Transaction) == " ;
@@ -477,6 +497,7 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                MC.coin
                 //[+ (10 * char lv)health, named "Good Value" charms.];
                 cout << "Im sure you'll be pleased to have that";
             }else if (choice == "2"){
@@ -487,7 +508,9 @@ void encounter(int id){
             }else{
                 cout << "you cant do that";
             }
+            MC.exp += 250;
         }while(stoi(choice) < 0 || stoi(choice) > 3);
+        MC.exp += 250;
         break;
     case 9:
         x[0] = " == House of Nildis (Occurance) == " ;
@@ -523,6 +546,7 @@ void encounter(int id){
                 cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
+        MC.exp += 250;
         break;
     case 10:
         x[0] = " == Insights from the Minstrels. (Transaction) == \n";
@@ -539,14 +563,16 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
                 cout << "'What an interesting fate you've got there, be sure to come back after you succeeded teehee~'";
+                MC.coin -= 5;
                 //[25% obtaining, 'Bloodied Necklace' charms [if atleast 1 enemy killed, get + (20 * char lv) attack]]
             }else if (choice == "2"){
                 //gain [nothing and small xp]
-                cout << "A stranger's fate lies once more in the deep\n";
+                cout << "Oh well.. be sure to come back next time~\n";
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 11:
         x[0] = " == Jester Pedler. (Transaction) == \n";
@@ -561,14 +587,14 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
                 cout << "'Jolly goodshow my good man, pleasure doing business' \n";
-                //[Fully Heal]
+                MC.currentHealt += 999;
             }else if (choice == "2"){
                 cout << "'Ugh fine *with a different deeper voice*' \n";
                 //gain [Helmet Jester's Delight, +15 defence and +1 Crit counter]
             }else if (choice == "3"){
                 cout << "As you open the box, a huge light came out of it and you hear a wind blowing through your ear \n";
                 cout << "Inside the box there's a single note saying " << "Beware of the long eared Jester" << "'well.. that was a waste of gol- wait where did he even 	go?! ... f***..' Said to 	yourself";
-                //gain [600 xp]
+                MC.exp += 650;
             }else if (choice == "4"){
                 cout << "'What a real bummer you are' \n";
                 //nothing
@@ -576,6 +602,7 @@ void encounter(int id){
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 4);
+        MC.exp += 250;
         break;
         case 12:
             x[0] = " == Showman's Sleight. (Transaction) == " ;
@@ -598,6 +625,7 @@ void encounter(int id){
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 13:
         x[0] = "== Faring Hawkers. (Transaction) == \n";
@@ -625,6 +653,7 @@ void encounter(int id){
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
+        MC.exp += 250;
         break;
     case 14:
         x[0] = " == Mad Jester. (Boss Battle) == " ;
@@ -640,17 +669,28 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                cout << "*The figures jumps at you with full speed*, 'GET READY TO HAVE FUN FUN FUN!'";
                 //[fight Jevil (hell)
-            cout << "'HA HA HA. WHAT FUN!!!, YOU'RE FAST, FAST, STRONG, STRONG. BUT THERE ARE YET FASTER, YET STRONGER. TAKE ME AND DO YOUR STRONGEST---!' \n";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Jevil")))));
+                fight(enemies);
+                cout << "'HA HA HA. WHAT FUN!!!, YOU'RE FAST, FAST, STRONG, STRONG. BUT THERE ARE YET FASTER, YET STRONGER. TAKE ME AND DO YOUR STRONGEST---!' \n";
                 //get [Sword, Devilsknife, [+50 attack] and gained 1200 xp]
             }else if (choice == "2"){
+                cout << "*The figures jumps at you with full speed*, 'GET READY TO HAVE FUN FUN FUN!'";
                 //[fight Jevil (hell)
-            cout << "'WHAT FUN!! I'M EXHAUSTED!! YOU KID TIRED ME UP!!, NOW I WILL SLEEP FOR THE OTHER 100 YEARS. TAKE THIS AND DO YOUR STRONGEST---!' \n";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Jevil")))));
+                fight(enemies);
+                cout << "'WHAT FUN!! I'M EXHAUSTED!! YOU KID TIRED ME UP!!, NOW I WILL SLEEP FOR THE OTHER 100 YEARS. TAKE THIS AND DO YOUR STRONGEST---!' \n";
                 //get [Sword, Jevilstail, [+25 attack and +25 speed] and gained 1200 xp]
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 15:
         x[0] = " == Saleo. (Battle) == " ;
@@ -664,7 +704,7 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-            MC.currentHealth -= 0.2*MC.currentHealth;
+                MC.currentHealth -= 0.2*MC.currentHealth;
            //[-20% health]
                 enemyList enemies;
                 createEnemyList(enemies);
@@ -681,6 +721,7 @@ void encounter(int id){
             cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 16:
         x[0] = " == Rock, Paper, Bullets?(Battle) == " ;
@@ -745,6 +786,7 @@ void encounter(int id){
             cout << "you cant do that";
         }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
     case 18:
         x[0] = " == Dueling Tavern. (Battle) == " ;
@@ -786,6 +828,7 @@ void encounter(int id){
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
+        MC.exp += 250;
         break;
     case 19:
          x[0] = " == Beast Horde. (Battle) == " ;
@@ -820,6 +863,7 @@ void encounter(int id){
 		cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
      case 20:
         x[0] = " == Runic Chest. (Occurance) == " ;
@@ -845,6 +889,7 @@ void encounter(int id){
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
      case 21:
         x[0] = " == Grassy Tent. (Transaction) == " ;
@@ -873,6 +918,7 @@ void encounter(int id){
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
      case 22:
         x[0] = " == Enchanting Song. (occurance) == " ;
@@ -905,6 +951,7 @@ void encounter(int id){
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
      case 23:
         x[0] = " == Moonlight's End. (Boss Battle) == " ;
@@ -922,15 +969,31 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                //start bdengan 1 skeletal king dan 2 goons, si king bs summon tiap 4 turns
+                cout<< "This place will be your final rest";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeletal King")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                fight(enemies);
             // [Enter a challenging battle with the Skeletal King [HELL]. If victorious, gain (charms, "Living Bone", + 3 Crit counter and extra 20 gold pieces.]
             cout << "A soft voice saying 'Thank You' slowly fades, the chamber grows silent once more"; //jika menang
             }else if (choice == "2"){
+                cout<< "This place will be your final rest";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeletal King")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                fight(enemies);
                 // [Enter a challenging battle with the Skeletal King [HELL]. If victorious, gain (helmt,"Regal Specter Crown" +20 	attack and +25 defence) and 30 gold pieces.]
             cout << "'Within a Millenia of waiting, a worthy foe comes and replace me in my throne...' *The giant skeletal figues becomes a spec of dust*";
             }else{
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+        MC.exp += 250;
         break;
             case 24:
             x[0] = " == Dreamscape (Fated Encounter) == " ;
@@ -950,8 +1013,11 @@ void encounter(int id){
             if(MC.artifact == 1){ //ketika ada
                 if (choice == "1"){
                    // [Obtain a 'Fissured [Artifact name]', (5 * char lv) -health but (10*char lv) attack]
+                   MC.exp += 1000;
                     //[1000 xp]
                 }else if (choice == "2"){
+                    MC.exp += 1000;
+                    MC.coin += 30;
                     //[1000 xp]
                     //[30 gold piece]
                 }else{
@@ -959,9 +1025,13 @@ void encounter(int id){
                 }
             }else{
                 if (choice == "1"){
+                    MC.exp += 1000;
+                    MC.coin -= 0.5 * MC.coin;
                     //[1000 xp]
                     //[-50% gold piece, obtain Rigour Sword, +20 attack and +15 health]
                 }else if (choice == "2"){
+                    MC.coin += 30;
+                    MC.exp += 1000;
                     //[1000 xp]
                    // [30 gold piece]
                 }else{
