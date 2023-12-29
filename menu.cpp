@@ -66,7 +66,7 @@ void splashScreen(){
 "(__   ____________________________________________   __)\n"
 "   | |           Welcome To  Brave Hearts:        | |\n"
 "   | |               Journey to the               | |\n"
-"   | |              Lands of Eldoria              | |\n"
+"   | |              Lands of Erudera              | |\n"
 "   | |                                            | |\n"
 "   | |                                            | |\n"
 "   | |                                            | |\n"
@@ -74,10 +74,15 @@ void splashScreen(){
 "(__   ____________________________________________   __)\n"
 "   | |                                            | |"
 "                                   \n"
-"                    1. Permainan Baru\n"
-"                  2. Lanjutkan Permainan\n"
-"                   3. Lihat Data Game\n"
-"                        4. Keluar\n"
+"                 ---------------------------\n"
+"                 |1. Permainan Baru         |\n"
+"                 ---------------------------\n"
+"                 |2. Lanjutkan Permainan    |\n"
+"                 ---------------------------\n"
+"                 |3. Lihat Data Game        |\n"
+"                 ---------------------------\n"
+"                 |4. Keluar                 |\n"
+"                 ---------------------------\n"
 "                   Tentukan Pilihan kamu:                  \n"
 "                              ";
     int menuChoice;
@@ -142,21 +147,8 @@ void introduction(){
 
     print(x,7,false);
 
-    x[8] = "Sekarang, pilih class kamu:\n"; //kg ush krn skill awalan emg
-    print(x,8,true);
-    showClassByParent(Class(mc(PL)));
-    cout << "Pilih salah satu (1-2): "; //  same kek atas
-    int pickClass;
-    do{
-        cin >> pickClass;
-        if(pickClass == 1){
-            changePlayerClass(MC.name,info(left(Class(mc(PL)))).name);
-        }else if(pickClass == 2){
-            changePlayerClass(MC.name,info(right(Class(mc(PL)))).name);
-        }else{
-            cout << "Pilihan tidak valid. Pilih salah satu (1-2): ";
-        }
-    }while(pickClass < 0 || pickClass > 2);
+    x[8] = "Sekarang, kamu akan memulai sebagai newbie\n"; //kg ush krn skill awalan emg
+    print(x,8,false);
     x[9] = "Dengan pemilihan class yang bijak, kamu merasa kekuatan magis mengalir dalam dirimu. Kini, sebagai seorang " + cls.name + ", petualanganmu di Eldoria dimulai.\n";
     print(x, 9, false);
 
