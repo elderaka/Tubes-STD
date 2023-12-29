@@ -717,7 +717,8 @@ void initiateEnemy(enemyList &EL){
     Enemy.dropChance = 0.0000000000000001;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//Dari Nomadic Miners (occurance)
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Nomadic Miners (occurance)
     Enemy.name = "Lead Miner"; // medium
     Enemy.health = 120; //+20
     Enemy.currentHealth = Enemy.health;
@@ -727,7 +728,7 @@ void initiateEnemy(enemyList &EL){
     Enemy.xp = 425;
     Enemy.coin = 10;
     Enemy.basicName = "Brick Break";
-    Enemy.skillName = "Originium Healing"; //nnt dia ngasih defaultDefence tambahan ke tmn smua selama 2 turn
+    Enemy.skillName = "Defensive Stance"; //nnt dia ngasih defaultDefence tambahan ke tmn smua selama 2 turn
     Enemy.skillDamaging = false;
     Enemy.skillMultiplier = 0;
     Enemy.skillHeal = 0.5; //defaultDefence gain
@@ -754,6 +755,26 @@ void initiateEnemy(enemyList &EL){
     Enemy.skillChance = 0.50;
     Enemy.itemDrop = "none";
     Enemy.dropChance = 0.000001;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Dari Insect Nest (occurance)
+    Enemy.name = "Insect";
+    Enemy.health = 115; //+15
+    Enemy.Attack = 30; //+15
+    Enemy.Defence = 30; // +15
+    Enemy.speed = 30; // +20
+    Enemy.xp = 150;
+    Enemy.coin = 5;
+    Enemy.basicName = "Lunge";
+    Enemy.skillName = "Infestation";
+    Enemy.skillDamaging = tru;
+    Enemy.skillMultiplier = 1.25; //ovt dmg 2 turns
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Bleed";
+    Enemy.skillChance = 0.35;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
 
@@ -938,6 +959,64 @@ void initiateEnemy(enemyList &EL){
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Tempting Tune";
     Enemy.dropChance = 0.8;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Dari Moonlight's End (occurance)
+Enemy.name = "Skeletal King";
+    Enemy.health = 200; //+100
+    Enemy.Attack = 45; //+30
+    Enemy.Defence = 115; // +100
+    Enemy.speed = 40; // +30
+    Enemy.xp = 1200;
+    Enemy.coin = 30;
+    Enemy.basicName = "Bludgeon Smash";
+    Enemy.skillName = "Necromancy";
+    Enemy.skillDamaging = false;
+    Enemy.skillMultiplier = 2; //Spawn/'revive' 2 Skelly
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Summoning";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Skeleton Goon"; //easy
+    Enemy.health = 100; //+0
+    Enemy.Attack = 40; //+25
+    Enemy.Defence = 15; // +0
+    Enemy.speed = 40; // +25
+    Enemy.xp = 150;
+    Enemy.coin = 0;
+    Enemy.basicName = "Punch";
+    Enemy.skillName = "Decayed Blows";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 1.25;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//Dari Mad Jester(Boss Battle)
+    Enemy.name = "Jevil";
+    Enemy.health = 170; //+50
+    Enemy.Attack = 135; //+120
+    Enemy.Defence = 45; // +30
+    Enemy.speed = 70; // +60
+    Enemy.xp = 1200;
+    Enemy.coin = 30;
+    Enemy.basicName = "'Heart Attack'";
+    Enemy.skillName = "Chaos Bomb";
+    Enemy.skillDamaging = true;
+    Enemy.skillMultiplier = 2.2;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
 
