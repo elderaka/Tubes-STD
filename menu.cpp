@@ -467,7 +467,7 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.health -= 0.2 * MC.Health ;
+                MC.health -= 0.2 * MC.health ;
                 enemyList enemies;
                 createEnemyList(enemies);
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
@@ -497,9 +497,8 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.coin
                 //[+ (10 * char lv)health, named "Good Value" charms.];
-                cout << "Im sure you'll be pleased to have that";
+                cout << "Im sure you'll be pleased to have that\n";
             }else if (choice == "2"){
                 //[+25 attack, sword named "Scarlet".];
                 cout << "I'm *surprised* you picked that one";
@@ -587,7 +586,7 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
                 cout << "'Jolly goodshow my good man, pleasure doing business' \n";
-                MC.currentHealt += 999;
+                MC.currentHealth += 999;
             }else if (choice == "2"){
                 cout << "'Ugh fine *with a different deeper voice*' \n";
                 //gain [Helmet Jester's Delight, +15 defence and +1 Crit counter]
@@ -636,7 +635,7 @@ void encounter(int id){
         print(x,2,false);
     	x[3] = "'I do not own much at this point, but will you take a look at my wares, it'll just take a few times of your day'. \n ";
         print(x,3,false);
-        x[3] = "1. Purchase an 'Amber' bag. [15 gold piece]  \n  2. Purchase a 'Supernium' Bag [15 gold piece] n\  3. Leave. — You're not interested. ";
+        x[3] = "1. Purchase an 'Amber' bag. [15 gold piece]  \n  2. Purchase a 'Supernium' Bag [15 gold piece] \n  3. Leave. — You're not interested. ";
         print(x,3,true);
         do{
             cin >> choice;
@@ -1213,7 +1212,6 @@ void fight(enemyList enemies){
                 if(choice == 1){
                     cout << "Enemies: "<< endl;
                     entityAddress adrEntity = next(first(eL));
-                    int j = 1;
                     while(adrEntity != NULL){
                         cout << info(adrEntity).Enemy.name << " (" << info(adrEntity).no << ")"<<endl;
                         adrEntity = next(adrEntity);
@@ -1284,7 +1282,6 @@ void fight(enemyList enemies){
                             if(info(skill(findSkillinPlayer(skillid,skill(mc(PL))))).type == "Offensive"){
                                 cout << "Enemies: "<< endl;
                                 entityAddress adrEntity = next(first(eL));
-                                int j = 1;
                                 while(adrEntity != NULL){
                                     cout << info(adrEntity).Enemy.name << " (" << info(adrEntity).no << ")"<<endl;
                                     adrEntity = next(adrEntity);

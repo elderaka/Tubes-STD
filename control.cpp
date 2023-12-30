@@ -603,7 +603,7 @@ void initiatePlayer(playerList &PL){
     Player.speed = 10;
     Player.stamina = 10;
     Player.currentStamina = 10;
-    Player.xp = 0;
+    Player.exp = 0;
     Player.level = 1;
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
@@ -761,14 +761,14 @@ void initiateEnemy(enemyList &EL){
     //Dari Insect Nest (occurance)
     Enemy.name = "Insect";
     Enemy.health = 115; //+15
-    Enemy.Attack = 30; //+15
-    Enemy.Defence = 30; // +15
+    Enemy.defaultAttack = 30; //+15
+    Enemy.defaultDefence = 30; // +15
     Enemy.speed = 30; // +20
     Enemy.xp = 150;
     Enemy.coin = 5;
     Enemy.basicName = "Lunge";
     Enemy.skillName = "Infestation";
-    Enemy.skillDamaging = tru;
+    Enemy.skillDamaging = true;
     Enemy.skillMultiplier = 1.25; //ovt dmg 2 turns
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "Bleed";
@@ -965,8 +965,8 @@ void initiateEnemy(enemyList &EL){
 //Dari Moonlight's End (occurance)
 Enemy.name = "Skeletal King";
     Enemy.health = 200; //+100
-    Enemy.Attack = 45; //+30
-    Enemy.Defence = 115; // +100
+    Enemy.defaultAttack = 45; //+30
+    Enemy.defaultDefence = 115; // +100
     Enemy.speed = 40; // +30
     Enemy.xp = 1200;
     Enemy.coin = 30;
@@ -983,8 +983,8 @@ Enemy.name = "Skeletal King";
 
     Enemy.name = "Skeleton Goon"; //easy
     Enemy.health = 100; //+0
-    Enemy.Attack = 40; //+25
-    Enemy.Defence = 15; // +0
+    Enemy.defaultAttack = 40; //+25
+    Enemy.defaultDefence = 15; // +0
     Enemy.speed = 40; // +25
     Enemy.xp = 150;
     Enemy.coin = 0;
@@ -1003,12 +1003,12 @@ Enemy.name = "Skeletal King";
 	//Dari Mad Jester(Boss Battle)
     Enemy.name = "Jevil";
     Enemy.health = 170; //+50
-    Enemy.Attack = 135; //+120
-    Enemy.Defence = 45; // +30
+    Enemy.defaultAttack = 135; //+120
+    Enemy.defaultDefence = 45; // +30
     Enemy.speed = 70; // +60
     Enemy.xp = 1200;
     Enemy.coin = 30;
-    Enemy.basicName = "'Heart Attack'";
+    Enemy.basicName = "'Heart defaultAttack'";
     Enemy.skillName = "Chaos Bomb";
     Enemy.skillDamaging = true;
     Enemy.skillMultiplier = 2.2;

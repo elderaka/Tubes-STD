@@ -17,12 +17,13 @@ struct player{
     int coin = 100;
     int stamina = 50; //50
     int currentStamina;
-    int xp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
+    int exp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
     int level = 1;
     int nextLevel = 10;
     float defaultAttack = 10; // 25, buat multiplier ama skill
     float defaultDefence = 10; // 25, buat multiplier kuranging dmg dr musuh terima
     float speed = 10;
+    int critChance;
 };
 typedef struct elementPlayer *playerAddress;
 

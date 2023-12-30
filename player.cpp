@@ -88,6 +88,6 @@ void showPlayerInfo(player Player){
     cout << "Speed: " << Player.speed << "(+" << info(findClass(CT, Player.Class)).bonusSpeed << ")" << endl;
     cout << "Level: " << Player.level << endl;
     cout << "Coin: " << Player.coin << endl;
-    cout << "Experience Points: " << Player.xp << endl;
+    cout << "Experience Points: " << Player.exp << endl;
     cout << "Next Level at: " << Player.nextLevel << " XP" << endl;
 }
