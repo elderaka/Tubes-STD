@@ -376,13 +376,19 @@ void encounter(int id){
         print(x,4,false);
         x[5] = "Hall Jim: 'Jim Hulk wont get up 4 days ago. Im about to pass out in a day and can no longer keep my brother's items. Please help me. Buy one of them out of here." + 	to_string(id);
         print(x,5,false);
-    	x[6] = "1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Sorry I cant help you.\n";
+    	x[6] = "1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Jim Hall's Collection. [req 20 gold piece] \n  3. Sorry I cant help you.";
         print(x,6,true);
         do{
             cin >> choice;
             if (choice == "1"){
+
+                MC.coin -= 10;
+            cout << "Ah... thank you, with these we can live another day.";
                 //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
             }else if (choice == "2"){
+                cout << "As he handed over the chestplate, a faint smile played on his lips, reminiscent of the pride that once defined him.";
+                MC.coin -= 20;
+            }else if (choice == "3"){
                 cout << "I guess this is it for us.. sorry brother I've failed you";
                 MC.coin += 10;
             }else{

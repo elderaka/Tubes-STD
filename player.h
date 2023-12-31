@@ -23,7 +23,7 @@ struct player{
     float defaultAttack = 10; // 25, buat multiplier ama skill
     float defaultDefence = 10; // 25, buat multiplier kuranging dmg dr musuh terima
     float speed = 10;
-    int critChance;
+    int critChance = 5;
 };
 typedef struct elementPlayer *playerAddress;
 
