@@ -743,8 +743,8 @@ void initiatePlayer(playerList &PL){
     Object.isEquipable = true;
     Object.armorType = "sword";
     Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack","bleed"};
+    Object.buffStat = "bleed";
+    Object.bonusStat[2] = {"attack",""};
     Object.bonus[2] = {25,5};
     Object.heal = 0;
     Object.duration = 2;
@@ -771,7 +771,7 @@ void initiatePlayer(playerList &PL){
     Object.isEquipable = true;
     Object.armorType = "sword"; //leech mirip vampiric, kita dmg, dpt heal
     Object.buff = 0;
-    Object.buffStat = "";
+    Object.buffStat = "leech";
     Object.bonusStat[2] = {"attack",""};
     Object.bonus[2] = {25,3};
     Object.heal = 0;
