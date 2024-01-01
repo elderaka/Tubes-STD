@@ -1258,6 +1258,7 @@ void fight(enemyList enemies){
                                 }
                             }
                             //NOTE: YES, THIS IS DUMB. BUT I HAVe GGONE TOO FAR FOR THIS
+                            //TODO: instead of calling findEntity everytime we needed it, why don't we make new variable?
                             cout << MC.name + " dealt " << MC.defaultAttack * attackMultiplier << " damage!\n";
                             info(findEntity(eL,target)).Enemy.currentHealth -= MC.defaultAttack * attackMultiplier;
                             cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << info(findEntity(eL,target)).Enemy.currentHealth << " HP left!\n";
@@ -1492,7 +1493,7 @@ void checkMenu(){
                 cin >> datachoice;
                 switch(datachoice){
                 case 1:
-                    pushMenu(Menu, 10);
+                    pushMenu(Menu, 6);
                     break;
                 case 2:
                     pushMenu(Menu, 18);
@@ -1631,7 +1632,7 @@ void checkMenu(){
 }
 void showAllPlayer(){
     system("cls");
-    cout << "List of all Object:\n";
+    cout << "List of all Player:\n";
     int i = 1;
     playerAddress prec = first(PL);
     while(prec != NULL){
@@ -1819,11 +1820,42 @@ void showAllPlayerClass(){
     popMenu(Menu);
 }
 void showPlayerInventory(){
-
+    string name;
+    cout << "Enter Player name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findPlayer(PL,name)){
+            playerAddress prec = findPlayer(PL,name);
+            cout << "[";
+            if(isInventoryEmpty(inventory(prec))){
+                cout << "None!";
+            }else{
+                showInventory(inventory(prec));
+            }
+            cout << "]\n";
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Player not found! Enter Player name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
     getch();
     popMenu(Menu);
 }
 void showPlayerClass(){
+    string name;
+    cout << "Enter Player name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findPlayer(PL,name)){
+            playerAddress prec = findPlayer(PL,name);
+            showClassInfo(findClass(CT,info(prec).Class));
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Player not found! Enter Player name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
     getch();
     popMenu(Menu);
 }
@@ -1893,14 +1925,89 @@ void showClassByPlayer(){
     popMenu(Menu);
 }
 void deletePlayerData(){
+    string name;
+    bool deleted = false;
+    cout << "Enter Player name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findPlayer(PL,name)){
+            string confirm;
+            cout << "Are you sure(y/n)?: ";
+            do{
+                cin >> confirm;
+                if(confirm == "y"){
+                    deletePlayer(PL,name);
+                    cout << "Player succesfully deleted!" << endl;
+                    deleted = true;
+                }else if(confirm != "y" && confirm != "n"){
+                    cout << "Input is not valid. Are you sure(y/n)?: ";
+                }
+            }while(confirm != "y" && confirm != "n");
+
+        }else if(name == "0"){
+            break;
+        }else if(!deleted){
+            cout << "Player not found! Enter Player name (type 0 to get back): ";
+        }
+    }while((!findPlayer(PL,name) && name != "0") && !deleted);
     getch();
     popMenu(Menu);
 }
 void deleteObjectData(){
+    string name;
+    bool deleted = false;
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findObject(OL,name)){
+            string confirm;
+            cout << "Are you sure(y/n)?: ";
+            do{
+                cin >> confirm;
+                if(confirm == "y"){
+                    deleteObject(PL,OL,name);
+                    cout << "Item succesfully deleted!" << endl;
+                    deleted = true;
+                }else if(confirm != "y" && confirm != "n"){
+                    cout << "Input is not valid. Are you sure(y/n)?: ";
+                }
+            }while(confirm != "y" && confirm != "n");
+
+        }else if(name == "0"){
+            break;
+        }else if(!deleted){
+            cout << "Item not found! Enter Item name (type 0 to get back): ";
+        }
+    }while((!findObject(OL,name) && name != "0") && !deleted);
     getch();
     popMenu(Menu);
 }
 void deleteClassData(){
+    string name;
+    bool deleted = false;
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findObject(OL,name)){
+            string confirm;
+            cout << "Are you sure(y/n)?: ";
+            do{
+                cin >> confirm;
+                if(confirm == "y"){
+                    //deleteClass(OL,name);
+                    cout << "Item succesfully deleted!" << endl;
+                    deleted = true;
+                }else if(confirm != "y" && confirm != "n"){
+                    cout << "Input is not valid. Are you sure(y/n)?: ";
+                }
+            }while(confirm != "y" && confirm != "n");
+
+        }else if(name == "0"){
+            break;
+        }else if(!deleted){
+            cout << "Item not found! Enter Item name (type 0 to get back): ";
+        }
+    }while((!findObject(OL,name) && name != "0") && !deleted);
     getch();
     popMenu(Menu);
 }

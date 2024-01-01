@@ -32,16 +32,19 @@ void removeObject(inventoryList &IL,objectList &OL,string name){
     }
     if(Q != NULL){
         inventoryAddress prec = prev(Q);
-        next(prec) = next(Q);
-        if(next(prec) != NULL){
-            prev(next(Q)) = prec;
+        if(Q == first(IL)){
+            first(IL) = next(Q);
+        }else if (Q == last(IL)){
+            last(Q) = prev(Q);
+        }else{
+            next(prec) = next(Q);
+            if(next(prec) != NULL){
+                prev(next(Q)) = prec;
+            }
+            next(Q) = NULL;
+            prev(Q) = NULL;
         }
-        next(Q) = NULL;
-        prev(Q) = NULL;
-    }else{
-        cout << "Item not found" << endl;
     }
-
 }
 void showInventory(inventoryList L){
     inventoryAddress p = first(L);

@@ -32,14 +32,23 @@ void addPlayer(playerList &L,playerAddress p){
 }
 void deletePlayer(playerList &L,string name){
     playerAddress P = findPlayer(L,name);
+
     if(P != NULL){
         playerAddress prec = prev(P);
-        next(prec) = next(P);
-        if(next(prec) != NULL){
-            prev(next(P)) = prec;
+        if(P == first(L)){
+            first(L) = next(P);
+        }else if (P == last(L)){
+            last(L) = prev(P);
+        }else{
+            next(prec) = next(P);
+            if(next(prec) != NULL){
+                prev(next(P)) = prec;
+            }
+            next(P) = NULL;
+            prev(P) = NULL;
         }
-        next(P) = NULL;
-        prev(P) = NULL;
+
+
     }
 
 }

@@ -86,16 +86,23 @@ void deleteObject(playerList &PL, objectList &OL, string name){
     playerAddress P = first(PL);
     while(P != NULL){
         removeObject(inventory(P),OL, name);
+        P = next(P);
     }
     objectAddress Q = findObject(OL,name);
     if(Q != NULL){
         objectAddress prec = prev(Q);
-        next(prec) = next(Q);
-        if(next(prec) != NULL){
-            prev(next(Q)) = prec;
+        if(Q == first(L)){
+            first(L) = next(Q);
+        }else if (P == last(L)){
+            last(Q) = prev(Q);
+        }else{
+            next(prec) = next(Q);
+            if(next(prec) != NULL){
+                prev(next(Q)) = prec;
+            }
+            next(Q) = NULL;
+            prev(Q) = NULL;
         }
-        next(Q) = NULL;
-        prev(Q) = NULL;
     }
 
 }
