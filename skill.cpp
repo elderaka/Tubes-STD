@@ -56,20 +56,13 @@ skillAddress findskill(skillTree root, string name){
     }
     return NULL;
 }
-void showSkill(skillTree T){
-    Queue Q;
-    createQueue(Q);
-    Enqueue(Q,T);
-    while(!isEmpty(Q)){
-        skillAddress N;
-        N = Dequeue(Q);
-        cout << info(N).name << endl;
-        if(left(N)){
-            Enqueue(Q,left(N));
-        }
-        if(right(N)){
-            Enqueue(Q,right(N));
-        }
+void showSkillTree(string prefix, skillTree root, bool isLeft){
+    if(root != NULL){
+        cout << prefix;
+        cout << (isLeft ? "|--" : "|__" );
+        cout << info(root).name << endl;
+        showSkillTree(prefix + (isLeft ? "|   " : "    "), left(root), true);
+        showSkillTree(prefix + (isLeft ? "|   " : "    "), right(root), false);
     }
 }
 

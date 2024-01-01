@@ -1659,14 +1659,14 @@ void showAllObject(){
 void showAllClass(){
     system("cls");
     cout << "List of All Class:\n";
-    showClass(CT);
+    showClass("",CT,false);
     getch();
     popMenu(Menu);
 }
 void showAllSkill(){
     cout << "List of All Skill:\n";
     system("cls");
-    showSkill(ST);
+    showSkillTree("",ST,false);
     getch();
     popMenu(Menu);
 }
@@ -2025,6 +2025,7 @@ void deleteClassData(){
     }while((!findClass(CT,name) && name != "0") && !deleted);
     getch();
     popMenu(Menu);
+
 }
 void deleteObjectByPlayer(){
     getch();

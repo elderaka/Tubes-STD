@@ -115,23 +115,14 @@ classAddress findClass(classTree root, string name){
     }
     return NULL;
 }
-void showClass(classTree T){
-    CQueue Q;
-    createCQueue(Q);
-    EnCqueue(Q,T);
-    int i = 1;
-    while(!isCEmpty(Q)){
-        classAddress N;
-        N = DeCqueue(Q);
-        cout << i << ". " <<info(N).name <<"\n" << info(N).desc <<  endl;
-        i++;
-        if(left(N)){
-            EnCqueue(Q,left(N));
-        }
-        if(right(N)){
-            EnCqueue(Q,right(N));
-        }
+void showClass(string prefix,classTree T, bool isLeft){
+    if(T != NULL){
+        cout << prefix;
 
+        cout << (isLeft ? "|--" : "|__" );
+        cout << info(T).name << endl;
+        showClass(prefix + (isLeft ? "|   " : "    "), left(T), true);
+        showClass(prefix + (isLeft ? "|   " : "    "), right(T), false);
     }
 }
 

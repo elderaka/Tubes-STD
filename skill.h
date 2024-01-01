@@ -43,7 +43,7 @@ void addSkill(skillTree &root,skillAddress p);
 skillAddress findskill(skillTree root, string name);
 int STHeight(skillTree root);
 int getcol(int h);
-void showSkill(skillTree root);
+void showSkillTree(string prefix, skillTree root, bool isLeft);
 void showSkillByParent(skillAddress T);
 
 void createSkillList(skillList &L);

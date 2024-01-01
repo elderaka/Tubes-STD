@@ -79,11 +79,13 @@ void changePlayerClass(string pl, string Class){
         Class(adrPlayer) = adrClass;
         addSkillToPlayer(PL,ST,pl,info(skill(adrClass)).name);
         info(adrPlayer).Class           = info(adrClass).name;
+        info(adrPlayer).stamina         += getClassTier(CT,Class) * 5 + 20;
+        info(adrPlayer).currentStamina  = info(adrPlayer).stamina;
         info(adrPlayer).defaultAttack   += info(adrClass).bonusAttack;
         info(adrPlayer).defaultDefence  += info(adrClass).bonusDefense;
         info(adrPlayer).speed           += info(adrClass).bonusSpeed;
         info(adrPlayer).health          += info(adrClass).bonusHealth;
-        info(adrPlayer).currentHealth   += info(adrClass).bonusHealth;
+        info(adrPlayer).currentHealth   = info(adrPlayer).health;
     }
 
 }
@@ -807,9 +809,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 20;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(ST) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(CT) = adrClass;
 
 
 
@@ -833,9 +835,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 10;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(ST)) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(CT)) = adrClass;
 
 
       //Offensive Based Tier 3
@@ -858,9 +860,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 15;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(left(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(left(CT))) = adrClass;
 
 
           //Offensive Based Tier 3
@@ -883,9 +885,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 30;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(left(left(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(left(left(CT))) = adrClass;
 
 
     //Offensive Based Ulti
@@ -908,9 +910,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 30;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(left(left(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(left(left(CT)))) = adrClass;
 
 
     //Offensive Based Ulti
@@ -933,9 +935,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 40;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(right(left(left(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(right(left(left(CT)))) = adrClass;
 
 
         //Offensive Multi Based tier 2
@@ -958,9 +960,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 15;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(left(ST)) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(left(CT)) = adrClass;
 
          //Offensive Multi Based AoE tier 3
      cls.name = "Royale Knight";
@@ -982,12 +984,12 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 45;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(right(left(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(right(left(CT))) = adrClass;
 
     //Offensive Multi Based Single-AoE Tier 3 NEEDS HP .LOLOLOL
-     cls.name = "Broadknight";
+    cls.name = "Broadknight";
     cls.desc = "A knight who had distinguished himself in battle and was granted the right to lead his own group of soldiers in battle.";
     Skill.id = 10;
     Skill.name = "Pulverize";
@@ -1008,9 +1010,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 35;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(right(left(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(right(left(CT))) = adrClass;
 
 
                  //Offensive Multi Based Single-AoE Ulti
@@ -1036,9 +1038,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 70;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(right(left(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(right(left(CT)))) = adrClass;
 
 
                  //Offensive Multi Based Multi-AoE Ulti
@@ -1062,9 +1064,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusHealth = 40;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(right(right(left(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(right(right(left(CT)))) = adrClass;
 
          //Defensive Based Tier 1
     Skill.id = 13;
@@ -1080,9 +1082,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(ST) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(CT) = adrClass;
 
 
             //Defensive-Buff Based Tier 2
@@ -1100,9 +1102,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(right(ST)) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(right(CT)) = adrClass;
 
 
             //Defensive-Offence Based Tier 2
@@ -1120,9 +1122,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(right(ST)) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(right(CT)) = adrClass;
 
 
 
@@ -1140,10 +1142,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(right(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
-
+    left(left(right(CT))) = adrClass;
 
             //Defensive-defaultDefence buff Based Tier 3
     Skill.id = 17;
@@ -1159,9 +1160,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(left(right(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(left(right(CT))) = adrClass;
 
 
 
@@ -1179,9 +1180,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(right(right(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(right(right(CT))) = adrClass;
 
            //Defensive-Sheild thorn buff Based Tier 3
     Skill.id = 19;
@@ -1197,9 +1198,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(right(right(ST))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(right(right(CT))) = adrClass;
 
           //Defensive-Buff buff Based ult
     Skill.id = 20;
@@ -1215,9 +1216,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(left(right(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(left(right(CT)))) = adrClass;
 
     //Defensive-defaultDefence buff Based ult
       Skill.id = 21;
@@ -1233,9 +1234,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(right(left(right(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(right(left(right(CT)))) = adrClass;
 
 //Defensive-Leach sheidl Based ult
       Skill.id = 22;
@@ -1253,9 +1254,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    left(left(right(right(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    left(left(right(right(CT)))) = adrClass;
 
     //Defensive-offence Based ult
       Skill.id = 23;
@@ -1273,9 +1274,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    addSkill(ST,adrSkill);
+    right(right(right(right(ST)))) = adrSkill;
     skill(adrClass) = adrSkill;
-    addClass(CT,adrClass);
+    right(right(right(right(CT)))) = adrClass;
 }
 void initiatePlayer(playerList &PL){
     createPlayerList(PL);
