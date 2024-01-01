@@ -2,6 +2,7 @@
 #define MENU_H_INCLUDED
 #include "DLL.h"
 #include "enemy.h"
+#include "skill.h"
 struct menu{
     string name;
 };

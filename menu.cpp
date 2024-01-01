@@ -1540,10 +1540,10 @@ void checkMenu(){
                     pushMenu(Menu, 11);
                     break;
                 case 3:
-                    pushMenu(Menu, 13);
+                    pushMenu(Menu, 12);
                     break;
                 case 4:
-                    pushMenu(Menu, 12);
+                    pushMenu(Menu, 13);
                     break;
                 case 5:
                     pushMenu(Menu, 15);
@@ -1568,10 +1568,10 @@ void checkMenu(){
                     pushMenu(Menu, 20);
                     break;
                 case 2:
-                    pushMenu(Menu, 21);
+                    pushMenu(Menu, 22);
                     break;
                 case 3:
-                    pushMenu(Menu, 22);
+                    pushMenu(Menu, 21);
                     break;
                 case 4:
                     pushMenu(Menu, 15);
@@ -1760,26 +1760,27 @@ void findSkillData(){
     cout << "Enter Skill name (type 0 to get back): ";
     do{
         getline(cin,name);
-        if(findClass(CT,name)){
+        if(findskill(ST,name)){
             skill Skill = info(findskill(ST,name));
             cout <<"Name            : " <<  Skill.name << endl;
             cout <<"Description     : " <<  Skill.desc<< endl;
-            cout <<"Cost            : " <<  Skill.cost << endl;
+            cout <<"Cost            : " <<  Skill.cost[1] << endl;
             cout <<"Skill Type      : " <<  Skill.type << endl;
             if(Skill.dmg > 0){
                 cout <<"Skill Damage   : " <<  Skill.dmg << endl;
             }
+
             string multiple = Skill.isMultiple ? "Yes" : "No";
-            string buff = Skill.buff == 0 ? "None" : to_string(Skill.buff);
-            cout <<"Skill Buff      : " <<  buff << endl;
+            //string buff = Skill.buff == 0 ? "None" : to_string(Skill.buff);
+            //cout <<"Skill Buff      : " <<  buff << endl;
             cout <<"Is Multiple?    : " <<  multiple << endl;
             cout <<"Skill Heal      : " << Skill.heal << endl;
         }else if(name == "0"){
             break;
         }else{
-            cout << "Class not found! Enter Class name (type 0 to get back): ";
+            cout << "Skill not found! Enter Skill name (type 0 to get back): ";
         }
-    }while(!findClass(CT,name) && name != "0");
+    }while(!findskill(ST,name) && name != "0");
     getch();
     popMenu(Menu);
 }
