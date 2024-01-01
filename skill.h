@@ -8,6 +8,7 @@ struct skill{
     string desc;
     string type; //offensive, deffensive, support
     int cost[2];
+    string costStat[2];
     int dmg;
     int heal;
     int buff[2];
