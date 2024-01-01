@@ -7,10 +7,10 @@ struct skill{
     string name;
     string desc;
     string type; //offensive, deffensive, support
-    int cost;
+    int cost[2];
     int dmg;
     int heal;
-    int buff;
+    int buff[2];
     int duration; //semisal buff overtime
     bool isMultiple;
 };
