@@ -32,7 +32,7 @@ extern string path;
 void addObjectToPlayer(playerList &PL, objectList OL, string player,string object);
 void removeObjectFromPlayer(playerList &PL, objectList &OL, string player, string name);
 void deleteObject(playerList &PL, objectList &OL, string name);
-inventoryAddress findObjectinInventory(string name);
+inventoryAddress findObjectinInventory(inventoryList L,string name);
 void addSkillToPlayer(playerList &PL, skillTree ST, string player, string skill);
 void removeSkillFromPlayer(playerList &PL, skillList &SL, string player, string skill);
 void changePlayerClass(string pl, string Class);

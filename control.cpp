@@ -21,6 +21,7 @@ string path;
 void addObjectToPlayer(playerList &PL, objectList OL, string player,string object){
 
     adrPlayer = findPlayer(PL,player);
+    cout << info(adrPlayer).name;
     adrObject = findObject(OL,object);
     cout << info(adrObject).name;
     if(adrPlayer != NULL && adrObject != NULL){
@@ -38,8 +39,11 @@ void removeObjectFromPlayer(playerList &PL,objectList &OL, string player, string
         cout << "Player not found" << endl;
     }
 }
-inventoryAddress findObjectinInventory(string name){
-    inventoryAddress prec = first(inventory(mc(PL)));
+
+inventoryAddress findObjectinInventory(inventoryList L, string name){
+    //Who's fucking ideas it is to use mc(PL) instead of the playerAddress
+    //Edit: oh ya, it's my past self
+    inventoryAddress prec = first(L);
     while(prec != NULL){
         if(info(object(prec)).name == name){
             return prec;
@@ -69,13 +73,14 @@ void removeSkillFromPlayer(playerList &PL, skillList &SL, string player, string 
 }
 void changePlayerClass(string pl, string Class){
     playerAddress adrPlayer = findPlayer(PL, pl);
-    //cout <<"PING\n";
+
     classAddress adrClass = findClass(CT,Class);
     if(adrPlayer != NULL && adrClass != NULL){
         Class(adrPlayer) = adrClass;
         addSkillToPlayer(PL,ST,pl,info(skill(adrClass)).name);
         info(adrPlayer).Class = info(adrClass).name;
     }
+
 }
 void deleteObject(playerList &PL, objectList &OL, string name){
     playerAddress P = first(PL);
@@ -96,13 +101,643 @@ void deleteObject(playerList &PL, objectList &OL, string name){
 }
 void initiateObjects(objectList &OL){
     createObjectList(OL);
+
     object Object;
-    Object.name = "Stone";
+    Object.name = "Provision";
+    Object.desc = " [1/3 heal]. \n Long lasting food, great for long travels";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.duration = 0;
+    Object.heal = 0.3 * MC.health;
     addObject(OL,createNewObjectElement(Object));
-    Object.name = "Paper";
+
+    Object.name = "Health Potion";
+    Object.desc = " [2/3 heal]. \n A regular and reliable health potion, trusted by many travelers alike";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.heal = 0.6 * MC.health;
+    Object.duration = 0;
     addObject(OL,createNewObjectElement(Object));
-    Object.name = "Scissor";
+
+    Object.name = "L. Health Potion";
+    Object.desc = " [MAX heal]. \n Not all traveler can carry this thing inside their pouch.";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.heal = 1 * MC.health;
+    Object.duration = 0;
     addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Attack Potion";
+    Object.desc = " [1/2 attack buff for 2 turns]. \n Makes you feel like you could crack a melanite ore with your bare fist";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0.5 * MC.defaultAttack ;
+    Object.buffStat = "attack";
+    Object.heal = 0;
+    Object.duration = 3;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Defence Potion";
+    Object.desc = " [1/2 def buff for 2 turns]. \n Do NOT actually compare your skin for a rock";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0.5 * MC.defaultDefence;
+    Object.buffStat = "defence";
+    Object.heal = 0;
+    Object.duration = 3;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Speed Potion";
+    Object.desc = " [1/2 spd buff for 2 turns]. \n Your body feels like it's light, as if the wind fleets you";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = 0.5 * MC.speed;
+    Object.buffStat = "speed";
+    Object.heal = 0;
+    Object.duration = 3;
+    addObject(OL,createNewObjectElement(Object));
+
+    //A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, 120 gold piece]
+
+    Object.name = " A Manual scroll from distant lands of OOO";
+    Object.desc = " [2500 xp]. \n Upgrade to the next class of their choosing + skills";
+    Object.isArtefact = false;
+    Object.isConsumable = true;
+    Object.isEquipable = false;
+    Object.armorType = "";
+    Object.buff = MC.exp + 2500 ;
+    Object.buffStat = "exp";
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //Equipable (Swords)
+
+    Object.name = "Basic Iron Sword";
+    Object.desc = "[+5 Attack]. \n The blade is made from a solid piece of well-forged iron, boasting a straight, double-edged design that is easy to maintain and versatile in battle.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "attack";
+    Object.bonus[1] = 5;
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Sword of Phantasmal Flames";
+    Object.desc = " [+20 Attack]. \n Forged in the ethereal forges of spectral artisans and bathed in the elusive fires of the netherworld, transcends the boundaries between the physical and the otherworldly. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "attack";
+    Object.bonus[1] = 20;
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Scarlet";
+    Object.desc = " [+25 Attack, 5 bleed dmg per turn]. \n Used to be owned by a Hero in a distant lands. The blade is dented, chipped, and dirty. Its hilt is black with some worn leather grip-straps and a red gemstone in the pommel.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 5;
+    Object.buffStat = "bleed";
+    Object.bonusStat[1] = "attack";
+    Object.bonus[1] = 25;
+    Object.heal = 0;
+    Object.duration = 2;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Terraforge Claymore";
+    Object.desc = " [+20 Attack, 15 health]. \n A formidable weapon designed for those who wish to channel the power of the earth in their strikes.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[2] = {"attack","health"};
+    Object.bonus[1] = 20;
+    Object.bonus[2] = 15;
+    Object.heal = 0;
+    Object.duration = 2;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Grass Sword";
+    Object.desc = " [+25 Attack, +3 Leech Effect]. \n  A cursed the sword so it will bond itself to its owner for eternity. Can quickly carve object into various objects with extreme precision. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword"; //leech mirip vampiric, kita dmg, dpt heal
+    Object.buff = 3;
+    Object.buffStat = "leech";
+    Object.bonusStat[1] = "attack";
+    Object.bonus[1] = 25;
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+
+    Object.name = "Night Sword";
+    Object.desc = " [+30 Attack]. \n The blade is crafted from a rare, darkened steel that seems to absorb and swallow light, giving it an obsidian-like appearance.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "attack";
+    Object.bonus[1] = {30};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Devilsknife";
+    Object.desc = " [+50 Attack]. \n Skull-emblazoned scythe-ax.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"attack"};
+    Object.bonus[1] = {50};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Night Sword";
+    Object.desc = " [+25 Attack, +25 Speed]. \n  A hardened J-Shaped tail that gives you devilenergy.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "sword";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "attack";
+    Object.bonusStat[2] = "speed";
+
+    Object.bonus[1] = 25; // for "attack"
+    Object.bonus[2] = 25; // for "speed"
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //Equipable (helmet)
+
+    Object.name = "Basic Helm";
+    Object.desc = " [+5 Health]. \n The helm is constructed from durable iron, providing a solid layer of protection for the wearer's head. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"health"};
+    Object.bonus[1] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Helm of Clairvoyant Insight";
+    Object.desc = " [+20 Health]. \n The helm's shimmering design, adorned with arcane symbols imbued with magic. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1]= {"health"};
+    Object.bonus[1] = {20};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Lead Splunking Helmet";
+    Object.desc = " [+15 Defence, +10 Attack]. \n Once used by a lead miner, worshiper of Qlipoth ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "defence";
+    Object.bonusStat[2] = "attack";
+
+    Object.bonus[1] = 15; // for "defence"
+    Object.bonus[2] = 10; // for "attack"
+
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Jester's delight";
+    Object.desc = " [+15 Speed, +5% Crit Chance]. \n  The vibrant multicolored fabric covering the helmet is adorned with tiny bells that jingle with every movement, with a mischievous touch and a flair for the theatrical, ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "speed";
+    Object.bonusStat[2] = "critChance";
+    Object.bonus[1] = 15;
+    Object.bonus[2] = 1;
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+
+    Object.name = "Gambler's Top Hat";
+    Object.desc = " [- 10 Defence, +30 Attack]. \n Fashioned for those who navigate the unpredictable currents of chance and luck. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = "defence";
+    Object.bonusStat[2] = "attack";
+    Object.bonus[1] = -10;
+    Object.bonus[2] = 30;
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Regal Specter Crown";
+    Object.desc = " [+20 Defence, +25 Attack]. \n Crafted from ethereal essence and shadowy opulence, this crown is both a symbol of regal authority and a testament to the spectral legacy of the undead monarch.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "helmet";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonusStat[2] = {"attack"};
+    Object.bonus[1] = {20};
+    Object.bonus[2] = {25};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //Equipable (Chestplate)
+    Object.name = "Basic Chestplate";
+    Object.desc = " [+5 Defence]. \n The chestplate is constructed from a combination of reinforced leather and hardened metal plates, providing a solid defense against both edged weapons and blunt force.  ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "chestplate";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonus[1] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Spectral's Cloak";
+    Object.desc = " [+20 Defence]. \n Woven from the spectral threads, a garment that shrouds its wearer in an enigmatic aura. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "chestplate";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonus[1] = {20};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Hunter's Garb";
+    Object.desc = " [+15 Defence, +5 Speed]. \n Woven from the spectral threads, a garment that shrouds its wearer in an enigmatic aura ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "chestplate";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonusStat[2] = {"speed"};
+    Object.bonus[1] = {15};
+    Object.bonus[2] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Runic Chestplate";
+    Object.desc = " [+10 Defence, +15 health]. \n Forged in the arcane fires of ancient craftsmanship, the Runic Chestplate is a majestic piece of armor that bears the mystic symbols of forgotten realms.  ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "chestplate";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[1] = {10};
+    Object.bonus[2] = {15};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Jim Hall's Chestplate";
+    Object.desc = " [+ 5 Attack, +20 health]. \n Though worn and weathered, carries an undeniable aura of craftsmanship that transcends its battered appearance.  ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "chestplate";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"attack"};
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[1] = {5};
+    Object.bonus[2] = {20};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //Equipable (Legplates)
+
+    Object.name = "Basic Legplate";
+    Object.desc = " [+ 5 Speed]. \n The legguards are constructed from toughened leather and reinforced with metal plating around the shins and knees. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "legplates";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"speed"};
+    Object.bonus[1] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Sticky Silk Legplate";
+    Object.desc = " [+ 10 Speed, +10 health]. \n The legging's surface is adorned with an iridescent sheen, reflecting a subtle play of colors reminiscent of a spider's delicate web.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "legplates";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"speed"};
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[1] = {10};
+    Object.bonus[2] = {10};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Ringmaster's Pants";
+    Object.desc = " [+ 10 Speed, +10 Attack]. \n The pants are made from a durable yet flexible fabric, designed to withstand the acrobatics and lively movements of the circus ring.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "legplates";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"speed"};
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[1] = {10};
+    Object.bonus[2] = {10};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Legplates of Ethereal Stride";
+    Object.desc = " [+ 17 Speed]. \n As the wearer dons the it, they experience a subtle weightlessness, as if they are walking on the very fabric of dreams. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "legplates";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"speed"};
+    Object.bonus[1] = {17};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Titanium Legplates";
+    Object.desc = " [+ 25 Defence]. \n These legplates offer unparalleled protection , making them a coveted choice for warriors who value defense on the battlefield. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "legplates";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonus[1] = {25};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+        //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //Equipable (Charms)
+    Object.name = "Ring of Qlipoth";
+    Object.desc = " [+ 15 Defence]. \n Forged under the watchful gaze of an Amber Lord, the Ring of Qlipoth is a sacred artifact infused with the essence of primal energies and the blessings of ancient deities.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"defence"};
+    Object.bonus[1] = {15};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Amulet of Lifespring";
+    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n The amulet features a delicate pendan from a luminescent crystal, Encased within the crystal is a tiny, verdant leaf, a symbol of growth and renewal. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "health";
+    Object.bonusStat[1] = {""};
+    Object.bonus[1] = {0};
+    Object.heal = 0.2 *MC.health; //heal 2 turns awal battle
+    Object.duration = 2;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Tonic of Efficacious Chaos";
+    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n  Tonic of Efficacious Chaos imparts a temporary surge of unpredictable effects, both beneficial and capricious.  ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0.2 *MC.defaultAttack;
+    Object.buffStat = "attack";
+    Object.bonusStat[1] = {""};
+    Object.bonus[1] = {0};
+    Object.heal = 0;
+    Object.duration = 2;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Boon of Boons";
+    Object.desc = " [+ 15% gold piece and + 15% xp bonus from battle]. \n  Greed manifests as a crystalline amulet suspended from a delicate chain. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm"; //tbh w kg tw cara apply gmn, jd w blm apa2in
+    Object.buff = 0.2 *MC.defaultAttack;
+    Object.buffStat = "attack";
+    Object.bonusStat[2] = {""};
+    Object.bonus[2] = {0};
+    Object.heal = 0;
+    Object.duration = 2;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Fissured [Artifact]";
+    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n  It awokens it's true power, at the cost of your sanity";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0.3 *MC.defaultAttack;
+    Object.buffStat = "attack";
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[2] = {-15};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "'Good Value'";
+    Object.desc = " [+ 15 Health]. \n  A charm with an exquisite display of understated elegance and unparalleled sarcasm.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"health"};
+    Object.bonus[1] = {15};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Bloodied Necklace";
+    Object.desc = " [+ 40% attack , - 30 health]. \n   This enigmatic necklace is said to harbor glimpses of the past, present, and the untold tapestry of the future, all stained with the essence of the bearer's own blood.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0.4 *MC.defaultAttack;
+    Object.buffStat = "attack";
+    Object.bonusStat[1] = {"health"};
+    Object.bonus[1] = {-30};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Trickster Gloves";
+    Object.desc = " [+ 15 Speed]. \n   Suited for those who revel in clever deception and swift, cunning maneuvers, these gloves carry an air of playful unpredictability.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"speed"};
+    Object.bonus[1] = {15};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Yin Amulet";
+    Object.desc = " [+ 10 Attack, + 5 Health]. \n Sought after by those who seek to align themselves with the tranquil forces of Yin, finding peace in the delicate interplay of opposites.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0.4 *MC.defaultAttack;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"attack"};
+    Object.bonusStat[2] = {"health"};
+    Object.bonus[1] = {10};
+    Object.bonus[2] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Yang Amulet";
+    Object.desc = " [+ 10 Health, + 5 Attack]. \n   Sought after by those who seek to align themselves with the tranquil forces of Yang,fiery energy that invigorates the wearer with the force of the sun.";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"health"};
+    Object.bonusStat[2] = {"attack"};
+    Object.bonus[1] = {10};
+    Object.bonus[2] = {5};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = " Ring of Tempting Tune";
+    Object.desc = " [+ 10% Crit Chance]. \n   The Ring is a bewitching trinket that harbors the captivating power of the sea's most alluring tunes. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"critChance"};
+    Object.bonus[1] = {2};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+    Object.name = "Living Bone";
+    Object.desc = " [+ 15% Crit Chance]. \n   This necklace is a testament to the enduring resilience of bone transformed into an instrument of life. ";
+    Object.isArtefact = false;
+    Object.isConsumable = false;
+    Object.isEquipable = true;
+    Object.armorType = "charm";
+    Object.buff = 0;
+    Object.buffStat = "";
+    Object.bonusStat[1] = {"critChance"};
+    Object.bonus[1] = {32};
+    Object.heal = 0;
+    Object.duration = 0;
+    addObject(OL,createNewObjectElement(Object));
+
+
+
+
 }
 void initiateSkillAndClass(skillTree &ST, classTree &CT){
     createSkillTree(ST);
@@ -122,7 +757,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (15 * Player.level);
     Skill.buff = Player.defaultAttack + (15 * Player.level);
     Skill.duration = 3;
-    Skill.type = "Support, Buff";
+    Skill.type = "Support";
     Skill.isMultiple = false;
     cls.bonusAttack = 5;
     cls.bonusDefense = 3;
@@ -406,7 +1041,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (1* Player.level);
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -424,7 +1059,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (3 * Player.level)+ Player.defaultAttack + (1.5 * Player.level);
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -442,7 +1077,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = Player.defaultDefence + (3 * Player.level)+ Player.defaultAttack + (1.5 * Player.level);
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -462,7 +1097,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (5 * Player.level);
     Skill.buff = Player.defaultAttack + (3 * Player.level);
     Skill.duration = 2;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -480,7 +1115,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (10 * Player.level);
     Skill.buff = Player.defaultDefence + (4 * Player.level);
     Skill.duration = 2;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -499,7 +1134,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (10 * Player.level);
     Skill.buff = Player.stamina + (20 * Player.level);
     Skill.duration = 2;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -516,7 +1151,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = 0;
     Skill.buff = 0;
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -532,7 +1167,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 5);
     Skill.buff = Player.defaultAttack + (Player.level * 55) ;
     Skill.duration = 2;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -549,7 +1184,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 10);
     Skill.buff = Player.defaultDefence + (Player.level * 65) ;
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -566,7 +1201,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + (Player.level * 20);
     Skill.buff = Player.defaultDefence + (Player.level * 20) ;
     Skill.duration = 2;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -583,7 +1218,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal =0;
     Skill.buff = 0;
     Skill.duration = 3;
-    Skill.type = "defaultDefence";
+    Skill.type = "Defensive";
     Skill.isMultiple = true;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
@@ -610,619 +1245,25 @@ void initiatePlayer(playerList &PL){
     addPlayer(PL,adrPlayer);
     changePlayerClass(Player.name, "Newbie");
 
-
-
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//Usable
-    createObjectList(OL);
-    object Object;
-    Object.name = "Provision";
-    Object.desc = " [1/3 heal]. \n Long lasting food, great for long travels";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.duration = 0;
-    Object.heal = 0.3 * MC.health;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Health Potion";
-    Object.desc = " [2/3 heal]. \n A regular and reliable health potion, trusted by many travelers alike";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.heal = 0.6 * MC.health;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "L. Health Potion";
-    Object.desc = " [MAX heal]. \n Not all traveler can carry this thing inside their pouch.";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.heal = 1 * MC.health;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Attack Potion";
-    Object.desc = " [1/2 attack buff for 2 turns]. \n Makes you feel like you could crack a melanite ore with your bare fist";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0.5 * MC.defaultAttack ;
-    Object.buffStat = "attack";
-    Object.heal = 0;
-    Object.duration = 3;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Defence Potion";
-    Object.desc = " [1/2 def buff for 2 turns]. \n Do NOT actually compare your skin for a rock";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0.5 * MC.defaultDefence;
-    Object.buffStat = "defence";
-    Object.heal = 0;
-    Object.duration = 3;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Speed Potion";
-    Object.desc = " [1/2 spd buff for 2 turns]. \n Your body feels like it's light, as if the wind fleets you";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = 0.5 * MC.speed;
-    Object.buffStat = "speed";
-    Object.heal = 0;
-    Object.duration = 3;
-    addObject(OL,createNewObjectElement(Object));
-
-    A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, 120 gold piece]
-
-    Object.name = " A Manual scroll from distant lands of OOO";
-    Object.desc = " [2500 xp]. \n Upgrade to the next class of their choosing + skills";
-    Object.isArtefact = false;
-    Object.isConsumable = true;
-    Object.isEquipable = false;
-    Object.armorType = "";
-    Object.buff = MC.exp + 2500 ;
-    Object.buffStat = "";
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    //Equipable (Swords)
-
-    Object.name = "Basic Iron Sword";
-    Object.desc = "[+5 Attack]. \n The blade is made from a solid piece of well-forged iron, boasting a straight, double-edged design that is easy to maintain and versatile in battle.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {5,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Sword of Phantasmal Flames";
-    Object.desc = " [+20 Attack]. \n Forged in the ethereal forges of spectral artisans and bathed in the elusive fires of the netherworld, transcends the boundaries between the physical and the otherworldly. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {20,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Scarlet";
-    Object.desc = " [+25 Attack, 5 bleed dmg per turn]. \n Used to be owned by a Hero in a distant lands. The blade is dented, chipped, and dirty. Its hilt is black with some worn leather grip-straps and a red gemstone in the pommel.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "bleed";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {25,5};
-    Object.heal = 0;
-    Object.duration = 2;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Terraforge Claymore";
-    Object.desc = " [+20 Attack, 15 health]. \n A formidable weapon designed for those who wish to channel the power of the earth in their strikes.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack","health"};
-    Object.bonus[2] = {20,15};
-    Object.heal = 0;
-    Object.duration = 2;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Grass Sword";
-    Object.desc = " [+25 Attack, +3 Leech Effect]. \n  A cursed the sword so it will bond itself to its owner for eternity. Can quickly carve object into various objects with extreme precision. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword"; //leech mirip vampiric, kita dmg, dpt heal
-    Object.buff = 0;
-    Object.buffStat = "leech";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {25,3};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-
-    Object.name = "Night Sword";
-    Object.desc = " [+30 Attack]. \n The blade is crafted from a rare, darkened steel that seems to absorb and swallow light, giving it an obsidian-like appearance.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {30,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Devilsknife";
-    Object.desc = " [+50 Attack]. \n Skull-emblazoned scythe-ax.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack",""};
-    Object.bonus[2] = {50,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Night Sword";
-    Object.desc = " [+25 Attack, +25 Speed]. \n  A hardened J-Shaped tail that gives you devilenergy.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "sword";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack","speed"};
-    Object.bonus[2] = {25,25};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    //Equipable (helmet)
-
-    Object.name = "Basic Helm";
-    Object.desc = " [+5 Health]. \n The helm is constructed from durable iron, providing a solid layer of protection for the wearer's head. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"health",""};
-    Object.bonus[2] = {5,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Helm of Clairvoyant Insight";
-    Object.desc = " [+20 Health]. \n The helm's shimmering design, adorned with arcane symbols imbued with magic. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"health",""};
-    Object.bonus[2] = {20,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Lead Splunking Helmet";
-    Object.desc = " [+15 Defence, +10 Attack]. \n Once used by a lead miner, worshiper of Qlipoth ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence","attack"};
-    Object.bonus[2] = {15,10};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Jester's delight";
-    Object.desc = " [+15 Speed, +5% Crit Chance]. \n  The vibrant multicolored fabric covering the helmet is adorned with tiny bells that jingle with every movement, with a mischievous touch and a flair for the theatrical, ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed","critChance"};
-    Object.bonus[2] = {15,1};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-
-    Object.name = "Gambler's Top Hat";
-    Object.desc = " [- 10 Defence, +30 Attack]. \n Fashioned for those who navigate the unpredictable currents of chance and luck. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence","attack"};
-    Object.bonus[2] = {-10,30};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Regal Specter Crown";
-    Object.desc = " [+20 Defence, +25 Attack]. \n Crafted from ethereal essence and shadowy opulence, this crown is both a symbol of regal authority and a testament to the spectral legacy of the undead monarch.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "helmet";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence","attack"};
-    Object.bonus[2] = {20,25};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    //Equipable (Chestplate)
-    Object.name = "Basic Chestplate";
-    Object.desc = " [+5 Defence]. \n The chestplate is constructed from a combination of reinforced leather and hardened metal plates, providing a solid defense against both edged weapons and blunt force.  ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "chestplate";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence",""};
-    Object.bonus[2] = {5,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Spectral's Cloak";
-    Object.desc = " [+20 Defence]. \n Woven from the spectral threads, a garment that shrouds its wearer in an enigmatic aura. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "chestplate";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence",""};
-    Object.bonus[2] = {20,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Hunter's Garb";
-    Object.desc = " [+15 Defence, +5 Speed]. \n Woven from the spectral threads, a garment that shrouds its wearer in an enigmatic aura ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "chestplate";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence","speed"};
-    Object.bonus[2] = {15,5};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Runic Chestplate";
-    Object.desc = " [+10 Defence, +15 health]. \n Forged in the arcane fires of ancient craftsmanship, the Runic Chestplate is a majestic piece of armor that bears the mystic symbols of forgotten realms.  ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "chestplate";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence","health"};
-    Object.bonus[2] = {10,15};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Jim Hall's Chestplate";
-    Object.desc = " [+ 5 Attack, +20 health]. \n Though worn and weathered, carries an undeniable aura of craftsmanship that transcends its battered appearance.  ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "chestplate";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack","health"};
-    Object.bonus[2] = {5,20};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-
-    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    //Equipable (Legplates)
-
-    Object.name = "Basic Legplate";
-    Object.desc = " [+ 5 Speed]. \n The legguards are constructed from toughened leather and reinforced with metal plating around the shins and knees. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "legplates";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed",""};
-    Object.bonus[2] = {5,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Sticky Silk Legplate";
-    Object.desc = " [+ 10 Speed, +10 health]. \n The legging's surface is adorned with an iridescent sheen, reflecting a subtle play of colors reminiscent of a spider's delicate web.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "legplates";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed","health"};
-    Object.bonus[2] = {10,10};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Ringmaster's Pants";
-    Object.desc = " [+ 10 Speed, +10 Attack]. \n The pants are made from a durable yet flexible fabric, designed to withstand the acrobatics and lively movements of the circus ring.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "legplates";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed","health"};
-    Object.bonus[2] = {10,10};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Legplates of Ethereal Stride";
-    Object.desc = " [+ 17 Speed]. \n As the wearer dons the it, they experience a subtle weightlessness, as if they are walking on the very fabric of dreams. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "legplates";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed",""};
-    Object.bonus[2] = {17,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Titanium Legplates";
-    Object.desc = " [+ 25 Defence]. \n These legplates offer unparalleled protection , making them a coveted choice for warriors who value defense on the battlefield. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "legplates";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence",""};
-    Object.bonus[2] = {25,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-        //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    //Equipable (Charms)
-    Object.name = "Ring of Qlipoth";
-    Object.desc = " [+ 15 Defence]. \n Forged under the watchful gaze of an Amber Lord, the Ring of Qlipoth is a sacred artifact infused with the essence of primal energies and the blessings of ancient deities.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"defence",""};
-    Object.bonus[2] = {15,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Amulet of Lifespring";
-    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n The amulet features a delicate pendan from a luminescent crystal, Encased within the crystal is a tiny, verdant leaf, a symbol of growth and renewal. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "health";
-    Object.bonusStat[2] = {"",""};
-    Object.bonus[2] = {0,0};
-    Object.heal = 0.2 *MC.health; //heal 2 turns awal battle
-    Object.duration = 2;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Tonic of Efficacious Chaos";
-    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n  Tonic of Efficacious Chaos imparts a temporary surge of unpredictable effects, both beneficial and capricious.  ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0.2 *MC.currentAttack;
-    Object.buffStat = "attack";
-    Object.bonusStat[2] = {"",""};
-    Object.bonus[2] = {0,0};
-    Object.heal = 0;
-    Object.duration = 2;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Boon of Boons";
-    Object.desc = " [+ 15% gold piece and + 15% xp bonus from battle]. \n  Greed manifests as a crystalline amulet suspended from a delicate chain. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm"; //tbh w kg tw cara apply gmn, jd w blm apa2in
-    Object.buff = 0.2 *MC.currentAttack;
-    Object.buffStat = "attack";
-    Object.bonusStat[2] = {"",""};
-    Object.bonus[2] = {0,0};
-    Object.heal = 0;
-    Object.duration = 2;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Fissured [Artifact]";
-    Object.desc = " [+ Heal 20% for 2 turns at every battle]. \n  It awokens it's true power, at the cost of your sanity";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0.3 *MC.currentAttack;
-    Object.buffStat = "attack";
-    Object.bonusStat[2] = {"health",""};
-    Object.bonus[2] = {-15,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "'Good Value'";
-    Object.desc = " [+ 15 Health]. \n  A charm with an exquisite display of understated elegance and unparalleled sarcasm.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"health",""};
-    Object.bonus[2] = {15,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Bloodied Necklace";
-    Object.desc = " [+ 40% attack , - 30 health]. \n   This enigmatic necklace is said to harbor glimpses of the past, present, and the untold tapestry of the future, all stained with the essence of the bearer's own blood.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0.4 *MC.currentAttack;
-    Object.buffStat = "attack";
-    Object.bonusStat[2] = {"health",""};
-    Object.bonus[2] = {-30,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Trickster Gloves";
-    Object.desc = " [+ 15 Speed]. \n   Suited for those who revel in clever deception and swift, cunning maneuvers, these gloves carry an air of playful unpredictability.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"speed",""};
-    Object.bonus[2] = {15,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Yin Amulet";
-    Object.desc = " [+ 10 Attack, + 5 Health]. \n Sought after by those who seek to align themselves with the tranquil forces of Yin, finding peace in the delicate interplay of opposites.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0.4 *MC.currentAttack;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"attack","health"};
-    Object.bonus[2] = {10,5};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Yang Amulet";
-    Object.desc = " [+ 10 Health, + 5 Attack]. \n   Sought after by those who seek to align themselves with the tranquil forces of Yang,fiery energy that invigorates the wearer with the force of the sun.";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"health","attack"};
-    Object.bonus[2] = {10,5};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = " Ring of Tempting Tune";
-    Object.desc = " [+ 10% Crit Chance]. \n   The Ring is a bewitching trinket that harbors the captivating power of the sea's most alluring tunes. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"critChance",""};
-    Object.bonus[2] = {2,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
-    Object.name = "Living Bone";
-    Object.desc = " [+ 15% Crit Chance]. \n   This necklace is a testament to the enduring resilience of bone transformed into an instrument of life. ";
-    Object.isArtefact = false;
-    Object.isConsumable = false;
-    Object.isEquipable = true;
-    Object.armorType = "charm";
-    Object.buff = 0;
-    Object.buffStat = "";
-    Object.bonusStat[2] = {"critChance",""};
-    Object.bonus[2] = {32,0};
-    Object.heal = 0;
-    Object.duration = 0;
-    addObject(OL,createNewObjectElement(Object));
-
+    Player.name = "Master Bait";
+    Player.defaultAttack = 10;
+    Player.defaultDefence = 10;
+    Player.coin = 51234;
+    Player.health = 20;
+    Player.currentHealth = Player.health;
+    Player.speed = 10;
+    Player.stamina = 10;
+    Player.currentStamina = 10;
+    Player.exp = 1532;
+    Player.level = 10;
+    Player.nextLevel = 51223;
+    adrPlayer = new elementPlayer;
+    adrPlayer = createNewPlayerElement(Player);
+    addPlayer(PL,adrPlayer);
+    changePlayerClass(MC.name, "Newbie");
+    changePlayerClass(Player.name, "Pawn");
+    changePlayerClass(Player.name, "Ronin");
+    changePlayerClass(Player.name, "Sun Hashira");
 
 
 

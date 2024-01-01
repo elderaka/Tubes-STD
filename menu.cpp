@@ -62,6 +62,7 @@ void printStack(menuStack &S){
 
 
 void splashScreen(){
+    system("cls");
     cout << " __| |____________________________________________| |__\n"
 "(__   ____________________________________________   __)\n"
 "   | |           Welcome To  Brave Hearts:        | |\n"
@@ -88,7 +89,6 @@ void splashScreen(){
     int menuChoice;
     do{
         cin >> menuChoice;
-        printStack(Menu);
         switch(menuChoice){
         case 1:
             system("cls");
@@ -98,7 +98,7 @@ void splashScreen(){
             cout << "Coming soon\n";
             break;
         case 3:
-            cout << "Coming soon\n";
+            pushMenu(Menu,5);
             break;
         case 4:
             break;
@@ -110,6 +110,8 @@ void splashScreen(){
 }
 void introduction(){
     string x[100];
+    player newPlayer;
+    addPlayer(PL,createNewPlayerElement(newPlayer));
     x[0] = "Selamat datang pemberani, di dunia mistis Eldoria! Sebuah tanah yang penuh dengan sihir, makhluk mitos, kejahatan, dan dihiasi dengan harta karun yang tak terhitung jumlahnya. Angin takdir membawamu ke kota kecil Everhaven, di mana sebuah ramalan kuno meramalkan penemuan Pusaka yang Hilang—artefak kuat yang menyimpan kunci untuk mengembalikan keseimbangan dunia.\n";
     print(x,0,false);
     x[1] = "Saat kamu memasuki kota Everhaven yang ramai, jalan-jalan berkerikil dan bangunan-bangunan berkerangka kayu bergema dengan kisah-kisah pahlawan dan bisikan kegelapan yang akan datang. Penduduk kota yang tentram sedang menjalani hidup mereka sendiri-sendiri, dengan tanpa kesadaran adanya bahaya dalam dunia Eldoria. Namun, suatu berita yang akan merubah segalanya dalam kota Everhaven. \n";
@@ -227,7 +229,7 @@ void encounter(int id){
                 MC.coin -= 5;
                 MC.currentHealth = MC.health;
             }else if (choice == "2"){
-                if(findObjectinInventory("Enchiridion") != NULL){
+                if(findObjectinInventory(inventory(mc(PL)),"Enchiridion") != NULL){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 60;
@@ -235,7 +237,7 @@ void encounter(int id){
                     cout << "Huh.. I thought this thing was destroyed. what Else Can I get for ye?\n";
                 }
             }else if (choice == "3"){
-                if(findObjectinInventory("Spectral Cloak") != NULL){
+                if(findObjectinInventory(inventory(mc(PL)),"Spectral Cloak") != NULL){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 20;
@@ -243,7 +245,7 @@ void encounter(int id){
                     cout << "good choice, I made em myself from a unicorn hairs (Animal Cruelty Free)\n";
                 }
             }else if (choice == "4"){
-                if(findObjectinInventory("Legplates of Etheral Stride") != NULL){
+                if(findObjectinInventory(inventory(mc(PL)),"Legplates of Etheral Stride") != NULL){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 20;
@@ -251,7 +253,7 @@ void encounter(int id){
                     cout << "good decision, I can even do a little bit of blacksmithing myself other than barkeeping and tailoring\n";
                 }
             }else if (choice == "5") {
-                if (findObjectinInventory("Sword of Phantasmal Flames") != NULL) {
+                if (findObjectinInventory(inventory(mc(PL)),"Sword of Phantasmal Flames") != NULL) {
                     cout << "Sorry kid, you already bought it before\n";
                 } else {
                     MC.coin -= 20;
@@ -283,7 +285,7 @@ void encounter(int id){
                 // addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
                 cout << "I forgot where I got it from, but I can guarantee you that this will help you.. I hope\n";
             } else if (choice == "12") {
-                if (findObjectinInventory("Amulet of Lifespring") != NULL) {
+                if (findObjectinInventory(inventory(mc(PL)),"Amulet of Lifespring") != NULL) {
                     cout << "Sorry kid, you already bought it before";
                 } else {
                     MC.coin -= 20;
@@ -291,7 +293,7 @@ void encounter(int id){
                     cout << "An amulet blessed by a Harvest Goddess in a land called Leaf Valley\n";
                 }
             } else if (choice == "13") {
-                if (findObjectinInventory("Ring of Attunement") != NULL) {
+                if (findObjectinInventory(inventory(mc(PL)),"Ring of Attunement") != NULL) {
                     cout << "Sorry kid, you already bought it before";
                 } else {
                     MC.coin -= 30;
@@ -1457,6 +1459,488 @@ void moveDefence(){
 }
 //nnt sini di battlephase recall yg inventory buat bs pake barang
 
+void checkMenu(){
+    int pick;
+    int datachoice;
+
+    cout << "  ___________________\n"
+            "((                   ))\n"
+            " )) Check Game Data ((\n"
+            "((                   ))\n"
+            "  -------------------\n";
+    cout << "1. Show Player\n";
+    cout << "2. Show All Items\n";
+    cout << "3. Show All Class\n";
+    cout << "4. Show All Skill\n";
+    cout << "5. Find Data\n";
+    cout << "6. Delete Data\n";
+    cout << "7. Change Data\n";
+    cout << "8. Leaderboard\n";
+    cout << "9. Back to main Menu\n";
+    cout << "Select your choice (1-9): ";
+    do{
+        cin >> pick;
+        switch(pick){
+        case 1:
+            cout << "How do you want your Player presented? (1-4): " << endl;
+            cout << "1. All\n";
+            cout << "2. By Item\n";
+            cout << "3. By Class\n";
+            cout << "4. Back\n";
+            cout << "Select your choice (1-4): ";
+            do{
+                cin >> datachoice;
+                switch(datachoice){
+                case 1:
+                    pushMenu(Menu, 10);
+                    break;
+                case 2:
+                    pushMenu(Menu, 18);
+                    break;
+                case 3:
+                    pushMenu(Menu, 19);
+                    break;
+                case 4:
+                    pushMenu(Menu, 15);
+                    break;
+                default:
+                    cout << "Wrong Number. Select your choice (1-4): ";
+                    break;
+                }
+            }while(datachoice < 1 || datachoice > 4);
+            break;
+            pushMenu(Menu,6);
+            break;
+        case 2:
+            pushMenu(Menu,7);
+            break;
+        case 3:
+            pushMenu(Menu,8);
+            break;
+        case 4:
+            pushMenu(Menu,9);
+            break;
+        case 5:
+
+            cout << "Which data do you want to find?\n";
+            cout << "1. Player\n";
+            cout << "2. Item\n";
+            cout << "3. Class\n";
+            cout << "4. Skill\n";
+            cout << "5. Back" << endl;
+            cout << "Select your choice (1-5): ";
+            do{
+                cin >> datachoice;
+                switch(datachoice){
+                case 1:
+                    pushMenu(Menu, 10);
+                    break;
+                case 2:
+                    pushMenu(Menu, 11);
+                    break;
+                case 3:
+                    pushMenu(Menu, 13);
+                    break;
+                case 4:
+                    pushMenu(Menu, 12);
+                    break;
+                case 5:
+                    pushMenu(Menu, 15);
+                    break;
+                default:
+                    cout << "Wrong Number. Select your choice (1-9): ";
+                    break;
+                }
+            }while(datachoice < 1 || datachoice > 5);
+            break;
+        case 6:
+            cout << "Which data do you want to delete?\n";
+            cout << "1. Player\n";
+            cout << "2. Item\n";
+            cout << "3. Class\n";
+            cout << "4. Back\n";
+            cout << "Select your choice (1-5): ";
+            do{
+                cin >> datachoice;
+                switch(datachoice){
+                case 1:
+                    pushMenu(Menu, 20);
+                    break;
+                case 2:
+                    pushMenu(Menu, 21);
+                    break;
+                case 3:
+                    pushMenu(Menu, 22);
+                    break;
+                case 4:
+                    pushMenu(Menu, 15);
+                    break;
+                default:
+                    cout << "Wrong Number. Select your choice (1-5): ";
+                    break;
+                }
+            }while(datachoice < 1 || datachoice > 5);
+            break;
+        case 7:
+            cout << "Which data do you want to find?\n";
+            cout << "1. Player\n";
+            cout << "2. Item\n";
+            cout << "3. Class\n";
+            cout << "4. Skill\n";
+            cout << "5. Back\n";
+            cout << "Select your choice (1-5): ";
+            do{
+                cin >> datachoice;
+                switch(datachoice){
+                case 1:
+                    pushMenu(Menu, 28);
+                    break;
+                case 2:
+                    pushMenu(Menu, 29);
+                    break;
+                case 3:
+                    pushMenu(Menu, 30);
+                    break;
+                case 4:
+                    pushMenu(Menu, 31);
+                    break;
+                case 5:
+                    pushMenu(Menu, 15);
+                    break;
+                default:
+                    cout << "Wrong Number. Select your choice (1-9): ";
+                    break;
+                }
+            }while(datachoice < 1 || datachoice > 5);
+            break;
+        case 8:
+            pushMenu(Menu,27);
+            break;
+        case 9:
+            break;
+        default:
+            cout << "Wrong Number. Select your choice (1-9): ";
+            break;
+        }
+    }while(pick < 1 || pick > 11);
+
+    if(pick == 9){
+        splashScreen();
+        popMenu(Menu);
+    }
+}
+void showAllPlayer(){
+    system("cls");
+    cout << "List of all Object:\n";
+    int i = 1;
+    playerAddress prec = first(PL);
+    while(prec != NULL){
+        cout << i << "." << info(prec).name << "\t|\t" << info(prec).Class << "\t|\t" << info(prec).level << endl << endl;
+        prec = next(prec);
+        i++;
+    }
+    getch();
+    popMenu(Menu);
+}
+void showAllObject(){
+    system("cls");
+    cout << "List of all Object:\n";
+    int i = 1;
+    objectAddress prec = first(OL);
+    while(prec != NULL){
+        cout << i << "." << info(prec).name << " " << info(prec).desc << endl << endl;
+        prec = next(prec);
+        i++;
+    }
+    getch();
+    popMenu(Menu);
+}
+void showAllClass(){
+    system("cls");
+    cout << "List of All Class:\n";
+    showClass(CT);
+    getch();
+    popMenu(Menu);
+}
+void showAllSkill(){
+    cout << "List of All Skill:\n";
+    system("cls");
+    showSkill(ST);
+    getch();
+    popMenu(Menu);
+}
+void findPlayerData(){
+    string name;
+    cout << "Enter Player name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findPlayer(PL,name)){
+            playerAddress findplayer = findPlayer(PL,name);
+            cout <<"Name: " <<  info(findplayer).name << endl;
+            cout <<"Class: " <<  info(findplayer).Class << endl;
+            cout <<"Level: " <<  info(findplayer).level << endl;
+            cout <<"Current Exp: " <<  info(findplayer).exp << endl;
+            cout <<"Coin: " <<  info(findplayer).coin << endl;
+            cout <<"--------------------------------" << endl;
+            cout <<"             Stats" << endl;
+            cout <<"--------------------------------" << endl;
+            cout <<"Health: " <<  info(findplayer).currentHealth << "/" <<info(findplayer).health << endl;
+            cout <<"Stamina: " <<  info(findplayer).currentStamina << "/" <<info(findplayer).stamina << endl;
+            cout <<"Attack: " <<  info(findplayer).defaultAttack << endl;
+            cout <<"Defence: " <<  info(findplayer).defaultDefence << endl;
+            cout <<"Speed: " <<  info(findplayer).speed << endl;
+            cout <<"Critical Up: " <<  info(findplayer).critChance << endl;
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Player not found! Enter Player name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void findItemData(){
+    string name;
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findObject(OL,name)){
+            object Object = info(findObject(OL,name));
+            cout <<"Name: " <<  Object.name << endl;
+            cout <<"Description: " <<  Object.desc << endl;
+            if(Object.isEquipable){
+                cout << "Armor Type: " << Object.armorType << endl;
+                cout << "Buff 1: " << Object.bonusStat[1] <<" (" << Object.bonus[1] << ")"<< endl;
+                if(Object.bonus[2] != 0){
+                    cout << "Buff 2: " << Object.bonusStat[2] <<" (" << Object.bonus[2] << ")"<< endl;
+                }
+
+            }else if(Object.isConsumable){
+                if(Object.heal > 0){
+                    cout << "Heal: " << (Object.heal*100 / MC.health) << "%" <<endl;
+                }else{
+                    cout << "Buff: " << Object.buffStat <<" (" << Object.buff << ")"<< endl;
+                }
+            }
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Item not found! Enter Item name (type 0 to get back): ";
+        }
+    }while(!findObject(OL,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void findClassData(){
+    string name;
+    cout << "Enter Class name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findClass(CT,name)){
+            Class cls = info(findClass(CT,name));
+            cout <<"Name            : " <<  cls.name << endl;
+            cout <<"Description     : " <<  cls.desc<< endl;
+            cout <<"Bonus Health    : " <<  cls.bonusHealth << endl;
+            cout <<"Bonus Attack    : " <<  cls.bonusAttack << endl;
+            cout <<"Bonus Defense   : " <<  cls.bonusDefense << endl;
+            cout <<"Bonus Speed     : " <<  cls.bonusSpeed << endl;
+            cout <<"Unlocked Skill  : " <<  info(skill(findClass(CT,name))).name << endl;
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Class not found! Enter Class name (type 0 to get back): ";
+        }
+    }while(!findClass(CT,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void findSkillData(){
+    string name;
+    cout << "Enter Skill name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findClass(CT,name)){
+            skill Skill = info(findskill(ST,name));
+            cout <<"Name            : " <<  Skill.name << endl;
+            cout <<"Description     : " <<  Skill.desc<< endl;
+            cout <<"Cost            : " <<  Skill.cost << endl;
+            cout <<"Skill Type      : " <<  Skill.type << endl;
+            if(Skill.dmg > 0){
+                cout <<"Skill Damage   : " <<  Skill.dmg << endl;
+            }
+            string multiple = Skill.isMultiple ? "Yes" : "No";
+            string buff = Skill.buff == 0 ? "None" : to_string(Skill.buff);
+            cout <<"Skill Buff      : " <<  buff << endl;
+            cout <<"Is Multiple?    : " <<  multiple << endl;
+            cout <<"Skill Heal      : " << Skill.heal << endl;
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Class not found! Enter Class name (type 0 to get back): ";
+        }
+    }while(!findClass(CT,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void showAllPlayerInventory(){
+    system("cls");
+    cout << "List of all Inventory:" << endl;
+    int i = 1;
+    playerAddress prec = first(PL);
+    while(prec != NULL){
+        cout << i << "." << info(prec).name << endl;
+        cout << "[";
+        if(isInventoryEmpty(inventory(prec))){
+            cout << "None!";
+        }else{
+            showInventory(inventory(prec));
+        }
+        cout << "]\n";
+        prec = next(prec);
+        i++;
+    }
+    getch();
+    popMenu(Menu);
+}
+void showAllPlayerClass(){
+    system("cls");
+    cout << "List of all Inventory: " << endl;
+    int i = 1;
+    playerAddress prec = first(PL);
+    while(prec != NULL){
+        cout << i << "." << info(prec).name << endl;
+        cout << "[";
+        showSkill(skill(prec));
+        cout << "]\n";
+        prec = next(prec);
+        i++;
+    }
+    getch();
+    popMenu(Menu);
+}
+void showPlayerInventory(){
+
+    getch();
+    popMenu(Menu);
+}
+void showPlayerClass(){
+    getch();
+    popMenu(Menu);
+}
+void showObjectByPlayer(){
+    system("cls");
+    string name;
+    cout << "Enter Item name (type 0 to get back): ";
+    int i = 1;
+    do{
+        getline(cin,name);
+        if(findObject(OL,name)){
+
+            playerAddress prec = first(PL);
+            while(prec != NULL){
+                if(findObjectinInventory(inventory(prec),name)){
+                    cout << i << "." << info(prec).name << endl;
+                    i++;
+                }
+                prec = next(prec);
+
+            }
+            if(i == 1){
+                cout << "Player not found!" << endl;
+            }
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Item not found! Enter Item name (type 0 to get back): ";
+        }
+
+    }while(!findObject(OL,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void showClassByPlayer(){
+    system("cls");
+    cout << "List of all Class: " << endl ;
+
+    string name;
+    cout << "Enter Class name (type 0 to get back): ";
+    int i = 1;
+    do{
+        getline(cin,name);
+        if(findClass(CT,name)){
+
+            playerAddress prec = first(PL);
+
+            while(prec != NULL){
+                if(Class(prec) == findClass(CT,name)){
+                    cout << i << "." << info(prec).name << endl;
+                    i++;
+                }
+                prec = next(prec);
+
+            }
+            if(i == 1){
+                cout << "Player not found!" << endl;
+            }
+        }else if(name == "0"){
+            break;
+        }else{
+            cout << "Class not found! Class Item name (type 0 to get back): ";
+        }
+
+    }while(!findClass(CT,name) && name != "0");
+    getch();
+    popMenu(Menu);
+}
+void deletePlayerData(){
+    getch();
+    popMenu(Menu);
+}
+void deleteObjectData(){
+    getch();
+    popMenu(Menu);
+}
+void deleteClassData(){
+    getch();
+    popMenu(Menu);
+}
+void deleteObjectByPlayer(){
+    getch();
+    popMenu(Menu);
+}
+void deleteSkillByPlayer(){
+    getch();
+    popMenu(Menu);
+}
+void showMostItem(){
+    getch();
+    popMenu(Menu);
+}
+void showMostClass(){
+    getch();
+    popMenu(Menu);
+}
+void showTopThree(){
+    getch();
+    popMenu(Menu);
+}
+void changePlayerData(){
+    getch();
+    popMenu(Menu);
+}
+void changeObjectData(){
+    getch();
+    popMenu(Menu);
+}
+void changeClassData(){
+    getch();
+    popMenu(Menu);
+}
+void changeSkillData(){
+    getch();
+    popMenu(Menu);
+}
+
 void initiateTop(){
 
     if(!isMenuEmpty(Menu)){
@@ -1477,7 +1961,89 @@ void initiateTop(){
         case 4:
             interactorTalk();
             break;
+        case 5:
+            system("cls");
+            checkMenu();
+            break;
+        case 6:
+            system("cls");
+            showAllPlayer();
+            break;
+        case 7:
+            showAllObject();
+            break;
+        case 8:
+            showAllClass();
+            break;
+        case 9:
+            showAllSkill();
+            break;
+        case 10:
+            findPlayerData();
+            break;
+        case 11:
+            findItemData();
+            break;
+        case 12:
+            findClassData();
+            break;
+        case 13:
+            findSkillData();
+            break;
+        case 14:
+            showAllPlayerInventory();
+            break;
+        case 15:
+            showAllPlayerClass();
+            break;
+        case 16:
+            showPlayerInventory();
+            break;
+        case 17:
+            showPlayerClass();
+            break;
+        case 18:
+            showObjectByPlayer();
+            break;
+        case 19:
+            showClassByPlayer();
+            break;
+        case 20:
+            deletePlayerData();
+            break;
+        case 21:
+            deleteObjectData();
+            break;
+        case 22:
+            deleteClassData();
+            break;
+        case 23:
+            deleteObjectByPlayer();
+            break;
+        case 24:
+            deleteSkillByPlayer();
+            break;
+        case 25:
+            showMostItem();
+            break;
+        case 26:
+            showMostClass();
+            break;
+        case 27:
+            showTopThree();
+            break;
+        case 28:
+            changePlayerData();
+            break;
+        case 29:
+            changeObjectData();
+            break;
+        case 30:
+            changeClassData();
+            break;
+        case 31:
+            changeSkillData();
+            break;
         }
     }
-
 }

@@ -119,16 +119,19 @@ void showClass(classTree T){
     CQueue Q;
     createCQueue(Q);
     EnCqueue(Q,T);
+    int i = 1;
     while(!isCEmpty(Q)){
         classAddress N;
         N = DeCqueue(Q);
-        cout << info(N).name << endl;
+        cout << i << ". " <<info(N).name <<"\n" << info(N).desc <<  endl;
+        i++;
         if(left(N)){
             EnCqueue(Q,left(N));
         }
         if(right(N)){
             EnCqueue(Q,right(N));
         }
+
     }
 }
 

@@ -11,6 +11,9 @@ struct object{
     bool isHealing;
     bool isBuff;
     string armorType;
+    int duration;
+    string bonusStat[2];
+    int bonus[2];
     int heal;
     string buffStat;
     int buff;

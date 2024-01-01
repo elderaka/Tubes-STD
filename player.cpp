@@ -23,9 +23,11 @@ void addPlayer(playerList &L,playerAddress p){
         last(L) = p;
     }
     else{
+
         next(last(L)) = p;
         prev(p) = last(L);
         last(L) = p;
+
     }
 }
 void deletePlayer(playerList &L,string name){
@@ -47,6 +49,7 @@ playerAddress findPlayer(playerList L, string name){
         if(info(prec).name == name){
             return prec;
         }
+        prec = next(prec);
     }
     return NULL;
 }

@@ -130,9 +130,7 @@ sListAddress findSkillinPlayer(int id,skillList L){
 void showSkill(skillList L){
     sListAddress p = L.first;
     while (p != NULL) {
-        cout << info(skill(p)).id << "." <<info(skill(p)).name << endl;
-        cout << info(skill(p)).desc << endl;
-        cout << info(skill(p)).type << endl;
+        cout << info(skill(p)).id << ". " <<info(skill(p)).name<< " "<< info(skill(p)).desc << " " << info(skill(p)).type << endl;
         string aoe;
         aoe = info(skill(p)).isMultiple ? "Area of Effect" : "Single Target";
         cout << aoe << endl;
@@ -141,5 +139,4 @@ void showSkill(skillList L){
         cout << type << endl;
         p = next(p);
     }
-    cout << endl;
 }

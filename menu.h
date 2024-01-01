@@ -35,8 +35,40 @@ void fight(enemyList enemies);
 void run();
 void moveAttack();
 
+
 void moveDefence();
+
+void checkMenu();
+void showAllPlayer();
+void showAllObject();
+void showAllClass();
+
+void findPlayerData();
+void findItemData();
+void findClassData();
+void findSkillData();
+void showAllPlayerInventory();
+void showAllPlayerClass();
+void showPlayerInventory();
+void showPlayerClass();
+void showPlayerInventory();
+void showObjectByPlayer();
+void showClassByPlayer();
+void deletePlayerData();
+void deleteObjectData();
+void deleteClassData();
+void deleteObjectByPlayer();
+void deleteSkillByPlayer();
+void showMostItem();
+void showMostClass();
+void showTopThree();
+void changePlayerData();
+void changeObjectData();
+void changeClassData();
+void changeSkillData();
+
 void initiateTop();
+
 
 
 #endif // MENU_H_INCLUDED
