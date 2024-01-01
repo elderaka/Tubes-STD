@@ -768,10 +768,11 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.name = "Battle Rage";
     Skill.id = 1;
     Skill.desc = "Scream out on top of your lungs and swing voraciously, invigorating you for 2 turns";
-    Skill.cost[0] = Player.stamina - 5 ;
-    Skill.dmg  = Player.stamina + 10 ;
-    Skill.heal = Player.health + 15 ;
-    Skill.buff[0] = Player.defaultAttack + 15 ;
+    Skill.cost[0] =  5 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultAttack + 10;
+    Skill.heal = Player.health + 5 ;
+    Skill.buff[0] = Player.defaultAttack + 5 ;
     Skill.duration = 3;
     Skill.type = "Support";
     Skill.isMultiple = false;
@@ -792,8 +793,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.name = "Piercing Strike";
     Skill.id = 2;
     Skill.desc = "Uses the power of your will Spirit to throw your weapon at an enemy";
-    Skill.cost[0] = Player.stamina - 5 ;
-    Skill.dmg  = Player.defaultAttack * 0.5;
+    Skill.cost[0] =  8 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultAttack*multiplier(50,100);
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 1;
@@ -817,13 +819,14 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 3;
     Skill.name = "Dual Slash";
     Skill.desc = "perform a quick strike from below then a follow up with striking down";
-    Skill.cost[0] = Player.stamina - 15 ;
-    Skill.dmg  = (Player.defaultAttack * 0.5) * 1;
+    Skill.cost[0] = 15 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = (Player.defaultAttack*multiplier(100,150));
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 1;
     Skill.type = "Offensive";
-    Skill.isMultiple = true;
+    Skill.isMultiple = false;
     cls.bonusAttack = 25;
     cls.bonusDefense = 10;
     cls.bonusSpeed = 15;
@@ -841,8 +844,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 4;
     Skill.name = "Sword Dance";
     Skill.desc = "Dance along with your sword 'rythm' as if the battlefield was your 'stage', recalling your old master's teaching.";
-    Skill.cost[0] = Player.stamina - 27 ;
-    Skill.dmg  = (Player.speed * 0.5) + (Player.defaultAttack) * 1;
+    Skill.cost[0] = 27 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = ((Player.speed*multiplier(50,100)) + (Player.defaultAttack*multiplier(100,150)));
     Skill.heal = 0;
     Skill.buff[0] =  Player.defaultAttack + 10 ;
     Skill.duration = 1;
@@ -865,13 +869,14 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 5;
     Skill.name = "Plunder";
     Skill.desc = "Play dirty using cheap tricks like using mud and cuts shallow inflicting 'bleeding' and steal their valueables";
-    Skill.cost[0] = Player.stamina - 25 ;
-    Skill.dmg  = (Player.defaultAttack * 0.5) * 1; //tambah overtime dmg
+    Skill.cost[0] = 25 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultAttack*multiplier(150,250); //tambah overtime dmg
     Skill.heal = Player.health + 25 ;
     Skill.buff[0] = 0;
     Skill.duration = 2;
     Skill.type = "Offensive";
-    Skill.isMultiple = true;
+    Skill.isMultiple = false;
     cls.bonusAttack = 50;
     cls.bonusDefense = 35;
     cls.bonusSpeed = 30;
@@ -889,8 +894,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 6;
     Skill.name = "Dance of the Fire God";
     Skill.desc = "It was once intended to use it as a ritual ceremony practiced every new year, where the Breathing Style user offers the Fire God a dance from sunset to sunrise to ward off threats and diseases.";
-    Skill.cost[0] = Player.stamina - 30 ;
-    Skill.dmg  = Player.speed + (Player.defaultAttack * 0.2) * 12;
+    Skill.cost[0] = 30 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = ((Player.speed*multiplier(100,120)) + (Player.defaultAttack*multiplier(150,220)));
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultAttack + 10 ;
     Skill.duration = 1;
@@ -913,13 +919,14 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 7;
     Skill.name = "Kyuuto-ryuu : Ashura";
     Skill.desc = "An extreme application of one's spirit projection abilities. With sufficient anger, a dark aura surrounds One and somehow managed to create a solid illusion of Oneself with multiple heads and arms that can actually slice though even the strongest of opponents, giving the essence of nine swords.";
-    Skill.cost[0] = Player.stamina - 35 ;
-    Skill.dmg  = (Player.defaultAttack * 0.1) * 9; //nnt tambah overtime Player.defaultAttack * 1 selama 2 turn
+    Skill.cost[0] = 35 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultAttack*multiplier(250,350); //nnt tambah overtime Player.defaultAttack * 1 selama 2 turn
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultAttack + 10 ;
     Skill.duration = 2;
     Skill.type = "Offensive";
-    Skill.isMultiple = true;
+    Skill.isMultiple = false;
     cls.bonusAttack = 60;
     cls.bonusDefense = 45;
     cls.bonusSpeed = 55;
@@ -935,10 +942,11 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.name = "Squire";
     cls.desc = "After surviving multiple war on the battlefield and with basic training, One could imagine being proud after promoted to a basic Squire";
     Skill.id = 8;
-    Skill.name = "Sword Sweep";
+    Skill.name = "Sword Sweep Stance";
     Skill.desc = "Sweep strike multiple enemies grounds swiftly with your sword";
-    Skill.cost[0] = Player.stamina - 12 ;
-    Skill.dmg  = (Player.defaultAttack * 0.5) + (Player.defaultAttack * 0.7); //1 to adjacent
+    Skill.cost[0] = 12 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = (Player.defaultDefence*multiplier(50,100)) + (Player.defaultAttack* multiplier(50,100)); //1 to adjacent
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 1;
@@ -960,8 +968,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 9;
     Skill.name = "Divided Will";
     Skill.desc = "Gathers strength into your sword and shields to smash down onto the surface, dealing damage to enemies in a wide area.";
-    Skill.cost[0] = Player.stamina - 22 ;
-    Skill.dmg  = (Player.defaultDefence * 1.5) + (Player.defaultAttack * 0.5) ; //ALL
+    Skill.cost[0] = 25 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = ((Player.defaultDefence*multiplier(100,120)) + (Player.defaultAttack *multiplier(70,100))) ; //ALL
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 1;
@@ -977,14 +986,17 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     skill(adrClass) = adrSkill;
     addClass(CT,adrClass);
 
-    //Offensive Multi Based Single-AoE Tier 3
+    //Offensive Multi Based Single-AoE Tier 3 NEEDS HP .LOLOLOL
      cls.name = "Broadknight";
     cls.desc = "A knight who had distinguished himself in battle and was granted the right to lead his own group of soldiers in battle.";
     Skill.id = 10;
     Skill.name = "Pulverize";
     Skill.desc = "Widely spin in place, inflicting damage to surrounding enemies. Inflicts even bigger damage when spinning stops.";
-    Skill.cost[0] = Player.stamina - 25 ;
-    Skill.dmg  = (Player.defaultAttack * 0.7) + (Player.defaultDefence * 1.5) ; //follow up 4 to all
+    Skill.cost[0] = 22;
+    Skill.cost[1] = 15;
+    Skill.costStat[0] = "Stamina";
+    Skill.costStat[1] = "Health";
+    Skill.dmg  = (Player.defaultAttack*multiplier(120,170)) ; //follow up 4 to all
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 1;
@@ -1007,12 +1019,14 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 11;
     Skill.name = "Brand of Sacrifice";
     Skill.desc = "Using the power of marks those anointed for the Invocation of Doom, a sacrificial ceremony in which those consecrated by the laws of causality transcend their humanity";
-    Skill.cost[0] = Player.stamina - 35;
-    Skill.cost[1] = Player.health - 10; //jadi 45.5 stamina dan 10% health
-    Skill.dmg  = (Player.defaultAttack * 1) + (Player.defaultDefence * 1.5) ; //follow up 5 to all
+    Skill.cost[0] = 35;
+    Skill.cost[1] = 25; //jadi 45.5 stamina dan 10% health
+    Skill.costStat[0] = "Stamina";
+    Skill.costStat[1] = "Health";
+    Skill.dmg  = (Player.defaultAttack*multiplier(170,250)) ; //follow up 5 to all
     Skill.heal = 0;
-    Skill.buff[1] = Player.defaultDefence + 10;
-    Skill.buff[2] = Player.defaultAttack + 5;  //jadi tambah 2 stats
+    Skill.buff[0] = Player.defaultDefence + 10;
+    Skill.buff[1] = Player.defaultAttack + 5;  //jadi tambah 2 stats
     Skill.duration = 1;
     Skill.type = "Offensive";
     Skill.isMultiple = true;
@@ -1033,8 +1047,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 12;
     Skill.name = "Zangetsu";
     Skill.desc = "Using the power of a Hollow, Zangetsu represents the dark side of One's soul. He says he represents One's purest instincts.";
-    Skill.cost[0] = Player.stamina - 32;
-    Skill.dmg  = Player.defaultAttack * 2; // All
+    Skill.cost[0] = 32;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = ((Player.defaultDefence*multiplier(120,170)) + (Player.defaultAttack *multiplier(100,120))); // All
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultAttack + 13;
     Skill.buff[1] = Player.defaultDefence + 7;
@@ -1055,7 +1070,8 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 13;
     Skill.name = "Shield Ready!";
     Skill.desc = "Readied up your shield to prepare an incoming defaultAttack.";
-    Skill.cost[0] = Player.stamina - 5;
+    Skill.cost[0] = 5;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultDefence + 5;
@@ -1073,11 +1089,12 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 14;
     Skill.name = "War Shout!";
     Skill.desc = "Slam your sword twice on your shield and shout to invigorate yourself for 2 turns.";
-    Skill.cost[0] = Player.stamina - 11 ;
+    Skill.cost[0] = 11 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultDefence + 7;
-     Skill.buff[1]= Player.defaultAttack + 13;
+    Skill.buff[1]= Player.defaultAttack + 13;
     Skill.duration = 3;
     Skill.type = "Defensive";
     Skill.isMultiple = false;
@@ -1092,8 +1109,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 15;
     Skill.name = "Shield Mirror";
     Skill.desc = "Enters the Counter state. When attacked, acts immediately and slams your shield on the attacker.";
-    Skill.cost[0] = Player.stamina - 13 ;
-    Skill.dmg  = 0.5 * Player.defaultDefence;
+    Skill.cost[0] = 13 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultDefence *multiplier(50,100);
     Skill.heal = 0;
     Skill.buff[0] = Player.defaultDefence + 15;
     Skill.buff[1] = Player.defaultAttack + 5 ;
@@ -1108,12 +1126,12 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
 
 
 
-
             //Defensive-buff buff Based Tier 3
     Skill.id = 16;
     Skill.name = "Unyielding Might";
     Skill.desc = "With a roar that echoes through the battlefield, becoming an indomitable force of destruction.";
-    Skill.cost[0] = Player.stamina - 19 ;
+    Skill.cost[0] = 19 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
     Skill.heal = Player.health + 5 ;
     Skill.buff[0] = Player.defaultAttack + 20 ;
@@ -1131,7 +1149,8 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 17;
     Skill.name = "Vindicta";
     Skill.desc = "Let the enemies come, for with Vindicta, your defense stands as an unassailable wall.";
-    Skill.cost[0] = Player.stamina - 18 ;
+    Skill.cost[0] = 18 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
     Skill.heal = Player.health + 10 ;
     Skill.buff[0] = Player.defaultDefence + 25 ;
@@ -1150,7 +1169,8 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 18;
     Skill.name = "Shell of Meropide";
     Skill.desc = "A shimmering barrier manifests, warding off attacks and inflicting damage upon each assailant foolhardy enough to breach its sanctity.";
-    Skill.cost[0] = Player.stamina - 18 ;
+    Skill.cost[0] = 18 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = Player.defaultDefence + 15 ;
     Skill.heal = Player.health + 15 ;
     Skill.buff[0] = Player.currentHealth + 20 ;
@@ -1167,8 +1187,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 19;
     Skill.name = "Shield of Thorns";
     Skill.desc = "Weaves a defensive tapestry of nature's vengeance. each hits taken, retaliates against assailants..";
-    Skill.cost[0] = Player.stamina - 18 ;
-    Skill.dmg  = (1 * Player.defaultDefence);
+    Skill.cost[0] = 18 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.dmg  = Player.defaultDefence *multiplier(100,150);
     Skill.heal = 0;
     Skill.buff[0] = 0;
     Skill.duration = 2;
@@ -1184,9 +1205,10 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.id = 20;
     Skill.name = "Freedom Speech";
     Skill.desc = "'From the moment I was born, those stifling walls were the farthest I could see. Water that glows like fire. Fields of ice. Sandy snowfields. To witness all that..Was to know the greatest freedom this world could offer. We're here, We're FREE.'";
-    Skill.cost[0] = Player.stamina - 26 ;
+    Skill.cost[0] = 26 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
-    Skill.heal = Player.health + 50;
+    Skill.heal = Player.health + 20;
     Skill.buff[0] = Player.defaultAttack + 30 ;
     Skill.duration = 2;
     Skill.type = "Defensive";
@@ -1202,8 +1224,9 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.name = "Guardian's Embrace";
     Skill.desc = "Feeling determined to protect those who you've cherished, forms a spiritual manifestation similar to a certain shield hero";
     Skill.cost[0] = Player.stamina - 26 ;
+    Skill.costStat[0] = "Stamina";
     Skill.dmg  = 0;
-    Skill.heal = Player.health + 10;
+    Skill.heal = Player.health + 30;
     Skill.buff[0] = Player.defaultDefence + 40 ;
     Skill.duration = 3;
     Skill.type = "Defensive";
@@ -1218,8 +1241,10 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
       Skill.id = 22;
     Skill.name = "Gate of Babylon";
     Skill.desc = "Searching for a true meaning of pleasure, One ready to sacrifice everything to gain it.";
-    Skill.cost[0] = Player.stamina - 30;
-    Skill.cost[1] = Player.health - 15 ;
+    Skill.cost[0] = 30;
+    Skill.cost[1] = 15 ;
+    Skill.costStat[0] = "Stamina";
+    Skill.costStat[1] = "Health";
     Skill.dmg  = Player.currentHealth + 30 ;
     Skill.heal = Player.health + 20;
     Skill.buff[0] = Player.defaultDefence + 10;
@@ -1236,9 +1261,11 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
       Skill.id = 23;
     Skill.name = "Iron Fortress of Kabaneri";
     Skill.desc = "Exo Skeleton suit made of iron while trying to resist a mysterious virus and becoming something else, enhancing their skin alike of sharp thorns and their heart plated with steel.";
-    Skill.cost[0] = Player.stamina - 28;
-    Skill.cost[0] = Player.health - 15;
-    Skill.dmg  = Player.defaultDefence * 1.5 ;
+    Skill.cost[0] =  28;
+    Skill.cost[1] = 15;
+    Skill.costStat[0] = "Stamina";
+    Skill.costStat[1] = "Health";
+    Skill.dmg  =  Player.defaultDefence *multiplier(150,170);
     Skill.heal =0;
     Skill.buff[0] = 0;
     Skill.duration = 2;
