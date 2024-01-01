@@ -1690,7 +1690,21 @@ void findPlayerData(){
             cout <<"Attack: " <<  info(findplayer).defaultAttack << endl;
             cout <<"Defence: " <<  info(findplayer).defaultDefence << endl;
             cout <<"Speed: " <<  info(findplayer).speed << endl;
-            cout <<"Critical Up: " <<  info(findplayer).critChance << endl;
+            cout <<"Critical Chance: " <<  info(findplayer).critChance << endl;
+            cout <<"Skill:" << "[";
+            if(first(skill(findplayer)) == NULL){
+                cout << "None!";
+            }else{
+                sListAddress prec = first(skill(findplayer));
+                while(prec != NULL){
+                    cout << info(skill(prec)).name;
+                    if(prec != last(skill(findplayer))){
+                        cout << ", ";
+                    }
+                    prec = next(prec);
+                }
+            }
+            cout << "]" << endl;
         }else if(name == "0"){
             break;
         }else{
@@ -1986,10 +2000,10 @@ void deleteObjectData(){
 void deleteClassData(){
     string name;
     bool deleted = false;
-    cout << "Enter Item name (type 0 to get back): ";
+    cout << "Enter Class name (type 0 to get back): ";
     do{
         getline(cin,name);
-        if(findObject(OL,name)){
+        if(findClass(CT,name)){
             string confirm;
             cout << "Are you sure(y/n)?: ";
             do{
@@ -2006,9 +2020,9 @@ void deleteClassData(){
         }else if(name == "0"){
             break;
         }else if(!deleted){
-            cout << "Item not found! Enter Item name (type 0 to get back): ";
+            cout << "Class not found! Enter Class name (type 0 to get back): ";
         }
-    }while((!findObject(OL,name) && name != "0") && !deleted);
+    }while((!findClass(CT,name) && name != "0") && !deleted);
     getch();
     popMenu(Menu);
 }

@@ -9,7 +9,8 @@ struct player{
     string buffs; //current applied buffs -1 tiap turn
     string Class; //display current class
     bool pickArtifact = false;
-    bool isDead;
+    bool isDead = false;
+    bool isFinished = false;
     //int position[2] = [0,0];
     int artifact;
     float health = 100; //100
@@ -23,7 +24,7 @@ struct player{
     float defaultAttack = 10; // 25, buat multiplier ama skill
     float defaultDefence = 10; // 25, buat multiplier kuranging dmg dr musuh terima
     float speed = 10;
-    int critChance = 5;
+    int critChance = 2;
 };
 typedef struct elementPlayer *playerAddress;
 

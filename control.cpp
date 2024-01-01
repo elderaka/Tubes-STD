@@ -78,7 +78,12 @@ void changePlayerClass(string pl, string Class){
     if(adrPlayer != NULL && adrClass != NULL){
         Class(adrPlayer) = adrClass;
         addSkillToPlayer(PL,ST,pl,info(skill(adrClass)).name);
-        info(adrPlayer).Class = info(adrClass).name;
+        info(adrPlayer).Class           = info(adrClass).name;
+        info(adrPlayer).defaultAttack   += info(adrClass).bonusAttack;
+        info(adrPlayer).defaultDefence  += info(adrClass).bonusDefense;
+        info(adrPlayer).speed           += info(adrClass).bonusSpeed;
+        info(adrPlayer).health          += info(adrClass).bonusHealth;
+        info(adrPlayer).currentHealth   += info(adrClass).bonusHealth;
     }
 
 }
@@ -1262,7 +1267,6 @@ void initiatePlayer(playerList &PL){
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
-    changePlayerClass(Player.name, "Newbie");
 
     Player.name = "Master Bait";
     Player.defaultAttack = 10;
@@ -1279,11 +1283,24 @@ void initiatePlayer(playerList &PL){
     adrPlayer = new elementPlayer;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
-    changePlayerClass(MC.name, "Newbie");
     changePlayerClass(Player.name, "Pawn");
     changePlayerClass(Player.name, "Ronin");
     changePlayerClass(Player.name, "Sun Hashira");
 
+    Player.name = "Jetstream";
+    Player.defaultAttack = 10;
+    Player.defaultDefence = 10;
+    Player.coin = 100;
+    Player.health = 20;
+    Player.currentHealth = Player.health;
+    Player.speed = 10;
+    Player.stamina = 10;
+    Player.currentStamina = 10;
+    Player.exp = 0;
+    Player.level = 1;
+    Player.nextLevel = 10;
+    adrPlayer = createNewPlayerElement(Player);
+    addPlayer(PL,adrPlayer);
 
 
 }
