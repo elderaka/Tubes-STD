@@ -33,8 +33,8 @@ struct elementPlayer{
     playerAddress prev;
     playerAddress next;
     inventoryList inventory;
-    skillList offense;
-    skillList defense;
+    skillList offensive;
+    skillList defensive;
     classAddress Class;
 };
 
