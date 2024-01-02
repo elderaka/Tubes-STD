@@ -76,9 +76,18 @@ int nextLevel(player Player){
 }
 void levelUp(player &Player){
     int bonusStat = 2*getClassTier(CT,Player.Class);
-    cout << "Level Up!" << endl;
+    cout << "Tier Up!" << endl;
     cout << "Sekarang kamu level " << Player.level + 1 << endl;
     cout << "Exp berikutnya: " << nextLevel(Player) << endl;
+    cout << "Pilih Tier baru kamu (1-2): " <<endl;
+    showClassByParent(findClass(CT,Player.Class));
+    int choice;
+    do{
+        cin >> choice;
+        cout << "Pilihan salah. Pilih Tier baru kamu (1-2): "
+    }while(choice > 2 || choice < 1)
+    cout << "Pilih Defense Skill kamu (1-2): " <<endl;
+
     while(bonusStat > 0){
         cout << "Pilih Status yang ingin kamu tambahkan" << endl;
         cout << "(Kamu mendapatkan tambahan setengah poin sesuai dengan Class kamu)" << endl;

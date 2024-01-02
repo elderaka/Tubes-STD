@@ -33,7 +33,8 @@ struct elementPlayer{
     playerAddress prev;
     playerAddress next;
     inventoryList inventory;
-    skillList skill;
+    skillList offense;
+    skillList defense;
     classAddress Class;
 };
 
@@ -51,6 +52,6 @@ playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
 void showPlayerInfo(player Player);
 int nextLevel(player Player);
-void levelUp(player Player);
+void tierUp(player Player);
 
 #endif // PLAYER_H_INCLUDED

@@ -121,8 +121,8 @@ void showClass(string prefix,classTree T, bool isLeft){
 
         cout << (isLeft ? "|--" : "|__" );
         cout << info(T).name << endl;
-        showClass(prefix + (isLeft ? "|   " : "    "), left(T), true);
-        showClass(prefix + (isLeft ? "|   " : "    "), right(T), false);
+        showClass(prefix + (isLeft ? "|    " : "     "), left(T), true);
+        showClass(prefix + (isLeft ? "|    " : "     "), right(T), false);
     }
 }
 

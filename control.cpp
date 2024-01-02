@@ -758,6 +758,8 @@ void initiateObjects(objectList &OL){
 
 }
 void initiateSkillAndClass(skillTree &ST, classTree &CT){
+    //TODO: CHANGE THE FUCKIN THINGS INTO BST, WHAT ARE THE SKILL ID USED FOR IF WE DON"T USE IT
+
     createSkillTree(ST);
     createClassTree(CT);
     skill Skill;
