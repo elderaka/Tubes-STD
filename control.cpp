@@ -1360,7 +1360,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    left(left(left(right(ST)))) = adrSkill;
+    right(left(left(right(ST)))) = adrSkill;
 
     //Defensive-defaultDefence buff Based ult
       Skill.id = 21;
@@ -1394,7 +1394,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.isMultiple = false;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
-    left(left(right(right(ST)))) = adrSkill;
+    right(left(right(right(ST)))) = adrSkill;
 
     //Defensive-offence Based ult
       Skill.id = 23;
@@ -1448,8 +1448,13 @@ void initiatePlayer(playerList &PL){
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
     changePlayerClass(Player.name, "Pawn");
+    changePlayerClass(Player.name, "Vagabond");
     changePlayerClass(Player.name, "Ronin");
     changePlayerClass(Player.name, "Sun Hashira");
+    addSkillToPlayer(PL,ST,Player.name,info(right(ST)).name);
+    addSkillToPlayer(PL,ST,Player.name,info(right(right(ST))).name);
+    addSkillToPlayer(PL,ST,Player.name,info(left(right(right(ST)))).name);
+    addSkillToPlayer(PL,ST,Player.name,info(right(left(right(right(ST))))).name);
 
     Player.name = "Jetstream";
     Player.defaultAttack = 10;
@@ -1465,6 +1470,13 @@ void initiatePlayer(playerList &PL){
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
+    changePlayerClass(Player.name, "Pawn");
+    changePlayerClass(Player.name, "Squire");
+    changePlayerClass(Player.name, "Royale Knight");
+
+    addSkillToPlayer(PL,ST,Player.name,info(right(ST)).name);
+    addSkillToPlayer(PL,ST,Player.name,info(left(right(ST))).name);
+    addSkillToPlayer(PL,ST,Player.name,info(right(left(right(ST)))).name);
 
 
 }

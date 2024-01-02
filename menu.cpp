@@ -1581,7 +1581,7 @@ void checkMenu(){
                     pushMenu(Menu, 19);
                     break;
                 case 4:
-                    pushMenu(Menu, 15);
+                    pushMenu(Menu, 5);
                     break;
                 default:
                     cout << "Wrong Number. Select your choice (1-4): ";
@@ -1625,7 +1625,7 @@ void checkMenu(){
                     pushMenu(Menu, 13);
                     break;
                 case 5:
-                    pushMenu(Menu, 15);
+                    pushMenu(Menu, 5);
                     break;
                 default:
                     cout << "Wrong Number. Select your choice (1-9): ";
@@ -1653,7 +1653,7 @@ void checkMenu(){
                     pushMenu(Menu, 21);
                     break;
                 case 4:
-                    pushMenu(Menu, 15);
+                    pushMenu(Menu, 5);
                     break;
                 default:
                     cout << "Wrong Number. Select your choice (1-5): ";
@@ -1685,7 +1685,7 @@ void checkMenu(){
                     pushMenu(Menu, 31);
                     break;
                 case 5:
-                    pushMenu(Menu, 15);
+                    pushMenu(Menu, 5);
                     break;
                 default:
                     cout << "Wrong Number. Select your choice (1-9): ";
@@ -1778,6 +1778,20 @@ void findPlayerData(){
                 while(prec != NULL){
                     cout << info(skill(prec)).name;
                     if(prec != last(offensive(findplayer))){
+                        cout << ", ";
+                    }
+                    prec = next(prec);
+                }
+            }
+            cout << "]" << endl;
+            cout <<"Defensive Skill :" << "[";
+            if(first(defensive(findplayer)) == NULL){
+                cout << "None!";
+            }else{
+                sListAddress prec = first(defensive(findplayer));
+                while(prec != NULL){
+                    cout << info(skill(prec)).name;
+                    if(prec != last(defensive(findplayer))){
                         cout << ", ";
                     }
                     prec = next(prec);

@@ -86,7 +86,6 @@ int nextLevel(player Player){
     return floor(4*(pow(Player.level,3))/5);
 }
 void tierUp(player &Player){
-    int bonusStat = 2*getClassTier(CT,Player.Class);
     cout << "Tier Up!" << endl;
     cout << "Sekarang kamu level " << Player.level + 1 << endl;
     cout << "Exp berikutnya: " << nextLevel(Player) << endl;
