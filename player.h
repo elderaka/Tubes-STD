@@ -20,7 +20,7 @@ struct player{
     //int position[2] = [0,0];
     float health = 100; //100
     float currentHealth;
-    int coin = 100;
+    int coin = 0;
     int stamina = 50; //50
     int currentStamina;
     int exp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)

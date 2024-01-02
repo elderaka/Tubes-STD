@@ -347,10 +347,10 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.gold += addGold(mc(PL),20)
+                MC.coin += addGold(mc(PL),20);
                 //[Walk Away and 10 gold piece];
             }else if (choice == "2"){
-                MC.gold += addGold(mc(PL),20)
+                MC.coin += addGold(mc(PL),20);
                 MC.currentHealth -= 0.25 * MC.currentHealth;
                 //[Lose 1/2 total health, obtain 30 gold piece]
             }else if (choice == "3"){
@@ -424,7 +424,7 @@ void encounter(int id){
                 addObjectToPlayer(PL, OL, MC.name, "Jim Hall's Chestplate");
             }else if (choice == "3"){
                 cout << "I guess this is it for us.. sorry brother I've failed you";
-                MC.gold += addGold(mc(PL),10)
+                MC.coin += addGold(mc(PL),10);
             }else{
                 cout << "you cant do that\n";
             }
@@ -1071,7 +1071,7 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
                 fight(enemies);
                 addObjectToPlayer(PL, OL, MC.name, "Regal Specter Crown");
-                MC.gold += addGold(mc(PL),30);
+                MC.coin += addGold(mc(PL),30);
                 // [Enter a challenging battle with the Skeletal King [HELL]. If victorious, gain (helmt,"Regal Specter Crown" +20 	attack and +25 defence) and 30 gold pieces.]
             cout << "'Within a Millenia of waiting, a worthy foe comes and replace me in my throne...' *The giant skeletal figures becomes a spec of dust*";
             }else{
@@ -1101,8 +1101,8 @@ void encounter(int id){
                    MC.exp += 1000;
                     //[1000 xp]
                 }else if (choice == "2"){
-                   MC.exp += addExp(mc(PL),1000)
-                   MC.gold += addGold(mc(PL),30)
+                   MC.exp += addExp(mc(PL),1000);
+                   MC.coin += addGold(mc(PL),30);
                     //[1000 xp]
                     //[30 gold piece]
                 }else{
