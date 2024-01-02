@@ -9,10 +9,15 @@ struct player{
     string buffs; //current applied buffs -1 tiap turn
     string Class; //display current class
     bool pickArtifact = false;
+    int artifact;
     bool isDead = false;
+    string weapon;
+    string helmet;
+    string chestplate;
+    string legplate;
+    string charm;
     bool isFinished = false;
     //int position[2] = [0,0];
-    int artifact;
     float health = 100; //100
     float currentHealth;
     int coin = 100;

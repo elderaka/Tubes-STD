@@ -59,16 +59,27 @@ void addSkillToPlayer(playerList &PL, skillTree ST, string player, string skill)
     if(adrPlayer != NULL && adrSkill != NULL){
         sListAddress R = new elementSkill;
         R = createNewSkillElement(adrSkill);
-        insertLastSkill(skill(adrPlayer),R);
+        if(info(adrSkill).id < 13){
+            insertLastSkill(offensive(adrPlayer),R);
+        }else{
+            insertLastSkill(defensive(adrPlayer),R);
+
+        }
+
     }
 }
 void removeSkillFromPlayer(playerList &PL, skillList &SL, string player, string skill){
     playerAddress adrPlayer = findPlayer(PL,player);
+    skillAddress adrSkill = findskill(ST,skill);
     if(adrPlayer != NULL){
-        skillList ski = skill(adrPlayer);
+        skillList ski;
+        if(info(adrSkill).id < 13){
+            ski = offensive(adrPlayer);
+        }else{
+            ski = defensive(adrPlayer);
+
+        }
         removeSkill(ski,ST,skill);
-    }else{
-        cout << "Player not found" << endl;
     }
 }
 void changePlayerClass(string pl, string Class){

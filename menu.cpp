@@ -1277,18 +1277,18 @@ void fight(enemyList enemies){
                         }
                     }while(!findEntity(eL,target) && notDied);
                 }else if(choice == 2){
-                    showSkill(skill(mc(PL)));
+                    showSkill(offensive(mc(PL)));
                     cout << "Select your skills: ";
                     int skillid;
                     do{
                         cin >> skillid;
-                        if(!findSkillinPlayer(skillid,skill(mc(PL)))){
+                        if(!findSkillinPlayer(skillid,offensive(mc(PL)))){
                             cout << "Skill invalid. Select your skills:";
                         }else{
                             int target;
                             bool notDied = true;
                             bool hit = false;
-                            if(info(skill(findSkillinPlayer(skillid,skill(mc(PL))))).type == "Offensive"){
+                            if(info(skill(findSkillinPlayer(skillid,offensive(mc(PL))))).type == "Offensive"){
                                 cout << "Enemies: "<< endl;
                                 entityAddress adrEntity = next(first(eL));
                                 while(adrEntity != NULL){
@@ -1330,7 +1330,7 @@ void fight(enemyList enemies){
                                         }
                                         //TODO: The fuck is this code
                                         //My fella, i'm askin the same
-                                        skill sukiru = info(skill(findSkillinPlayer(skillid,skill(mc(PL)))));
+                                        skill sukiru = info(skill(findSkillinPlayer(skillid,offensive(mc(PL)))));
                                         cout << MC.name + " dealt " << (sukiru.dmg + MC.defaultAttack) * attackMultiplier << " damage!\n";
                                         info(findEntity(eL,target)).Enemy.currentHealth -= (sukiru.dmg + MC.defaultAttack) * attackMultiplier;
                                         cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << info(findEntity(eL,target)).Enemy.currentHealth << " HP left!\n";
@@ -1352,7 +1352,7 @@ void fight(enemyList enemies){
                                 cout << "Fuck my life" << endl;
                             }
                         }
-                    }while(!findSkillinPlayer(skillid,skill(mc(PL))));
+                    }while(!findSkillinPlayer(skillid,offensive(mc(PL))));
                     getch();
                 }else if(choice == 3){
 
@@ -1677,28 +1677,28 @@ void findPlayerData(){
         getline(cin,name);
         if(findPlayer(PL,name)){
             playerAddress findplayer = findPlayer(PL,name);
-            cout <<"Name: " <<  info(findplayer).name << endl;
-            cout <<"Class: " <<  info(findplayer).Class << endl;
-            cout <<"Level: " <<  info(findplayer).level << endl;
-            cout <<"Current Exp: " <<  info(findplayer).exp << endl;
-            cout <<"Coin: " <<  info(findplayer).coin << endl;
+            cout <<"Name            : " <<  info(findplayer).name << endl;
+            cout <<"Class           : " <<  info(findplayer).Class << endl;
+            cout <<"Level           : " <<  info(findplayer).level << endl;
+            cout <<"Current Exp     : " <<  info(findplayer).exp << endl;
+            cout <<"Coin            : " <<  info(findplayer).coin << endl;
             cout <<"--------------------------------" << endl;
             cout <<"             Stats" << endl;
             cout <<"--------------------------------" << endl;
-            cout <<"Health: " <<  info(findplayer).currentHealth << "/" <<info(findplayer).health << endl;
-            cout <<"Stamina: " <<  info(findplayer).currentStamina << "/" <<info(findplayer).stamina << endl;
-            cout <<"Attack: " <<  info(findplayer).defaultAttack << endl;
-            cout <<"Defence: " <<  info(findplayer).defaultDefence << endl;
-            cout <<"Speed: " <<  info(findplayer).speed << endl;
-            cout <<"Critical Chance: " <<  info(findplayer).critChance << endl;
-            cout <<"Skill:" << "[";
-            if(first(skill(findplayer)) == NULL){
+            cout <<"Health          : " <<  info(findplayer).currentHealth << "/" <<info(findplayer).health << endl;
+            cout <<"Stamina         : " <<  info(findplayer).currentStamina << "/" <<info(findplayer).stamina << endl;
+            cout <<"Attack          : " <<  info(findplayer).defaultAttack << endl;
+            cout <<"Defence         : " <<  info(findplayer).defaultDefence << endl;
+            cout <<"Speed           : " <<  info(findplayer).speed << endl;
+            cout <<"Critical Chance : " <<  info(findplayer).critChance << endl;
+            cout <<"Offensive Skill :" << "[";
+            if(first(offensive(findplayer)) == NULL){
                 cout << "None!";
             }else{
-                sListAddress prec = first(skill(findplayer));
+                sListAddress prec = first(offensive(findplayer));
                 while(prec != NULL){
                     cout << info(skill(prec)).name;
-                    if(prec != last(skill(findplayer))){
+                    if(prec != last(offensive(findplayer))){
                         cout << ", ";
                     }
                     prec = next(prec);
@@ -1826,7 +1826,7 @@ void showAllPlayerClass(){
     while(prec != NULL){
         cout << i << "." << info(prec).name << endl;
         cout << "[";
-        showSkill(skill(prec));
+        showSkill(offensive(prec));
         cout << "]\n";
         prec = next(prec);
         i++;

@@ -20,6 +20,7 @@
 #define object(P) P->object
 #define offensive(P) P->offensive
 #define defensive(P) P->defensive
+#define skill(P) P->skill
 #define Class(P) P->Class
 #define mc(P) P.last
 #define allocate(p) p = new elmtList

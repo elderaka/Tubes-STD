@@ -16,8 +16,9 @@ playerAddress createNewPlayerElement(player x){
 }
 void addPlayer(playerList &L,playerAddress p){
     createInventoryList(inventory(p));
-    createSkillList(skill(p));
-    insertLastSkill(skill(p),createNewSkillElement(ST));
+    createSkillList(offensive(p));
+    createSkillList(defensive(p));
+    insertLastSkill(offensive(p),createNewSkillElement(ST));
     if (isPlayerEmpty(L)){
         first(L) = p;
         last(L) = p;
@@ -84,11 +85,28 @@ void tierUp(player &Player){
     int choice;
     do{
         cin >> choice;
-        cout << "Pilihan salah. Pilih Tier baru kamu (1-2): "
-    }while(choice > 2 || choice < 1)
-    cout << "Pilih Defense Skill kamu (1-2): " <<endl;
-    showSkillByParent()
+        if(choice == 1){
+            changePlayerClass(MC.name,info(left(findClass(CT,MC.Class))).name);
+        }else if(choice == 2){
+            changePlayerClass(MC.name,info(right(findClass(CT,MC.Class))).name);
+        }else{
+            cout << "Pilihan salah. Pilih Tier baru kamu (1-2): ";
+        }
+    }while(choice > 2 || choice < 1);
 
+    cout << "Pilih Defense Skill kamu (1-2): " <<endl;
+    //WHAT THE FUCK IS THIS
+    showSkillByParent(skill(last(defensive(mc(PL)))));
+    do{
+        cin >> choice;
+        if(choice == 1){
+            addSkillToPlayer(PL,ST,MC.name,info(left(findskill(ST,info(skill(last(defensive(mc(PL))))).name))).name );
+        }else if(choice == 2){
+            addSkillToPlayer(PL,ST,MC.name,info(right(findskill(ST,info(skill(last(defensive(mc(PL))))).name))).name );
+        }else{
+            cout << "Pilihan salah. Pilih Defense Skill baru kamu (1-2): ";
+        }
+    }while(choice > 2 || choice < 1);
 }
 void showPlayerInfo(player Player){
     cout << "==============================" << endl;
