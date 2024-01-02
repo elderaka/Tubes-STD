@@ -237,7 +237,7 @@ void initiateObjects(objectList &OL){
 //Usable
     object Object;
     Object.name = "Provision";
-    Object.desc = "[1/3 heal]. \n Long lasting food, great for long travels";
+    Object.desc = "[1/3 heal]. \nLong lasting food, great for long travels.";
     Object.isArtefact = false;
     Object.isConsumable = true;
     Object.isEquipable = false;
@@ -249,7 +249,7 @@ void initiateObjects(objectList &OL){
     addObject(OL,createNewObjectElement(Object));
 
     Object.name = "Health Potion";
-    Object.desc = "[2/3 heal]. \n A regular and reliable health potion, trusted by many travelers alike";
+    Object.desc = "[2/3 heal]. \nA regular and reliable health potion, trusted by many travelers alike.";
     Object.isArtefact = false;
     Object.isConsumable = true;
     Object.isEquipable = false;
@@ -261,7 +261,7 @@ void initiateObjects(objectList &OL){
     addObject(OL,createNewObjectElement(Object));
 
     Object.name = "L. Health Potion";
-    Object.desc = "[MAX heal]. \n Not all traveler can carry this thing inside their pouch.";
+    Object.desc = "[MAX heal]. \nNot all traveler can carry this thing inside their pouch.";
     Object.isArtefact = false;
     Object.isConsumable = true;
     Object.isEquipable = false;
@@ -934,7 +934,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.heal = Player.health + 5 ;
     Skill.buff[0] = Player.defaultAttack + 5 ;
     Skill.duration = 3;
-    Skill.type = "Support";
+    Skill.type = "Buff";
     Skill.isMultiple = false;
     cls.bonusAttack = 5;
     cls.bonusDefense = 3;
@@ -1497,9 +1497,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Infected Slash";
     Enemy.skillName = "Originium Healing";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal =  0.5;
-    Enemy.skillStatus = "none";
+    Enemy.skillHeal = 75;
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Reunion's Garb";
     Enemy.dropChance = 1;
@@ -1518,9 +1521,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Hot Pitchfork";
     Enemy.skillName = "Tricked";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.50;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.5;
     Enemy.itemDrop = "Yin Charm";
     Enemy.dropChance = 1;
@@ -1537,10 +1543,13 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Cold Pitchfork";
     Enemy.skillName = "Treat";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 2;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0;
-    Enemy.skillStatus = "none";
-    Enemy.skillChance = 0.5;
+    Enemy.skillHeal = 40;
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Yang Charm";
     Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
@@ -1549,7 +1558,7 @@ void initiateEnemy(enemyList &EL){
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Dari House of Nildis (Occurance)
     Enemy.name = "One-Eyed 'Kent'"; //hard dif
-    Enemy.health = 260; //+80
+    Enemy.health = 270; //+80
     Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 65; //+50
     Enemy.defaultDefence = 25; // +10
@@ -1559,9 +1568,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Blade Arm Chop";
     Enemy.skillName = "Pinball Cannon";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.5;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.25;
     Enemy.itemDrop = "Gambler's Brooch";
     Enemy.dropChance = 1;
@@ -1578,9 +1590,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Flash Slash";
     Enemy.skillName = "Mini Bomb";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.25;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "Stun";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "none";
     Enemy.dropChance = 0;
@@ -1599,9 +1614,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Brick Break";
     Enemy.skillName = "Defensive Stance"; //nnt dia ngasih defaultDefence tambahan ke tmn smua selama 2 turn
     Enemy.skillDamaging = false;
-    Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0.5; //defaultDefence gain
-    Enemy.skillStatus = "none";
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 2;
+    Enemy.skillMultiplier = 32;
+    Enemy.skillHeal = 0; //defaultDefence gain
+    Enemy.skillStatus = "Buff";
+    Enemy.skillBuff = "defence";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Lead Splunking Helmet";
     Enemy.dropChance = 1;
@@ -1618,12 +1636,15 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Shovel Smash";
     Enemy.skillName = "Excavate";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.5;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
-    Enemy.skillChance = 0.50;
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.30;
     Enemy.itemDrop = "none";
-    Enemy.dropChance = 0.000001;
+    Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1638,9 +1659,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Lunge";
     Enemy.skillName = "Infestation";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.25; //ovt dmg 2 turns
     Enemy.skillHeal = 0;
-    Enemy.skillStatus = "Bleed";
+    Enemy.skillStatus = "bleed";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "none"; //tergantung choice drop
     Enemy.dropChance = 0;
@@ -1660,9 +1684,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Trample";
     Enemy.skillName = "Guns Blazing";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 2;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "10 Coins";
     Enemy.dropChance = 1;
@@ -1681,11 +1708,14 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Scratch";
     Enemy.skillName = "Sharp Fang";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 2;
     Enemy.skillMultiplier = 0.5; // bleed for 2 turns
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "Bleed";
-    Enemy.skillChance = 0.75;
-    Enemy.itemDrop = "5 Coins";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none";
     Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
@@ -1698,12 +1728,15 @@ void initiateEnemy(enemyList &EL){
     Enemy.xp = 600;
     Enemy.coin = 20;
     Enemy.basicName = "Chomp";
-    Enemy.skillName = "Mutated Bite";
+    Enemy.skillName = "Envigorating Howl";
     Enemy.skillDamaging = false;
-    Enemy.skillMultiplier = 1;// Panggil young beaast 1
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 2;
+    Enemy.skillMultiplier = 0.5;
     Enemy.skillHeal = 0;
-    Enemy.skillStatus = "bleed";
-    Enemy.skillChance = 0.5;
+    Enemy.skillStatus = "Buff";
+    Enemy.skillBuff = "attack";
+    Enemy.skillChance = 0.30;
     Enemy.itemDrop = "none";
     Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
@@ -1721,9 +1754,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Disciplined Whip";
     Enemy.skillName = "Team Building";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 2;
     Enemy.skillMultiplier = 0;
     Enemy.skillHeal = 0.5; //dia buff semua team defaultAttack 0.5 selama 2 turns
     Enemy.skillStatus = "Buff";
+    Enemy.skillBuff = "attack";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Ringmaster's Pants";
     Enemy.dropChance = 1;
@@ -1740,12 +1776,15 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Slam";
     Enemy.skillName = "Head Lock";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 2;
     Enemy.skillMultiplier = 1.5;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
-    Enemy.skillChance = 0.35;
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.20;
     Enemy.itemDrop = "none";
-    Enemy.dropChance = 1;
+    Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1761,11 +1800,14 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Shoulder Slam";
     Enemy.skillName = "Ready for Duty";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 2;
     Enemy.skillMultiplier = 0;
-    Enemy.skillHeal = 0.25; // 0.25 defaultAttack n defaultDefence 2 turn
-    Enemy.skillStatus = "buff";
+    Enemy.skillHeal = 0.5; // 0.25 defaultAttack n defaultDefence 2 turn
+    Enemy.skillStatus = "Buff";
+    Enemy.skillBuff = "defence";
     Enemy.skillChance = 0.35;
-    Enemy.itemDrop = "defaultDefence Potion";
+    Enemy.itemDrop = "Defence Potion";
     Enemy.dropChance = 0.75;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
@@ -1780,11 +1822,14 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Slash";
     Enemy.skillName = "Sticky Blade!";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 0.5; //leech effect 2 turn
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "Leech";
-    Enemy.skillChance = 0.5;
-    Enemy.itemDrop = "defaultDefence Potion";
+    Enemy.skillBuff = "defence";
+    Enemy.skillChance = 0.40;
+    Enemy.itemDrop = "Attack Potion";
     Enemy.dropChance = 0.75;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
@@ -1801,9 +1846,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Bite";
     Enemy.skillName = "Devour";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 2; //w rencana instant death tp nvm lol
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Runic Chestplate";
     Enemy.dropChance = 0.5; //50/50 bjir
@@ -1818,11 +1866,14 @@ void initiateEnemy(enemyList &EL){
     Enemy.xp = 600;
     Enemy.coin = 20;
     Enemy.basicName = "Bite";
-    Enemy.skillName = "Devour";
+    Enemy.skillName = "Blinding Light";
     Enemy.skillDamaging = true;
-    Enemy.skillMultiplier = 2; //w rencana instant death tp nvm lol
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
+    Enemy.skillMultiplier = 1; //w rencana instant death tp nvm lol
     Enemy.skillHeal = 0;
-    Enemy.skillStatus = "none";
+    Enemy.skillStatus = "Stun";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "Runic Legging";
     Enemy.dropChance = 0.5; //50/50 bjir
@@ -1842,9 +1893,12 @@ void initiateEnemy(enemyList &EL){
     Enemy.basicName = "Screeching Song";
     Enemy.skillName = "Healing Song";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 0;
     Enemy.skillHeal = 0.30; //Heal ALL
-    Enemy.skillStatus = "none";
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.35;
     Enemy.itemDrop = "none";
     Enemy.dropChance = 0;
@@ -1862,9 +1916,12 @@ Enemy.name = "Skeletal King";
     Enemy.basicName = "Bludgeon Smash";
     Enemy.skillName = "Undead Healing";
     Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 0; //Spawn/'revive' 2 Skelly
     Enemy.skillHeal = 1;
-    Enemy.skillStatus = "";
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.20;
     Enemy.itemDrop = "none"; //tergantung choice drop
     Enemy.dropChance = 0;
@@ -1880,9 +1937,12 @@ Enemy.name = "Skeletal King";
     Enemy.basicName = "Punch";
     Enemy.skillName = "Decayed Blows";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 1.25;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.25;
     Enemy.itemDrop = "none";
     Enemy.dropChance = 0;
@@ -1891,7 +1951,7 @@ Enemy.name = "Skeletal King";
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//Dari Mad Jester(Boss Battle)
     Enemy.name = "Jevil";
-    Enemy.health = 700; //+50
+    Enemy.health = 670; //+50
     Enemy.defaultAttack = 135; //+120
     Enemy.defaultDefence = 45; // +30
     Enemy.speed = 70; // +60
@@ -1900,13 +1960,148 @@ Enemy.name = "Skeletal King";
     Enemy.basicName = "'Heart defaultAttack'";
     Enemy.skillName = "Chaos Bomb";
     Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
     Enemy.skillMultiplier = 2.2;
     Enemy.skillHeal = 0;
     Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
     Enemy.skillChance = 0.25;
     Enemy.itemDrop = "none"; //tergantung choice drop
     Enemy.dropChance = 0;
     addEnemy(EL,createNewEnemyElement(Enemy));
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//Dari Fate's End(Final Battle)
+    Enemy.name = "The Shrouded One, Ka'as";
+    Enemy.health = 500;
+    Enemy.defaultAttack = 105;
+    Enemy.defaultDefence = 45;
+    Enemy.speed = 40;
+    Enemy.xp = 2000;
+    Enemy.coin = 30;
+    Enemy.basicName = "Conjure Fireball";
+    Enemy.skillName = "Ancient Chant";
+    Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
+    Enemy.skillMultiplier = 1.2;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    //ketika ad artifact
+    Enemy.name = "The True Master of Chaos, Ka'as";
+    Enemy.health = 1500; //+50
+    Enemy.defaultAttack = 235; //+120
+    Enemy.defaultDefence = 145; // +30
+    Enemy.speed = 70; // +60
+    Enemy.xp = 1200;
+    Enemy.coin = 30;
+    Enemy.basicName = "Chaos Blast";
+    Enemy.skillName = "Harness Artifact";
+    Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 2;
+    Enemy.skillMultiplier = 1;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Pillars of Preserverance";
+    Enemy.health = 150; //+50
+    Enemy.defaultAttack = 0; //+120
+    Enemy.defaultDefence = 100; // +30
+    Enemy.speed = 50; // +60
+    Enemy.xp = 700;
+    Enemy.coin = 30;
+    Enemy.basicName = "Harnessing Power";
+    Enemy.skillName = "Power of Preserverance";
+    Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 2;
+    Enemy.skillMultiplier = 1;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "buff";
+    Enemy.skillBuff = "defence";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+
+    Enemy.name = "Pillars of Courage";
+    Enemy.health = 150; //+50
+    Enemy.defaultAttack = 100; //+120
+    Enemy.defaultDefence = 0; // +30
+    Enemy.speed = 50; // +60
+    Enemy.xp = 700;
+    Enemy.coin = 30;
+    Enemy.basicName = "Harnessing Power";
+    Enemy.skillName = "Power of Courage";
+    Enemy.skillDamaging = true;
+    Enemy.isMultiple = false;
+    Enemy.skillDuration = 1;
+    Enemy.skillMultiplier = 1;
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "none";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none"; //tergantung choice drop
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Pillars of Altruistic";
+    Enemy.health = 150; //+50
+    Enemy.defaultAttack = 0; //+120
+    Enemy.defaultDefence = 0; // +30
+    Enemy.speed = 50; // +60
+    Enemy.xp = 700;
+    Enemy.coin = 30;
+    Enemy.basicName = "Harnessing Power";
+    Enemy.skillName = "Power of Altruistic";
+    Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 2;
+    Enemy.skillMultiplier = 0;
+    Enemy.skillHeal = 1; //kek 150 buat semua
+    Enemy.skillStatus = "Heal";
+    Enemy.skillBuff = "none";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+    Enemy.name = "Pillars of Determination";
+    Enemy.health = 150; //+50
+    Enemy.defaultAttack = 100; //+120
+    Enemy.defaultDefence = 0; // +30
+    Enemy.speed = 50; // +60
+    Enemy.xp = 700;
+    Enemy.coin = 30;
+    Enemy.basicName = "Harnessing Power";
+    Enemy.skillName = "Power of Determination";
+    Enemy.skillDamaging = false;
+    Enemy.isMultiple = true;
+    Enemy.skillDuration = 1;
+    Enemy.skillMultiplier = 1; //kek buff 100 attack buat 1 turn
+    Enemy.skillHeal = 0;
+    Enemy.skillStatus = "Buff";
+    Enemy.skillBuff = "attack";
+    Enemy.skillChance = 0.25;
+    Enemy.itemDrop = "none";
+    Enemy.dropChance = 0;
+    addEnemy(EL,createNewEnemyElement(Enemy));
+
+
 
 
 }
