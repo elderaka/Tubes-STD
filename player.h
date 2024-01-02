@@ -9,10 +9,15 @@ struct player{
     string buffs; //current applied buffs -1 tiap turn
     string Class; //display current class
     bool pickArtifact = false;
+    int artifact;
     bool isDead = false;
+    string weapon;
+    string helmet;
+    string chestplate;
+    string legplate;
+    string charm;
     bool isFinished = false;
     //int position[2] = [0,0];
-    int artifact;
     float health = 100; //100
     float currentHealth;
     int coin = 100;
@@ -33,7 +38,8 @@ struct elementPlayer{
     playerAddress prev;
     playerAddress next;
     inventoryList inventory;
-    skillList skill;
+    skillList offensive;
+    skillList defensive;
     classAddress Class;
 };
 
@@ -53,6 +59,6 @@ playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
 void showPlayerInfo(player Player);
 int nextLevel(player Player);
-void levelUp(player Player);
+void tierUp(player Player);
 
 #endif // PLAYER_H_INCLUDED

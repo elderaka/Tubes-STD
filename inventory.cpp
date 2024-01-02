@@ -35,7 +35,7 @@ void removeObject(inventoryList &IL,objectList &OL,string name){
         if(Q == first(IL)){
             first(IL) = next(Q);
         }else if (Q == last(IL)){
-            last(Q) = prev(Q);
+            last(IL) = prev(Q);
         }else{
             next(prec) = next(Q);
             if(next(prec) != NULL){
