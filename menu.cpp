@@ -911,7 +911,6 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
                 fight(enemies);
-                MC.coin += addGold(mc(PL),20);
             }else if (choice == "2"){
                 cout << "The Creature growls with frenzied eyes";
                 enemyList enemies;
@@ -945,20 +944,19 @@ void encounter(int id){
             createEnemyList(enemies);
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Blue Mimic")))));
             fight(enemies);
-            MC.coin += addGold(mc(PL),20);
+            MC.coin += 10;
             }else if (choice == "2"){
             enemyList enemies;
             createEnemyList(enemies);
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Red Mimic")))));
             fight(enemies);
-            MC.coin += addGold(mc(PL),20);
+            MC.coin += 15;
             }else if (choice == "3"){
             enemyList enemies;
             createEnemyList(enemies);
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Blue Mimic")))));
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Red Mimic")))));
             fight(enemies);
-            MC.coin += addGold(mc(PL),40);
             }else if (choice == "4"){
                 cout << "You ran away!";
             }else{
@@ -1099,7 +1097,7 @@ void encounter(int id){
             cin >> choice;
             if(MC.artifact == 1){ //ketika ada
                 if (choice == "1"){
-                   // obtain fissued ver tergantung yg pilih
+                   // [Obtain a 'Fissured [Artifact name]', (5 * char lv) -health but (10*char lv) attack]
                    MC.exp += 1000;
                     //[1000 xp]
                 }else if (choice == "2"){

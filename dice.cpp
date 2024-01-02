@@ -1,8 +1,5 @@
 #include "dice.h"
-#include <cmath>
-#include <string>
-#include <iomanip>
-#include <time.h>
+
 int roll(){
     srand(time(0));
     return rand() % 20;

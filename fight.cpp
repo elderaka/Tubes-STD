@@ -1,5 +1,5 @@
 #include "fight.h"
-#include "dice.h"
+
 FQueue fqueue;
 void createFQueue(FQueue &S){
     head(S) = NULL;

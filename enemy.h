@@ -3,20 +3,17 @@
 #include "DLL.h"
 struct enemy{
     string name;
-    float health; //100
+    float health = 100; //100
     float currentHealth;
-    int xp ; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
-    int coin ;
-    bool isMultiple;
-    float skillDuration;
-    float defaultAttack ; // 25, buat multiplier ama skill
-    float defaultDefence ; // 25, buat multiplier kuranging dmg dr musuh terima
-    float speed ;
+    int xp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
+    int coin = 0;
+    float defaultAttack = 10; // 25, buat multiplier ama skill
+    float defaultDefence = 10; // 25, buat multiplier kuranging dmg dr musuh terima
+    float speed = 10;
     string basicName;
     string skillName;
     bool skillDamaging;
     float skillMultiplier;
-    string skillBuff;
     int skillHeal;
     string skillStatus;
     float skillChance;

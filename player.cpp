@@ -87,7 +87,7 @@ int nextLevel(player Player){
 }
 void tierUp(player &Player){
     cout << "Tier Up!" << endl;
-    cout << "Sekarang kamu Tier " << Player.level + 1 << endl;
+    cout << "Sekarang kamu level " << Player.level + 1 << endl;
     cout << "Exp berikutnya: " << nextLevel(Player) << endl;
     cout << "Pilih Tier baru kamu (1-2): " <<endl;
     showClassByParent(findClass(CT,Player.Class));
@@ -105,7 +105,6 @@ void tierUp(player &Player){
 
     cout << "Pilih Defense Skill kamu (1-2): " <<endl;
     //WHAT THE FUCK IS THIS
-    //Damn my bad G
     showSkillByParent(skill(last(defensive(mc(PL)))));
     do{
         cin >> choice;
@@ -131,8 +130,8 @@ void showPlayerInfo(player Player){
     cout << "Attack: " << Player.defaultAttack << "(+" << info(findClass(CT, Player.Class)).bonusAttack << ")" <<endl;
     cout << "Defense: " << Player.defaultDefence << "(+" << info(findClass(CT, Player.Class)).bonusDefense << ")" << endl;
     cout << "Speed: " << Player.speed << "(+" << info(findClass(CT, Player.Class)).bonusSpeed << ")" << endl;
-    cout << "Tier: " << Player.level << endl;
+    cout << "Level: " << Player.level << endl;
     cout << "Coin: " << Player.coin << endl;
     cout << "Experience Points: " << Player.exp << endl;
-    cout << "Next Tier at: " << Player.nextLevel << " XP" << endl;
+    cout << "Next Level at: " << Player.nextLevel << " XP" << endl;
 }
