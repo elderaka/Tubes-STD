@@ -53,6 +53,16 @@ void deletePlayer(playerList &L,string name){
     }
 
 }
+
+int addGold(playerAddress Player, int gold){
+	return findObjectinInventory(inventory(mc(PL)),"Boon of Boons") != NULL ? gold * 1.15 : gold;
+}
+
+int addExp(playerAddress Player, int exp){
+	return findObjectinInventory(inventory(mc(PL)),"Boon of Boons") != NULL ? exp * 1.15 : exp;
+}
+
+
 playerAddress findPlayer(playerList L, string name){
     playerAddress prec = first(L);
     while(prec != NULL){

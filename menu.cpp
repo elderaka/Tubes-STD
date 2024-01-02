@@ -218,7 +218,7 @@ void encounter(int id){
         print(x,3,false);
         x[4] = "1. Rent A Room  [Replenish your health, cost 5 gold piece]\n";
         print(x,4,false);
-        x[5] = "2. A Manual scroll from distant lands [Upgrade to the next class of their choosing + skills, cost 60 gold piece]    \n	3. Spectral Cloak [+20 Defence, cost 20 gold 	piece]\n 3. Helm of Clairvoyant Insight [+20 health, cost 20 gold piece] \n	4. Legplates of Ethereal Stride [+ 20 speed, cost 20 gold piece] \n   5. Sword of Phantasmal Flames 	[+30 attack and 5  speed, cost 20 gold piece] \n 6. Healing Potions [+ heal (33 * level), cost 5 gold piece] \n  7. Defence Potions [+ 30 defence for 2 turns, cost 5 gold piece] \n  	8. Attack Potions [+ 30 attack for 2 turns, cost 5 gold piece] \n  9. Speed Potions [+ 30 Speed boost for 2 turns, cost 5 gold piece] \n  10. Provisions [ + heal (20 * level), cost 	3 gold piece] \n  11. Entropic Die [cahrms, tiap start battle ad chance +20 attack, + 20 defence, + 20 speed, +25 health for 2 turns, tiap buff jadi hanya 1 dpt dgn 1/25 chance, 	cost 30 gold piece] \n  12. Amulet of Lifespring [charms, at the start of the battle (+ heal (10 * level) for 2 turns), cost 20 gold piece]  \n  13. Ring of Attunement [charms,  +	10 attack, +10 defence, + 10 Speed, +10 health for perma, 30 gold piece] ";
+        x[5] = "2. Enchiridion [Upgrade to the next class of their choosing + skills] - 60 gold piece.   \n	3. Spectral Cloak [+20 Defence] - 20 gold piece. \n 4. Helm of Clairvoyant Insight [+20 health] - 20 gold piece.\n	5. Legplates of Ethereal Stride [+ 20 speed] - 20 gold piece. \n   6. Sword of Phantasmal Flames [+20 attack] - 20 gold piece.\n  7. Large Healing Potion[+MAX HEAL] - 8 gold piece. \n 8. Healing Potions [+ heal 2/3 Health] - 5 gold piece. \n  9. Defence Potions [+ 30 defence for 2 turns] - 5 gold piece. \n  	10. Attack Potions [+ 30 attack for 2 turns] - 8 gold piece. \n  11. Speed Potions [+ 30 Speed boost for 2 turn]- 8 gold piece. \n  12. Provisions [ + heal 1/3 Health] - 8 gold piece. \n  13. Entropic Die [charms, +15 attack, + 15 Speed] - 15 gold piece. \n  14. Amulet of Lifespring [charms, at the start of the battle (+ heal 10 for 2 turns)] - 20 gold piece.  \n  15. Ring of Attunement [charms,  + 10 attack, +10 defence, + 10 Speed, +10 health for perma] - 40 gold piece. \n  16. Leave. \n";
         print(x,5,false);
         x[10] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
         print(x,6,true);
@@ -233,6 +233,7 @@ void encounter(int id){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 60;
+                    addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
                     //addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
                     cout << "Huh.. I thought this thing was destroyed. what Else Can I get for ye?\n";
                 }
@@ -241,71 +242,100 @@ void encounter(int id){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 20;
+                    addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
                     //addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
                     cout << "good choice, I made em myself from a unicorn hairs (Animal Cruelty Free)\n";
                 }
             }else if (choice == "4"){
-                if(findObjectinInventory(inventory(mc(PL)),"Legplates of Etheral Stride") != NULL){
+                if(findObjectinInventory(inventory(mc(PL)),"Helm of Clairvoyant Insight") != NULL){
                     cout << "Sorry kid, you already bought it before\n";
                 }else{
                     MC.coin -= 20;
-                    //addObjectToPlayer(PL,OL,MC.name,"Legplates of Etheral Stride");
-                    cout << "good decision, I can even do a little bit of blacksmithing myself other than barkeeping and tailoring\n";
+                    addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
+                    //addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
+                    cout << "Good decision, I can even do a little bit of blacksmithing myself other than barkeeping and tailoring\n";
                 }
             }else if (choice == "5") {
-                if (findObjectinInventory(inventory(mc(PL)),"Sword of Phantasmal Flames") != NULL) {
+                if (findObjectinInventory(inventory(mc(PL)),"Legplates of Ethereal Stride") != NULL) {
                     cout << "Sorry kid, you already bought it before\n";
                 } else {
                     MC.coin -= 20;
+                     addObjectToPlayer(PL,OL,MC.name,"Legplates of Ethereal Stride");
+                    // addObjectToPlayer(PL, OL, MC.name, "Legplates of Ethereal Stride");
+                    cout << "I carved this piece with moon ore to rival some old basic stuff \n";
+                }
+            }else if (choice == "6") {
+                if (findObjectinInventory(inventory(mc(PL)),"Sword of Phantasmal Flames ") != NULL) {
+                    cout << "Sorry kid, you already bought it before\n";
+                }else {
+                    MC.coin -= 20;
+                     addObjectToPlayer(PL,OL,MC.name,"Sword of Phantasmal Flames ");
                     // addObjectToPlayer(PL, OL, MC.name, "Sword of Phantasmal Flames");
                     cout << "Negotiated with Surtur myself to forge this beauty\n";
                 }
-            } else if (choice == "6") {
-                MC.coin -= 5;
+            }else if (choice == "7") {
+                MC.coin -= 8;
+                addObjectToPlayer(PL,OL,MC.name,"L. Healing Potion");
                 // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
-                cout << "Wise decision, a good traveler is an alive traveler\n";
-            } else if (choice == "7") {
-                MC.coin -= 5;
-                // addObjectToPlayer(PL, OL, MC.name, "Defence Potion");
-                cout << "Make ya skin feels like a stone, in a good way\n";
+                cout << "Ready to fight out with em big boys are ye?\n";
             } else if (choice == "8") {
                 MC.coin -= 5;
-                // addObjectToPlayer(PL, OL, MC.name, "Attack Potion");
-                cout << "Don't do weird magix kids! Just try my brew, it'll feel like you could lift a mountain (don't actually do it)\n";
+                addObjectToPlayer(PL,OL,MC.name,"Healing Potion");
+                // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
+                cout << "Wise decision, a good traveler is an alive traveler\n";
             } else if (choice == "9") {
                 MC.coin -= 5;
+                addObjectToPlayer(PL,OL,MC.name,"Defence Potion");
+                // addObjectToPlayer(PL, OL, MC.name, "Defence Potion");
+                cout << "Make ya skin feels like a stone, in a good way\n";
+            } else if (choice == "10") {
+                MC.coin -= 5;
+                addObjectToPlayer(PL,OL,MC.name,"Attack Potion");
+                // addObjectToPlayer(PL, OL, MC.name, "Attack Potion");
+                cout << "Don't do weird magix kids! Just try my brew, it'll feel like you could lift a mountain (don't actually do it)\n";
+            } else if (choice == "11") {
+                MC.coin -= 5;
+                addObjectToPlayer(PL,OL,MC.name,"Speed Potion");
                 // addObjectToPlayer(PL, OL, MC.name, "Speed Potion");
                 cout << "Can't keep up with a carriage? try this one for size\n";
-            } else if (choice == "10") {
+            } else if (choice == "12") {
                 MC.coin -= 3;
+                addObjectToPlayer(PL,OL,MC.name,"Provision");
                 // addObjectToPlayer(PL, OL, MC.name, "Provision");
                 cout << "Can't afford a Health Potion? try this alternative, the taste is bland but it's better than nothing right?\n";
-            } else if (choice == "11") {
-                MC.coin -= 30;
+            } else if (choice == "13") {
+                if (findObjectinInventory(inventory(mc(PL)),"Entropic Die") != NULL) {
+                    cout << "Sorry kid, you already bought it before";
+                } else {
+                MC.coin -= 20;
+                addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
                 // addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
                 cout << "I forgot where I got it from, but I can guarantee you that this will help you.. I hope\n";
-            } else if (choice == "12") {
+                }
+            } else if (choice == "14") {
                 if (findObjectinInventory(inventory(mc(PL)),"Amulet of Lifespring") != NULL) {
                     cout << "Sorry kid, you already bought it before";
                 } else {
                     MC.coin -= 20;
+                    addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
                     // addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
                     cout << "An amulet blessed by a Harvest Goddess in a land called Leaf Valley\n";
                 }
-            } else if (choice == "13") {
+            } else if (choice == "15") {
                 if (findObjectinInventory(inventory(mc(PL)),"Ring of Attunement") != NULL) {
                     cout << "Sorry kid, you already bought it before";
                 } else {
                     MC.coin -= 30;
+                    addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
                     // addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
                     cout << "This thing will make you feel in balance every time you battle just as all things should be\n";
                 }
-            } else if (choice == "14"){
+            } else if (choice == "16"){
                 cout << "Do be seein' ya come back again someday, may the astral thread weaves you a good journey";
             }else{
                 cout << "That Item does not exist or I dont know what you are talkin about";
             }
-        }while(stoi(choice) < 0 || stoi(choice) > 14);
+        }while(stoi(choice) < 0 || stoi(choice) > 16);
         break;
     case 2:
         x[0] = " == Insect Nest (Occurance) == " ;
@@ -317,10 +347,10 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.coin += 10;
+                MC.coin += addGold(mc(PL),20);
                 //[Walk Away and 10 gold piece];
             }else if (choice == "2"){
-                MC.coin += 30;
+                MC.coin += addGold(mc(PL),20);
                 MC.currentHealth -= 0.25 * MC.currentHealth;
                 //[Lose 1/2 total health, obtain 30 gold piece]
             }else if (choice == "3"){
@@ -335,12 +365,12 @@ void encounter(int id){
                 //[Enter battle with 5 insects];
                 //enemy enemies[] = {info(findEnemy(EL,"A"),}
                 cout << "you've found Legging made out of... sticky silk?\n";
-                //get [Sticky Silk Legging];
+                addObjectToPlayer(PL, OL, MC.name, "Sticky Silk Legplate");
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 3:
         x[0] = " ==  Exchanging Gifts (Transaction) == ";
@@ -354,7 +384,7 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-                //[Discard a random charms from your inventory/equip, exchange it with 'Boons of Boons' charms (+ 15% gold piece and xp bonus)];
+                addObjectToPlayer(PL, OL, MC.name, "Boon of Boons");
                 cout << "OH! How Joyful it is to have a stranger in this time\n";
             }else if (choice == "2"){
                 //gain [nothing and small xp]
@@ -363,7 +393,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 4:
         x[0] = " ==  Jim Hulk and Hall Jim (Occurance) == " ;
@@ -387,17 +417,19 @@ void encounter(int id){
                 MC.coin -= 10;
             cout << "Ah... thank you, with these we can live another day.";
                 //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
+             addObjectToPlayer(PL, OL, MC.name, "Tonic of Efficacious Chaos");
             }else if (choice == "2"){
                 cout << "As he handed over the chestplate, a faint smile played on his lips, reminiscent of the pride that once defined him.";
                 MC.coin -= 20;
+                addObjectToPlayer(PL, OL, MC.name, "Jim Hall's Chestplate");
             }else if (choice == "3"){
                 cout << "I guess this is it for us.. sorry brother I've failed you";
-                MC.coin += 10;
+                MC.coin += addGold(mc(PL),10);
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 5:
         x[0] = " ==  Nomadic Miners (Occurance) ==" ;
@@ -427,14 +459,15 @@ void encounter(int id){
             }else if (choice == "2"){
                 cout << "May the Blessings of the Amber Lord be with you\n";
                 //gets ['Ring of Amber' charm, + 15 defence perma]
+                 addObjectToPlayer(PL, OL, MC.name, "Amber Ring");
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 6:
-        x[0] = " ==  Bounty Hunter (Occurance) ==" ;
+        x[0] = " == Hunter (Occurance) ==" ;
         print(x,0,false);
         x[1] = "You wander on the forest plains wrapped tightly in a your coat and sword strapped to your side. A man is coming your way. The tall and slender man has crimson curly hair 	and a freckled face. He is wearing leather boots and holding a rifle." ;
         print(x,1,false);
@@ -461,7 +494,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 7:
         x[0] = " == Saleo(Battle) == \n";
@@ -480,6 +513,7 @@ void encounter(int id){
                 createEnemyList(enemies);
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
                 fight(enemies);
+
             }else if (choice == "2"){
                 enemyList enemies;
                 createEnemyList(enemies);
@@ -489,7 +523,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 8:
         x[0] = " == Flash Bazar (Transaction) == " ;
@@ -505,19 +539,24 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                MC.coin -= 10;
                 //[+ (10 * char lv)health, named "Good Value" charms.];
                 cout << "Im sure you'll be pleased to have that\n";
+                 addObjectToPlayer(PL, OL, MC.name, "'Good Value'");
             }else if (choice == "2"){
+                MC.coin -= 20;
+
                 //[+25 attack, sword named "Scarlet".];
                 cout << "I'm *surprised* you picked that one";
+                 addObjectToPlayer(PL, OL, MC.name, "Scarlet");
             }else if (choice == "3"){
                 //gain [10 gold piece and small xp];
             }else{
                 cout << "you cant do that";
             }
-            MC.exp += 250;
+           MC.exp += addExp(mc(PL),250);
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 9:
         x[0] = " == House of Nildis (Occurance) == " ;
@@ -553,7 +592,7 @@ void encounter(int id){
                 cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 10:
         x[0] = " == Insights from the Minstrels. (Transaction) == \n";
@@ -564,14 +603,15 @@ void encounter(int id){
         print(x,2,false);
     	x[3] = "Here's a talisman about your fate. If you don't believe this type of thing, just treat it as a famous rumor of the cosmos. Deep down inside, you are tempted...\n";
         print(x,3,false);
-    	x[4] = "1. Tell Fortune. [spend 5  gold piece]  \n  2. It's just a rumor, Leave. — You're not interested.\n";
+    	x[4] = "1. Tell Fortune. [spend 30 gold piece]  \n  2. It's just a rumor, Leave. — You're not interested.\n";
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
                 cout << "'What an interesting fate you've got there, be sure to come back after you succeeded teehee~'";
-                MC.coin -= 5;
+                MC.coin -= 30;
                 //[25% obtaining, 'Bloodied Necklace' charms [if atleast 1 enemy killed, get + (20 * char lv) attack]]
+                addObjectToPlayer(PL, OL, MC.name, "Bloodied Necklace");
             }else if (choice == "2"){
                 //gain [nothing and small xp]
                 cout << "Oh well.. be sure to come back next time~\n";
@@ -579,7 +619,7 @@ void encounter(int id){
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 11:
         x[0] = " == Jester Pedler. (Transaction) == \n";
@@ -593,12 +633,16 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
+                MC.coin -=5;
                 cout << "'Jolly goodshow my good man, pleasure doing business' \n";
                 MC.currentHealth += 999;
             }else if (choice == "2"){
+                MC.coin -=15;
                 cout << "'Ugh fine *with a different deeper voice*' \n";
                 //gain [Helmet Jester's Delight, +15 defence and +1 Crit counter]
+                addObjectToPlayer(PL, OL, MC.name, "Jester's Delight");
             }else if (choice == "3"){
+                MC.coin -= 20;
                 cout << "As you open the box, a huge light came out of it and you hear a wind blowing through your ear \n";
                 cout << "Inside the box there's a single note saying " << "Beware of the long eared Jester" << "'well.. that was a waste of gol- wait where did he even 	go?! ... f***..' Said to 	yourself";
                 MC.exp += 650;
@@ -609,14 +653,14 @@ void encounter(int id){
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 4);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
         case 12:
             x[0] = " == Showman's Sleight. (Transaction) == " ;
             print(x,0,false);
             x[1] = "A Mourning Actor riding a cosmic elephant slowly comes into sight... She is still weeping for some reasons. Then, she dismounts the elephant and offers to perform a special magic show to you for free." ;
             print(x,1,false);
-            x[2] = "She stuffs your [random charm] into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand 	on her chest and politely asks you to choose a cup..." ;
+            x[2] = "She stuffs your 20 gold piece into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand 	on her chest and politely asks you to choose a cup..." ;
             print(x,2,false);
             x[3] = "1. Select the cup on the left. \n  2. Select the cup on the right." ;
             print(x,3,true);
@@ -624,15 +668,18 @@ void encounter(int id){
         do{
             if (choice == "1"){
                 cout << "'A nice eye, but a fair game is a fair game'\n";
+                addObjectToPlayer(PL, OL, MC.name, "Tricster Gloves");
                 //	get [equipment back and gained 'Trickster Gloves' charms, +15 speed]
             }else if (choice == "2"){
                 cout << "'Too bad, don't be mad at me, that's just how the game is' \n";
+                MC.coin -= 20;
+                MC.exp += addExp(mc(PL),60);
                 //[discard that equipment and gained 600 xp]
             }else{
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 13:
         x[0] = "== Faring Hawkers. (Transaction) == \n";
@@ -649,9 +696,11 @@ void encounter(int id){
             cin >> choice;
             if (choice == "1"){
                 cout << "I looted this one of from a battlefield I feel ashamed to this day, but a man's have to eat something. \n";
+                addObjectToPlayer(PL, OL, MC.name, "Terra Sword");
                 //get [Sword, 'Terra Sword' ,(Leech Effect and +10 attack)];
             }else if (choice == "2"){
                 cout << "'I've never dared to it peeked once, I found it on a ruined blacksmith village in the far region of Lumaroth ' \n";
+                addObjectToPlayer(PL, OL, MC.name, "Titanium Chestplate");
                 //get [Chestplate, 'Titanium Chestplate' (+20 defence and +10 attack)]]
             }else if (choice == "3"){
                 cout << "*he lets out a huge sigh* Another day, another bad luck for the 'wicked' \n";
@@ -660,7 +709,7 @@ void encounter(int id){
                   cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 14:
         x[0] = " == Mad Jester. (Boss Battle) == " ;
@@ -683,6 +732,7 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Jevil")))));
                 fight(enemies);
                 cout << "'HA HA HA. WHAT FUN!!!, YOU'RE FAST, FAST, STRONG, STRONG. BUT THERE ARE YET FASTER, YET STRONGER. TAKE ME AND DO YOUR STRONGEST---!' \n";
+                addObjectToPlayer(PL, OL, MC.name, "Devilsknife");
                 //get [Sword, Devilsknife, [+50 attack] and gained 1200 xp]
             }else if (choice == "2"){
                 cout << "*The figures jumps at you with full speed*, 'GET READY TO HAVE FUN FUN FUN!'";
@@ -692,12 +742,13 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Jevil")))));
                 fight(enemies);
                 cout << "'WHAT FUN!! I'M EXHAUSTED!! YOU KID TIRED ME UP!!, NOW I WILL SLEEP FOR THE OTHER 100 YEARS. TAKE THIS AND DO YOUR STRONGEST---!' \n";
+                addObjectToPlayer(PL, OL, MC.name, "Jevilstail");
                 //get [Sword, Jevilstail, [+25 attack and +25 speed] and gained 1200 xp]
             }else{
                 cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 15:
         x[0] = " == Saleo. (Battle) == " ;
@@ -728,7 +779,7 @@ void encounter(int id){
             cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 16:
         x[0] = " == Rock, Paper, Bullets?(Battle) == " ;
@@ -761,6 +812,7 @@ void encounter(int id){
             cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
+       MC.exp += addExp(mc(PL),250);
         break;
     case 17:
         x[0] = " == We Are Cowboys. (Battle) == " ;
@@ -793,7 +845,7 @@ void encounter(int id){
             cout << "you cant do that";
         }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 18:
         x[0] = " == Dueling Tavern. (Battle) == " ;
@@ -835,7 +887,7 @@ void encounter(int id){
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 3);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
     case 19:
          x[0] = " == Beast Horde. (Battle) == " ;
@@ -851,52 +903,67 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-            cout << "Slaughter the Younglings";
-            enemyList enemies;
-            createEnemyList(enemies);
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
-            fight(enemies);
+                cout << "Slaughter the Younglings";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Young Beast")))));
+                fight(enemies);
             }else if (choice == "2"){
-            cout << "The Creature growls with frenzied eyes";
-            enemyList enemies;
-            createEnemyList(enemies);
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
-            fight(enemies);
+                cout << "The Creature growls with frenzied eyes";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Adult Beast")))));
+                fight(enemies);
+                addObjectToPlayer(PL, OL, MC.name, "Beastskin Legging");
             }else{
-		cout << "you cant do that";
+                cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+
+       MC.exp += addExp(mc(PL),250);
         break;
      case 20:
         x[0] = " == Runic Chest. (Occurance) == " ;
         print(x,0,false);
-        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands a chest, seemingly left behind by a forgetful adventurer. \n" ;
+        x[1] = "As you traverse through the dense Enigma Woods, the air thickens with an eerie silence. The trees cast long shadows, and an uneasy feeling settles in the pit of your stomach. Suddenly, you stumble upon a clearing, and in its center stands two chest, seemingly left behind by a forgetful adventurers. \n" ;
       	print(x,1,false);
-        x[2] = "The chest is made of dark mahogany, adorned with intricate carvings. As you approach, you notice the air around it shimmering with a peculiar energy. Before you can fully grasp the situation, the chest shudders and transforms into a grotesque creature—a Mimic, hungry for unsuspecting prey. \n" ;
+        x[2] = "The chest is made of dark mahogany, adorned with intricate carvings, one with a Blue Paint and the other one with Red Paint. \n" ;
       	print(x,2,false);
-        x[3] = "YThe Mimic has a wide, toothy maw that opens to reveal rows of sharp teeth. Its lid splits into jagged limbs, and it eyes you with a malicious gleam. The mimic emits a guttural growl, and you can sense it's ready to attack. \n" ;
+        x[3] = "Curiosity piqued, you approach the twin chests cautiously. The carvings on the dark mahogany surface seem to depict ancient symbols and arcane patterns. As you examine them closely, you notice that the Blue Painted chest bears symbols reminiscent of flowing water, while the Red Painted chest is adorned with fiery motifs.\n" ;
         print(x,3,false);
-        x[4] = "1. Attempt to fight it \n  2. Tiptoe away slowly, avoiding any confrontation." ;
+        x[4] = "1. Open the Blue Painted Chest. \n  2.  Open the Red Painted Chest. \n  3. Try to open both chest at the same time \n   4. Tiptoe away slowly, avoiding any confrontation." ;
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
             enemyList enemies;
             createEnemyList(enemies);
-            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Mimic")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Blue Mimic")))));
             fight(enemies);
+            MC.coin += 10;
             }else if (choice == "2"){
-            //Run Away
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Red Mimic")))));
+            fight(enemies);
+            MC.coin += 15;
+            }else if (choice == "3"){
+            enemyList enemies;
+            createEnemyList(enemies);
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Blue Mimic")))));
+            addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Red Mimic")))));
+            fight(enemies);
+            }else if (choice == "4"){
+                cout << "You ran away!";
             }else{
-            cout << "you cant do that";
+                cout << "you cant do that";
             }
-        }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+        }while(stoi(choice) < 0 || stoi(choice) > 4);
+       MC.exp += addExp(mc(PL),250);
         break;
      case 21:
         x[0] = " == Grassy Tent. (Transaction) == " ;
@@ -916,16 +983,17 @@ void encounter(int id){
         do{
             cin >> choice;
             if (choice == "1"){
-            //obtain 'Grass Sword', Leech effect]
-            cout << "Wise decision, and also no refunds!";
+                MC.coin -= 15;
+                addObjectToPlayer(PL, OL, MC.name, "Grass Sword");
+                cout << "Wise decision, and also no refunds!";
             }else if (choice == "2"){
-            cout << "Not even worthy of the sword";
-            //Run Away
+                cout << "'Not even worthy of the sword'";
+                cout << "You left the tent";
             }else{
-            cout << "you cant do that";
+                cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
      case 22:
         x[0] = " == Enchanting Song. (occurance) == " ;
@@ -950,15 +1018,17 @@ void encounter(int id){
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
             addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Siren")))));
+            addObjectToPlayer(PL, OL, MC.name, "Ring of Tempting Tune");
             fight(enemies);
             }else if (choice == "2"){
             cout << "'Aww, Hun don't go just yet'. The alluring voices kept reaching farther and farther as you run to the opposite direction";
             MC.currentHealth -= 0.2*MC.currentHealth;
+
             }else{
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
      case 23:
         x[0] = " == Moonlight's End. (Boss Battle) == " ;
@@ -983,7 +1053,11 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeletal King")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
                 fight(enemies);
+                addObjectToPlayer(PL, OL, MC.name, "Living Bone");
+                 MC.coin += 20;
             // [Enter a challenging battle with the Skeletal King [HELL]. If victorious, gain (charms, "Living Bone", + 3 Crit counter and extra 20 gold pieces.]
             cout << "A soft voice saying 'Thank You' slowly fades, the chamber grows silent once more"; //jika menang
             }else if (choice == "2"){
@@ -993,14 +1067,18 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeletal King")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Skeleton Goon")))));
                 fight(enemies);
+                addObjectToPlayer(PL, OL, MC.name, "Regal Specter Crown");
+                MC.coin += addGold(mc(PL),30);
                 // [Enter a challenging battle with the Skeletal King [HELL]. If victorious, gain (helmt,"Regal Specter Crown" +20 	attack and +25 defence) and 30 gold pieces.]
-            cout << "'Within a Millenia of waiting, a worthy foe comes and replace me in my throne...' *The giant skeletal figues becomes a spec of dust*";
+            cout << "'Within a Millenia of waiting, a worthy foe comes and replace me in my throne...' *The giant skeletal figures becomes a spec of dust*";
             }else{
             cout << "you cant do that";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 2);
-        MC.exp += 250;
+       MC.exp += addExp(mc(PL),250);
         break;
             case 24:
             x[0] = " == Dreamscape (Fated Encounter) == " ;
@@ -1023,8 +1101,8 @@ void encounter(int id){
                    MC.exp += 1000;
                     //[1000 xp]
                 }else if (choice == "2"){
-                    MC.exp += 1000;
-                    MC.coin += 30;
+                   MC.exp += addExp(mc(PL),1000);
+                   MC.coin += addGold(mc(PL),30);
                     //[1000 xp]
                     //[30 gold piece]
                 }else{
@@ -1034,8 +1112,9 @@ void encounter(int id){
                 if (choice == "1"){
                     MC.exp += 1000;
                     MC.coin -= 0.5 * MC.coin;
+                    addObjectToPlayer(PL, OL, MC.name, "Night Sword");
                     //[1000 xp]
-                    //[-50% gold piece, obtain Rigour Sword, +20 attack and +15 health]
+                    //[-50% gold piece, obtain Night Sword, +30 attack]
                 }else if (choice == "2"){
                     MC.coin += 30;
                     MC.exp += 1000;

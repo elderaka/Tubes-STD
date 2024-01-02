@@ -20,7 +20,7 @@ struct player{
     //int position[2] = [0,0];
     float health = 100; //100
     float currentHealth;
-    int coin = 100;
+    int coin = 0;
     int stamina = 50; //50
     int currentStamina;
     int exp = 0; //Lv up mechanic w msih bingung, nnt escalate ato kg(?)
@@ -53,6 +53,8 @@ bool isPlayerEmpty(playerList L);
 playerAddress createNewPlayerElement(player x);
 void addPlayer(playerList &L,playerAddress p);
 void deletePlayer(playerList &L,string name);
+int addGold(playerAddress Player, int gold);
+int addExp(playerAddress Player, int exp);
 playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
 void showPlayerInfo(player Player);
