@@ -12,12 +12,13 @@ struct object{
     bool isBuff;
     string armorType;
     int duration;
-    string bonusStat[2];
-    int bonus[2];
+    string bonusStat[4];
+    int bonus[4];
     int heal;
     string buffStat;
     int buff;
 };
+
 typedef struct elementObject *objectAddress;
 
 struct elementObject{
