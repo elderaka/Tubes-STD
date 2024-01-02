@@ -47,6 +47,8 @@ bool isPlayerEmpty(playerList L);
 playerAddress createNewPlayerElement(player x);
 void addPlayer(playerList &L,playerAddress p);
 void deletePlayer(playerList &L,string name);
+int addGold(playerAddress Player, int gold);
+int addExp(playerAddress Player, int exp);
 playerAddress findPlayer(playerList L, string name);
 void showPlayer(playerList L);
 void showPlayerInfo(player Player);
