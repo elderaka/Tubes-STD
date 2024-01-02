@@ -1287,7 +1287,7 @@ void fight(enemyList enemies){
             cout << E.Enemy.name << "'s turn.\n";
         }
         int dice = roll();
-        float attackMultiplier;
+        float attackMultiplier = 1;
         if(E.isPlayer){
             int choice;
             cout << "What's your choice?" << endl;
@@ -1364,9 +1364,9 @@ void fight(enemyList enemies){
                         if(!findSkillinPlayer(skillid,offensive(mc(PL)))){
                             cout << "Skill invalid. Select your skills:";
                         }else{
-                            int target;
-                            bool notDied = true;
-                            bool hit = false;
+                            //int target;
+                            //bool notDied = true;
+                            //bool hit = false;
                             if(info(skill(findSkillinPlayer(skillid,offensive(mc(PL))))).type == "Offensive"){
                                 cout << "Enemies: "<< endl;
                                 entityAddress adrEntity = next(first(eL));
@@ -1804,9 +1804,9 @@ void findItemData(){
             cout <<"Description: " <<  Object.desc << endl;
             if(Object.isEquipable){
                 cout << "Armor Type: " << Object.armorType << endl;
-                cout << "Buff 1: " << Object.bonusStat[1] <<" (" << Object.bonus[1] << ")"<< endl;
-                if(Object.bonus[2] != 0){
-                    cout << "Buff 2: " << Object.bonusStat[2] <<" (" << Object.bonus[2] << ")"<< endl;
+                cout << "Buff 1: " << Object.bonusStat[0] <<" (" << Object.bonus[0] << ")"<< endl;
+                if(Object.bonus[1] != 0){
+                    cout << "Buff 2: " << Object.bonusStat[1] <<" (" << Object.bonus[1] << ")"<< endl;
                 }
 
             }else if(Object.isConsumable){
