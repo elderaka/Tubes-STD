@@ -8,6 +8,7 @@
 #include <string>
 #include <iomanip>
 #include <time.h>
+#include <map>
 #define first(L) L.first
 #define last(L) L.last
 #define root(T) T.root

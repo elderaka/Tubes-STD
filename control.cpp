@@ -1444,6 +1444,7 @@ void initiatePlayer(playerList &PL){
     Player.exp = 1532;
     Player.level = 10;
     Player.nextLevel = 51223;
+    Player.isFinished = true;
     adrPlayer = new elementPlayer;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
@@ -1468,6 +1469,8 @@ void initiatePlayer(playerList &PL){
     Player.exp = 0;
     Player.level = 1;
     Player.nextLevel = 10;
+    Player.isFinished = false;
+    Player.isDead = true;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
     changePlayerClass(Player.name, "Pawn");

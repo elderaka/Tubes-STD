@@ -1664,7 +1664,7 @@ void checkMenu(){
             }while(datachoice < 1 || datachoice > 5);
             break;
         case 7:
-            cout << "Which data do you want to find?\n";
+            cout << "Which data do you want to Change?\n";
             cout << "1. Player\n";
             cout << "2. Item\n";
             cout << "3. Class\n";
@@ -1696,7 +1696,36 @@ void checkMenu(){
             }while(datachoice < 1 || datachoice > 5);
             break;
         case 8:
-            pushMenu(Menu,27);
+            cout << "Which data do you want to see their leaderboard?\n";
+            cout << "1. Top 3 Player\n";
+            cout << "2. Most Owned Item\n";
+            cout << "3. Most Used Class\n";
+            cout << "4. Most Owned Skill\n";
+            cout << "5. Back\n";
+            cout << "Select your choice (1-5): ";
+            do{
+                cin >> datachoice;
+                switch(datachoice){
+                case 1:
+                    pushMenu(Menu, 27);
+                    break;
+                case 2:
+                    pushMenu(Menu, 25);
+                    break;
+                case 3:
+                    pushMenu(Menu, 26);
+                    break;
+                case 4:
+                    pushMenu(Menu, 28);
+                    break;
+                case 5:
+                    pushMenu(Menu, 5);
+                    break;
+                default:
+                    cout << "Wrong Number. Select your choice (1-9): ";
+                    break;
+                }
+            }while(datachoice < 1 || datachoice > 5);
             break;
         case 9:
             break;
@@ -2105,7 +2134,7 @@ void deleteClassData(){
                 cin >> confirm;
                 if(confirm == "y"){
                     //deleteClass(OL,name);
-                    cout << "Item succesfully deleted!" << endl;
+                    cout << "Class succesfully deleted!" << endl;
                     deleted = true;
                 }else if(confirm != "y" && confirm != "n"){
                     cout << "Input is not valid. Are you sure(y/n)?: ";
@@ -2123,22 +2152,218 @@ void deleteClassData(){
 
 }
 void deleteObjectByPlayer(){
+    string name;
+    string Player;
+    bool deleted = false;
+    cout << "Enter Player name (type 0 to get back: ";
+    do{
+        getline(cin, Player);
+        if(!findPlayer(PL,Player) && Player != "0"){
+            cout << "Player not found! Enter Player name (type 0 to get back: ";
+        }
+    }while(!findPlayer(PL,Player) && Player != "0");
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findObjectinInventory(inventory(findPlayer(PL,Player)),name)){
+            string confirm;
+            cout << "Are you sure(y/n)?: ";
+            do{
+                cin >> confirm;
+                if(confirm == "y"){
+                    removeObjectFromPlayer(PL,OL,Player,name);
+                    cout << "Item succesfully deleted!" << endl;
+                    deleted = true;
+                }else if(confirm != "y" && confirm != "n"){
+                    cout << "Input is not valid. Are you sure(y/n)?: ";
+                }
+            }while(confirm != "y" && confirm != "n");
+        }else if(name == "0"){
+            break;
+        }else if(!deleted){
+            cout << "Item not found on player! Enter Item name (type 0 to get back): ";
+        }
+    }while(findObjectinInventory(inventory(findPlayer(PL,Player)),name) && name != "0" && !deleted);
     getch();
     popMenu(Menu);
 }
 void deleteSkillByPlayer(){
+    string name;
+    string Player;
+    bool deleted = false;
+    cout << "Enter Player name (type 0 to get back: ";
+    do{
+        getline(cin, Player);
+        if(!findPlayer(PL,Player) && Player != "0"){
+            cout << "Player not found! Enter Player name (type 0 to get back: ";
+        }
+    }while(!findPlayer(PL,Player) && Player != "0");
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        getline(cin,name);
+        if(findObjectinInventory(inventory(findPlayer(PL,Player)),name)){
+            string confirm;
+            cout << "Are you sure(y/n)?: ";
+            do{
+                cin >> confirm;
+                if(confirm == "y"){
+                    removeObjectFromPlayer(PL,OL,Player,name);
+                    cout << "Item succesfully deleted!" << endl;
+                    deleted = true;
+                }else if(confirm != "y" && confirm != "n"){
+                    cout << "Input is not valid. Are you sure(y/n)?: ";
+                }
+            }while(confirm != "y" && confirm != "n");
+        }else if(name == "0"){
+            break;
+        }else if(!deleted){
+            cout << "Item not found on player! Enter Item name (type 0 to get back): ";
+        }
+    }while(findObjectinInventory(inventory(findPlayer(PL,Player)),name) && name != "0" && !deleted);
     getch();
     popMenu(Menu);
 }
 void showMostItem(){
+    //At first I want to use bucket sort but oopsie, we don't have object.id
+    //So yeah. Let's use map
+    map<string,int>occurence;
+    playerAddress P = first(PL);
+    while(P != NULL){
+        inventoryAddress Q = first(inventory(P));
+        while(Q != NULL){
+            occurence[info(object(Q)).name]++;
+            Q = next(Q);
+        }
+        P = next(P);
+    }
+    int Max = 0;
+    string res;
+    for(auto i : occurence){
+        if(Max < i.second){
+            res = i.first;
+            Max = i.second;
+        }
+    }
+
+    cout << "The most owned item is " << res << " with these players that owned it:" << endl;
+    P = first(PL);
+    int k = 1;
+    while(P != NULL){
+        if(findObjectinInventory(inventory(P), res)){
+            cout << k << ". " << info(P).name << endl;
+            k++;
+        }
+        P = next(P);
+    }
+
     getch();
     popMenu(Menu);
 }
 void showMostClass(){
+    map<string,int>occurence;
+    playerAddress P = first(PL);
+    ping;
+    while(P != NULL){
+        occurence[info(P).Class]++;
+        P = next(P);
+    }
+    int Max = 0;
+    string res;
+    for(auto i : occurence){
+        if(Max < i.second){
+            res = i.first;
+            Max = i.second;
+        }
+    }
+
+    cout << "Class with most Player is " << res << " with these players that is using it:" << endl;
+    P = first(PL);
+    int k = 1;
+    while(P != NULL){
+        if(info(P).Class == res){
+            cout << k << ". " << info(P).name << endl;
+            k++;
+        }
+        P = next(P);
+    }
+
     getch();
     popMenu(Menu);
 }
 void showTopThree(){
+    int top;
+    string topPlayer[3];
+    int tier = 4;
+
+    while(top < 3){
+        playerAddress P = first(PL);
+
+        while(P != NULL && top < 3){
+            if(getClassTier(CT,info(P).Class) == tier){
+
+                topPlayer[top] = info(P).name;
+                top++;
+            }
+            P = next(P);
+        }
+        tier--;
+    }
+    cout << "Top 3 Player of this shitty game:" << endl;
+    cout << "1. " << topPlayer[0] << " (" << info(findPlayer(PL,topPlayer[0])).Class <<") " + string(info(findPlayer(PL,topPlayer[0])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[0])).isDead ? "[Dead]" : " ") +"\n";
+    cout << "2. " << topPlayer[1] << " (" << info(findPlayer(PL,topPlayer[1])).Class <<") " + string(info(findPlayer(PL,topPlayer[1])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[1])).isDead ? "[Dead]" : " ") +"\n";
+    cout << "3. " << topPlayer[2] << " (" << info(findPlayer(PL,topPlayer[2])).Class <<") " + string(info(findPlayer(PL,topPlayer[2])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[2])).isDead ? "[Dead]" : " ") +"\n";
+    getch();
+    popMenu(Menu);
+}
+void showMostSkill(){
+    //Naw fuck bucket sort. why don't we just copypaste it
+    map<string,int>occurence;
+    playerAddress P = first(PL);
+    while(P != NULL){
+        sListAddress O = first(offensive(P));
+        while(O != NULL){
+            if(info(skill(O)).name != "Battle Rage"){
+                occurence[info(skill(O)).name]++;
+            }
+            O = next(O);
+        }
+        O = first(defensive(P));
+        while(O != NULL){
+            if(info(skill(O)).name != "Battle Rage"){
+                occurence[info(skill(O)).name]++;
+            }
+            O = next(O);
+        }
+        P = next(P);
+    }
+    int Max = 0;
+    string res;
+    for(auto i : occurence){
+        if(Max < i.second){
+            res = i.first;
+            Max = i.second;
+        }
+    }
+    int resID = info(findskill(ST, res)).id;
+    cout << "Skill with most Player is Battle Rage! with these players that owns it:" << endl;
+    P = first(PL);
+    int k = 1;
+    while(P != NULL){
+        cout << k << ". " << info(P).name << endl;
+        k++;
+        P = next(P);
+    }
+
+    cout << "However, non-Newbie Skill with most Player is " << res << " with these players that owns it:" << endl;
+    P = first(PL);
+    k = 1;
+    while(P != NULL){
+        if(findSkillinPlayer(resID,offensive(P)) || findSkillinPlayer(resID,defensive(P))){
+            cout << k << ". " << info(P).name << endl;
+            k++;
+        }
+        P = next(P);
+    }
     getch();
     popMenu(Menu);
 }
@@ -2251,15 +2476,18 @@ void initiateTop(){
             showTopThree();
             break;
         case 28:
-            changePlayerData();
+            showMostSkill();
             break;
         case 29:
-            changeObjectData();
+            changePlayerData();
             break;
         case 30:
-            changeClassData();
+            changeObjectData();
             break;
         case 31:
+            changeClassData();
+            break;
+        case 32:
             changeSkillData();
             break;
         }
