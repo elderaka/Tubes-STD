@@ -1740,13 +1740,20 @@ void checkMenu(){
         popMenu(Menu);
     }
 }
+#include<iomanip>
 void showAllPlayer(){
     system("cls");
     cout << "List of all Player:\n";
     int i = 1;
+    const int nameWidth = 20;
+    const int classWidth = 15;
+    const int levelWidth = 15;
+     cout << setw(3) << left << "| No" << "\t" << setw(nameWidth) << left << "Name. " << "\t"<< setw(classWidth) << left << "Class. " << "\t"<< setw(levelWidth) << left << "Level.        |" << endl;
+      cout <<"______________________________________________________________"<<endl;
     playerAddress prec = first(PL);
     while(prec != NULL){
-        cout << i << "." << info(prec).name << "\t|\t" << info(prec).Class << "\t|\t" << info(prec).level << endl << endl;
+         cout << setw(3) << left << "|" << i<< "." << "\t" << setw(nameWidth) << left << info(prec).name<< "|"  << "\t"<< setw(classWidth) << left << info(prec).Class << "|" << "\t"<< setw(levelWidth) << left << info(prec).level << endl;
+         cout <<"|_____________________________________________________________|"<<endl;
         prec = next(prec);
         i++;
     }
@@ -1759,7 +1766,7 @@ void showAllObject(){
     int i = 1;
     objectAddress prec = first(OL);
     while(prec != NULL){
-        cout << i << "." << info(prec).name << " " << info(prec).desc << endl << endl;
+        cout << i << "." << info(prec).name << "\n" << "Armor Type : ["<< info(prec).armorType<<"]. Effect:" << info(prec).desc << endl << endl;
         prec = next(prec);
         i++;
     }
