@@ -112,52 +112,62 @@ void introduction(){
     string x[100];
     player newPlayer;
     addPlayer(PL,createNewPlayerElement(newPlayer));
-    x[0] = "Selamat datang pemberani, di dunia mistis Eldoria! Sebuah tanah yang penuh dengan sihir, makhluk mitos, kejahatan, dan dihiasi dengan harta karun yang tak terhitung jumlahnya. Angin takdir membawamu ke kota kecil Everhaven, di mana sebuah ramalan kuno meramalkan penemuan Pusaka yang Hilang—artefak kuat yang menyimpan kunci untuk mengembalikan keseimbangan dunia.\n";
+    x[0] = "Welcome brave hearts, to the mystical world of Eldoria! A land filled with magic, mythical creatures, evil, and adorned with countless treasures. The winds of fate bring you to the small town of Everhaven, where an ancient prophecy foretells the discovery of the Lost Heirloom-a powerful artifact that holds the key to restoring balance to the world.\n";
     print(x,0,false);
-    x[1] = "Saat kamu memasuki kota Everhaven yang ramai, jalan-jalan berkerikil dan bangunan-bangunan berkerangka kayu bergema dengan kisah-kisah pahlawan dan bisikan kegelapan yang akan datang. Penduduk kota yang tentram sedang menjalani hidup mereka sendiri-sendiri, dengan tanpa kesadaran adanya bahaya dalam dunia Eldoria. Namun, suatu berita yang akan merubah segalanya dalam kota Everhaven. \n";
+    x[1] = "As you enter the bustling city of Everhaven, the gravel streets and wood-framed buildings echo with tales of heroes and whispers of the darkness to come. The peaceful townspeople are living their own lives, unaware of the dangers in the world of Eldoria. However, one rumor is about to change everything in the city of Everhaven.\n";
     print(x,1,false);
-    x[2] = "Sekarang, pahlawan yang berani, saatnya bagi Anda untuk masuk ke dalam karakter Anda. Apa nama Anda, yang akan dinyanyikan dalam balada sepanjang negeri? Ucapkan dengan lantang, dan biarkan namamu terukir dalam gulungan sejarah Eldoria.\n";
+    x[2] = "Now, brave hero, it's time for you to get into character. What is your name, to be sung in ballads throughout the land? Say it out loud, and let your name be engraved in the scrolls of Eldoria's history.\n";
     print(x,2,true);
-    cout << "\nMasukkan nama kamu: ";;
+    cout << "\nEnter name: ";;
     getline(cin,MC.name);getline(cin,MC.name);
     system("cls");
-    x[3] = "Ah, " + MC.name + ", sebuah nama yang membawa beban takdir. \n\nSaat Anda menjelajahi kota, Anda menemukan seorang pedagang tua misterius di sudut terpencil pasar. Dia merasakan percikan petualangan Anda. \n";
+    x[3] = "Ah, " + MC.name + ", a name that carries the burden of destiny. \n\nAs you explore the city, you come across a mysterious old merchant in a remote corner of the market. He feels the spark of your adventure.\n";
     print(x,3,false);
-    x[4] = "Pedagang tua: Wahai petualang, saya merasa ada suatu potensial tinggi dalam diri anda, keberuntungan saja saya lagi kelebihan stok suatu barang yang anda mungkin tertarik, \n\nKemudian pedagang tua tersebut mengeluarkan 3 barang yang tidak familiar dimana-mana. \n ";
+    x[4] = "Old trader: O adventurer, I feel there's a high potential in you, luckily I'm overstocked on an item you might be interested in, \n\nThen the old merchant took out 3 items that were not familiar anywhere.\n ";
     print(x,4,false);
-    x[5] = "Pedagang tua: Hehe, anak muda. Dari setiap barang ini memiliki kekuatan yang akan bisa membuatmu SANGAT kuabt dibanding siapapun dan bisa dibilang kekuatan yang KEKAL,\n";
+    x[5] = "Old merchant: Hehe, young man. Each of these items has a power that will make you VERY powerful compared to anyone else and arguably an EVERLASTING power.\n";
     print(x,5,false);
-    x[6] = "Pedagang tua: TAPI, jika kau sudah memilih, kau tidak akan bisa lagi berpisah dengan barangnya dan akan ada efek samping di setiap barang tersebut ini. Silahkan pilih salah satu dengan hati-hati: \n1. Shitty item\n2. Even more shitty item\n3. Item\n"; // show barang2 apa aja
+    x[6] = "Old merchant: BUT, once you have chosen, you will no longer be able to part with the items and there will be side effects in each of these items. Please choose one carefully: \n1. Ring of Senicianus\n2. Bloodstained Flower of Iron\n3. Disciple's Dewy Feather Garb\n 4. Leave - Not interested\n";     // show barang2 apa aja
     print(x,6,true);
-    cout << "Pilih salah satu (1-3): "; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
+    cout << "Choose one (1-4): "; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
     int pickArtifact;
     string object;
     do{
         cin >> pickArtifact;
         if(pickArtifact == 1){
-            object = "Shitty Item";
+            cout << "The Old Trader tells the origin about the item, It was apparently stolen by a person named Senicianus, there's an engraving of which says 'Ash nazg durbatulûk, ash nazg gimbatul, Ash nazg thrakatulûk, agh burzum-ishi krimpatul.' [-30%] health throughout the game, [+30%] Stamina."<<endl;
+            object = "Ring of Senicianus";
+            addObjectToPlayer(PL,OL,MC.name,"Ring of Senicianus");
         }else if(pickArtifact == 2){
-            object = "More Shitty Item";
+            cout <<"The Old Trader tells the origin about the item,'For a knight, chivalry is its own reward. This flower shall be my medal. That is all I need.' [+30%] Attack, [-15%] Health,  [-15%] Defence. through the game."<< endl;
+            object = "Bloodstained Flower of Iron";
+            addObjectToPlayer(PL,OL,MC.name,"Bloodstained Flower of Iron");
         }else if(pickArtifact == 3){
-            object = "Even more Shitty Item";
-        }else{
-        }cout << "Pilihan tidak valid. Pilih salah satu (1-3): ";
-    }while(pickArtifact < 0 || pickArtifact > 3);
-    addObjectToPlayer(PL,OL,MC.name,"Stone");
+            cout << "The Old Trader tells the origin about the item, A feather garb made according to old scrolls. Its owner was either __e__n___r___il__d______ in the pages of history or a sa___r of hum__i_y. The rest of the  words on the scroll becomes more faded. [+30%] health, [+10%] defence, [-20% attack], [-10%]Stamina ."<<endl;
+            object = " Disciple's Dewy Feather Garb";
+            addObjectToPlayer(PL,OL,MC.name,"Disciple's Dewy Feather Garb");
+        }else if(pickArtifact == 4){
+            cout << "'Only but a fool rejects everlasting power, for within its grasp lies the boundless potential to shape destinies, transcend limitations, and command the forces that sway the fabric of existence itself.' Said the Old Merchant"<< endl;
+            object = "none";
+            addObjectToPlayer(PL,OL,MC.name,"none");
+            }else{
+        }cout << "Chosen item not valid. Choose one: (1-4): ";
+    }while(pickArtifact < 0 || pickArtifact > 4);
 
-    x[7] = "\nKamu memilih: " + object +"\n\nPedagang tua: Muahahaha, sekarang nasib kau sudah tercatat dalam gulungan takdir\n"; //Jika kg pilih samsek, makany replyny "Kau adalah petualang yang konyol dan bodoh menolak kekuatan kekal, PERGILAH SEKARANG"
+
+    x[7] = "\nYou Picked: " + object +"\n\n'Old merchant: Muahahaha, now your fate has been recorded in the scroll of destiny'. He laughs histerically and vanishes out of thin air\n"; //Jika kg pilih samsek, makany replyny "Kau adalah petualang yang konyol dan bodoh menolak kekuatan kekal, PERGILAH SEKARANG"
 
     print(x,7,false);
 
-    x[8] = "Sekarang, kamu akan memulai sebagai newbie\n"; //kg ush krn skill awalan emg
+    x[8] = "Now, you will start as a newbie\n"; //kg ush krn skill awalan emg
     print(x,8,false);
-    x[9] = "Dengan pemilihan class yang bijak, kamu merasa kekuatan magis mengalir dalam dirimu. Kini, sebagai seorang " + cls.name + ", petualanganmu di Eldoria dimulai.\n";
+    x[9] = "With wise class selection, you feel magical power flowing through you. Now, as a newbie, your adventure in Eldoria begins.\n";
     print(x, 9, false);
 
-    x[10] = "Berbekal senjata, sihir, dan tekad, kamu meninggalkan pasar menuju pintu gerbang kota. Angin sepoi-sepoi menyambut langkahmu, dan matahari terbenam memberikan warna keemasan pada langit.\n";
+    x[10] = "Armed with weapons, items, and determination, you leave the market for the city gates. A gentle breeze greets your steps, and the setting sun gives the sky a golden color.\n";
     print(x, 10, false);
 
-    x[11] = "Perjalananmu di dunia Eldoria dimulai di kota kecil Everhaven. Dengan Pusaka yang Hilang sebagai tujuan utama, siapakah yang akan kamu temui, dan apakah takdirmu yang terpatri dalam gulungan sejarah ini?\n";
+    x[11] = "Your journey in the world of Eldoria begins in the small town of Everhaven.With the Lost Heirloom as your main objective, who will you meet, and what is your destiny in this scroll of history?\n";
     print(x, 11, false);
     pushMenu(Menu,0);
 }
