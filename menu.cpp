@@ -1675,16 +1675,16 @@ void checkMenu(){
                 cin >> datachoice;
                 switch(datachoice){
                 case 1:
-                    pushMenu(Menu, 28);
-                    break;
-                case 2:
                     pushMenu(Menu, 29);
                     break;
-                case 3:
+                case 2:
                     pushMenu(Menu, 30);
                     break;
-                case 4:
+                case 3:
                     pushMenu(Menu, 31);
+                    break;
+                case 4:
+                    pushMenu(Menu, 32);
                     break;
                 case 5:
                     pushMenu(Menu, 5);
@@ -2375,14 +2375,234 @@ void showMostSkill(){
     popMenu(Menu);
 }
 void changePlayerData(){
+    string name;
+    string choice;
+    string newClass;
+    int data;
+    int yea;
+    float yeah;
+    cout << "Enter Player name (type 0 to get back): ";
+    do{
+        bool changeAgain = false;
+        getline(cin,name);
+        if(findPlayer(PL,name)){
+            playerAddress findplayer = findPlayer(PL,name);
+            cout << "Select which data do you want to change (1-9):\n";
+            cout <<"1. Name          " << endl;
+            cout <<"2. Class         "  << endl;
+            cout <<"3. Level         "  << endl;
+            cout <<"4. Coin          " << endl;
+            cout <<"5. Health        "  << endl;
+            cout <<"6. Stamina       " << endl;
+            cout <<"7. Attack        " << endl;
+            cout <<"8. Defence       " << endl;
+            cout <<"9. Speed         "  << endl;
+            do{
+                cin >> data;
+                cin.ignore();
+                switch(data){
+                    case 1:
+                        cout << "Enter new name: ";
+                        getline(cin,info(findplayer).name);
+                        break;
+                    case 2:
+                        cout << "Enter new Class: ";
+
+                        do{
+
+                            getline(cin,newClass);
+                            if(findClass(CT,newClass)){
+                                changePlayerClass(info(findplayer).name,newClass);
+                            }else{
+                                cout << "Class not found! Enter new Class: ";
+                            }
+                        }while(!findClass(CT,newClass));
+                        break;
+                    case 3:
+                        cout << "Enter new Level: ";
+                        cin >> info(findplayer).level;
+                        break;
+                    case 4:
+                        cout << "Enter new Coin: ";
+                        cin >> info(findplayer).coin;
+                        break;
+                    case 5:
+                        cout << "Enter new Health: ";
+                        cin >> info(findplayer).health;
+                        break;
+                    case 6:
+                        cout << "Enter new Stamina: ";
+                        cin >> info(findplayer).stamina;
+                        break;
+                    case 7:
+                        cout << "Enter new Attack: ";
+                        cin >> info(findplayer).defaultAttack;
+                        break;
+                    case 8:
+                        cout << "Enter new Defense: ";
+                        cin >> info(findplayer).defaultDefence;
+                        break;
+                    case 9:
+                        cout << "Enter new Speed: ";
+                         cin >> info(findplayer).speed;
+                        break;
+                    default:
+                        cout << "Stats not valid! Select which data do you want to change (1-9): ";
+                        break;
+                    }
+                    cout << "Do you want to change another Stat (y/n)?: ";
+                    do{
+                        getline(cin,choice);
+                        if(choice == "y"){
+                            changeAgain = true;
+                        }else if(choice == "n"){
+                        }else{
+                            cout << "Wrong answer. Do you want to change another Stat (y/n)?: ";
+                        }
+                    }while(!(choice == "y" || choice == "n"));
+            }while(data < 0 || data > 9 || changeAgain);
+        }else if(name == "0" || !changeAgain){
+            break;
+        }else{
+            cout << "Player not found! Enter Player name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
     getch();
     popMenu(Menu);
 }
 void changeObjectData(){
+    string name;
+    string choice;
+    string newClass;
+    int data;
+    int yea;
+    float yeah;
+    cout << "Enter Item name (type 0 to get back): ";
+    do{
+        bool changeAgain = false;
+        getline(cin,name);
+        if(findObject(OL,name)){
+            objectAddress found = findObject(OL,name);
+            cout << "Select which data do you want to change (1-3):\n";
+            cout <<"1. Name          " << endl;
+            cout <<"2. Description         "  << endl;
+            cout <<"3. Armor Type         "  << endl;
+            do{
+                cin >> data;
+                cin.ignore();
+                switch(data){
+                    case 1:
+                        cout << "Enter new name: ";
+                        getline(cin,info(found).name);
+                        break;
+                    case 2:
+                        cout << "Enter new Description: ";
+                        getline(cin,info(found).desc);
+                        break;
+                    case 3:
+                        cout << "Enter new Armor Type: ";
+                        getline(cin,info(found).armorType);
+                    default:
+                        cout << "Stats not valid! Select which data do you want to change (1-3): ";
+                        break;
+                    }
+                    cout << "Do you want to change another Stat (y/n)?: ";
+                    do{
+                        getline(cin,choice);
+                        if(choice == "y"){
+                            changeAgain = true;
+                        }else if(choice == "n"){
+                        }else{
+                            cout << "Wrong answer. Do you want to change another Stat (y/n)?: ";
+                        }
+                    }while(!(choice == "y" || choice == "n"));
+            }while(data < 0 || data > 9 || changeAgain);
+        }else if(name == "0" || !changeAgain){
+            break;
+        }else{
+            cout << "Item not found! Enter Item name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
     getch();
     popMenu(Menu);
 }
 void changeClassData(){
+    string name;
+    string choice;
+    string newClass;
+    int data;
+    cout << "Enter Class name (type 0 to get back): ";
+    do{
+        bool changeAgain = false;
+        getline(cin,name);
+        getline(cin,name);
+        if(findClass(CT,name)){
+            classAddress found = findClass(CT,name);
+            playerAddress P;
+            cout << "Select which data do you want to change (1-9):\n";
+            cout <<"1. Name          " << endl;
+            cout <<"2. Description         "  << endl;
+            cout <<"3. Bonus Health         "  << endl;
+            cout <<"4. Bonus Attack          " << endl;
+            cout <<"5. Bonus Defense        "  << endl;
+            cout <<"6. Bonus Speed       " << endl;
+            do{
+                cin >> data;
+                cin.ignore();
+
+                switch(data){
+                    case 1:
+                        cout << "Enter new name: ";
+                        getline(cin,info(found).name);
+                        P = first(PL);
+                        while(P != NULL){
+                            if(info(P).Class == name){
+                                info(P).Class = info(found).name;
+                            }
+                            P = next(P);
+                        }
+                        break;
+                    case 2:
+                        cout << "Enter new Description: ";
+                        getline(cin,info(found).desc);
+                        break;
+                    case 3:
+                        cout << "Enter new Bonus Health: ";
+                        cin >> info(found).bonusHealth;
+                        break;
+                    case 4:
+                        cout << "Enter new Bonus Attack: ";
+                        cin >> info(found).bonusAttack;
+                        break;
+                    case 5:
+                        cout << "Enter new Bonus Defense: ";
+                        cin >> info(found).bonusDefense;
+                        break;
+                    case 6:
+                        cout << "Enter new bonus Speed: ";
+                        cin >> info(found).bonusSpeed;
+                        break;
+                    default:
+                        cout << "Stats not valid! Select which data do you want to change (1-9): ";
+                        break;
+                    }
+                    cout << "Do you want to change another Stat (y/n)?: ";
+                    do{
+                        getline(cin,choice);
+                        if(choice == "y"){
+                            changeAgain = true;
+                        }else if(choice == "n"){
+                        }else{
+                            cout << "Wrong answer. Do you want to change another Stat (y/n)?: ";
+                        }
+                    }while(!(choice == "y" || choice == "n"));
+            }while(data < 0 || data > 9 || changeAgain);
+        }else if(name == "0" || !changeAgain){
+            break;
+        }else{
+            cout << "Class not found! Enter Class name (type 0 to get back): ";
+        }
+    }while(!findPlayer(PL,name) && name != "0");
     getch();
     popMenu(Menu);
 }

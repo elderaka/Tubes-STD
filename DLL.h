@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <time.h>
 #include <map>
+#include <fstream>
 #define first(L) L.first
 #define last(L) L.last
 #define root(T) T.root
