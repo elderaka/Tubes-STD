@@ -35,14 +35,10 @@ void removeObjectFromPlayer(playerList &PL,objectList &OL, string player, string
     if(adrPlayer != NULL){
         inventoryList inv = inventory(adrPlayer);
         removeObject(inv,OL,name);
-    }else{
-        cout << "Player not found" << endl;
     }
 }
 
 inventoryAddress findObjectinInventory(inventoryList L, string name){
-    //Who's fucking ideas it is to use mc(PL) instead of the playerAddress
-    //Edit: oh ya, it's my past self
     inventoryAddress prec = first(L);
     while(prec != NULL){
         if(info(object(prec)).name == name){

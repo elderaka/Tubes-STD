@@ -42,6 +42,7 @@ skillAddress createNewSkillNode(skill x);
 void addSkill(skillTree &root,skillAddress p);
 skillAddress findskill(skillTree root, string name);
 int STHeight(skillTree root);
+void deleteSkill(skillTree root, int id);
 int getcol(int h);
 void showSkillTree(string prefix, skillTree root, bool isLeft);
 void showSkillByParent(skillAddress T);

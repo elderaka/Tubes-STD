@@ -30,6 +30,7 @@ infotype Dequeue(Queue &S){
     }else if(tail(S) == head(S)){
         P = head(S);
         createQueue(S);
+
     }else{
         P = head(S);
         head(S) = next(P);

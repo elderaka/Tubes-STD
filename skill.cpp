@@ -65,7 +65,6 @@ void showSkillTree(string prefix, skillTree root, bool isLeft){
         showSkillTree(prefix + (isLeft ? "|   " : "    "), right(root), false);
     }
 }
-
 void showSkillByParent(skillAddress T){
     cout << "1."<<info(left(T)).name << endl;
     cout << "2."<<info(right(T)).name << endl;

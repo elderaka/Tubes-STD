@@ -44,6 +44,7 @@ void createClassTree(classTree &root){
 bool isClassEmpty(classTree root){
     return root == NULL;
 }
+
 classAddress createNewClassNode(Class x){
     classAddress p = new classNode;
     info(p) = x;

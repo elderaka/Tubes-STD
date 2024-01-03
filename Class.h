@@ -40,6 +40,7 @@ classTree DeCqueue(CQueue &S);
 
 void createClassTree(classTree &root);
 bool isClassEmpty(classTree root);
+void deleteClass(classTree root, classAddress p);
 classAddress createNewClassNode(Class x);
 void addClass(classTree &root,classAddress p);
 classAddress findClass(classTree root, string name);

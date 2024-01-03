@@ -111,6 +111,17 @@ void splashScreen(){
 void introduction(){
     string x[100];
     player newPlayer;
+    Player.defaultAttack = 100;
+    Player.defaultDefence = 100;
+    Player.coin = 100;
+    Player.health = 200;
+    Player.currentHealth = Player.health;
+    Player.speed = 10;
+    Player.stamina = 10;
+    Player.currentStamina = 100;
+    Player.exp = 0;
+    Player.level = 1;
+    Player.nextLevel = 10;
     addPlayer(PL,createNewPlayerElement(newPlayer));
     x[0] = "Welcome brave hearts, to the mystical world of Eldoria! A land filled with magic, mythical creatures, evil, and adorned with countless treasures. The winds of fate bring you to the small town of Everhaven, where an ancient prophecy foretells the discovery of the Lost Heirloom-a powerful artifact that holds the key to restoring balance to the world.\n";
     print(x,0,false);
@@ -184,7 +195,18 @@ void explore(){
         if(position[1] == 0){
             encounter(0);
         }else{
-            encounter(18);
+            int dice = roll();
+            if(position[1] == 1){
+                encounter(18);
+            }
+            if(position[1] < 3){
+                encounter(dice % 5);
+            }else if(position[1] < 7){
+                encounter((dice % 7) + 5);
+            }else{
+                encounter((dice % 7) + 13);
+            }
+
         }
     }
     popMenu(Menu);
@@ -1350,9 +1372,9 @@ void fight(enemyList enemies){
                             }
                             //NOTE: YES, THIS IS DUMB. BUT I HAVe GGONE TOO FAR FOR THIS
                             //TODO: instead of calling findEntity everytime we needed it, why don't we make new variable?
-                            cout << MC.name + " dealt " << MC.defaultAttack * attackMultiplier << " damage!\n";
+                            cout << MC.name + " dealt " << floor(MC.defaultAttack * attackMultiplier) << " damage!\n";
                             info(findEntity(eL,target)).Enemy.currentHealth -= MC.defaultAttack * attackMultiplier;
-                            cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << info(findEntity(eL,target)).Enemy.currentHealth << " HP left!\n";
+                            cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") only have " << floor(info(findEntity(eL,target)).Enemy.currentHealth) << " HP left!\n";
                             if(info(findEntity(eL,target)).Enemy.currentHealth <= 0){
                                 cout << info(findEntity(eL,target)).Enemy.name << " (" <<info(findEntity(eL,target)).no <<") died!" <<endl;
                                 cout << "You gained " << info(findEntity(eL,target)).Enemy.xp << " xp\n";
@@ -1500,7 +1522,7 @@ void fight(enemyList enemies){
                     if(attackMultiplier == 0){
                         cout << "...But it was a miss! ";
                     }
-                    cout << E.Enemy.name + " deals " + to_string(E.Enemy.skillMultiplier * E.Enemy.defaultAttack * attackMultiplier) + " damage!" << endl;
+                    cout << E.Enemy.name + " deals " + to_string(floor(E.Enemy.skillMultiplier * E.Enemy.defaultAttack * attackMultiplier)) + " damage!" << endl;
                     MC.currentHealth -= E.Enemy.skillMultiplier * E.Enemy.defaultAttack * attackMultiplier ;
                 }
             }else{
@@ -1508,7 +1530,7 @@ void fight(enemyList enemies){
                 if(attackMultiplier == 0){
                     cout << "...But it was a miss! ";
                 }
-                cout << E.Enemy.name + " deals " + to_string(attackMultiplier * E.Enemy.defaultAttack) + " damage!" << endl;
+                cout << E.Enemy.name + " deals " + to_string(floor(attackMultiplier * E.Enemy.defaultAttack)) + " damage!" << endl;
                 MC.currentHealth -= attackMultiplier * E.Enemy.defaultAttack ;
             }
             if(MC.currentHealth <= 0){
@@ -1649,9 +1671,7 @@ void checkMenu(){
             cout << "Which data do you want to delete?\n";
             cout << "1. Player\n";
             cout << "2. Item\n";
-            cout << "3. Class\n";
-            cout << "4. Back\n";
-            cout << "Select your choice (1-5): ";
+            cout << "Select your choice (1-2): ";
             do{
                 cin >> datachoice;
                 switch(datachoice){
@@ -1659,13 +1679,7 @@ void checkMenu(){
                     pushMenu(Menu, 20);
                     break;
                 case 2:
-                    pushMenu(Menu, 22);
-                    break;
-                case 3:
                     pushMenu(Menu, 21);
-                    break;
-                case 4:
-                    pushMenu(Menu, 5);
                     break;
                 default:
                     cout << "Wrong Number. Select your choice (1-5): ";
@@ -2394,6 +2408,7 @@ void changePlayerData(){
     cout << "Enter Player name (type 0 to get back): ";
     do{
         bool changeAgain = false;
+        getline(cin,name);
         getline(cin,name);
         if(findPlayer(PL,name)){
             playerAddress findplayer = findPlayer(PL,name);
