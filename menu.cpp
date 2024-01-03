@@ -138,7 +138,7 @@ void introduction(){
     print(x,4,false);
     x[5] = "Old merchant: Hehe, young man. Each of these items has a power that will make you VERY powerful compared to anyone else and arguably an EVERLASTING power.\n";
     print(x,5,false);
-    x[6] = "Old merchant: BUT, once you have chosen, you will no longer be able to part with the items and there will be side effects in each of these items. Please choose one carefully: \n1. Ring of Senicianus\n2. Bloodstained Flower of Iron\n3. Disciple's Dewy Feather Garb\n 4. Leave - Not interested\n";     // show barang2 apa aja
+    x[6] = "Old merchant: BUT, once you have chosen, you will no longer be able to part with the items and there will be side effects in each of these items. Please choose one carefully: \n1. Ring of Senicianus\n2. Bloodstained Flower of Iron\n3. Disciple's Dewy Feather Garb\n4. Leave - Not interested\n";     // show barang2 apa aja
     print(x,6,true);
     cout << "Choose one (1-4): "; // kan ad 3 pilihan nnt pilihan 4 kl bs mending kg ush pilih, jg show barang dh nnt yang ada apa aja
     int pickArtifact;
@@ -174,10 +174,8 @@ void introduction(){
     print(x,8,false);
     x[9] = "With wise class selection, you feel magical power flowing through you. Now, as a newbie, your adventure in Eldoria begins.\n";
     print(x, 9, false);
-
     x[10] = "Armed with weapons, items, and determination, you leave the market for the city gates. A gentle breeze greets your steps, and the setting sun gives the sky a golden color.\n";
     print(x, 10, false);
-
     x[11] = "Your journey in the world of Eldoria begins in the small town of Everhaven.With the Lost Heirloom as your main objective, who will you meet, and what is your destiny in this scroll of history?\n";
     print(x, 11, false);
     pushMenu(Menu,0);
@@ -212,7 +210,7 @@ void explore(){
     popMenu(Menu);
 }
 void encounter(int id){
-    string x[100];
+        string x[100];
     string choice;
     system("cls");
     switch(id){
@@ -222,8 +220,15 @@ void encounter(int id){
         print(x,0,false);
         x[1] = "Before roaming around, you decided to prepare some stuff for the journey and bought provisions and appropriate gears for this land.";
         print(x,1,false);
-        x[2] = "you got:\n	- 3 Provisions\n	- starting gear (basic sword, basic helm, basic chestplate, basic legplate)\n	- 1 Healing Potions";
+        x[2] = "you got:\n	- 3 Provisions\n	- starting gear (basic sword, basic helm, basic chestplate, basic legplate)\n	- 1 Healing Potions\n\t- 10 Gold Piece\n";
         print(x,2,false);
+        addObjectToPlayer(PL,OL,MC.name,"Basic Iron Sword");
+        addObjectToPlayer(PL,OL,MC.name,"Basic Helm");
+        addObjectToPlayer(PL,OL,MC.name,"Basic Chestplate");
+        addObjectToPlayer(PL,OL,MC.name,"Basic Legplate");
+        addObjectToPlayer(PL,OL,MC.name,"Health Potion");
+        MC.coin += 10;
+
         x[3] = "Now to embark for your own journey to bring peace back once more to the lands of Eldoria!\nChoose to where to go now:\n1. Left\n2. Right\nYour choice: ";
         print(x,3,true);
         do{
@@ -242,7 +247,7 @@ void encounter(int id){
     case 1:
         x[0] = "==Astral Tavern== \n Special Encounter ";
         print(x,0,false);
-        x[1] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
+        x[1] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
         print(x,1,false);
         x[2] = "The barkeep, a spectral figure with a twinkle in their eye, serves drinks that bring courage, strength, and arcane insights" ;
         print(x,2,false);
@@ -250,138 +255,198 @@ void encounter(int id){
         print(x,3,false);
         x[4] = "1. Rent A Room  [Replenish your health, cost 5 gold piece]\n";
         print(x,4,false);
-        x[5] = "2. Enchiridion [Upgrade to the next class of their choosing + skills] - 60 gold piece.   \n	3. Spectral Cloak [+20 Defence] - 20 gold piece. \n 4. Helm of Clairvoyant Insight [+20 health] - 20 gold piece.\n	5. Legplates of Ethereal Stride [+ 20 speed] - 20 gold piece. \n   6. Sword of Phantasmal Flames [+20 attack] - 20 gold piece.\n  7. Large Healing Potion[+MAX HEAL] - 8 gold piece. \n 8. Healing Potions [+ heal 2/3 Health] - 5 gold piece. \n  9. Defence Potions [+ 30 defence for 2 turns] - 5 gold piece. \n  	10. Attack Potions [+ 30 attack for 2 turns] - 8 gold piece. \n  11. Speed Potions [+ 30 Speed boost for 2 turn]- 8 gold piece. \n  12. Provisions [ + heal 1/3 Health] - 8 gold piece. \n  13. Entropic Die [charms, +15 attack, + 15 Speed] - 15 gold piece. \n  14. Amulet of Lifespring [charms, at the start of the battle (+ heal 10 for 2 turns)] - 20 gold piece.  \n  15. Ring of Attunement [charms,  + 10 attack, +10 defence, + 10 Speed, +10 health for perma] - 40 gold piece. \n  16. Leave. \n";
+        x[5] = "2. Enchiridion [Upgrade to the next class of their choosing + skills] - 60 gold piece.\n3. Spectral Cloak [+20 Defence] - 20 gold piece.\n4. Helm of Clairvoyant Insight [+20 health] - 20 gold piece.\n5. Legplates of Ethereal Stride [+ 20 speed] - 20 gold piece. \n6. Sword of Phantasmal Flames [+20 attack] - 20 gold piece.\n7. Large Healing Potion[+MAX HEAL] - 8 gold piece. \n8. Healing Potions [+ heal 2/3 Health] - 5 gold piece. \n9. Defence Potions [+ 30 defence for 2 turns] - 5 gold piece. \n10. Attack Potions [+ 30 attack for 2 turns] - 8 gold piece. \n11. Speed Potions [+ 30 Speed boost for 2 turn]- 8 gold piece. \n12. Provisions [ + heal 1/3 Health] - 8 gold piece. \n13. Entropic Die [charms, +15 attack, + 15 Speed] - 15 gold piece. \n14. Amulet of Lifespring [charms, at the start of the battle (+ heal 10 for 2 turns)] - 20 gold piece.  \n15. Ring of Attunement [charms,  + 10 attack, +10 defence, + 10 Speed, +10 health for perma] - 40 gold piece. \n16. Leave. \n";
         print(x,5,false);
-        x[10] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of 	whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	" ;
+        x[10] = "'Welcome to the Enchanted Wanderer, ready to serve weary travelers and intrepid rogues alike to step through its ethereal doors.' The atmosphere is an eclectic blend of whimsy and mystery, with flickering candles illuminating ancient tapestries that tell tales of forgotten realms.	\n What Will You Do Now? \n" ;
         print(x,6,true);
         do{
             cin >> choice;
+            while(choice != "16"){
+            cin >> choice;
             if (choice == "1"){
-                cout << "Well goodnight then.. or morn, Im not sure myself because time here is irrelevant\n";
-                MC.coin -= 5;
-                MC.currentHealth = MC.health;
-            }else if (choice == "2"){
-                if(findObjectinInventory(inventory(mc(PL)),"Enchiridion") != NULL){
-                    cout << "Sorry kid, you already bought it before\n";
+                if(MC.coin >= 60){
+                    cout << "Well goodnight then.. or morn, Im not sure myself because time here is irrelevant\n";
+                    MC.coin -= 5;
+                    MC.currentHealth += 99999;
                 }else{
-                    MC.coin -= 60;
-                    addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
-                    //addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
-                    cout << "Huh.. I thought this thing was destroyed. what Else Can I get for ye?\n";
+                    cout<<"Sorry kid, you aint got enough coins"<<endl;
+                }
+            }else if (choice == "2"){
+                if(MC.coin >= 60){
+                    if(findObjectinInventory(inventory(mc(PL)),"Enchiridion") != NULL){
+                        cout << "Sorry kid, you already bought it before\n";
+                    }else{
+                        MC.coin -= 60;
+                        addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
+                        //addObjectToPlayer(PL,OL,MC.name,"Enchiridion");
+                        cout << "Huh.. I thought this thing was destroyed. what Else Can I get for ye?\n";
+                    }
+                }else{
+                    cout<<"Sorry kid, you aint got enough coins"<<endl;
                 }
             }else if (choice == "3"){
-                if(findObjectinInventory(inventory(mc(PL)),"Spectral Cloak") != NULL){
-                    cout << "Sorry kid, you already bought it before\n";
-                }else{
-                    MC.coin -= 20;
-                    addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
-                    //addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
-                    cout << "good choice, I made em myself from a unicorn hairs (Animal Cruelty Free)\n";
+                if(MC.coin >= 20){
+                    if(findObjectinInventory(inventory(mc(PL)),"Spectral Cloak") != NULL){
+                        cout << "Sorry kid, you already bought it before\n";
+                    }else{
+                        MC.coin -= 20;
+                        addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
+                        //addObjectToPlayer(PL,OL,MC.name,"Spectral Cloak");
+                        cout << "good choice, I made em myself from a unicorn hairs (Animal Cruelty Free)\n";
+                    }
                 }
             }else if (choice == "4"){
-                if(findObjectinInventory(inventory(mc(PL)),"Helm of Clairvoyant Insight") != NULL){
-                    cout << "Sorry kid, you already bought it before\n";
-                }else{
-                    MC.coin -= 20;
-                    addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
-                    //addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
-                    cout << "Good decision, I can even do a little bit of blacksmithing myself other than barkeeping and tailoring\n";
+                if(MC.coin >=20){
+                    if(findObjectinInventory(inventory(mc(PL)),"Helm of Clairvoyant Insight") != NULL){
+                        cout << "Sorry kid, you already bought it before\n";
+                    }else{
+                        MC.coin -= 20;
+                        addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
+                        //addObjectToPlayer(PL,OL,MC.name,"Helm of Clairvoyant Insight");
+                        cout << "Good decision, I can even do a little bit of blacksmithing myself other than barkeeping and tailoring\n";
+                    }
                 }
             }else if (choice == "5") {
-                if (findObjectinInventory(inventory(mc(PL)),"Legplates of Ethereal Stride") != NULL) {
-                    cout << "Sorry kid, you already bought it before\n";
-                } else {
-                    MC.coin -= 20;
-                     addObjectToPlayer(PL,OL,MC.name,"Legplates of Ethereal Stride");
-                    // addObjectToPlayer(PL, OL, MC.name, "Legplates of Ethereal Stride");
-                    cout << "I carved this piece with moon ore to rival some old basic stuff \n";
+                if(MC.coin >= 20){
+                    if (findObjectinInventory(inventory(mc(PL)),"Legplates of Ethereal Stride") != NULL) {
+                        cout << "Sorry kid, you already bought it before\n";
+                    } else {
+                        MC.coin -= 20;
+                         addObjectToPlayer(PL,OL,MC.name,"Legplates of Ethereal Stride");
+                        // addObjectToPlayer(PL, OL, MC.name, "Legplates of Ethereal Stride");
+                        cout << "I carved this piece with moon ore to rival some old basic stuff \n";
+                    }
                 }
             }else if (choice == "6") {
-                if (findObjectinInventory(inventory(mc(PL)),"Sword of Phantasmal Flames ") != NULL) {
-                    cout << "Sorry kid, you already bought it before\n";
-                }else {
-                    MC.coin -= 20;
-                     addObjectToPlayer(PL,OL,MC.name,"Sword of Phantasmal Flames ");
-                    // addObjectToPlayer(PL, OL, MC.name, "Sword of Phantasmal Flames");
-                    cout << "Negotiated with Surtur myself to forge this beauty\n";
+                if(MC.coin >= 20){
+                    if (findObjectinInventory(inventory(mc(PL)),"Sword of Phantasmal Flames ") != NULL) {
+                        cout << "Sorry kid, you already bought it before\n";
+                    }else {
+                        MC.coin -= 20;
+                         addObjectToPlayer(PL,OL,MC.name,"Sword of Phantasmal Flames ");
+                        // addObjectToPlayer(PL, OL, MC.name, "Sword of Phantasmal Flames");
+                        cout << "Negotiated with Surtur myself to forge this beauty\n";
+                    }
+                }else{
+                    cout<<"Sorry kid, you aint got enough coins"<<endl;
                 }
             }else if (choice == "7") {
-                MC.coin -= 8;
-                addObjectToPlayer(PL,OL,MC.name,"L. Healing Potion");
-                // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
-                cout << "Ready to fight out with em big boys are ye?\n";
-            } else if (choice == "8") {
-                MC.coin -= 5;
-                addObjectToPlayer(PL,OL,MC.name,"Healing Potion");
-                // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
-                cout << "Wise decision, a good traveler is an alive traveler\n";
+                if(MC.coin >= 8){
+                    MC.coin -= 8;
+                    addObjectToPlayer(PL,OL,MC.name,"L. Healing Potion");
+                    // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
+                    cout << "Ready to fight out with em big boys are ye?\n";
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                }
+            }else if (choice == "8") {
+                if(MC.coin >= 5){
+                    MC.coin -= 5;
+                    addObjectToPlayer(PL,OL,MC.name,"Healing Potion");
+                    // addObjectToPlayer(PL, OL, MC.name, "Healing Potion");
+                    cout << "Wise decision, a good traveler is an alive traveler\n";
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                }
             } else if (choice == "9") {
-                MC.coin -= 5;
-                addObjectToPlayer(PL,OL,MC.name,"Defence Potion");
-                // addObjectToPlayer(PL, OL, MC.name, "Defence Potion");
-                cout << "Make ya skin feels like a stone, in a good way\n";
-            } else if (choice == "10") {
-                MC.coin -= 5;
-                addObjectToPlayer(PL,OL,MC.name,"Attack Potion");
-                // addObjectToPlayer(PL, OL, MC.name, "Attack Potion");
-                cout << "Don't do weird magix kids! Just try my brew, it'll feel like you could lift a mountain (don't actually do it)\n";
-            } else if (choice == "11") {
-                MC.coin -= 5;
-                addObjectToPlayer(PL,OL,MC.name,"Speed Potion");
-                // addObjectToPlayer(PL, OL, MC.name, "Speed Potion");
-                cout << "Can't keep up with a carriage? try this one for size\n";
+                if(MC.coin >= 5){
+                    MC.coin -= 5;
+                    addObjectToPlayer(PL,OL,MC.name,"Defence Potion");
+                    // addObjectToPlayer(PL, OL, MC.name, "Defence Potion");
+                    cout << "Make ya skin feels like a stone, in a good way\n";
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                }
+            }else if (choice == "10") {
+                if(MC.coin >= 5){
+                    MC.coin -= 5;
+                    addObjectToPlayer(PL,OL,MC.name,"Attack Potion");
+                    // addObjectToPlayer(PL, OL, MC.name, "Attack Potion");
+                    cout << "Don't do weird magix kids! Just try my brew, it'll feel like you could lift a mountain (don't actually do it)\n";
+                 }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                 }
+            }else if (choice == "11") {
+                if(MC.coin >= 5){
+                    MC.coin -= 5;
+                    addObjectToPlayer(PL,OL,MC.name,"Speed Potion");
+                    // addObjectToPlayer(PL, OL, MC.name, "Speed Potion");
+                    cout << "Can't keep up with a carriage? try this one for size\n";
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                 }
             } else if (choice == "12") {
-                MC.coin -= 3;
-                addObjectToPlayer(PL,OL,MC.name,"Provision");
-                // addObjectToPlayer(PL, OL, MC.name, "Provision");
-                cout << "Can't afford a Health Potion? try this alternative, the taste is bland but it's better than nothing right?\n";
+                if(MC.coin >= 3){
+                    MC.coin -= 3;
+                    addObjectToPlayer(PL,OL,MC.name,"Provision");
+                    // addObjectToPlayer(PL, OL, MC.name, "Provision");
+                    cout << "Can't afford a Health Potion? try this alternative, the taste is bland but it's better than nothing right?\n";
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
+                }
             } else if (choice == "13") {
-                if (findObjectinInventory(inventory(mc(PL)),"Entropic Die") != NULL) {
-                    cout << "Sorry kid, you already bought it before";
-                } else {
-                MC.coin -= 20;
-                addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
-                // addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
-                cout << "I forgot where I got it from, but I can guarantee you that this will help you.. I hope\n";
+                if(MC.coin >= 20){
+                    if (findObjectinInventory(inventory(mc(PL)),"Entropic Die") != NULL) {
+                        cout << "Sorry kid, you already bought it before";
+                    } else {
+                        MC.coin -= 20;
+                        addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
+                        // addObjectToPlayer(PL, OL, MC.name, "Entropic Die");
+                        cout << "I forgot where I got it from, but I can guarantee you that this will help you.. I hope\n";
+                    }
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
                 }
             } else if (choice == "14") {
-                if (findObjectinInventory(inventory(mc(PL)),"Amulet of Lifespring") != NULL) {
-                    cout << "Sorry kid, you already bought it before";
-                } else {
-                    MC.coin -= 20;
-                    addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
-                    // addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
-                    cout << "An amulet blessed by a Harvest Goddess in a land called Leaf Valley\n";
+                if(MC.coin >= 20){
+                    if (findObjectinInventory(inventory(mc(PL)),"Amulet of Lifespring") != NULL) {
+                        cout << "Sorry kid, you already bought it before";
+                    } else {
+                        MC.coin -= 20;
+                        addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
+                        // addObjectToPlayer(PL, OL, MC.name, "Amulet of Lifespring");
+                        cout << "An amulet blessed by a Harvest Goddess in a land called Leaf Valley\n";
+                    }
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
                 }
             } else if (choice == "15") {
-                if (findObjectinInventory(inventory(mc(PL)),"Ring of Attunement") != NULL) {
-                    cout << "Sorry kid, you already bought it before";
-                } else {
-                    MC.coin -= 30;
-                    addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
-                    // addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
-                    cout << "This thing will make you feel in balance every time you battle just as all things should be\n";
+                if(MC.coin >= 20){
+                    if (findObjectinInventory(inventory(mc(PL)),"Ring of Attunement") != NULL) {
+                        cout << "Sorry kid, you already bought it before";
+                    } else {
+                        MC.coin -= 30;
+                        addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
+                        // addObjectToPlayer(PL, OL, MC.name, "Ring of Attunement");
+                        cout << "This thing will make you feel in balance every time you battle just as all things should be\n";
+                    }
+                }else{
+                    cout << "Sorry Kid, You Can't Afford it;"<<endl;
                 }
             } else if (choice == "16"){
                 cout << "Do be seein' ya come back again someday, may the astral thread weaves you a good journey";
             }else{
                 cout << "That Item does not exist or I dont know what you are talkin about";
             }
+            }
         }while(stoi(choice) < 0 || stoi(choice) > 16);
         break;
     case 2:
         x[0] = " == Insect Nest (Occurance) == " ;
         print(x,0,false);
-        x[1] = "You accidentally step into a ground trap made of branches and leaves — the type you believe to be used only by the most old-fashioned hunter on planet Bled. You get to 	your feet, and the entrance of a nest is before you. " ;
+        x[1] = "You accidentally step into a ground trap made of branches and leaves the type you believe to be used only by the most old-fashioned hunter on planet Bled. You get to your feet, and the entrance of a nest is before you. " ;
         print(x,1,false);
-    	x[2] = "What do you do now? \n  1. Stop at the entrance of the nest and attempt to climb out. \n  2. Go deeper into the insect nest. Wait for 'them.' \n  3. Enter the Insect Nest 	and snuff them out! " ;
-        print(x,2,true);
+        x[2] = "Choices: \n" ;
+        print(x,2,false);
+    	x[3] = "  1. Stop at the entrance of the nest and attempt to climb out. \n  2. Go deeper into the insect nest. Wait for 'them.' \n  3. Enter the Insect Nest and snuff them out! \n What Will You Do Now? \n" ;
+        print(x,3,true);
         do{
             cin >> choice;
             if (choice == "1"){
                 MC.coin += addGold(mc(PL),20);
                 //[Walk Away and 10 gold piece];
             }else if (choice == "2"){
+                cout << "Loses 1/4 Health, Obtained 20 Gold Piece"<<endl;
                 MC.coin += addGold(mc(PL),20);
                 MC.currentHealth -= 0.25 * MC.currentHealth;
                 //[Lose 1/2 total health, obtain 30 gold piece]
@@ -411,13 +476,19 @@ void encounter(int id){
         print(x,1,false);
     	x[2] = "He approaches and waves at you. 'Akivili had an adventure with us under the guise of a civilian. We exchanged a lot of fun experiences during the journey.'\n";
         print(x,2,false);
-    	x[3] = "1. Blessing Exchange. \n  2. Leave. — You're not interested.\n";
+    	x[3] = "  1. Blessing Exchange.[Requires 10 Gold Piece] \n  2. Leave.  You're not interested.\n What Will You Do Now? \n";
         print(x,3,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                addObjectToPlayer(PL, OL, MC.name, "Boon of Boons");
-                cout << "OH! How Joyful it is to have a stranger in this time\n";
+                if(MC.coin >= 10){
+                    addObjectToPlayer(PL, OL, MC.name, "Boon of Boons");
+                    cout << "OH! How Joyful it is to have a stranger in this time\n";
+                }else{
+                    cout << "'Tis sad that thou lacks something as well, but fret not, the masked society always help when someone in needed'\n"<<endl;
+                    MC.coin += addGold(mc(PL),10);
+                    cout << "You Gained 10 gold piece"<<endl;
+                }
             }else if (choice == "2"){
                 //gain [nothing and small xp]
                 cout << "How disappointing encounter tis is\n";
@@ -430,37 +501,47 @@ void encounter(int id){
     case 4:
         x[0] = " ==  Jim Hulk and Hall Jim (Occurance) == " ;
         print(x,0,false);
-        x[1] = "You are in a sprawling desert, and your vision is obscured by abandoned containers. Thick smoke permeates the air, and scrapped crate are dismantled into broken parts. The 	words 'Arasaka' are printed on one of the wood plank, almost no longer visible." ;
+        x[1] = "You are in a sprawling desert, and your vision is obscured by abandoned containers. Thick smoke permeates the air, and scrapped crate are dismantled into broken parts. The words 'Arasaka' are printed on one of the wood plank, almost no longer visible." ;
         print(x,1,false);
     	x[2] = "A rustling comes from the pile of trash behind you. You sense someone's eyes on you. As you turn around, you notice a vagrant hiding behind a crate. " ;
         print(x,2,false);
     	x[3] = "You approach the vagrant and find that it is bleeding with its legs twisted." ;
         print(x,3,false);
-    	x[4] = "Hall Jim: 'We were hailed as the Amber Lord's Support Team. Karavan Keane trained us, used us, and ultimately abandoned us.' The vagrants shows you the items it is trying 	its best to keep safe." ;
+    	x[4] = "Hall Jim: 'We were hailed as the Amber Lord's Support Team. Karavan Keane trained us, used us, and ultimately abandoned us.' The vagrants shows you the items it is trying its best to keep safe." ;
         print(x,4,false);
         x[5] = "Hall Jim: 'Jim Hulk wont get up 4 days ago. Im about to pass out in a day and can no longer keep my brother's items. Please help me. Buy one of them out of here." + 	to_string(id);
         print(x,5,false);
-    	x[6] = "1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Jim Hall's Collection. [req 20 gold piece] \n  3. Sorry I cant help you.";
-        print(x,6,true);
+        x[6] = "Choices";
+        print(x,6,false);
+    	x[7] = "  1. Jim Hulk's collection. (requires 15 gold piece) \n  2. Jim Hall's Collection. [req 20 gold piece] \n  3. Sorry I cant help you. \n What Will You Do Now? \n";
+        print(x,7,true);
         do{
             cin >> choice;
             if (choice == "1"){
-
-                MC.coin -= 10;
-            cout << "Ah... thank you, with these we can live another day.";
-                //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
-             addObjectToPlayer(PL, OL, MC.name, "Tonic of Efficacious Chaos");
+                if(MC.coin >= 15){
+                    MC.coin -= 15;
+                    cout << "Ah... thank you, with these we can live another day.";
+                    //[gain 'Tonic of Efficacious Chaos' Charm, +attack (20 * char lv) for 1 turn].
+                    addObjectToPlayer(PL, OL, MC.name, "Tonic of Efficacious Chaos");
+                }else{
+                    cout<<"You Can't Afford it"<<endl;
+                }
             }else if (choice == "2"){
-                cout << "As he handed over the chestplate, a faint smile played on his lips, reminiscent of the pride that once defined him.";
-                MC.coin -= 20;
-                addObjectToPlayer(PL, OL, MC.name, "Jim Hall's Chestplate");
-            }else if (choice == "3"){
-                cout << "I guess this is it for us.. sorry brother I've failed you";
-                MC.coin += addGold(mc(PL),10);
-            }else{
-                cout << "you cant do that\n";
-            }
-        }while(stoi(choice) < 0 || stoi(choice) > 2);
+                 if(MC.coin >= 20){
+                    cout << "As he handed over the chestplate, a faint smile played on his lips, reminiscent of the pride that once defined him.";
+                    MC.coin -= 20;
+                    addObjectToPlayer(PL, OL, MC.name, "Jim Hall's Chestplate");
+                }else{
+                    cout<<"You Can't Afford it"<<endl;
+                    }
+                }else if (choice == "3"){
+                    cout << "I guess this is it for us.. sorry brother I've failed you";
+                    MC.coin += addGold(mc(PL),10);
+                    cout << "You Gained 10 gold piece by robbing them blind";
+                }else{
+                    cout << "you cant do that\n";
+                }
+        }while(stoi(choice) < 0 || stoi(choice) > 3);
        MC.exp += addExp(mc(PL),250);
         break;
     case 5:
@@ -468,13 +549,13 @@ void encounter(int id){
         print(x,0,false);
         x[1] = "It's dusk, and you're standing amid the heat waves. The atmosphere at the mines makes you dizzy, the mineral veins burning like melted butter." ;
         print(x,1,false);
-        x[2] = "'Great Qlipoth, Aeon of Preservation... They can hear our voices.' The miners raise and dip their shovels like frenzied animals — or the faithful." ;
+        x[2] = "'Great Qlipoth, Aeon of Preservation... They can hear our voices.' The miners raise and dip their shovels like frenzied animals or the faithful." ;
         print(x,2,false);
-        x[3] = "Someone notices you — It's the 'lead miner' wearing a detector lamp. His arms are dark and muscular, and his lips are in a similar shade of ink. His hearty smile is very 	memorable. He has a gold tooth that ceaselessly expands and twists in your brain, till all you can see is his 'smile' — His lips and eyes fuse together, like the melting sludge of 	paint on a palette.\n" ;
+        x[3] = "Someone notices you — It's the 'lead miner' wearing a detector lamp. His arms are dark and muscular, and his lips are in a similar shade of ink. His hearty smile is very memorable. He has a gold tooth that ceaselessly expands and twists in your brain, till all you can see is his 'smile' — His lips and eyes fuse together, like the melting sludge of 	paint on a palette.\n" ;
         print(x,3,false);
         x[4] = "'Qlipoth, the blessing of the Amber Lord, preserves these leylines. You can have one of them.'";
         print(x,4,false);
-        x[5] = "Choice: \n 1. Fight with the lead miner and grab the stuff!\n  2. Qlipoth's Blessing.\n";
+        x[5] = "Choice: \n 1. Fight with the lead miner and grab the stuff!\n  2. Qlipoth's Blessing.\n What Will You Do? \n";
         print(x,5,true);
         do{
             cin >> choice;
@@ -483,7 +564,7 @@ void encounter(int id){
                 print(x,6,false);
                 enemyList enemies;
                 createEnemyList(enemies);
-                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Lead Miner")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Miner")))));
@@ -499,21 +580,27 @@ void encounter(int id){
        MC.exp += addExp(mc(PL),250);
         break;
     case 6:
-        x[0] = " == Hunter (Occurance) ==" ;
+        x[0] = " == Bounty Hunter (Occurance) ==" ;
         print(x,0,false);
-        x[1] = "You wander on the forest plains wrapped tightly in a your coat and sword strapped to your side. A man is coming your way. The tall and slender man has crimson curly hair 	and a freckled face. He is wearing leather boots and holding a rifle." ;
+        x[1] = "You wander on the forest plains wrapped tightly in a your coat and sword strapped to your side. A man is coming your way. The tall and slender man has crimson curly hair and a freckled face. He is wearing leather boots and holding a rifle." ;
         print(x,1,false);
-        x[2] = "He points at a rectangular building in the distance and says, 'The pharmaceutical branch of the Rhodes Island is hunting biological materials to manufacture precious 	drugs, and so are recruiting operators in the Snowlands.'";
+        x[2] = "He points at a rectangular building in the distance and says, 'The pharmaceutical branch of the Rhodes Island is hunting biological materials to manufacture precious drugs, and so are recruiting operators in the Snowlands.'";
         print(x,2,false);
-        x[3] = "According to a secret source, the S-rank bounty for Snow Plains Leopard comes with a handsome reward. 'I'm surprised by how cold that place is. Could you lend me your 	coat?' 	You catch sight of the almost torn Mask of Reunion worn on his face to conceal his identity..." ;
+        x[3] = "According to a secret source, the S-rank bounty for Snow Plains Leopard comes with a handsome reward. 'I'm surprised by how cold that place is. Could you give me some gold to buy a coat?' You catch sight of the almost torn Mask of Reunion worn on his face to conceal his identity..." ;
         print(x,3,false);
-        x[4] = "Now What do You do? \n  1. give him your coat [discard your current chestplate and obtain 30 gold piece] \n  2. I wont give you anything, and also I'll be taking ur 	stuff: enter battle,[enter batlle] \n  3. walk away [gain nothing]";
+        x[4] = "Choices: \n  1. give him your coat [require 10 gold piece] \n  2. I wont give you anything, and also I'll be taking ur stuff[enter batlle] \n  3. walk away [gain nothing]\n Now What do You do? \n";
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                //[discard your current chestplate and obtain 30 gold piece];
-                cout << "Appreciate it stranger to another land\n";
+                if(MC.coin >= 10 ){
+                    addObjectToPlayer(PL, OL, MC.name, "Reunion's Garb");
+                    MC.coin -= 10;
+                    cout << "Appreciate it stranger to another land\n";
+                }else{
+                    cout << "'heh.. turns out we shared the same fate'\n";
+                    cout<<"The Stranger gives you a weird smirk under that weird mask. \n"<<endl;
+                }
             }else if (choice == "2"){
                 cout << "Go ahead and try \n";
                 enemyList enemies;
@@ -531,21 +618,22 @@ void encounter(int id){
     case 7:
         x[0] = " == Saleo(Battle) == \n";
         print(x,0,false);
-        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has 	two heads knocking each other — one of them has red antennae, while the other has a white halo.\n";
+        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has two heads knocking each other — one of them has red antennae, while the other has a white halo.\n";
       	print(x,1,false);
-        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger 	one, is the angel. Which one do you want as your neighbor?'\n";
+        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger one, is the angel. Which one do you want as your neighbor?'\n  What Would you do?\n";
       	print(x,2,false);
-        x[3] = "1. Pick Sal \n  2. Pick Leo \n";
-        print(x,3,true);
+        x[3] = "What Will You Do?\n";
+      	print(x,3,false);
+        x[4] = "  1. Pick Sal \n  2. Pick Leo \n";
+        print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.health -= 0.2 * MC.health ;
+                MC.currentHealth -= 0.2 * MC.health;
                 enemyList enemies;
                 createEnemyList(enemies);
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Sal")))));
                 fight(enemies);
-
             }else if (choice == "2"){
                 enemyList enemies;
                 createEnemyList(enemies);
@@ -566,21 +654,28 @@ void encounter(int id){
         print(x,2,false);
     	x[3] = "'Of course. It all started from our belief in Nanook. To help the Aeon in building the wall, the support team needed materials from different places across these lands of 	Erudera. We learned to exchange resources during that time,'he says while scratching his face. 'Now, let's try to exchange something. I guarantee you that whatever you've spent won't be in vain.'" ;
         print(x,3,false);
-    	x[4] = "1. Purchase a metal Wish-In-A-Bottle. — (Consume 10 gold piece and obtain 1 'Good Value' Charms). 2. Purchase a silver ore Wish-In-A-Bottle. — (Consume 20 gold piece and 	obtain 1 'Surprising' equipment.) \n3. Leave. — You're not interested.\n" ;
+    	x[4] = "1. Purchase a metal Wish-In-A-Bottle. — (Consume 10 gold piece and obtain 1 'Good Value' Charms). 2. Purchase a silver ore Wish-In-A-Bottle. — (Consume 20 gold piece and 	obtain 1 'Surprising' equipment.) \n3. Leave. — You're not interested.\n  What Would you do?\n" ;
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.coin -= 10;
-                //[+ (10 * char lv)health, named "Good Value" charms.];
-                cout << "Im sure you'll be pleased to have that\n";
-                 addObjectToPlayer(PL, OL, MC.name, "'Good Value'");
+                if(MC.coin >= 10){
+                    MC.coin -= 10;
+                    //[+ (10 * char lv)health, named "Good Value" charms.];
+                    cout << "Im sure you'll be pleased to have that\n";
+                     addObjectToPlayer(PL, OL, MC.name, "'Good Value'");
+                }else{
+                    cout<< "'Appreciate that you are helping me but it seems you dont have enough gold.' \n";
+                }
             }else if (choice == "2"){
-                MC.coin -= 20;
-
-                //[+25 attack, sword named "Scarlet".];
-                cout << "I'm *surprised* you picked that one";
-                 addObjectToPlayer(PL, OL, MC.name, "Scarlet");
+                 if(MC.coin >= 20){
+                    MC.coin -= 20;
+                    //[+25 attack, sword named "Scarlet".];
+                    cout << "I'm *surprised* you picked that one";
+                     addObjectToPlayer(PL, OL, MC.name, "Scarlet");
+                 }else{
+                    cout << "'Appreciate that you are helping me but it seems you dont have enough gold.' \n";
+                 }
             }else if (choice == "3"){
                 //gain [10 gold piece and small xp];
             }else{
@@ -593,13 +688,13 @@ void encounter(int id){
     case 9:
         x[0] = " == House of Nildis (Occurance) == " ;
         print(x,0,false);
-        x[1] = "You sit at the card table across from a one-eyed dealer whose metal prosthetic legs are intertwined with the legs of the Nildis table. His torso runs through a hole in the 	center of the table with a pinball circling his waist." ;
+        x[1] = "You sit at the card table across from a one-eyed dealer whose metal prosthetic legs are intertwined with the legs of the Nildis table. His torso runs through a hole in the center of the table with a pinball circling his waist." ;
         print(x,1,false);
-    	x[2] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden 	prosthetic arms." ;
+    	x[2] = "He moves his eyeballs to look at you before bowing at you respectfully. Next, the dealer distributes the gold piece and shuffles the cards gracefully with his 2 wooden prosthetic arms." ;
         print(x,2,false);
     	x[3] = "'There is a certain chance that you will unfold the most wonderful memory of this world.' The dealer deals a stack of cards to you and adds, 'However, you might also reveal some mysterious affairs that aren't supposed to be made known. If you are unlucky, the consequences will be dire.'" ;
         print(x,3,false);
-    	x[4] = "1. Flip the Card. (50% chance fighting 2 elite rogue) \n  2. walk away \n 3. Flip over the game table" ;
+    	x[4] = "1. Flip the Card. (50% chance fight One Eyed kent) \n  2. walk away \n 3. Flip over the game table \n  What Would you do?\n" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -635,15 +730,19 @@ void encounter(int id){
         print(x,2,false);
     	x[3] = "Here's a talisman about your fate. If you don't believe this type of thing, just treat it as a famous rumor of the cosmos. Deep down inside, you are tempted...\n";
         print(x,3,false);
-    	x[4] = "1. Tell Fortune. [spend 30 gold piece]  \n  2. It's just a rumor, Leave. — You're not interested.\n";
+    	x[4] = "1. Tell Fortune. [spend 25 gold piece]  \n  2. It's just a rumor, Leave. — You're not interested.\n  What Would you do?\n";
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                cout << "'What an interesting fate you've got there, be sure to come back after you succeeded teehee~'";
-                MC.coin -= 30;
-                //[25% obtaining, 'Bloodied Necklace' charms [if atleast 1 enemy killed, get + (20 * char lv) attack]]
-                addObjectToPlayer(PL, OL, MC.name, "Bloodied Necklace");
+                if(MC.coin >= 25){
+                    cout << "'What an interesting fate you've got there, be sure to come back after you succeeded teehee~'";
+                    MC.coin -= 25;
+                    //[25% obtaining, 'Bloodied Necklace' charms [if atleast 1 enemy killed, get + (20 * char lv) attack]]
+                    addObjectToPlayer(PL, OL, MC.name, "Bloodied Necklace");
+                }else{
+                    cout << "'Eeh... It seems luck was not by your side \n";
+                }
             }else if (choice == "2"){
                 //gain [nothing and small xp]
                 cout << "Oh well.. be sure to come back next time~\n";
@@ -656,11 +755,11 @@ void encounter(int id){
     case 11:
         x[0] = " == Jester Pedler. (Transaction) == \n";
         print(x,0,false);
-        x[1] = "You see an adorable jester waving at you. When you get near it, it speaks: 'This is a kingdom of me.. of sale! You can find everything you desire here!' On the board, you 	see medical, entertainment, and other services offered at affordable prices... \n";
+        x[1] = "You see an adorable jester waving at you. When you get near it, it speaks: 'This is a kingdom of me.. of sale! You can find everything you desire here!' On the board, you see medical, entertainment, and other services offered at affordable prices... \n";
         print(x,1,false);
     	x[2] = "or you can even buy my specialty, JAck-In-A-Box, who knows what you might get? and I could even a guranteed goldback especially for you.\n";
         print(x,2,false);
-    	x[3] = "1. Purchase entertainment services. [5 gold piece]  \n  2. Try to haggle for his goofy ahh hat. [15 gold piece]  \n  3. Purchase a JAck-in-a-Box [20 gold piece]  \n  4. Leave. — You're not interested. ";
+    	x[3] = "1. Purchase entertainment services. [5 gold piece]  \n  2. Try to haggle for his goofy ahh hat. [15 gold piece]  \n  3. Purchase a JAck-in-a-Box [20 gold piece]  \n  4. Leave. — You're not interested.\n  What Would you do?\n ";
         print(x,3,true);
         do{
             cin >> choice;
@@ -669,20 +768,28 @@ void encounter(int id){
                 cout << "'Jolly goodshow my good man, pleasure doing business' \n";
                 MC.currentHealth += 999;
             }else if (choice == "2"){
-                MC.coin -=15;
-                cout << "'Ugh fine *with a different deeper voice*' \n";
-                //gain [Helmet Jester's Delight, +15 defence and +1 Crit counter]
-                addObjectToPlayer(PL, OL, MC.name, "Jester's Delight");
+                if(MC.coin >= 15){
+                    MC.coin -=15;
+                    cout << "'Ugh fine *with a different deeper voice*' \n";
+                    //gain [Helmet Jester's Delight, +15 defence and +1 Crit counter]
+                    addObjectToPlayer(PL, OL, MC.name, "Jester's Delight");
+                }else{
+                    cout << "Haha.. oh swell~ seems like you are out of gold piece. \n" <<endl;
+                }
             }else if (choice == "3"){
-                MC.coin -= 20;
-                cout << "As you open the box, a huge light came out of it and you hear a wind blowing through your ear \n";
-                cout << "Inside the box there's a single note saying " << "Beware of the long eared Jester" << "'well.. that was a waste of gol- wait where did he even 	go?! ... f***..' Said to 	yourself";
-                MC.exp += 650;
+                if(MC.coin >= 20){
+                    MC.coin -= 20;
+                    cout << "As you open the box, a huge light came out of it and you hear a wind blowing through your ear \n";
+                    cout << "Inside the box there's a single note saying " << "Beware of the long eared Jester" << "'well.. that was a waste of gol- wait where did he even go?! ... f***..' Said to 	yourself";
+                    MC.exp += 650;
+                }else{
+                    cout << "oh swell~ seems like the box stays close. \n" <<endl;
+                }
             }else if (choice == "4"){
                 cout << "'What a real bummer you are' \n";
                 //nothing
             }else{
-                  cout << "you cant do that\n";
+                cout << "you cant do that\n";
             }
         }while(stoi(choice) < 0 || stoi(choice) > 4);
        MC.exp += addExp(mc(PL),250);
@@ -692,21 +799,24 @@ void encounter(int id){
             print(x,0,false);
             x[1] = "A Mourning Actor riding a cosmic elephant slowly comes into sight... She is still weeping for some reasons. Then, she dismounts the elephant and offers to perform a special magic show to you for free." ;
             print(x,1,false);
-            x[2] = "She stuffs your 20 gold piece into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand 	on her chest and politely asks you to choose a cup..." ;
+            x[2] = "She stuffs your 20 gold piece into four cups in front of you... Then, she quickly moves the cups around, and the show ends in an instant. The Actor then places her hand on her chest and politely asks you to choose a cup..." ;
             print(x,2,false);
-            x[3] = "1. Select the cup on the left. \n  2. Select the cup on the right." ;
+            x[3] = "1. Select the cup on the left. \n  2. Select the cup on the right. \n  What Would you do?\n " ;
             print(x,3,true);
             cin >> choice;
         do{
             if (choice == "1"){
+
                 cout << "'A nice eye, but a fair game is a fair game'\n";
                 addObjectToPlayer(PL, OL, MC.name, "Tricster Gloves");
                 //	get [equipment back and gained 'Trickster Gloves' charms, +15 speed]
             }else if (choice == "2"){
-                cout << "'Too bad, don't be mad at me, that's just how the game is' \n";
-                MC.coin -= 20;
-                MC.exp += addExp(mc(PL),60);
-                //[discard that equipment and gained 600 xp]
+                if(MC.coin >= 20){
+                    cout << "'Too bad, don't be mad at me, that's just how the game is' \n";
+                    MC.coin -= 20;
+                    MC.exp += addExp(mc(PL),60);
+                    //[discard that equipment and gained 600 xp]
+                }
             }else{
                   cout << "you cant do that\n";
             }
@@ -722,18 +832,28 @@ void encounter(int id){
         print(x,2,false);
     	x[3] = "'I do not own much at this point, but will you take a look at my wares, it'll just take a few times of your day'. \n ";
         print(x,3,false);
-        x[3] = "1. Purchase an 'Amber' bag. [15 gold piece]  \n  2. Purchase a 'Supernium' Bag [15 gold piece] \n  3. Leave. — You're not interested. ";
+        x[3] = "1. Purchase an 'Amber' bag. [15 gold piece]  \n  2. Purchase a 'Supernium' Bag [15 gold piece] \n  3. Leave. — You're not interested. \n  What Would you do?\n ";
         print(x,3,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                cout << "I looted this one of from a battlefield I feel ashamed to this day, but a man's have to eat something. \n";
-                addObjectToPlayer(PL, OL, MC.name, "Terra Sword");
-                //get [Sword, 'Terra Sword' ,(Leech Effect and +10 attack)];
+                if(MC.coin >= 15){
+                    MC.coin -=15;
+                    cout << "I looted this one of from a battlefield I feel ashamed to this day, but a man's have to eat something. \n";
+                    addObjectToPlayer(PL, OL, MC.name, "Terra Sword");
+                    //get [Sword, 'Terra Sword' ,(Leech Effect and +10 attack)];
+                }else{
+                    cout << "Seems we're both struggling as well. \n";
+                }
             }else if (choice == "2"){
-                cout << "'I've never dared to it peeked once, I found it on a ruined blacksmith village in the far region of Lumaroth ' \n";
-                addObjectToPlayer(PL, OL, MC.name, "Titanium Chestplate");
-                //get [Chestplate, 'Titanium Chestplate' (+20 defence and +10 attack)]]
+                 if(MC.coin >= 20){
+                    MC.coin -= 20;
+                    cout << "'I've never dared to it peeked once, I found it on a ruined blacksmith village in the far region of Lumaroth ' \n";
+                    addObjectToPlayer(PL, OL, MC.name, "Titanium Chestplate");
+                    //get [Chestplate, 'Titanium Chestplate' (+20 defence and +10 attack)]]
+                }else{
+                    cout << "Seems we're both struggling as well. \n";
+                }
             }else if (choice == "3"){
                 cout << "*he lets out a huge sigh* Another day, another bad luck for the 'wicked' \n";
                 //nothing
@@ -746,13 +866,13 @@ void encounter(int id){
     case 14:
         x[0] = " == Mad Jester. (Boss Battle) == " ;
         print(x,0,false);
-        x[1] = "A short, pudgy imp with a round gray face, elven ears, clown-like eyes with small yellow pupils, and a large smiling mouth with yellow, sharp teeth. He has a long, purple 	tongue which can be seen either when he laughs. He has a purple tail shaped like a capital letter J. suddenly approaches you" ;
+        x[1] = "A short, pudgy imp with a round gray face, elven ears, clown-like eyes with small yellow pupils, and a large smiling mouth with yellow, sharp teeth. He has a long, purple tongue which can be seen either when he laughs. He has a purple tail shaped like a capital letter J. suddenly approaches you" ;
       	print(x,1,false);
         x[2] = "'Nice to meet you, the name's Jevil and I know who you are' He then snaps hit fingers" ;
       	print(x,2,false);
-        x[3] = "A single white flash temporarily blinds you and suddenly He materialize a white space with you in it, He then invites the party to enter. Jevil waits at the far right of 	the area, and wants to 	'PLAY' a 'SIMPLE NUMBERS GAME. WHEN YOUR HP DROPS TO 0, YOU LOSE!'" ;
+        x[3] = "A single white flash temporarily blinds you and suddenly He materialize a white space with you in it, He then invites the party to enter. Jevil waits at the far right of the area, and wants to 'PLAY' a 'SIMPLE NUMBERS GAME. WHEN YOUR HP DROPS TO 0, YOU LOSE!'" ;
         print(x,3,false);
-        x[4] = "1. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to beat Jevil). \n  2. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to pacify Jevil)" ;
+        x[4] = "1. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to beat Jevil). \n  2. LET'S PLAY! LET'S PLAY! LET'S PLAY! (Intent to pacify Jevil)\n  What Would you do?\n" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -785,11 +905,11 @@ void encounter(int id){
     case 15:
         x[0] = " == Saleo. (Battle) == " ;
         print(x,0,false);
-        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has 	two heads knocking each other — one of them has red antennae, while the other has a white halo. \n" ;
+        x[1] = "You enter a dimly-lit motel on Layton. At the stairway, you meet a massive guest who looks intimidating. Its body is formed by a transparent gel-like substance, and it has two heads knocking each other one of them has red antennae, while the other has a white halo. \n" ;
       	print(x,1,false);
-        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger 	one, is the angel. Which one do you want as your neighbor?' \n" ;
+        x[2] = "You find your neighbor terrifying. It seems like you have to choose between its two personalities.'Our name is Saleo. Sal, the older one, is the demon. Leo, the younger one, is the angel. Which one do you want as your neighbor?' \n" ;
       	print(x,2,false);
-        x[3] = "1. Pick Sal \n  2. Pick Leo " ;
+        x[3] = "1. Pick Sal. \n  2. Pick Leo.\n  What Would you do?\n " ;
         print(x,3,true);
         do{
             cin >> choice;
@@ -816,19 +936,19 @@ void encounter(int id){
     case 16:
         x[0] = " == Rock, Paper, Bullets?(Battle) == " ;
         print(x,0,false);
-        x[1] = "The ringmaster before you, with a curved mustache and a distinctavely pants, is running a performance. While it seems to be a normal performance, only you know that you 	are playing a game of rock-paper-scissors with it.  \n" ;
+        x[1] = "The ringmaster before you, with a curved mustache and a distinctavely pants, is running a performance. While it seems to be a normal performance, only you know that you are playing a game of rock-paper-scissors with it.  \n" ;
       	print(x,1,false);
-        x[2] = "'There is an 82.49% chance of you playing rock in the first game, and a 94.61% of you playing scissors in the second. If you choose to flip the table with me and battle 	with the other perfromer, there is a 99.37% of me NOT putting a bullet through your head.'  \n" ;
+        x[2] = "'There is an 82.49% chance of you playing rock in the first game, and a 94.61% of you playing scissors in the second. If you choose to flip the table with me and battle with the other perfromer, there is a 99.37% of me NOT putting a bullet through your head.'  \n" ;
       	print(x,2,false);
         x[3] = "'But if you leave some gold pieces behind, your chance of survival is 100%.' they are waiting for your response. \n" ;
         print(x,3,false);
-        x[4] = "1. Fight for the 0.63% chance. \n  2. Pick 100% safe" ;
+        x[4] = "1. Fight for the 0.63% chance. \n  2. Pick 100% safe.\n  What Would you do?\n" ;
         print(x,4,true);
         do{
             cin >> choice;
             if (choice == "1"){
             cout << "'THE SHOW MUST CONTINUE!!' *shouts the ring leader* \n";
-             enemyList enemies;
+                enemyList enemies;
                 createEnemyList(enemies);
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Ring Master")))));
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
@@ -836,10 +956,20 @@ void encounter(int id){
                 addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
                 fight(enemies);
             }else if (choice == "2"){
-            cout << "A good lad knows where he belongs.. NOT IN CIRCUS HA! \n";
-            MC.coin -= 20;
-            //[lose 20 gold piece]
-
+                if(MC.coin >= 10){
+                    cout << "A good lad knows where he belongs.. NOT IN CIRCUS HA! \n";
+                    MC.coin -= 10;
+                    //[lose 20 gold piece]
+                }else{
+                    cout<< "Well Well.. seem's like someone couldn't pay, you know what we do to em. \n";
+                     enemyList enemies;
+                    createEnemyList(enemies);
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Ring Master")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Strong Performer")))));
+                    fight(enemies);
+                }
             }else{
             cout << "you cant do that\n";
             }
@@ -855,7 +985,7 @@ void encounter(int id){
       	print(x,2,false);
         x[3] = "'Leave your gold coins behind. We need funds to oil the development of the city. Generosity is in line with the cowboy's spirit!' Scowling at the shameless bandits, you bite off the grass with your mouth... \n" ;
         print(x,3,false);
-        x[4] = "1.  Let them experience the real 'cowboy'.  \n  2. Pay." ;
+        x[4] = "1.  Let them experience the real 'cowboy'.  \n  2. Pay. [lose 1/2 gold total]\n  What Would you do?\n" ;
         print(x,4,true);
         do{
         cin >> choice;
@@ -871,8 +1001,20 @@ void encounter(int id){
                 fight(enemies);
 
         }else if (choice == "2"){
-		cout << "You ain't so bad, after all we're just a fellow goodmen \n";
-        MC.coin -= 0.5*MC.coin;
+            if(MC.coin != 0){
+                cout << "You ain't so bad, after all we're just a fellow goodmen \n";
+                MC.coin -= 0.5*MC.coin;
+            }else{
+                cout << "Can't Pay the Fees?!. \n";
+                enemyList enemies;
+                createEnemyList(enemies);
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Cowboy")))));
+                fight(enemies);
+            }
         }else{
             cout << "you cant do that";
         }
@@ -886,10 +1028,12 @@ void encounter(int id){
       	print(x,1,false);
         x[2] = "'Welcome to Tavern World's End.' Bragi, the bartender, bows deeply to the patrons and continues, 'We only serve customers with a sense of humor.' \n  " ;
       	print(x,2,false);
-        x[3] = "'In keeping with Aha's will, we will have some fun next. Mr. France and his team of bodyguards will be the next to join the arena. His opponent will be Avila. He and his 	mercenaries are burly and not to be underestimated! Who else is coming? Who's up for the 78,201st round?' \n " ;
+        x[3] = "'In keeping with Aha's will, we will have some fun next. Mr. France and his team of bodyguards will be the next to join the arena. His opponent will be Avila. He and his mercenaries are burly and not to be underestimated! Who else is coming? Who's up for the 78,201st round?' \n " ;
         print(x,3,false);
-        x[4] = "1.Challenge Mr. France's security team.  \n  2. Challenge the burly Avila's mercenary company  \n  3. Fight both together! \n" ;
-        print(x,4,true);
+        x[4] = "Choices:\n " ;
+        print(x,4,false);
+        x[5] = "  1.Challenge Mr. France's security team.  \n  2. Challenge the burly Avila's mercenary company  \n  3. Fight both together! \n What Will you do? \n" ;
+        print(x,5,true);
         do{
             cin >> choice;
             if (choice == "1"){
@@ -930,7 +1074,7 @@ void encounter(int id){
       	print(x,2,false);
         x[3] = "You stare straight into its droopy eyes. Its whiskers are moving up and down. You notice it is protecting some cubs behind it.. \n" ;
         print(x,3,false);
-        x[4] = "1. Help the young beasts 'get free.'  /n  2. Take care of the adult beast's 'pain.' \n" ;
+        x[4] = "1. Help the young beasts 'get free.'  /n  2. Take care of the adult beast's 'pain.' \n What Will you do? \n" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -968,7 +1112,7 @@ void encounter(int id){
       	print(x,2,false);
         x[3] = "Curiosity piqued, you approach the twin chests cautiously. The carvings on the dark mahogany surface seem to depict ancient symbols and arcane patterns. As you examine them closely, you notice that the Blue Painted chest bears symbols reminiscent of flowing water, while the Red Painted chest is adorned with fiery motifs.\n" ;
         print(x,3,false);
-        x[4] = "1. Open the Blue Painted Chest. \n  2.  Open the Red Painted Chest. \n  3. Try to open both chest at the same time \n   4. Tiptoe away slowly, avoiding any confrontation." ;
+        x[4] = "1. Open the Blue Painted Chest. \n  2.  Open the Red Painted Chest. \n  3. Try to open both chest at the same time \n   4. Tiptoe away slowly, avoiding any confrontation.\n What Will you do? \n" ;
         print(x,4,true);
         do{
             cin >> choice;
@@ -1010,16 +1154,20 @@ void encounter(int id){
         print(x,3,false);
         x[4] = "You're very confused on why such claims would just go for 15 gold pieces, he insist on you trying it out first \n" ;
       	print(x,4,false);
-        x[5] = "The sword is very sharp, like every swing produce an aftersound of wind slicing in air, even though it's just made of grass. \n" ;
+        x[5] = "The sword is very sharp, like every swing produce an aftersound of wind slicing in air, even though it's just made of grass. \n What Will you do? \n" ;
         print(x,5,false);
         x[6] = "1. Buy it [Requires 15 gold piece] \n 2. Leave " ;
         print(x,6,true);
         do{
             cin >> choice;
             if (choice == "1"){
-                MC.coin -= 15;
-                addObjectToPlayer(PL, OL, MC.name, "Grass Sword");
-                cout << "Wise decision, and also no refunds!";
+                if(MC.coin >= 15){
+                    MC.coin -= 15;
+                    addObjectToPlayer(PL, OL, MC.name, "Grass Sword");
+                    cout << "Wise decision, and also no refunds!";
+                }else{
+                    cout << "'Go stick with your stick'";
+                }
             }else if (choice == "2"){
                 cout << "'Not even worthy of the sword'";
                 cout << "You left the tent";
@@ -1040,7 +1188,7 @@ void encounter(int id){
         print(x,3,false);
         x[4] = "Their eye's gleam with an otherworldly allure, and the tendrils of their enchanting song wrap around your senses. A captivating aura surrounds them, promising an experience beyond mortal comprehension. \n" ;
       	print(x,4,false);
-        x[5] = "1. 1.Yield to the allure and join the Sirens in their mesmerizing dance. \n 2.Politely decline the invitation and exit the glade. " ;
+        x[5] = "1. 1.Yield to the allure and join the Sirens in their mesmerizing dance. \n 2.Politely decline the invitation and exit the glade.\n What Will you do? \n " ;
         print(x,5,true);
         do{
             cin >> choice;
@@ -1075,7 +1223,7 @@ void encounter(int id){
         print(x,3,false);
         x[4] = "'Ancient ruler of the twilight realm, keeper of the cryptic echoes,' it intones with a voice that seems to emanate from the depths of the underworld. 'The hour has come for a dance with the shadows, mortal intruder.' \n" ;
       	print(x,4,false);
-        x[5] = "1. Engage in battle with the Skeletal King! (Attempt to exorcise it) \n 2. Engage in battle with the Skeletal King! (Attempt to defeat it) " ;
+        x[5] = "1. Engage in battle with the Skeletal King! (Attempt to exorcise it) \n 2. Engage in battle with the Skeletal King! (Attempt to defeat it)\n What Will you do? \n " ;
         print(x,5,true);
         do{
             cin >> choice;
@@ -1123,9 +1271,9 @@ void encounter(int id){
             print(x,2,false);
             x[3] = "Your mind returns to reality when the fish eye is fully digested in your stomach. It's time for you to go to work, but you are reluctant to move... \n" ;
             print(x,3,false);
-            x[4] = "if have artifact: 1. Catch more fish eyes...  \n 2.Return to work. " ;
+            x[4] = "if have artifact: 1. Catch more fish eyes...  \n 2.Return to work. \n What Will you do? \n" ;
             print(x,4,true);
-            x[5] = "if not have artifact: 1.  Swallow the other fish eye and continue to enjoy the massage. \n  2. Return to work." ;
+            x[5] = "if not have artifact: 1.  Swallow the other fish eye and continue to enjoy the massage. \n  2. Return to work.\n What Will you do? \n" ;
             print(x,5,true);
         do{
             cin >> choice;
@@ -1154,6 +1302,60 @@ void encounter(int id){
                     MC.exp += 1000;
                     //[1000 xp]
                    // [30 gold piece]
+                }else{
+                    cout << "you cant do that";
+
+                }
+            }
+        }while(stoi(choice) < 0 || stoi(choice) > 2);
+    break;
+     case 25:
+            x[0] = " == Fate Treader (Fated Encounter) == " ;
+            print(x,0,false);
+            x[1] = "The dense mist begins to clear, revealing the imposing structure that looms ahead – the Spire. Its ancient stones, weathered by time, seem to whisper tales of forgotten epochs. \n" ;
+            print(x,1,false);
+            x[2] = "The air is charged with an otherworldly energy as you stand before the entrance. Your footsteps echo against the cobblestone path, a sound that seems to reverberate through the ages. The door creaks open, revealing a dimly lit interior that stretches into the shadows above. \n" ;
+            print(x,2,false);
+            x[3] = "The time has come to summon your courage, for destiny awaits at the pinnacle of the Spire. As you step forward, you can't help but wonder: Will this be the end of your journey, or the beginning of a new and even more perilous chapter? The only certainty is that the Spire holds the key to the culmination of your epic tale.\n" ;
+            print(x,3,false);
+            x[4] = "If have artifact: Behold, mortal, the culmination of your struggles. The artifact, a relic of untold potential, remains a dormant beacon of might. Throughout your endeavors, you unknowingly played the role of a catalyst, a pawn in a game where the true players wield powers far beyond mortal comprehension.. \n";
+            print(x,4,false);
+            x[5] = "Will you falter before the weight of your sins, or will you rise to claim your rightful place as a hero of Eldoria, who brings peace once more to these lands. The time has come to face the inevitable, and within the shadows of this Spire, we shall dance the dance of finality \n";
+            print(x,5,false);
+            x[7] = "If not artifact:Know this, seeker of answers – the artifact is a vessel of immense power, one that resonates with the very fabric of Eldoria. However, without the key to fully awaken its potential, it remains a slumbering force, a reflection of what could have been. Your fate, entwined with the artifact, is a tale left incomplete, a narrative that will remain veiled in the obscurity of unrealized potential.\nWhat Would yo do?\n1. [fight the one true chaos]\n";
+            print(x,7,false);
+            x[8] = "As you stand before me, gazing upon the dormant artifact, ponder the consequences of your unwitting involvement. Will you confront the harsh reality that your efforts have merely scratched the surface of what could be achieved, or will you linger in the shadows of what-ifs? The Spire, a silent witness to the twists of fate, now awaits the resolution of a tale where the true magnitude of power lies dormant within the artifact you sought but never possessed. \nWhat Would yo do?\n";
+            print(x,8,false);
+            x[9] = "  1. [fight the shrouded one]\n";
+            print(x,9,true);
+            x[10] = "  1. [fight the one true chaos]\n";
+            print(x,10,true);
+        do{
+            cin >> choice;
+            if(MC.artifact == 1){ //ketika ada
+                if (choice == "1"){
+                    enemyList enemies;
+                    createEnemyList(enemies);
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"The True Master of Chaos, Ka'as")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Preserverance")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Courage")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Altruistic")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Determination")))));
+                    fight(enemies);
+                }else{
+                    cout << "you cant do that";
+                }
+            }else{
+                if (choice == "1"){
+                    enemyList enemies;
+                    createEnemyList(enemies);
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"The Shrouded One, Ka'as")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Preserverance")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Courage")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Altruistic")))));
+                    addEnemy(enemies,(createNewEnemyElement(info(findEnemy(EL,"Pillars of Determination")))));
+                    fight(enemies);
+
                 }else{
                     cout << "you cant do that";
 
@@ -1462,7 +1664,7 @@ void fight(enemyList enemies){
                                     }
                                 }while(!findEntity(eL,target) && notDied);
                             }else{
-                                cout << "Fuck my life" << endl;
+                                cout << "CRIT!" << endl;
                             }
                         }
                     }while(!findSkillinPlayer(skillid,offensive(mc(PL))));

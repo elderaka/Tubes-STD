@@ -911,7 +911,7 @@ void initiateObjects(objectList &OL){
 }
 void initiateSkillAndClass(skillTree &ST, classTree &CT){
     //TODO: CHANGE THE FUCKIN THINGS INTO BST, WHAT ARE THE SKILL ID USED FOR IF WE DON"T USE IT
-
+    //Im tryin man T.T
     createSkillTree(ST);
     createClassTree(CT);
     skill Skill;
@@ -935,7 +935,7 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     cls.bonusAttack = 5;
     cls.bonusDefense = 3;
     cls.bonusSpeed = 2;
-    cls.bonusHealth = 20;
+    cls.bonusHealth = 120;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
     addSkill(ST,adrSkill);
@@ -1509,7 +1509,7 @@ void initiateEnemy(enemyList &EL){
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Saleo (Battle)
-    Enemy.name = "Older Brother Leo"; //medium dif
+    Enemy.name = "Sal"; //medium dif
     Enemy.health = 180; //+30
     Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 45; //+30
@@ -1531,7 +1531,7 @@ void initiateEnemy(enemyList &EL){
     Enemy.dropChance = 1;
     addEnemy(EL,createNewEnemyElement(Enemy));
 
-    Enemy.name = "Younger Brother Sal";//easy dif
+    Enemy.name = "Leo";//easy dif
     Enemy.health = 160; //+20
     Enemy.currentHealth = Enemy.health;
     Enemy.defaultAttack = 25; //+10
