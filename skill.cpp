@@ -127,7 +127,7 @@ void showSkill(skillList L){
         aoe = info(skill(p)).isMultiple ? "Area of Effect" : "Single Target";
         cout << aoe << endl;
         string type;
-        type = info(skill(p)).type == "Offensive" ? "Deals " + to_string(info(skill(p)).dmg) + " damage" : "Heals " + to_string(info(skill(p)).heal) + " damage";
+        type = info(skill(p)).type == "Offensive" ? "Deals " + to_string(info(skill(p)).dmg) + " damage" : "damage " + to_string(info(skill(p)).heal) + " Heals\n";
         cout << type << endl;
         p = next(p);
     }

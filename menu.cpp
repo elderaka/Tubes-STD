@@ -2135,10 +2135,16 @@ void findSkillData(){
             skill Skill = info(findskill(ST,name));
             cout <<"Name            : " <<  Skill.name << endl;
             cout <<"Description     : " <<  Skill.desc<< endl;
-            cout <<"Cost            : " <<  Skill.cost[1] << endl;
+            cout <<"Cost            : " <<  Skill.cost[0] << " (" << Skill.costStat[0] << ")" << endl;
+            if (Skill.cost[1] > 0){
+            cout <<"Cost            : " <<  Skill.cost[1] << " (" << Skill.costStat[1] << ")" << endl;
+            }else if (Skill.cost[2] > 1){
+            cout <<"Cost            : " <<  Skill.cost[1] << " (" << Skill.costStat[1] << ")" << endl;
+            cout <<"Cost            : " <<  Skill.cost[2] << " (" << Skill.costStat[2] << ")" << endl;
+            }
             cout <<"Skill Type      : " <<  Skill.type << endl;
             if(Skill.dmg > 0){
-                cout <<"Skill Damage   : " <<  Skill.dmg << endl;
+                cout <<"Skill Damage    : " <<  Skill.dmg << endl;
             }
 
             string multiple = Skill.isMultiple ? "Yes" : "No";
@@ -2541,7 +2547,7 @@ void showTopThree(){
         }
         tier--;
     }
-    cout << "Top 3 Player of this shitty game:" << endl;
+    cout << "Top 3 Player of this game:" << endl;
     cout << "1. " << topPlayer[0] << " (" << info(findPlayer(PL,topPlayer[0])).Class <<") " + string(info(findPlayer(PL,topPlayer[0])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[0])).isDead ? "[Dead]" : " ") +"\n";
     cout << "2. " << topPlayer[1] << " (" << info(findPlayer(PL,topPlayer[1])).Class <<") " + string(info(findPlayer(PL,topPlayer[1])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[1])).isDead ? "[Dead]" : " ") +"\n";
     cout << "3. " << topPlayer[2] << " (" << info(findPlayer(PL,topPlayer[2])).Class <<") " + string(info(findPlayer(PL,topPlayer[2])).isFinished ? "[Finished] " : " ") + string(info(findPlayer(PL,topPlayer[2])).isDead ? "[Dead]" : " ") +"\n";

@@ -240,7 +240,7 @@ void initiateObjects(objectList &OL){
     Object.armorType = "";
     Object.buff = 0;
     Object.buffStat = "";
-    Object.duration = 0;
+    Object.duration = 1;
     Object.heal = 0.3 * MC.health;
     addObject(OL,createNewObjectElement(Object));
 
@@ -253,7 +253,7 @@ void initiateObjects(objectList &OL){
     Object.buff = 0;
     Object.buffStat = "";
     Object.heal = 0.6 * MC.health;
-    Object.duration = 0;
+    Object.duration = 1;
     addObject(OL,createNewObjectElement(Object));
 
     Object.name = "L. Health Potion";
@@ -265,7 +265,7 @@ void initiateObjects(objectList &OL){
     Object.buff = 0;
     Object.buffStat = "";
     Object.heal = 1 * MC.health;
-    Object.duration = 0;
+    Object.duration = 1;
     addObject(OL,createNewObjectElement(Object));
 
     Object.name = "Attack Potion";
@@ -315,7 +315,7 @@ void initiateObjects(objectList &OL){
     Object.buff = 2500;
     Object.buffStat = "exp";
     Object.heal = 0;
-    Object.duration = 0;
+    Object.duration = 1;
     addObject(OL,createNewObjectElement(Object));
 
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -912,6 +912,7 @@ void initiateObjects(objectList &OL){
 void initiateSkillAndClass(skillTree &ST, classTree &CT){
     //TODO: CHANGE THE FUCKIN THINGS INTO BST, WHAT ARE THE SKILL ID USED FOR IF WE DON"T USE IT
     //Im tryin man T.T
+    //Edit: Tbh Iunno how, ksih cara nnt w kerjain
     createSkillTree(ST);
     createClassTree(CT);
     skill Skill;
@@ -926,16 +927,16 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.desc = "Scream out on top of your lungs and swing voraciously, invigorating you for 2 turns";
     Skill.cost[0] =  5 ;
     Skill.costStat[0] = "Stamina";
-    Skill.dmg  = Player.defaultAttack + 10;
-    Skill.heal = Player.health + 5 ;
-    Skill.buff[0] = Player.defaultAttack + 5 ;
+    Skill.dmg  = 10;
+    Skill.heal = 5 ;
+    Skill.buff[0] = 5 ;
     Skill.duration = 3;
     Skill.type = "Buff";
     Skill.isMultiple = false;
     cls.bonusAttack = 5;
     cls.bonusDefense = 3;
     cls.bonusSpeed = 2;
-    cls.bonusHealth = 120;
+    cls.bonusHealth = 20;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
     addSkill(ST,adrSkill);
@@ -957,10 +958,10 @@ void initiateSkillAndClass(skillTree &ST, classTree &CT){
     Skill.duration = 1;
     Skill.type = "Offensive";
     Skill.isMultiple = false;
-    cls.bonusAttack = 10;
-    cls.bonusDefense = 5;
-    cls.bonusSpeed = 5;
-    cls.bonusHealth = 20;
+    cls.bonusAttack = 12;
+    cls.bonusDefense = 8;
+    cls.bonusSpeed = 10;
+    cls.bonusHealth = 30;
     adrClass = createNewClassNode(cls);
     adrSkill = createNewSkillNode(Skill);
     left(ST) = adrSkill;
@@ -1416,27 +1417,27 @@ void initiatePlayer(playerList &PL){
     Player.Class = "Newbie";
     Player.defaultAttack = 10;
     Player.defaultDefence = 10;
-    Player.coin = 100;
-    Player.health = 20;
+    Player.coin = 10;
+    Player.health = 100;
     Player.currentHealth = Player.health;
     Player.speed = 10;
-    Player.stamina = 10;
-    Player.currentStamina = 10;
+    Player.stamina = 15;
+    Player.currentStamina = 15;
     Player.exp = 0;
     Player.level = 1;
     Player.nextLevel = 10;
     adrPlayer = createNewPlayerElement(Player);
     addPlayer(PL,adrPlayer);
 
-    Player.name = "Master Bait";
-    Player.defaultAttack = 10;
-    Player.defaultDefence = 10;
-    Player.coin = 51234;
-    Player.health = 20;
+    Player.name = "Master Ninja";
+    Player.defaultAttack = 500;
+    Player.defaultDefence = 385;
+    Player.coin = 374;
+    Player.health = 300;
     Player.currentHealth = Player.health;
-    Player.speed = 10;
-    Player.stamina = 10;
-    Player.currentStamina = 10;
+    Player.speed = 70;
+    Player.stamina = 100;
+    Player.currentStamina = 100;
     Player.exp = 1532;
     Player.level = 10;
     Player.nextLevel = 51223;
@@ -1454,17 +1455,17 @@ void initiatePlayer(playerList &PL){
     addSkillToPlayer(PL,ST,Player.name,info(right(left(right(right(ST))))).name);
 
     Player.name = "Jetstream";
-    Player.defaultAttack = 10;
-    Player.defaultDefence = 10;
+    Player.defaultAttack = 158;
+    Player.defaultDefence = 250;
     Player.coin = 100;
-    Player.health = 20;
+    Player.health = 200;
     Player.currentHealth = Player.health;
-    Player.speed = 10;
-    Player.stamina = 10;
-    Player.currentStamina = 10;
-    Player.exp = 0;
-    Player.level = 1;
-    Player.nextLevel = 10;
+    Player.speed = 50;
+    Player.stamina = 70;
+    Player.currentStamina = 70;
+    Player.exp = 1000;
+    Player.level = 5;
+    Player.nextLevel = 2500;
     Player.isFinished = false;
     Player.isDead = true;
     adrPlayer = createNewPlayerElement(Player);
